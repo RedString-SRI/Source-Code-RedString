@@ -1,3 +1,7 @@
+variables de boucles : i , j , k
+variables d'entier : m , n , o , p , ...
+Nom de structure : SuperVariable
+Nom énumération : ENUMERATION
 /*
   Function : FunctionName
   Description : This function displays a flower in the command line

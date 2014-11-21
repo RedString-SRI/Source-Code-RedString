@@ -3,8 +3,10 @@
 
 typedef struct{
   int id;
-  Mode WritingMode;
-  ...
+  Mode writingMode;
+  Term *terms;
+  int nbTerms;
+  int nbWords;
 }TextDescriptor;
 
 #endif

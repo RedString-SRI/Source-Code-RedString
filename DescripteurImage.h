@@ -3,7 +3,7 @@
 
 typedef struct{
   int id;
-  Mode WritingMode;
+  Mode writingMode;
   
 }PicDescriptor;
 

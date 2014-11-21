@@ -1,10 +1,10 @@
-#ifndef STRUCT_PIC_DESCRIPTOR
-#define STRUCT_PIC_DESCRIPTOR
+#ifndef STRUCT_PICTURE_DESCRIPTOR
+#define STRUCT_PICTURE_DESCRIPTOR
 
 typedef struct{
   int id;
   Mode writingMode;
   
-}PicDescriptor;
+}PictureDescriptor;
 
 #endif

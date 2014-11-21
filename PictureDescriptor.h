@@ -1,3 +1,5 @@
+#include "ModeType.h"
+
 #ifndef STRUCT_PICTURE_DESCRIPTOR
 #define STRUCT_PICTURE_DESCRIPTOR
 

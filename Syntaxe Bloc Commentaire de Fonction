@@ -1,8 +1,8 @@
-variables de boucles : i , j , k
-variables d'entier : m , n , o , p , ...
-Nom de structure : SuperVariable
-Nom énumération : ENUMERATION={ , }
-Nom de fonction : RacineCarre( );
+default loop variables : i , j , k
+temporary default variables : tmpStr , tmpInt , tmpChar , tmpStruct ...
+Name structure : SuperVariable
+Name enumeration : ENUMERATION={ , }
+Name function : squareRoot( );
 
 
 /*

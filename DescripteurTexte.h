@@ -8,3 +8,13 @@ typedef struct{
 }TextDescriptor;
 
 #endif
+
+#ifndef STRUCT_TERM
+#define STRUCT_TERM
+
+typedef struct{
+  char * word;
+  int occur;
+}Term;
+
+#endif

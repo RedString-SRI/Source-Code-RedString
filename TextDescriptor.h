@@ -1,3 +1,5 @@
+#include "ModeType.h"
+
 #ifndef STRUCT_TEXT_DESCRIPTOR
 #define STRUCT_TEXT_DESCRIPTOR
 

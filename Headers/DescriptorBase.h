@@ -3,6 +3,12 @@
 
 typedef void * DescriptorBase; // DescriptorBase is represented by a stack of generic Descriptors, and is a pointer to the first element of the stack
 
+// Permite to create a logic variable
+enum BOOL={FALSE,TRUE};
+
+//Check if the path is right
+BOOL pathExist(String path);
+
 // Initializes a stack with a null pointer p
 void initStack(DescriptorBase * p);
 
@@ -10,7 +16,7 @@ void initStack(DescriptorBase * p);
 void printStack(DescriptorBase p);
 
 // Checks if the the stack is empty
-int stackIsEmpty(DescriptorBase p);
+BOOL stackIsEmpty(DescriptorBase p);
 
 // Stack an element into p
 void stack(TextBase * p, DescriptorBase e);

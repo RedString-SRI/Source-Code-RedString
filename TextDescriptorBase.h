@@ -17,7 +17,7 @@ int stackIsEmpty(TextDescriptorBase p);
 void stack(TextBase * p, TextDescriptorBase e);
 
 // unstack the first element
-Element unstack(TextDescriptorBase * p);
+TextDescriptor unstack(TextDescriptorBase * p);
 
 // The user has to give elements to stack into the TextDescriptorBase
 void saisirPile(TextDescriptorBase * p);

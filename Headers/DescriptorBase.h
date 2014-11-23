@@ -6,6 +6,12 @@ typedef void * DescriptorBase; // DescriptorBase is represented by a stack of ge
 // Permite to create a logic variable
 enum BOOL={FALSE,TRUE};
 
+//Permite to clear out the buffering : Use to secure datas
+void clearBuff();
+
+//Send an error adapted message
+void messageError(int i);
+
 //Check if the path is right
 BOOL pathExist(String path);
 

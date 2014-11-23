@@ -1,26 +1,24 @@
-#ifndef TEXTDESCRIPTORBASE_H_INCLUDED
-#define TEXTDESCRIPTORBASE_H_INCLUDED
-#include "TextDescriptor.h"
+#ifndef DESCRIPTORBASE_H_INCLUDED
+#define DESCRIPTORBASE_H_INCLUDED
 
-typedef TextDescriptor * TextDescriptorBase; // TextDescriptorBase is represented by a stack of TextDescriptor, and is a pointer to the first element of the stack
+typedef void * DescriptorBase; // DescriptorBase is represented by a stack of generic Descriptors, and is a pointer to the first element of the stack
 
 // Initializes a stack with a null pointer p
-void initStack(TextDescriptorBase * p);
+void initStack(DescriptorBase * p);
 
 // Prints every elements of the stack
-void printStack(TextDescriptorBase p);
+void printStack(DescriptorBase p);
 
 // Checks if the the stack is empty
-int stackIsEmpty(TextDescriptorBase p);
+int stackIsEmpty(DescriptorBase p);
 
 // Stack an element into p
-void stack(TextBase * p, TextDescriptorBase e);
+void stack(TextBase * p, DescriptorBase e);
 
 // unstack the first element
-TextDescriptor unstack(TextDescriptorBase * p);
+void unstack(DescriptorBase * p);
 
-// The user has to give elements to stack into the TextDescriptorBase
-void saisirPile(TextDescriptorBase * p);
+// The user has to give elements to stack into the DescriptorBase
+void writeStack(DescriptorBase * p);
 
-
-#endif // TEXTDESCRIPTORBASE_H_INCLUDED
+#endif // DESCRIPTORBASE_H_INCLUDED

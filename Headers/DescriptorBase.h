@@ -1,10 +1,9 @@
+#include <Bool_t.h>
+
 #ifndef DESCRIPTORBASE_H_INCLUDED
 #define DESCRIPTORBASE_H_INCLUDED
 
 typedef void * DescriptorBase; // DescriptorBase is represented by a stack of generic Descriptors, and is a pointer to the first element of the stack
-
-// Permite to create a logic variable
-typedef enum{FALSE,TRUE} bool;
 
 //Permite to clear out the buffering : Use to secure datas
 void clearBuff();

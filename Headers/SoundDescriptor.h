@@ -6,7 +6,7 @@
 typedef struct{
   int id;
   Mode writingMode;
-  ...
+  // Things to be done
 }SoundDescriptor;
 
 #endif

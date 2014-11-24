@@ -4,7 +4,7 @@
 typedef void * DescriptorBase; // DescriptorBase is represented by a stack of generic Descriptors, and is a pointer to the first element of the stack
 
 // Permite to create a logic variable
-enum BOOL={FALSE,TRUE};
+typedef enum{FALSE,TRUE} bool;
 
 //Permite to clear out the buffering : Use to secure datas
 void clearBuff();

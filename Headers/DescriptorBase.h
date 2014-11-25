@@ -1,12 +1,16 @@
-#include <Bool_t.h>
-
 #ifndef DESCRIPTORBASE_H_INCLUDED
 #define DESCRIPTORBASE_H_INCLUDED
+#include <Bool_t.h>
 
-typedef void * DescriptorBase; // DescriptorBase is represented by a stack of generic Descriptors, and is a pointer to the first element of the stack
+typedef enum {TEXT, IMAGE, SOUND} fileType;
 
-//Permite to clear out the buffering : Use to secure datas
-void clearBuff();
+typedef struct descriptor{
+  void element;
+  struct descriptor * next;
+} *DescriptorBase; // DescriptorBase is represented by a stack of generic Descriptors, and is a pointer to the first element of the stack
+
+//Permit to clear out the buffer : Use to secure datas
+void clearBuffer();
 
 //Send an error adapted message
 void messageError(int i);
@@ -24,7 +28,7 @@ void printStack(DescriptorBase p);
 BOOL stackIsEmpty(DescriptorBase p);
 
 // Stack an element into p
-void stack(TextBase * p, DescriptorBase e);
+void stack(DescriptorBase * p, void e, fileType t);
 
 // unstack the first element
 void unstack(DescriptorBase * p);

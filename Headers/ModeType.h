@@ -1,6 +1,6 @@
 #ifndef MODE_TYPE
 #define MODE_TYPE
 
-enum {AUTO, MANUAL} Mode;
+typedef enum {AUTO, MANUAL} Mode;
 
 #endif

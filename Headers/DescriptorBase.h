@@ -6,7 +6,7 @@
 typedef void * DescriptorBase; // DescriptorBase is represented by a stack of generic Descriptors, and is a pointer to the first element of the stack
 
 //Permit to clear out the buffer : Use to secure datas
-void clearBuff();
+void clearBuffer();
 
 //Send an error adapted message
 void messageError(int i);

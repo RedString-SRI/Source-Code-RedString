@@ -1,5 +1,5 @@
 Thanks to Franck Hecht for his examples : http://franckh.developpez.com/tutoriels/outils/doxygen/
-In a former version, it renders : http://franckh.developpez.com/tutoriels/outils/doxygen/fichiers/exemple-c-001/index.html
+In a former version, the entire file (the one below is a short version) renders : http://franckh.developpez.com/tutoriels/outils/doxygen/fichiers/exemple-c-001/index.html
 
 This file shows examples of Doxygen comments.
 
@@ -73,4 +73,4 @@ int Str_err_e str_destroy (Str_t ** self)
 }
 
 Thanks to Franck Hecht for his examples : http://franckh.developpez.com/tutoriels/outils/doxygen/
-In a former version, it renders : http://franckh.developpez.com/tutoriels/outils/doxygen/fichiers/exemple-c-001/index.html
+In a former version,  the entire file (the one below is a short version) renders : http://franckh.developpez.com/tutoriels/outils/doxygen/fichiers/exemple-c-001/index.html

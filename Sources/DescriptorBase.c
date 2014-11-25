@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "DescriptorBase.h"
+#include "TextDescriptor.h"
+#include "PictureDescriptor.h"
+#include "SoundDescriptor.h"
 
 //Permit to clear out the buffer : Use to secure datas
 void clearBuffer() {
@@ -63,8 +67,16 @@ BOOL stackIsEmpty(DescriptorBase p){
 }
 
 // Stack an element into p
-void stack(DescriptorBase * p, void e){
-    void * ptr_p = malloc(sizeof(void));
+void stack(DescriptorBase * p, void e, fileType t){
+    void * ptr_p;
+    switch(t){
+        case TEXT: ptr_p = malloc(sizeof(TextDescriptor));
+        break;
+        case IMAGE: ptr_p = malloc(sizeof(PictureDescriptor));
+        break;
+        case SOUND: ptr_p = malloc(sizeof(SoundDescriptor));
+        break;
+    }
     if(ptr_p==NULL)
         messageError(2);
     else{
@@ -74,7 +86,7 @@ void stack(DescriptorBase * p, void e){
     }
 }
 
-// unstack the first element
+// Unstack the first element
 void unstack(DescriptorBase * p){
     if(stackIsEmpty(*p))
         messageError(1);
@@ -86,6 +98,19 @@ void unstack(DescriptorBase * p){
 }
 
 // The user has to give elements to stack into the DescriptorBase
-void writeStack(DescriptorBase * p){
-  
+void writeStack(DescriptorBase * p, fileType t){
+    switch(t){
+        case TEXT: ptr_p = TextDescriptor e;
+        break;
+        case IMAGE: ptr_p = PictureDescriptor e;
+        break;
+        case SOUND: ptr_p = SoundDescriptor e;
+        break;
+    }
+    char choice = 0;
+    do{
+        stack(p, writeElement(&e), t)
+        printf("Do you wan't to add another element (Y,N)?\n");
+        scanf("%s", &choice);
+    }while(choice != "n" && choice != "N");
 }

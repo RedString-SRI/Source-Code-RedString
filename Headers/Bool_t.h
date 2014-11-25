@@ -1,8 +1,6 @@
 #ifndef BOOL_T
-#define BOOL_T int
-#define FALSE 0
-#define TRUE 1
+#define BOOL_T
 
-typedef enum{FALSE, TRUE} bool_t;
+typedef enum{FALSE, TRUE} Bool;
 
 #endif

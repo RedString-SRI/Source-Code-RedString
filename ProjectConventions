@@ -5,9 +5,4 @@ Name enumeration : ENUMERATION={ , }
 Name function : squareRoot( );
 
 
-/*
-  Function : FunctionName
-  Description : This function displays a flower in the command line
-  Note : 
-*/
-void FunctionName();
+Look at DoxygenSyntax for comments syntax.

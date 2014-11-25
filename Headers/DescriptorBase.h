@@ -6,7 +6,10 @@
 #define IMAGE 2
 #define SOUND 3
 
-typedef void * DescriptorBase; // DescriptorBase is represented by a stack of generic Descriptors, and is a pointer to the first element of the stack
+typedef struct descriptor{
+  void element;
+  struct descriptor * next;
+} *DescriptorBase; // DescriptorBase is represented by a stack of generic Descriptors, and is a pointer to the first element of the stack
 
 //Permit to clear out the buffer : Use to secure datas
 void clearBuffer();

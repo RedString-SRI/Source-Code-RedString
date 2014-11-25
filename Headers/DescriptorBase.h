@@ -1,7 +1,10 @@
-#include <Bool_t.h>
-
 #ifndef DESCRIPTORBASE_H_INCLUDED
 #define DESCRIPTORBASE_H_INCLUDED
+#include <Bool_t.h>
+
+#define TEXT 1
+#define IMAGE 2
+#define SOUND 3
 
 typedef void * DescriptorBase; // DescriptorBase is represented by a stack of generic Descriptors, and is a pointer to the first element of the stack
 
@@ -24,7 +27,7 @@ void printStack(DescriptorBase p);
 BOOL stackIsEmpty(DescriptorBase p);
 
 // Stack an element into p
-void stack(TextBase * p, DescriptorBase e);
+void stack(DescriptorBase * p, void e);
 
 // unstack the first element
 void unstack(DescriptorBase * p);

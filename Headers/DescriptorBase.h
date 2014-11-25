@@ -34,6 +34,6 @@ void stack(DescriptorBase * p, void e, fileType t);
 void unstack(DescriptorBase * p);
 
 // The user has to give elements to stack into the DescriptorBase
-void writeStack(DescriptorBase * p);
+void writeStack(DescriptorBase * p, fileType t);
 
 #endif // DESCRIPTORBASE_H_INCLUDED

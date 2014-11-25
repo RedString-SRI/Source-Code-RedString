@@ -2,9 +2,7 @@
 #define DESCRIPTORBASE_H_INCLUDED
 #include <Bool_t.h>
 
-#define TEXT 1
-#define IMAGE 2
-#define SOUND 3
+typedef enum {TEXT, IMAGE, SOUND} fileType;
 
 typedef struct descriptor{
   void element;
@@ -30,7 +28,7 @@ void printStack(DescriptorBase p);
 BOOL stackIsEmpty(DescriptorBase p);
 
 // Stack an element into p
-void stack(DescriptorBase * p, void e);
+void stack(DescriptorBase * p, void e, fileType t);
 
 // unstack the first element
 void unstack(DescriptorBase * p);

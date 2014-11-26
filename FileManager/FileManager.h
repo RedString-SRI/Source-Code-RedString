@@ -10,7 +10,7 @@
 #define FILE_MANAGER
 
 /**
- * \This function permit to know if the path, the file.
+ * \brief This function permit to know if the path, the file.
  * The user must to give the path of the file like ~/TP/main.c
  * Environment UNIX only.
  * \return Bool :  TRUE : if the file exist.

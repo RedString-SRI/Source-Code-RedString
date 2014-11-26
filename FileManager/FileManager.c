@@ -16,7 +16,7 @@ Bool fileExists(char const * path) {
     }
     else
     {
-    	perror("Error in fileExists : ");
+    	perror("Error in fileExists : path ");
     	return FALSE;
     }
 }

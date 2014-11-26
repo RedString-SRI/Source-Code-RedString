@@ -31,10 +31,6 @@ BOOL pathExist(char[] path) {
         return TRUE;
 }
 
-//Check if the path is right
-BOOL pathExist(String path){
-    
-}
 
 // Initializes a stack with a null pointer p
 void initStack(DescriptorBase * p){

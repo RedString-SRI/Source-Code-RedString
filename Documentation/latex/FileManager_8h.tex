@@ -1,0 +1,85 @@
+\hypertarget{FileManager_8h}{\section{File\-Manager/\-File\-Manager.h File Reference}
+\label{FileManager_8h}\index{File\-Manager/\-File\-Manager.\-h@{File\-Manager/\-File\-Manager.\-h}}
+}
+
+
+A high-\/level file manager set of functions.  
+
+
+{\ttfamily \#include \char`\"{}../\-Type\-\_\-\-Bool.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Type__Bool_8h_a39db6982619d623273fad8a383489309}{Bool} \hyperlink{FileManager_8h_ab7f1fb54aeb02df14e335fd5d44f0c3a}{copy\-File} (char const $\ast$file\-Name, char const $\ast$new\-File\-Name)
+\begin{DoxyCompactList}\small\item\em This function copies the file p\-File\-Descriptor in the current directory. It will be called p\-New\-File\-Name. \end{DoxyCompactList}\item 
+\hyperlink{Type__Bool_8h_a39db6982619d623273fad8a383489309}{Bool} \hyperlink{FileManager_8h_a73d099262223012fa7f4b776fd9c754d}{save\-File} (char const $\ast$path, char const $\ast$data)
+\begin{DoxyCompactList}\small\item\em This function save p\-Data in p\-Path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A high-\/level file manager set of functions. \begin{DoxyAuthor}{Author}
+Morgan Chabaud 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\hypertarget{FileManager_8h_ab7f1fb54aeb02df14e335fd5d44f0c3a}{\index{File\-Manager.\-h@{File\-Manager.\-h}!copy\-File@{copy\-File}}
+\index{copy\-File@{copy\-File}!FileManager.h@{File\-Manager.\-h}}
+\subsubsection[{copy\-File}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Bool} copy\-File (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{p\-File\-Name, }
+\item[{char const $\ast$}]{p\-New\-File\-Name}
+\end{DoxyParamCaption}
+)}}\label{FileManager_8h_ab7f1fb54aeb02df14e335fd5d44f0c3a}
+
+
+This function copies the file p\-File\-Descriptor in the current directory. It will be called p\-New\-File\-Name. 
+
+\begin{DoxyVerb} Note: The given pNewFileName must not already exist (the function tries to rename it 100 times like "name(i)")
+       and the file associated with pFileDescriptor must be opened in reading
+\end{DoxyVerb}
+ \begin{DoxyReturn}{Returns}
+Bool \-: T\-R\-U\-E \-: The file has been copied successfully F\-A\-L\-S\-E \-: An error has been encountered. The file has not been copied.
+\end{DoxyReturn}
+This function copies the file p\-File\-Descriptor in the current directory. It will be called p\-New\-File\-Name.
+
+Sign\-: B\-O\-O\-L\-E\-A\-N copy\-File(int p\-File\-Descriptor, char const $\ast$ p\-New\-File\-Name)
+
+Info\-: This function copies the file p\-File\-Descriptor in the current directory. It will be called p\-New\-File\-Name Input \-: int \-: p\-File\-Descriptor char const $\ast$ \-: p\-New\-File\-Name Output \-: -\/ Return\-: B\-O\-O\-L\-E\-A\-N \-: T\-R\-U\-E \-: The file has been copied successfully F\-A\-L\-S\-E \-: An error has been encountered. The file has not been copied.
+
+Note\-: The given p\-New\-File\-Name must not already exist (the function tries to rename it 100 times like \char`\"{}name(i)\char`\"{}) and the file associated with p\-File\-Descriptor must be opened in reading \hypertarget{FileManager_8h_a73d099262223012fa7f4b776fd9c754d}{\index{File\-Manager.\-h@{File\-Manager.\-h}!save\-File@{save\-File}}
+\index{save\-File@{save\-File}!FileManager.h@{File\-Manager.\-h}}
+\subsubsection[{save\-File}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Bool} save\-File (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{path, }
+\item[{char const $\ast$}]{data}
+\end{DoxyParamCaption}
+)}}\label{FileManager_8h_a73d099262223012fa7f4b776fd9c754d}
+
+
+This function save p\-Data in p\-Path. 
+
+Info \-: This function returns the next line of p\-File\-Descriptor.
+
+Sign\-: int \hyperlink{FileManager_8h_a73d099262223012fa7f4b776fd9c754d}{save\-File(char const $\ast$ p\-Path, char const $\ast$ p\-Data)}
+
+Info\-: This function save p\-Data in p\-Path Input \-: char const $\ast$$\ast$ \-: p\-Param Output \-: char $\ast$$\ast$ \-: p\-Key (N\-E\-E\-D\-S to be allocated before calling the function) \-: N\-U\-L\-L if F\-A\-L\-S\-E is returned char $\ast$$\ast$ \-: p\-Value (N\-E\-E\-D\-S to be allocated before calling the function) \-: N\-U\-L\-L if F\-A\-L\-S\-E is returned Return\-: B\-O\-O\-L\-E\-A\-N \-: T\-R\-U\-E \-: Parameters have been loaded successfully (There is at least one couple p\-Key, p\-Value) F\-A\-L\-S\-E \-: Either there is no parameter (key and value) or a problem has been encountered
+
+Note\-: Pointers p\-Key and p\-Value needs to be allocated at the correct size before the function The arrays p\-Key and p\-Value are ended with a N\-U\-L\-L value
+
+\begin{DoxyReturn}{Returns}
+Bool \-: T\-R\-U\-E \-: Parameters have been loaded successfully (There is at least one couple p\-Key, p\-Value) F\-A\-L\-S\-E \-: Either there is no parameter (key and value) or a problem has been encountered
+\end{DoxyReturn}
+This function save p\-Data in p\-Path.
+
+Info \-: This function returns the next line of p\-File\-Descriptor.
+
+Sign\-: int \hyperlink{FileManager_8h_a73d099262223012fa7f4b776fd9c754d}{save\-File(char const $\ast$ p\-Path, char const $\ast$ p\-Data)}
+
+Info\-: This function save p\-Data in p\-Path Input \-: char const $\ast$$\ast$ \-: p\-Param Output \-: char $\ast$$\ast$ \-: p\-Key (N\-E\-E\-D\-S to be allocated before calling the function) \-: N\-U\-L\-L if F\-A\-L\-S\-E is returned char $\ast$$\ast$ \-: p\-Value (N\-E\-E\-D\-S to be allocated before calling the function) \-: N\-U\-L\-L if F\-A\-L\-S\-E is returned Return\-: B\-O\-O\-L\-E\-A\-N \-: T\-R\-U\-E \-: Parameters have been loaded successfully (There is at least one couple p\-Key, p\-Value) F\-A\-L\-S\-E \-: Either there is no parameter (key and value) or a problem has been encountered
+
+Note\-: Pointers p\-Key and p\-Value needs to be allocated at the correct size before the function The arrays p\-Key and p\-Value are ended with a N\-U\-L\-L value
+
+\begin{DoxyReturn}{Returns}
+Bool \-: T\-R\-U\-E \-: Parameters have been loaded successfully (There is at least one couple p\-Key, p\-Value) F\-A\-L\-S\-E \-: Either there is no parameter (key and value) or a problem has been encountered 
+\end{DoxyReturn}

@@ -2,6 +2,7 @@
  * \file FileManager.h
  * \brief A high-level file manager set of functions
  * \author Morgan Chabaud
+ * tmpNote : http://stackoverflow.com/questions/11699596/how-to-set-errno-value
  */
 
 #include <unistd.h>
@@ -15,7 +16,7 @@
  * \brief This function tests if the file associated to a path exists.
  * The user must to give the path of the file like ~/TP/main.c
  * 
- * errno is set accordingly.
+ * An errno is set accordingly.
  * \param path The path of the file. 
  * \return Bool :  TRUE : If the file exist.
  *                FALSE : If the file doesn't exist.

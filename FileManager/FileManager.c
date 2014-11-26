@@ -21,18 +21,36 @@ Bool fileExists(char const * path) {
     }
 }
 
-Bool copyFile(char const * pFileName, char const * pNewFileName)
+Bool copyFile(char const * fileName, char const * newFileName)
 {
-	BOOLEAN success = FALSE;
+	Bool success = FALSE;
+	const int extNameSize = 4;	// 4 : "[x]\0"
 	char* newFileName;	// We can use pNewFileName because we want to modify it if the file already exists
-	char* extName = malloc(sizeof(char) * 4);
+	char* extName;
 	int newFileNameLength, i = 0;	// i : value is used for the file extension number
 
+	// Parameters Test
+	if(fileName == NULL || strlen(fileName) <= 0)
+	{
+/** Error management **/
+		return FALSE;
+	}
+	if(newFileName == NULL || strlen(newFileName) <= 0)
+	{
+/** Error management **/
+		return FALSE;
+	}
 
-	newFileNameLength = stringLength(pNewFileName) + 3;	// +3 includes extName.
-	newFileName = malloc(sizeof(char) * newFileNameLength);
-	// Copy pNewFileName into newFileName using concat with an empty string
-	newFileName = concat("", pNewFileName);
+	extName = malloc(sizeof(char) * extNameSize);
+	newFileNameLength = strlen(pNewFileName) + (extNameSize - 1);	// extNameSize - 1 removes the '\0' allocated size 
+	if(newFileNameLength >= NAME_MAX)
+	{
+/** Error management **/
+		return FALSE;
+	}
+	newFileName = malloc(sizeof(char) * (newFileNameLength + extNameSize));
+	// Copy pNewFileName into newFileName using strncat with an empty string
+	newFileName = strncat("", pNewFileName, newFileNameLength);
 
 	while(i < COPYLIMIT && !success)
 	{

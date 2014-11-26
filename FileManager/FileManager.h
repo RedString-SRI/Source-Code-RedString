@@ -37,7 +37,6 @@ Bool FileExist(char const * path);
 Bool copyFile(char const * fileName, char const * newFileName);
 
 /**
- * \fn int saveFile(char const * path, char const * data)
  * \brief This function save pData in pPath
  *
  * \return Bool : TRUE : Parameters have been loaded successfully

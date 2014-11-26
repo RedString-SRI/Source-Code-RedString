@@ -7,10 +7,18 @@
 #include "FileManager.h"
 
 Bool fileExists(char const * path) {
-    if(access(path, F_OK)) // File unreachable
+    if(path != NULL)
+    {
+    	if(access(path, F_OK)) // File unreachable
+    		return FALSE;
+    	else// Otherwise the file exists
+    		return TRUE;
+    }
+    else
+    {
+    	perror("Error in fileExists : ");
     	return FALSE;
-    else// Otherwise the file exists
-    	return TRUE;
+    }
 }
 
 Bool copyFile(char const * pFileName, char const * pNewFileName)
@@ -72,11 +80,15 @@ Bool saveFile(char const * path, char const * data)
 	{
 		if(fputs(pData, file) != EOF)
 			saved = TRUE;
+		else
+		{
+			perror("Error saveFile_fputs");
+		}
 		fclose(file);
 	}
 	else
 	{
-		perror("Impossible to write the file");
+		perror("Error saveFile_fopen");
 	}
 
 	return saved;

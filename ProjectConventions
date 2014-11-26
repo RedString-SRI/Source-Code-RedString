@@ -1,8 +1,0 @@
-Default loop variables : i , j , k
-Temporary default variables : tmpStr , tmpInt , tmpChar , tmpStruct ...
-Name structure : SuperVariable
-Name enumeration : enum{ , }Name;
-Name function : squareRoot( );
-
-
-Look at DoxygenSyntax for comments syntax.

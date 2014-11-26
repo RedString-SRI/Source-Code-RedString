@@ -6,8 +6,8 @@
 
 #include "Type_WritingMode.h"
 
-#ifndef TYPE_SOUNDDESCRIPTOR
-#define TYPE_SOUNDDESCRIPTOR
+#ifndef TYPE_SOUND_DESCRIPTOR
+#define TYPE_SOUND_DESCRIPTOR
 
 /**
  * \struct SoundDescriptor

@@ -6,6 +6,18 @@
 
 #include "FileManager.h"
 
+Bool FileExist(char* path) {
+    int answer;
+    char sentence[50]="[ ! -f ";
+    char sentenceEnd[5]=" ]";
+    strcat(sentence,path);
+    strcat(sentence,sentenceEnd);
+    answer=system(sentence);
+    if(answer==0)
+        return FALSE;
+    else
+        return TRUE;
+}
 
 Bool copyFile(char const * pFileName, char const * pNewFileName)
 {

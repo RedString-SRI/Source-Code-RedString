@@ -4,8 +4,6 @@
  * \author Morgan Chabaud
  */
 
-#include <unistd.h>
-
 #include "FileManager.h"
 
 Bool fileExists(char const * path) {

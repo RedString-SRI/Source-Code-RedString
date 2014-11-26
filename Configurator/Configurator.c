@@ -1,108 +1,5 @@
 
-#include "cleval.h"
-
-/**
-	Sign: char* concat(char const * pFirstPart, char const * pSecondPart)
-
-	Info: This function concatenates pFirstPart and pSecondPart.
-	Input : char const * : pFirstPart
-		char const * : pSecondPart
-	Output : -
-	Return: char* : The concatenated string
-
-	Note: -
-*/
-char* concat(char const * pFirstPart, char const * pSecondPart)
-{
-	char* concatPart;
-	int lengthFirstPart, lengthSecondPart;	// Used to calculate the lengths of parameters
-	int i;	// Increment
-
-	// pFirstPart length:
-	lengthFirstPart = stringLength(pFirstPart);
-
-	// pSecondPart length:
-	lengthSecondPart = stringLength(pSecondPart);
-
-	concatPart = malloc(sizeof(char) * (lengthFirstPart + lengthSecondPart + 1));	// +1 for '\0'
-
-	for(i = 0; i < lengthFirstPart; i++)
-		concatPart[i] = pFirstPart[i];
-
-	for(i = lengthFirstPart; i < (lengthSecondPart + lengthFirstPart); i++)
-		concatPart[i] = pSecondPart[i - lengthFirstPart];
-
-	concatPart[i] = '\0';
-
-	return concatPart;
-}
-
-
-/**
-	Sign: BOOLEAN copyFile(int pFileDescriptor, char const * pNewFileName)
-
-	Info: This function copies the file pFileDescriptor in the current directory.
-		It will be called pNewFileName
-	Input : int : pFileDescriptor
-		char const * : pNewFileName
-	Output : -
-	Return: BOOLEAN : TRUE : The file has been copied successfully
-			  FALSE : An error has been encountered.
-				  The file has not been copied.
-
-	Note: The given pNewFileName must not already exist (the function tries to rename it 100 times like "name(i)")
-	      and the file associated with pFileDescriptor must be opened in reading
-*/
-BOOLEAN copyFile(char const * pFileName, char const * pNewFileName)
-{
-	BOOLEAN success = FALSE;
-	char* newFileName;	// We can use pNewFileName because we want to modify it if the file already exists
-	char* extName = malloc(sizeof(char) * 4);
-	int newFileNameLength, i = 0;	// i : value is used for the file extension number
-
-
-	newFileNameLength = stringLength(pNewFileName) + 3;	// +3 includes extName.
-	newFileName = malloc(sizeof(char) * newFileNameLength);
-	// Copy pNewFileName into newFileName using concat with an empty string
-	newFileName = concat("", pNewFileName);
-
-	while(i < COPYLIMIT && !success)
-	{
-		// Test if the file has been copied successfully or if it already exists or there is another error
-		if(link(pFileName, newFileName) == 0)
-		{
-			printf("\nCopy saved succesfully as \"%s\".", newFileName);
-			success = TRUE;
-		}
-		else if(errno == EEXIST)
-		{
-			// Change name of the file until. Try to change it 100 times until it gives up.
-			printf("\n\"%s\" already exists. It is going to be saved as \"%s(%d)\".", newFileName, pNewFileName, i);
-
-			// Adjusting i value in extName
-			sprintf(extName, "(%d)", i);
-			if(i == 0)
-				newFileName = concat(newFileName, extName);
-			else
-				newFileName[newFileNameLength - 2] = extName[1];
-			
-			// Increase the extension increment for the next test
-			// (if there is still an error after the previous modification) ... until i == 100
-			i++;
-		}
-		else
-		{
-			success = FALSE;
-			i = 100; // Exiting the loop
-			//perror("Saving copy problem :N");
-		}
-	}
-
-	free(newFileName);
-	free(extName);
-	return success;
-}
-
+#include "Configurator.h"
 
 /**
 	Sign: BOOLEAN loadKeyValueParameters(char const * pParam[], int pNumParam, char * pKey[], char * pValue[])
@@ -140,7 +37,7 @@ BOOLEAN loadKeyValueParameters(char ** const pParam, int pNumParam, char * pKey[
 		for(i = keyI = valueI = 0; i < numParam; i++, keyI++, valueI++)
 		{
 			// pKey
-			tmpLgthParam = stringLength(pParam[i + 2]);
+			tmpLgthParam = strlen(pParam[i + 2]);
 			pKey[keyI] = malloc(sizeof(char) * (tmpLgthParam + 1));	// +1 includes the '\0' character
 			// Copy the parameter string into pKey[keyI] (Usefull because there is not a '\0' end to copy it fastly)
 			for(j = 0; j < tmpLgthParam; j++)
@@ -150,7 +47,7 @@ BOOLEAN loadKeyValueParameters(char ** const pParam, int pNumParam, char * pKey[
 
 			// pValue
 			i++;
-			tmpLgthParam = stringLength(pParam[i + 2]);
+			tmpLgthParam = strlen(pParam[i + 2]);
 			pValue[valueI] = malloc(sizeof(char) * (tmpLgthParam + 1));	// +1 includes the '\0' character
 			// Copy the parameter string into pValue[valueI] (Usefull because there is not a '\0' end to copy it fastly)
 			
@@ -342,7 +239,7 @@ char* read_fileWithWantedModification(char const * pPath, char ** const pKey, ch
 		}
 
 		// Re-calculate the length
-		fileStrLength += stringLength(tmpStr);
+		fileStrLength += strlen(tmpStr);
 		fileStr = realloc(fileStr, fileStrLength);
 		tmpStr = concat(tmpStr, "\n");	// tmpStr is a line
 		fileStr = concat(fileStr, tmpStr);
@@ -410,53 +307,4 @@ char* read_line (int pFileDescriptor)
 	}
 
 	return line;
-}
-
-
-/**
-	Sign: int saveFile(char const * pPath, char const * pData)
-
-	Info: This function save pData in pPath
-	Input : char const ** : pParam
-	Output : char ** : pKey (NEEDS to be allocated before calling the function) : NULL if FALSE is returned
-		 char ** : pValue (NEEDS to be allocated before calling the function) : NULL if FALSE is returned
-	Return: BOOLEAN : TRUE : Parameters have been loaded successfully
-				 (There is at least one couple pKey, pValue)
-			  FALSE : Either there is no parameter (key and value) or a problem has been encountered
-
-	Note: 	Pointers pKey and pValue needs to be allocated at the correct size before the function
-		The arrays pKey and pValue are ended with a NULL value
-*/
-BOOLEAN saveFile(char const * pPath, char const * pData)
-{
-	FILE *file = fopen(pPath, "w+");
-	BOOLEAN saved = FALSE;
-
-	if(file != NULL)
-	{
-		if(fputs(pData, file) != EOF)
-			saved = TRUE;
-		fclose(file);
-	}
-
-	return saved;
-}
-
-
-/**
-	Sign: int stringLength(char const * pStr)
-
-	Info: This function returns the length of pStr. (number of characters in the string)
-	Input : char const * : pStr
-	Output : -
-	Return: int : The string length
-
-	Note: The length does not include the '\0' for the ZTS 
-*/
-int stringLength(char const * pStr)
-{
-	int length = 0;
-	while(pStr[length] != '\0')
-		length++;
-	return length;
 }

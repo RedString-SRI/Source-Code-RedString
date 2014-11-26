@@ -23,3 +23,5 @@ typedef struct{
                             k : Windows number
                             m : Intervals number */
 }SoundDescriptor;
+
+#endif

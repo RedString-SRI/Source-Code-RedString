@@ -4,19 +4,15 @@
  * \author Morgan Chabaud
  */
 
+#include <unistd.h>
+
 #include "FileManager.h"
 
-Bool FileExist(char* path) {
-    int answer;
-    char sentence[50]="[ ! -f ";
-    char sentenceEnd[5]=" ]";
-    strcat(sentence,path);
-    strcat(sentence,sentenceEnd);
-    answer=system(sentence);
-    if(answer==0)
-        return FALSE;
-    else
-        return TRUE;
+Bool fileExists(char const * path) {
+    if(access(path, F_OK)) // File unreachable
+    	return FALSE;
+    else// Otherwise the file exists
+    	return TRUE;
 }
 
 Bool copyFile(char const * pFileName, char const * pNewFileName)

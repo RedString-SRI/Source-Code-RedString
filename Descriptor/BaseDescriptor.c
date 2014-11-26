@@ -8,29 +8,6 @@ void clearBuffer() {
         c = getchar();
 }
 
-//Send an error adapted message
-void messageError(int i){
-    switch(i){
-        case 1: printf("The stack is empty\n");
-        break;
-        case 2: printf("The memory is full\n");
-        // We'll see every messages to put later...
-    }
-}
-
-BOOL pathExist(char[] path) {
-    int answer;
-    char sentence[50]="[ ! -f ";
-    char sentenceEnd[5]=" ]";
-    strcat(sentence,path);
-    strcat(sentence,sentenceEnd);
-    answer=system(sentence);
-    if(answer==0)
-        return FALSE;
-    else
-        return TRUE;
-}
-
 
 // Initializes a stack with a null pointer p
 void initStack(DescriptorBase * p){

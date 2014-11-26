@@ -12,13 +12,15 @@
 #define FILE_MANAGER
 
 /**
- * \brief This function permit to know if the path, the file.
+ * \brief This function tests if the file associated to a path exists.
  * The user must to give the path of the file like ~/TP/main.c
- * Environment UNIX only.
- * \return Bool :  TRUE : if the file exist.
- *                FALSE : if the file don't exist.
+ * 
+ * errno is set accordingly.
+ * \param path The path of the file. 
+ * \return Bool :  TRUE : If the file exist.
+ *                FALSE : If the file doesn't exist.
  */
-Bool FileExist(char* path);
+Bool FileExist(char const * path);
 
 /**
  * \brief This function copies the file pFileDescriptor in the current directory.

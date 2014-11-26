@@ -4,6 +4,8 @@
  * \author Morgan Chabaud
  */
 
+#include <unistd.h>
+
 #include "../Type_Bool.h"
 
 #ifndef FILE_MANAGER

@@ -37,15 +37,17 @@ int fileSize(FILE* file)
 		return -1;
 	}
 
-Bool copyFile(char const * fileName, char const * newFileName)
+Bool copyFile(char const * newFileName, char const * fileName)
 {
-	Bool success;
+	Bool fileNamePossible, fileCopied = FALSE;
 	FILE* file, newFile;
 	const int extNameSize = 4;	// 4 : "[x]\0"
-	char* newFileName;	// We can use newFileName because we want to modify it if the file already exists
+	char* modNewFileName;	// modifiednewFileName : We can't use newFileName because
+				// we want to modify it if the file already exists
 	char* extName;
 	char buffer[BUFSIZ];
-	int newFileNameLength, i;	// i : value is used for the file extension number
+	int modNewFileNameLen, readSize, i;	// i : value is used for the file extension number
+	int fileLen, newFileLen;
 
 	// Parameters Test
 	if(fileName == NULL || strlen(fileName) <= 0)
@@ -61,62 +63,80 @@ Bool copyFile(char const * fileName, char const * newFileName)
 
 	
 	extName = malloc(sizeof(char) * extNameSize);
-	newFileNameLength = strlen(newFileName) + (extNameSize - 1);	// extNameSize - 1 removes the '\0' allocated size 
-	if(newFileNameLength >= NAME_MAX)
+	modNewFileNameLen = strlen(newFileName) + (extNameSize - 1);	// extNameSize - 1 removes the '\0' allocated size 
+	if(modNewFileNameLen >= NAME_MAX)
 	{
 /** Error management **/
 		return FALSE;
 	}
-	newFileName = malloc(sizeof(char) * (newFileNameLength + extNameSize));
+	modNewFileName = malloc(sizeof(char) * (modNewFileNameLen + extNameSize));
 	
-	// Copy newFileName into newFileName using strncat with an empty string
-	newFileName = strncpy("", newFileName, newFileNameLength);
+	modNewFileName = strncpy(modNewFileName, newFileName, extNameSize);
 
-	// Opening file descriptors
-	file = fopen(newFileName, "r");
-	if(file == NULL)
-	{
-		perror("copyFile fopen");
-		return FALSE;
-	}
-	
-
-	success = FALSE;
+	// Test if the newFileName already exists or not and
+	// try to add [x] at the end of the file name 100 times
+	// before it gives up
+	fileNamePossible = FALSE;
 	i = 0;
-	while(i < COPYLIMIT && !success)
+	while(i < NEW_NAME_LIM_LEN && !fileNamePossible)
 	{
-		// Test if the file has been copied successfully or if it already exists or there is another error
-		while(readData = read())
-		if(link(pFileName, newFileName) == 0)
+		if(fileExists(newFileName))
 		{
-			printf("\nCopy saved succesfully as \"%s\".", newFileName);
-			success = TRUE;
-		}
-		else if(errno == EEXIST)
-		{
-			// Change name of the file until. Try to change it 100 times until it gives up.
-			printf("\n\"%s\" already exists. It is going to be saved as \"%s(%d)\".", newFileName, pNewFileName, i);
-
-			// Adjusting i value in extName
+/** may have to show some log errors **/
 			sprintf(extName, "(%d)", i);
 			if(i == 0)
-				newFileName = strncat(newFileName, extName, newFileNameLength);
+				modNewFileName = strncat(modNewFileName, extName, extNameSize);
 			else
-				newFileName[newFileNameLength - 2] = extName[1];
+				modNewFileName[modNewFileNameLen - 2] = extName[1];
 			
 			// Increase the extension increment for the next test
 			// (if there is still an error after the previous modification) ... until i == 100
 			i++;
 		}
 		else
-		{
-			i = 100; // Exiting the loop
-			perror("copyFile link");
-		}
+			fileNamePossible = TRUE;
 	}
+	if(!fileNamePossible)
+	{
+		perror("copyFile fileNamePossible");
+		return FALSE;
+	}
+	
+	// Opening file descriptors
+	file = fopen(fileName, "r");
+	if(file == NULL)
+	{
+		perror("copyFile fopen");
+		return FALSE;
+	}
+	newFile = fopen(newFileName, "w");
+	if(newFile == NULL)
+	{
+		perror("copyFile fopen");
+		return FALSE;
+	}
+	
+	fileLen = newFileLen = 0;
+	while(readSize = fread(buffer, BUFSIZ, file))
+	{
+		fileLen += readSize;
+		newFileLen += fwrite(buffer, readSize, newFile);
+	}
+
+	if(fileLen != newFileLen)
+	{
+/** Error management **/
+		fileCopied = FALSE;
+	}
+	else
+		fileCopied = TRUE;
+	
+	
 
 	free(newFileName);
 	free(extName);
+	close(file);
+	close(newFile);
 	return success;
 }
 

@@ -9,6 +9,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
+#define COPYLIMIT 100
 #define BOOLEAN int
 #define TRUE 1
 #define FALSE 0

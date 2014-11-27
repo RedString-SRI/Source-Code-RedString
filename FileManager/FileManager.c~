@@ -21,22 +21,6 @@ Bool fileExists(char const * path) {
     }
 }
 
-int fileSize(FILE* file)
-{
-	int size;
-	if(file != NULL)
-	{
-		fseek(file, 0, SEEK_END);
-		size = ftell(file);
-		fseek(file, 0, SEEK_SET);
-	}
-	else
-	{
-		errno = EBADF;
-		perror("fileSize file");
-		return -1;
-	}
-
 Bool copyFile(char const * fileName, char const * newFileName)
 {
 	Bool success;
@@ -59,7 +43,6 @@ Bool copyFile(char const * fileName, char const * newFileName)
 		return FALSE;
 	}
 
-	
 	extName = malloc(sizeof(char) * extNameSize);
 	newFileNameLength = strlen(pNewFileName) + (extNameSize - 1);	// extNameSize - 1 removes the '\0' allocated size 
 	if(newFileNameLength >= NAME_MAX)

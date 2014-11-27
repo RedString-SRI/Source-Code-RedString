@@ -12,8 +12,6 @@
 #ifndef FILE_MANAGER
 #define FILE_MANAGER
 
-#define COPYLIMIT 100
-
 /**
  * \brief This function tests if the file associated to a path exists.
  * The user must to give the path of the file like ~/TP/main.c

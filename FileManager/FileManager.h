@@ -12,7 +12,7 @@
 #ifndef FILE_MANAGER
 #define FILE_MANAGER
 
-#define COPYLIMIT 100
+#define NEW_NAME_LIM_LEN 100
 
 /**
  * \brief This function tests if the file associated to a path exists.
@@ -46,6 +46,6 @@ Bool copyFile(char const * fileName, char const * newFileName);
  *		  FALSE : Either there is no parameter (key and value) or a problem has been encountered
  *
  */
-Bool saveFile(char const * path, char const * data);
+Bool writeFile(char const * path, char const * data);
 
 #endif

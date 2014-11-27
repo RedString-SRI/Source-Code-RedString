@@ -42,7 +42,7 @@ Bool copyFile(char const * fileName, char const * newFileName)
 	Bool success;
 	FILE* file, newFile;
 	const int extNameSize = 4;	// 4 : "[x]\0"
-	char* newFileName;	// We can use pNewFileName because we want to modify it if the file already exists
+	char* newFileName;	// We can use newFileName because we want to modify it if the file already exists
 	char* extName;
 	char buffer[BUFSIZ];
 	int newFileNameLength, i;	// i : value is used for the file extension number
@@ -61,21 +61,32 @@ Bool copyFile(char const * fileName, char const * newFileName)
 
 	
 	extName = malloc(sizeof(char) * extNameSize);
-	newFileNameLength = strlen(pNewFileName) + (extNameSize - 1);	// extNameSize - 1 removes the '\0' allocated size 
+	newFileNameLength = strlen(newFileName) + (extNameSize - 1);	// extNameSize - 1 removes the '\0' allocated size 
 	if(newFileNameLength >= NAME_MAX)
 	{
 /** Error management **/
 		return FALSE;
 	}
 	newFileName = malloc(sizeof(char) * (newFileNameLength + extNameSize));
-	// Copy pNewFileName into newFileName using strncat with an empty string
-	newFileName = strncpy("", pNewFileName, newFileNameLength);
+	
+	// Copy newFileName into newFileName using strncat with an empty string
+	newFileName = strncpy("", newFileName, newFileNameLength);
+
+	// Opening file descriptors
+	file = fopen(newFileName, "r");
+	if(file == NULL)
+	{
+		perror("copyFile fopen");
+		return FALSE;
+	}
+	
 
 	success = FALSE;
 	i = 0;
 	while(i < COPYLIMIT && !success)
 	{
 		// Test if the file has been copied successfully or if it already exists or there is another error
+		while(readData = read())
 		if(link(pFileName, newFileName) == 0)
 		{
 			printf("\nCopy saved succesfully as \"%s\".", newFileName);
@@ -109,7 +120,7 @@ Bool copyFile(char const * fileName, char const * newFileName)
 	return success;
 }
 
-Bool saveFile(char const * path, char const * data)
+Bool writeFile(char const * path, char const * data)
 {
 	FILE *file = fopen(pPath, "w+");
 	Bool saved = FALSE;

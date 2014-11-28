@@ -16,12 +16,6 @@
 #ifndef CONFIGURATOR
 #define CONFIGURATOR
 
-Bool loadKeyValueParameters(char ** const param, int numParam, char * key[], char * value[]);
-/// Info: This function puts parameters (those given to the program) from pParam to pKey and pValue
-///       on condition that for each pKey, there is a pValue <(2n + 1 parameters).
-///       The function deletes the first and the second parameter (executable and configFile).
-///       It needs to have pKey and pValue already allocated (with a correct size...) before calling the function.
-
 /**
  * \brief Compares the first word of a line
  * 

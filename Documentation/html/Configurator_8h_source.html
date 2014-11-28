@@ -95,35 +95,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;fcntl.h&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;errno.h&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#ifndef CONFIGURATOR</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CONFIGURATOR</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span>        </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define BOOLEAN int</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define TRUE 1</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define FALSE 0</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309" title="The boolean type.">Bool</a> loadKeyValueParameters(<span class="keywordtype">char</span> ** <span class="keyword">const</span> param, <span class="keywordtype">int</span> numParam, <span class="keywordtype">char</span> * key[], <span class="keywordtype">char</span> * value[]);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;../Type_Bool.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef CONFIGURATOR</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CONFIGURATOR</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<a class="code" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309" title="The boolean type.">Bool</a> <a class="code" href="Configurator_8h.html#a807ab90699414160690418503b8d9e96" title="Compares the first word of a line.">matchKey</a> (<span class="keywordtype">char</span> <span class="keyword">const</span> * line, <span class="keywordtype">char</span> <span class="keyword">const</span> * key);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">int</span> <a class="code" href="Configurator_8h.html#a5c55ffaf136e73bfe789d123a563ff31" title="Compares the first word of a line.">match_key</a> (<span class="keywordtype">char</span> <span class="keyword">const</span> * line, <span class="keywordtype">char</span> <span class="keyword">const</span> * key);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">char</span>* matchedLineKey (<span class="keywordtype">int</span> pFileDescriptor, <span class="keywordtype">char</span> <span class="keyword">const</span> * pKey);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="Configurator_8h.html#a10eaaf5263119650c8c6a904bda7d34e" title="Info: This function returns the line in pFileDescriptor which contains pKey.">matchedValueLine</a> (<span class="keywordtype">char</span> <span class="keyword">const</span> * line, <span class="keywordtype">int</span> separator);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">char</span>* read_fileWithWantedModification(<span class="keywordtype">char</span> <span class="keyword">const</span> * pPath, <span class="keywordtype">char</span> ** <span class="keyword">const</span> pKey, <span class="keywordtype">char</span> ** <span class="keyword">const</span> pValue);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="Configurator_8h.html#a3a98dc534aab0968bfa9cfd78fe88903" title="Info: This function returns the whole file (pFileDescriptor) with wanted modification in a string...">read_line</a> (<span class="keywordtype">int</span> fileDescriptor);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">int</span> <a class="code" href="Configurator_8h.html#a4c8a7da85f281bb4a1f7106b19f42c0b" title="Indicates a position ignoring spaces.">ignoreSpaces</a>(<span class="keywordtype">char</span> <span class="keyword">const</span> * str, <span class="keywordtype">int</span> position);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="Configurator_8h.html#a714e6339e00ecd7f4777358a78239813" title="Looks for a line containing a key in a file.">matchedLineKey</a> (<span class="keywordtype">int</span> pFileDescriptor, <span class="keywordtype">char</span> <span class="keyword">const</span> * pKey);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="Configurator_8h.html#adb3da52fe3e7ceaccf7a7c2525da9a6a" title="Gives the value of the line (specific line)">matchedValueLine</a> (<span class="keywordtype">char</span> <span class="keyword">const</span> * line, <span class="keywordtype">char</span> separator);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="Configurator_8h.html#aee4489f2b11a8b7592127c6a116fc9bb" title="Reads the next line of a file.">readLine</a> (<span class="keywordtype">int</span> fileDescriptor);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">int</span> <a class="code" href="Configurator_8h.html#a4c8a7da85f281bb4a1f7106b19f42c0b" title="Indicates a position ignoring spaces.">ignoreSpaces</a>(<span class="keywordtype">char</span> <span class="keyword">const</span> * str, <span class="keywordtype">int</span> position);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 28 2014 16:38:56 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 28 2014 17:39:26 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

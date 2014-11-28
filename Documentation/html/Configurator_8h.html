@@ -99,32 +99,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;unistd.h&gt;</code><br/>
 <code>#include &lt;fcntl.h&gt;</code><br/>
 <code>#include &lt;errno.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="Type__Bool_8h_source.html">../Type_Bool.h</a>&quot;</code><br/>
 </div>
 <p><a href="Configurator_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a50168fdbaa52d4a0b1c287d476050f12"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50168fdbaa52d4a0b1c287d476050f12"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BOOLEAN</b>&#160;&#160;&#160;int</td></tr>
-<tr class="memitem:aa8cecfc5c5c054d2875c03e77b7be15d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8cecfc5c5c054d2875c03e77b7be15d"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TRUE</b>&#160;&#160;&#160;1</td></tr>
-<tr class="memitem:aa93f0eb578d23995850d61f7d61c55c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa93f0eb578d23995850d61f7d61c55c1"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>FALSE</b>&#160;&#160;&#160;0</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9d06b25d22032d498be946e8cdf7e145"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d06b25d22032d498be946e8cdf7e145"></a>
-<a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>loadKeyValueParameters</b> (char **const param, int numParam, char *key[], char *value[])</td></tr>
-<tr class="memitem:a5c55ffaf136e73bfe789d123a563ff31"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#a5c55ffaf136e73bfe789d123a563ff31">match_key</a> (char const *line, char const *key)</td></tr>
-<tr class="memdesc:a5c55ffaf136e73bfe789d123a563ff31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares the first word of a line.  <a href="#a5c55ffaf136e73bfe789d123a563ff31"></a><br/></td></tr>
-<tr class="memitem:a714e6339e00ecd7f4777358a78239813"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a714e6339e00ecd7f4777358a78239813"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>matchedLineKey</b> (int pFileDescriptor, char const *pKey)</td></tr>
-<tr class="memitem:a10eaaf5263119650c8c6a904bda7d34e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#a10eaaf5263119650c8c6a904bda7d34e">matchedValueLine</a> (char const *line, int separator)</td></tr>
-<tr class="memdesc:a10eaaf5263119650c8c6a904bda7d34e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Info: This function returns the line in pFileDescriptor which contains pKey.  <a href="#a10eaaf5263119650c8c6a904bda7d34e"></a><br/></td></tr>
-<tr class="memitem:af877d8ed91be54e45cb9ebc4c30447e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af877d8ed91be54e45cb9ebc4c30447e1"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>read_fileWithWantedModification</b> (char const *pPath, char **const pKey, char **const pValue)</td></tr>
-<tr class="memitem:a3a98dc534aab0968bfa9cfd78fe88903"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#a3a98dc534aab0968bfa9cfd78fe88903">read_line</a> (int fileDescriptor)</td></tr>
-<tr class="memdesc:a3a98dc534aab0968bfa9cfd78fe88903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Info: This function returns the whole file (pFileDescriptor) with wanted modification in a string.  <a href="#a3a98dc534aab0968bfa9cfd78fe88903"></a><br/></td></tr>
+<tr class="memitem:a807ab90699414160690418503b8d9e96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#a807ab90699414160690418503b8d9e96">matchKey</a> (char const *line, char const *key)</td></tr>
+<tr class="memdesc:a807ab90699414160690418503b8d9e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares the first word of a line.  <a href="#a807ab90699414160690418503b8d9e96"></a><br/></td></tr>
+<tr class="memitem:a714e6339e00ecd7f4777358a78239813"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#a714e6339e00ecd7f4777358a78239813">matchedLineKey</a> (int pFileDescriptor, char const *pKey)</td></tr>
+<tr class="memdesc:a714e6339e00ecd7f4777358a78239813"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks for a line containing a key in a file.  <a href="#a714e6339e00ecd7f4777358a78239813"></a><br/></td></tr>
+<tr class="memitem:adb3da52fe3e7ceaccf7a7c2525da9a6a"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#adb3da52fe3e7ceaccf7a7c2525da9a6a">matchedValueLine</a> (char const *line, char separator)</td></tr>
+<tr class="memdesc:adb3da52fe3e7ceaccf7a7c2525da9a6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives the value of the line (specific line)  <a href="#adb3da52fe3e7ceaccf7a7c2525da9a6a"></a><br/></td></tr>
+<tr class="memitem:aee4489f2b11a8b7592127c6a116fc9bb"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#aee4489f2b11a8b7592127c6a116fc9bb">readLine</a> (int fileDescriptor)</td></tr>
+<tr class="memdesc:aee4489f2b11a8b7592127c6a116fc9bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the next line of a file.  <a href="#aee4489f2b11a8b7592127c6a116fc9bb"></a><br/></td></tr>
 <tr class="memitem:a4c8a7da85f281bb4a1f7106b19f42c0b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#a4c8a7da85f281bb4a1f7106b19f42c0b">ignoreSpaces</a> (char const *str, int position)</td></tr>
 <tr class="memdesc:a4c8a7da85f281bb4a1f7106b19f42c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates a position ignoring spaces.  <a href="#a4c8a7da85f281bb4a1f7106b19f42c0b"></a><br/></td></tr>
 </table>
@@ -164,12 +152,88 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>read_fileWithWanted
 
 </div>
 </div>
-<a class="anchor" id="a5c55ffaf136e73bfe789d123a563ff31"></a>
+<a class="anchor" id="a714e6339e00ecd7f4777358a78239813"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int match_key </td>
+          <td class="memname">char* matchedLineKey </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pFileDescriptor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>pKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Looks for a line containing a key in a file. </p>
+<p>Looks for the first line begining with key in the file linked to fileDescriptor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileDescriptor</td><td>: The file you want to search into </td></tr>
+    <tr><td class="paramname">key</td><td>: The first word of a line you want to be returned </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The line associated to key in the file or NULL if there is no line in the file begining with key. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adb3da52fe3e7ceaccf7a7c2525da9a6a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* matchedValueLine </td>
+          <td>(</td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>separator</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gives the value of the line (specific line) </p>
+<p>From a line like "Key : value", the function returns the value. <br/>
+ Note that it just returns the string after spaces and one separator. <br/>
+ A separator (':' for example) could be given.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">line</td><td>: The line you want to have the value </td></tr>
+    <tr><td class="paramname">separator</td><td>: An optional separator between key and value can exists. Give ' ' if you haven't one. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the value associated to the line key or NULL if an error has occured </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a807ab90699414160690418503b8d9e96"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a> matchKey </td>
           <td>(</td>
           <td class="paramtype">char const *&#160;</td>
           <td class="paramname"><em>line</em>, </td>
@@ -189,56 +253,18 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>read_fileWithWanted
 </div><div class="memdoc">
 
 <p>Compares the first word of a line. </p>
-<p>Info: This function puts parameters (those given to the program) from pParam to pKey and pValue on condition that for each pKey, there is a pValue &lt;(2n + 1 parameters). The function deletes the first and the second parameter (executable and configFile). It needs to have pKey and pValue already allocated (with a correct size...) before calling the function. It compares the first word of line to key.</p>
+<p>It compares the first word of line to key.</p>
 <dl class="section return"><dt>Returns</dt><dd>TRUE : key is at the begining of line <br/>
- FALSE :- key is NOT at the begining of line </dd></dl>
+ FALSE : key is NOT at the begining of line </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a10eaaf5263119650c8c6a904bda7d34e"></a>
+<a class="anchor" id="aee4489f2b11a8b7592127c6a116fc9bb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* matchedValueLine </td>
-          <td>(</td>
-          <td class="paramtype">char const *&#160;</td>
-          <td class="paramname"><em>line</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>separator</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Info: This function returns the line in pFileDescriptor which contains pKey. </p>
-<p>Gives the value of the line (specific line)</p>
-<p>From a line like "Key : value", the function returns the value. A separator (':' for example) could be given.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">line</td><td>: The line you want to have the value </td></tr>
-    <tr><td class="paramname">separator</td><td>: An optional separator between key and value can exists. Give ' ' if you haven't one. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the value associated to the line key or NULL if an error has occured </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a3a98dc534aab0968bfa9cfd78fe88903"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char* read_line </td>
+          <td class="memname">char* readLine </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileDescriptor</em></td><td>)</td>
@@ -247,17 +273,16 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>read_fileWithWanted
       </table>
 </div><div class="memdoc">
 
-<p>Info: This function returns the whole file (pFileDescriptor) with wanted modification in a string. </p>
-<p>Reads the next line of a file</p>
+<p>Reads the next line of a file. </p>
 <p>Reads the next line of the file pointed by fileDescriptor.</p>
-<dl class="section return"><dt>Returns</dt><dd>Either the next line or NULL if an error has occurred </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Either the next line or a char '\0' if an error has occurred </dd></dl>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 28 2014 16:38:56 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 28 2014 17:39:26 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

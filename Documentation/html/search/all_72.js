@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['read_5fline',['read_line',['../Configurator_8h.html#a3a98dc534aab0968bfa9cfd78fe88903',1,'Configurator.h']]]
+  ['readline',['readLine',['../Configurator_8h.html#aee4489f2b11a8b7592127c6a116fc9bb',1,'Configurator.h']]]
 ];

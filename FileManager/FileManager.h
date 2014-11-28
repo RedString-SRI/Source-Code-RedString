@@ -1,7 +1,7 @@
 /**
  * \file FileManager.h
  * \brief A high-level file manager set of functions
- * \author Morgan Chabaud
+ * \author Morgan Chabaud \n
  * tmpNote : http://stackoverflow.com/questions/11699596/how-to-set-errno-value
  */
 
@@ -21,33 +21,35 @@
 
 /**
  * \brief Tests if the file associated to a path exists.
- * The user must to give the file path like ~/TP/main.c
  * 
+ * The user must to give the file path like ~/TP/main.c
  * An errno is set accordingly.
  * \param path The path of the file. 
- * \return Bool :  TRUE : If the file exist.
- *                FALSE : If the file doesn't exist.
+ * \return TRUE : If the file exist.\n
+ * FALSE : If the file doesn't exist.
  */
 Bool FileExist(char const * path);
 
 /**
  * \brief Copies a file
- * It copies a fileName named newFileName to a new file named newFileName.
+ * 
+ * It copies a fileName named newFileName to a new file named newFileName.\n
  * If the given newFileName does not already exist, the function tries to rename it 100 times like "name(i)").
  * 
  * Errors are returned if fileName is not able to be opened in read mode
- * \return Bool : TRUE : The file has been copied successfully
- *                FALSE : An error has been encountered.
- *                        The file has not been copied.
+ * \return TRUE : The file has been copied successfully \n
+ *         FALSE : An error has been encountered. The file has not been copied.
  *
  */
 Bool copyFile(char const * fileName, char const * newFileName);
 
 /**
  * \brief Write data in path
+ * 
+ * It writes data in the file associated to path.
  *
- * \return Bool : TRUE : File has been written successfully
- *		  FALSE : Either there is a wrong parameter or a problem has been encountered
+ * \return TRUE : File has been written successfully \n
+ * FALSE : Either there is a wrong parameter or a problem has been encountered
  *
  */
 Bool writeFile(char const * path, char const * data);

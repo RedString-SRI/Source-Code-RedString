@@ -94,6 +94,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>A high-level file manager set of functions.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;unistd.h&gt;</code><br/>
+<code>#include &lt;stdio.h&gt;</code><br/>
+<code>#include &lt;stdlib.h&gt;</code><br/>
+<code>#include &lt;errno.h&gt;</code><br/>
+<code>#include &lt;string.h&gt;</code><br/>
+<code>#include &lt;limits.h&gt;</code><br/>
 <code>#include &quot;<a class="el" href="Type__Bool_8h_source.html">../Type_Bool.h</a>&quot;</code><br/>
 </div>
 <p><a href="FileManager_8h_source.html">Go to the source code of this file.</a></p>
@@ -106,15 +111,16 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4dc77f74ea9ea00a5e17a682417de3c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#a4dc77f74ea9ea00a5e17a682417de3c1">FileExist</a> (char const *path)</td></tr>
-<tr class="memdesc:a4dc77f74ea9ea00a5e17a682417de3c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function tests if the file associated to a path exists. The user must to give the path of the file like ~/TP/main.c.  <a href="#a4dc77f74ea9ea00a5e17a682417de3c1"></a><br/></td></tr>
+<tr class="memdesc:a4dc77f74ea9ea00a5e17a682417de3c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests if the file associated to a path exists.  <a href="#a4dc77f74ea9ea00a5e17a682417de3c1"></a><br/></td></tr>
 <tr class="memitem:ab7f1fb54aeb02df14e335fd5d44f0c3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#ab7f1fb54aeb02df14e335fd5d44f0c3a">copyFile</a> (char const *fileName, char const *newFileName)</td></tr>
-<tr class="memdesc:ab7f1fb54aeb02df14e335fd5d44f0c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function copies the file pFileDescriptor in the current directory. It will be called pNewFileName.  <a href="#ab7f1fb54aeb02df14e335fd5d44f0c3a"></a><br/></td></tr>
+<tr class="memdesc:ab7f1fb54aeb02df14e335fd5d44f0c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies a file.  <a href="#ab7f1fb54aeb02df14e335fd5d44f0c3a"></a><br/></td></tr>
 <tr class="memitem:a4758f8eeb094546a6f2f74bdf89d35e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#a4758f8eeb094546a6f2f74bdf89d35e1">writeFile</a> (char const *path, char const *data)</td></tr>
-<tr class="memdesc:a4758f8eeb094546a6f2f74bdf89d35e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function save pData in pPath.  <a href="#a4758f8eeb094546a6f2f74bdf89d35e1"></a><br/></td></tr>
+<tr class="memdesc:a4758f8eeb094546a6f2f74bdf89d35e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data in path.  <a href="#a4758f8eeb094546a6f2f74bdf89d35e1"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A high-level file manager set of functions. </p>
-<dl class="section author"><dt>Author</dt><dd>Morgan Chabaud tmpNote : <a href="http://stackoverflow.com/questions/11699596/how-to-set-errno-value">http://stackoverflow.com/questions/11699596/how-to-set-errno-value</a> </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Morgan Chabaud <br/>
+ tmpNote : <a href="http://stackoverflow.com/questions/11699596/how-to-set-errno-value">http://stackoverflow.com/questions/11699596/how-to-set-errno-value</a> </dd></dl>
 </div><h2>Function Documentation</h2>
 <a class="anchor" id="ab7f1fb54aeb02df14e335fd5d44f0c3a"></a>
 <div class="memitem">
@@ -140,10 +146,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This function copies the file pFileDescriptor in the current directory. It will be called pNewFileName. </p>
-<pre class="fragment"> Note: The given pNewFileName must not already exist (the function tries to rename it 100 times like "name(i)")
-       and the file associated with pFileDescriptor must be opened in reading
-</pre> <dl class="section return"><dt>Returns</dt><dd>Bool : TRUE : The file has been copied successfully FALSE : An error has been encountered. The file has not been copied. </dd></dl>
+<p>Copies a file. </p>
+<p>It copies a fileName named newFileName to a new file named newFileName.<br/>
+ If the given newFileName does not already exist, the function tries to rename it 100 times like "name(i)").</p>
+<p>Errors are returned if fileName is not able to be opened in read mode </p>
+<dl class="section return"><dt>Returns</dt><dd>TRUE : The file has been copied successfully <br/>
+ FALSE : An error has been encountered. The file has not been copied. </dd></dl>
 
 </div>
 </div>
@@ -161,15 +169,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This function tests if the file associated to a path exists. The user must to give the path of the file like ~/TP/main.c. </p>
-<p>An errno is set accordingly. </p>
+<p>Tests if the file associated to a path exists. </p>
+<p>The user must to give the file path like ~/TP/main.c An errno is set accordingly. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>The path of the file. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Bool : TRUE : If the file exist. FALSE : If the file doesn't exist. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE : If the file exist.<br/>
+ FALSE : If the file doesn't exist. </dd></dl>
 
 </div>
 </div>
@@ -197,15 +206,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This function save pData in pPath. </p>
-<dl class="section return"><dt>Returns</dt><dd>Bool : TRUE : Parameters have been loaded successfully (There is at least one couple pKey, pValue) FALSE : Either there is no parameter (key and value) or a problem has been encountered </dd></dl>
+<p>Write data in path. </p>
+<p>It writes data in the file associated to path.</p>
+<dl class="section return"><dt>Returns</dt><dd>TRUE : File has been written successfully <br/>
+ FALSE : Either there is a wrong parameter or a problem has been encountered </dd></dl>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 27 2014 14:47:11 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 28 2014 16:38:56 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

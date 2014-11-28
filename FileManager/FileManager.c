@@ -36,11 +36,12 @@ int fileSize(FILE* file)
 		perror("fileSize file");
 		return -1;
 	}
+}
 
 Bool copyFile(char const * newFileName, char const * fileName)
 {
 	Bool fileNamePossible, fileCopied = FALSE;
-	FILE* file, newFile;
+	FILE *file, *newFile;
 	const int extNameSize = 4;	// 4 : "[x]\0"
 	char* modNewFileName;	// modifiednewFileName : We can't use newFileName because
 				// we want to modify it if the file already exists
@@ -117,10 +118,10 @@ Bool copyFile(char const * newFileName, char const * fileName)
 	}
 	
 	fileLen = newFileLen = 0;
-	while(readSize = fread(buffer, BUFSIZ, file))
+	while(readSize = fread(buffer, BUFSIZ, 1, file))
 	{
 		fileLen += readSize;
-		newFileLen += fwrite(buffer, readSize, newFile);
+		newFileLen += fwrite(buffer, readSize, 1, newFile);
 	}
 
 	if(fileLen != newFileLen)
@@ -132,22 +133,21 @@ Bool copyFile(char const * newFileName, char const * fileName)
 		fileCopied = TRUE;
 	
 	
-
-	free(newFileName);
+	free(modNewFileName);
 	free(extName);
-	close(file);
-	close(newFile);
-	return success;
+	fclose(file);
+	fclose(newFile);
+	return fileCopied;
 }
 
 Bool writeFile(char const * path, char const * data)
 {
-	FILE *file = fopen(pPath, "w+");
+	FILE *file = fopen(path, "w+");
 	Bool saved = FALSE;
 
 	if(file != NULL)
 	{
-		if(fputs(pData, file) != EOF)
+		if(fputs(data, file) != EOF)
 			saved = TRUE;
 		else
 		{

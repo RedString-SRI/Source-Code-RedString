@@ -88,20 +88,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="FileManager_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../Type_Bool.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef FILE_MANAGER</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define FILE_MANAGER</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309" title="The boolean type.">Bool</a> <a class="code" href="FileManager_8h.html#ab7f1fb54aeb02df14e335fd5d44f0c3a" title="This function copies the file pFileDescriptor in the current directory. It will be called pNewFileNam...">copyFile</a>(<span class="keywordtype">char</span> <span class="keyword">const</span> * fileName, <span class="keywordtype">char</span> <span class="keyword">const</span> * newFileName);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<a class="code" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309" title="The boolean type.">Bool</a> saveFile(<span class="keywordtype">char</span> <span class="keyword">const</span> * path, <span class="keywordtype">char</span> <span class="keyword">const</span> * data);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;../Type_Bool.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef FILE_MANAGER</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define FILE_MANAGER</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define NEW_NAME_LIM_LEN 100</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<a class="code" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309" title="The boolean type.">Bool</a> <a class="code" href="FileManager_8h.html#a4dc77f74ea9ea00a5e17a682417de3c1" title="This function tests if the file associated to a path exists. The user must to give the path of the fi...">FileExist</a>(<span class="keywordtype">char</span> <span class="keyword">const</span> * path);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<a class="code" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309" title="The boolean type.">Bool</a> <a class="code" href="FileManager_8h.html#ab7f1fb54aeb02df14e335fd5d44f0c3a" title="This function copies the file pFileDescriptor in the current directory. It will be called pNewFileNam...">copyFile</a>(<span class="keywordtype">char</span> <span class="keyword">const</span> * fileName, <span class="keywordtype">char</span> <span class="keyword">const</span> * newFileName);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<a class="code" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309" title="The boolean type.">Bool</a> <a class="code" href="FileManager_8h.html#a4758f8eeb094546a6f2f74bdf89d35e1" title="This function save pData in pPath.">writeFile</a>(<span class="keywordtype">char</span> <span class="keyword">const</span> * path, <span class="keywordtype">char</span> <span class="keyword">const</span> * data);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 25 2014 18:55:02 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 27 2014 14:47:11 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

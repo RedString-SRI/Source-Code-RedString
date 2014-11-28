@@ -84,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">FileManager.h File Reference</div>  </div>
@@ -92,20 +93,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>A high-level file manager set of functions.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="Type__Bool_8h_source.html">../Type_Bool.h</a>&quot;</code><br/>
+<div class="textblock"><code>#include &lt;unistd.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="Type__Bool_8h_source.html">../Type_Bool.h</a>&quot;</code><br/>
 </div>
 <p><a href="FileManager_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a5ba3b16e17891d46f93a9a5d737c9b3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ba3b16e17891d46f93a9a5d737c9b3c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>NEW_NAME_LIM_LEN</b>&#160;&#160;&#160;100</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a4dc77f74ea9ea00a5e17a682417de3c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#a4dc77f74ea9ea00a5e17a682417de3c1">FileExist</a> (char const *path)</td></tr>
+<tr class="memdesc:a4dc77f74ea9ea00a5e17a682417de3c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function tests if the file associated to a path exists. The user must to give the path of the file like ~/TP/main.c.  <a href="#a4dc77f74ea9ea00a5e17a682417de3c1"></a><br/></td></tr>
 <tr class="memitem:ab7f1fb54aeb02df14e335fd5d44f0c3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#ab7f1fb54aeb02df14e335fd5d44f0c3a">copyFile</a> (char const *fileName, char const *newFileName)</td></tr>
 <tr class="memdesc:ab7f1fb54aeb02df14e335fd5d44f0c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function copies the file pFileDescriptor in the current directory. It will be called pNewFileName.  <a href="#ab7f1fb54aeb02df14e335fd5d44f0c3a"></a><br/></td></tr>
-<tr class="memitem:a73d099262223012fa7f4b776fd9c754d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73d099262223012fa7f4b776fd9c754d"></a>
-<a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>saveFile</b> (char const *path, char const *data)</td></tr>
+<tr class="memitem:a4758f8eeb094546a6f2f74bdf89d35e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#a4758f8eeb094546a6f2f74bdf89d35e1">writeFile</a> (char const *path, char const *data)</td></tr>
+<tr class="memdesc:a4758f8eeb094546a6f2f74bdf89d35e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function save pData in pPath.  <a href="#a4758f8eeb094546a6f2f74bdf89d35e1"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A high-level file manager set of functions. </p>
-<dl class="section author"><dt>Author</dt><dd>Morgan Chabaud </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Morgan Chabaud tmpNote : <a href="http://stackoverflow.com/questions/11699596/how-to-set-errno-value">http://stackoverflow.com/questions/11699596/how-to-set-errno-value</a> </dd></dl>
 </div><h2>Function Documentation</h2>
 <a class="anchor" id="ab7f1fb54aeb02df14e335fd5d44f0c3a"></a>
 <div class="memitem">
@@ -138,10 +147,65 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a4dc77f74ea9ea00a5e17a682417de3c1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a> FileExist </td>
+          <td>(</td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function tests if the file associated to a path exists. The user must to give the path of the file like ~/TP/main.c. </p>
+<p>An errno is set accordingly. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The path of the file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Bool : TRUE : If the file exist. FALSE : If the file doesn't exist. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4758f8eeb094546a6f2f74bdf89d35e1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a> writeFile </td>
+          <td>(</td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function save pData in pPath. </p>
+<dl class="section return"><dt>Returns</dt><dd>Bool : TRUE : Parameters have been loaded successfully (There is at least one couple pKey, pValue) FALSE : Either there is no parameter (key and value) or a problem has been encountered </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 25 2014 18:55:02 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 27 2014 14:47:11 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

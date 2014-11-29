@@ -1,4 +1,4 @@
-#include "PictureDescriptor.h
+#include "PictureDescriptor.h"
 #include "math.h"
 "
 /*Initialize a new picture's descriptor*/

@@ -1,13 +1,13 @@
 
 #include "BaseDescriptor.h"
-
+/*
 //Permit to clear out the buffer : Use to secure datas
 void clearBuffer() {
     int c = 0;
     while (c != '\n' && c != EOF)
         c = getchar();
 }
-
+*/
 
 // Initializes a stack with a null pointer p
 void initStack(DescriptorBase * p){
@@ -18,7 +18,7 @@ void initStack(DescriptorBase * p){
 void printStack(DescriptorBase p){
     // If the stack is empty
     if(stackIsEmpty(p))
-        messageError(1);
+        /** Erreur **/
     else{
         void * ptr_p = p;
         // We are using the pointer to travel few every element of the stack until the last one
@@ -35,7 +35,7 @@ BOOL stackIsEmpty(DescriptorBase p){
 }
 
 // Stack an element into p
-void stack(DescriptorBase * p, void e, fileType t){
+void stack(DescriptorBase * p, void * e, fileType t){
     void * ptr_p;
     switch(t){
         case TEXT: ptr_p = malloc(sizeof(TextDescriptor));
@@ -50,7 +50,7 @@ void stack(DescriptorBase * p, void e, fileType t){
     else{
         ptr_p->next = *p;
         *p = ptr_p;
-        affectElement(&(ptr_p->element), e);
+        affectElement(&(ptr_p->element), *e);
     }
 }
 

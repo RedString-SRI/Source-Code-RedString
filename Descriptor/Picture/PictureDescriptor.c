@@ -42,8 +42,8 @@ PictureDescriptor createPictureDescriptor(FILE *fileIMG){
          fscanf(fileIMG , "%d" , matrix[2*size.height+i][j]); // on BLUE matrix
          while(quantif!=0) {
                matrix[i][j]%=(255/tmpval);
-               matrix[1*size.height+i][j]=%(255/tmpval);
-               matrix[2*size.height+i][j]=%(255/tmpval);
+               matrix[1*size.height+i][j]%=(255/tmpval);
+               matrix[2*size.height+i][j]%=(255/tmpval);
               if( matrix[i][j] == 0 )  tmpBit+= power(2,3+quantif); // on RED matrix, for example quantif=2 : modulo 128, 255
               if( matrix[1*size.height+i][j] == 0 )  tmpBit+= power(2,1+quantif); // on  GREEN matrix
               if( matrix[2*size.height+i][j] == 0 )  tmpBit+=1*power(2,quantif-1); // on BLUE matrix

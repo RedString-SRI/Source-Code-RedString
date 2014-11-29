@@ -1,11 +1,13 @@
 #include "PictureDescriptor.h
+#include "math.h
 "
 /*Initialize a new picture's descriptor*/
 PictureDescriptor initPictureDescriptor(FILE* file) {
-   int pd->id=;
+   //OPEN FILE CONFIGURATOR TO CATCH DATAS TO INITIALIZE DESCRIPTOR
+   int pd->id= 000000000;
   Mode pd->writingMode=AUTO;
   int pd->nbcomp = 0;
-  int pd->nbquantif =64;
+  int pd->nbquantif =2;
   int pd->*histogram=NULL;
 }
 
@@ -19,40 +21,48 @@ Dimension getSizePicture(FILE *fileIMG) {
 
 PictureDescriptor createPictureDescriptor(FILE *fileIMG){
    Dimension size;
-   int matrixRED , *matrixGREEN , *matrixBLUE;
-   int pixelIntensityRED[256]={0} , int pixelIntensityGREEN[256]={0} , int pixelIntensityBLUE[256]={0};
-   int i , j;
+   int *matrixRED ;
+   int bit[256]={0} ;
+   int tmpBit;
+   int i , j , tmpval=1;
    
    fopen(fileIMG);
    size=getSizePicture(fileIMG);
+   quantif=getNbquantif(pd); // GIVE PD
    
-   matrixRED=(*int)malloc(size.width*sizeof(int)); //matrix 1 dimension ...
+   matrix=(*int)malloc(size.width*sizeof(int)); //matrix 1 dimension ...
    for(i=0 ; i<size.heigth ; i++)
-   *matrixRED[i]=(*int)malloc(sizeof(int)); // grow up into matrix with 2 dimensions
-   
-         matrixGREEN=(*int)malloc(size.width*sizeof(int)); 
-         for(i=0 ; i<size.height ; i++)
-         *matrixGREEN[i]=(*int)malloc(sizeof(int)); 
-         
-   matrixBLUE=(*int)malloc(size.width*sizeof(int)); 
-   for(i=0 ; i<size.height ; i++)
-   *matrixBLUE[i]=(*int)malloc(sizeof(int));
+   *matrix[i]=(*int)malloc(size.height*3*sizeof(int)); // grow up into matrix with 2 dimensions
       
-   for(i=0 ; i<size.wdith ; i++){ // scan the whole matrix : 1rst Red
-      for(j=0; j<size.height ; j++)
-         fscanf(fileIMG , "%d" , matrixRED[i][j]);
-         pixelIntensityRED[ matrixRED[i][j] ]++; // +1 in the position of the same intensity value pixel.
+   for(i=0 ; i<size.wdith ; i++){ // scan the whole matrix : 1rst Red , 2nd Green , 3th Blue
+      for(j=0; j<size.height ; j++) {
+         tmpBit=0;
+         fscanf(fileIMG , "%d" , matrix[i][j]); // on RED matrix
+         fscanf(fileIMG , "%d" , matrix[1*size.height+i][j]); // on GREEN matrix
+         fscanf(fileIMG , "%d" , matrix[2*size.height+i][j]); // on BLUE matrix
+         while(quantif!=0) {
+               matrix[i][j]%=(255/tmpval);
+               matrix[1*size.height+i][j]%=(255/tmpval);
+               matrix[2*size.height+i][j]%=(255/tmpval);
+              if( matrix[i][j] == 0 )  tmpBit+= power(2,3+quantif); // on RED matrix, for example quantif=2 : modulo 128, 255
+              if( matrix[1*size.height+i][j] == 0 )  tmpBit+= power(2,1+quantif); // on  GREEN matrix
+              if( matrix[2*size.height+i][j] == 0 )  tmpBit+=1*power(2,quantif-1); // on BLUE matrix
+              quantif--;
+              tmpval++;
+         /*For example (255,128,16) and quantif=2
+          * 1rst round:quantif=2 & tmpval=1 --> matRED[][]%255=0 --> tmpBit=32
+          *                                 --> matGREEN[][]%255=128 --> tmpBIT=32
+          *                                 --> matBLUE[][]%255=16 --> tmpBIT=32
+          * 2nd round:quantif=1 & tmpval=2 --> matRED[][]%128=0 --> tmpBit=32
+          *                                 --> matGREEN[][]%128=0 --> tmpBIT=36
+          *                                 --> matBLUE[][]%255=16 --> tmpBIT=36
+          *--> bit[36]++
+          */
+         }
+         bit[tmpBit-1]++;
+      }   
    }
-   for(i=0 ; i<size.wdith ; i++){ // scan the whole matrix : 2nd green
-      for(j=0; j<size.height ; j++)
-         fscanf(fileIMG , "%d" , matrixGREEN[i][j]);
-         pixelIntensityGREEN[ matrixGREEN[i][j] ]++; // +1 in the position of the same intensity value pixel.
-   }
-   for(i=0 ; i<size.wdith ; i++){ // scan the whole matrix : 3th blue
-      for(j=0; j<size.height ; j++)
-         fscanf(fileIMG , "%d" , matrixBLUE[i][j]);
-         pixelIntensityGREEN[ matrixGREEN[i][j] ]++; // +1 in the position of the same intensity value pixel.
-   }
+  
    fclose(fileIMG);
 }
 

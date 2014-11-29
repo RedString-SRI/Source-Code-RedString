@@ -12,27 +12,23 @@
 #ifndef BASE_DESCRIPTOR
 #define BASE_DESCRIPTOR
 
-typedef struct descriptor{
-  void element;
-  struct descriptor * next;
-} *DescriptorBase; // DescriptorBase is represented by a stack of generic Descriptors, and is a pointer to the first element of the stack
 
 // Initializes a stack with a null pointer p
-void initStack(DescriptorBase * p);
+void initStack(BaseDescriptor * p);
 
 // Prints every elements of the stack
-void printStack(DescriptorBase p);
+void printStack(BaseDescriptor p);
 
 // Checks if the the stack is empty
-Bool stackIsEmpty(DescriptorBase p);
+Bool stackIsEmpty(BaseDescriptor p);
 
 // Stack an element into p
-void stack(DescriptorBase * p, void e, fileType t);
+void stack(BaseDescriptor * p, void e, fileType t);
 
 // unstack the first element
-void unstack(DescriptorBase * p);
+void unstack(BaseDescriptor * p);
 
-// The user has to give elements to stack into the DescriptorBase
-void writeStack(DescriptorBase * p, fileType t);
+// The user has to give elements to stack into the BaseDescriptor
+void writeStack(BaseDescriptor * p, fileType t);
 
-#endif // DESCRIPTORBASE_H_INCLUDED
+#endif

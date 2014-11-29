@@ -12,8 +12,6 @@
 #ifndef BASE_DESCRIPTOR
 #define BASE_DESCRIPTOR
 
-typedef enum {TEXT, IMAGE, SOUND} fileType;
-
 typedef struct descriptor{
   void element;
   struct descriptor * next;

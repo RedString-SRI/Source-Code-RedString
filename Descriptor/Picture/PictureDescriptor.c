@@ -9,20 +9,12 @@ PictureDescriptor PictureDescriptor(FILE* file) {
   int pd->*histogram=NULL;
 }
 
-void getSizePicture(FILE *fileIMG, PictureDescriptor *descriptIMG) {
-   
-}
+Dimension getSizePicture(FILE *fileIMG) {
+   Dimension dim;
 
-void getMatrixRED(FILE *fileIMG, PictureDescriptor *descriptIMG) {
-   
-}
-
-void getMatrixGREEN(FILE *fileIMG, PictureDescriptor *descriptIMG){
-   
-}
-
-void getMatrixBLUE(FILE *fileIMG, PictureDescriptor *descriptIMG){
-   
+   fscanf(fileIMG,"%d", dim->width); 
+   fscanf(fileIMG,"%d", dim->height);
+   return dim;
 }
 
 /*Change mode*/

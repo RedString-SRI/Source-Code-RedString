@@ -12,7 +12,7 @@
 #include <string.h>
 #include <limits.h>
 
-#include "../Type_Bool.h"
+#include "Type_Bool.h"
 
 #ifndef FILE_MANAGER
 #define FILE_MANAGER
@@ -28,7 +28,7 @@
  * \return TRUE : If the file exist.\n
  * FALSE : If the file doesn't exist.
  */
-Bool FileExist(char const * path);
+Bool fileExist(char const * path);
 
 /**
  * \brief Copies a file
@@ -41,7 +41,7 @@ Bool FileExist(char const * path);
  *         FALSE : An error has been encountered. The file has not been copied.
  *
  */
-Bool copyFile(char const * fileName, char const * newFileName);
+Bool copyFile(char const * newFileName, char const * fileName);
 
 /**
  * \brief Write data in path

@@ -1,0 +1,14 @@
+copyFile fopen: No such file or directory
+copyFile fileNamePossible: Invalid argument
+
+
+
+
+	Tester_FileManager :
+
+		Tests_fileExist : Success
+
+File to copy doen't exist : Pass
+File to copy doen't exist : Fail
+		Tests_copyFile : Failure
+	Tester_End

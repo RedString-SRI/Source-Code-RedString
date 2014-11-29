@@ -4,8 +4,14 @@
 #ifndef TYPE_PICTURE_DESCRIPTOR
 #define TYPE_PICTURE_DESCRIPTOR
 
-struct{
+typedef struct{
+  int height;
+  int width;
+}Dimension;
+
+typedef struct{
   int id;
+  Dimension size[2];
   Mode writingMode;
   int nbcomp ; /*d is the picture's number of components*/
   int nbquantif ; /*n is the number of bits picked for the quantification*/

@@ -19,6 +19,8 @@
 
 #define NEW_NAME_LIM_LEN 100
 
+Bool pathExists(char const * path);
+
 /**
  * \brief Tests if the file associated to a path exists.
  * 

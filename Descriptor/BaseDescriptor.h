@@ -7,6 +7,7 @@
 #include "PictureDescriptor.h"
 #include "SoundDescriptor.h"
 #include "Type_Bool.h"
+#include "Type_BaseDescriptor.h"
 
 #ifndef BASE_DESCRIPTOR
 #define BASE_DESCRIPTOR

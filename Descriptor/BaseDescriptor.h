@@ -23,7 +23,7 @@ void printStack(BaseDescriptor p);
 Bool stackIsEmpty(BaseDescriptor p);
 
 // Stack an element into p
-void stack(BaseDescriptor * p, void e, fileType t);
+void stack(BaseDescriptor * p, void * e, fileType t);
 
 // unstack the first element
 void unstack(BaseDescriptor * p);

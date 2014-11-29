@@ -9,6 +9,22 @@ PictureDescriptor PictureDescriptor(FILE* file) {
   int pd->*histogram=NULL;
 }
 
+void getSizePicture(FILE *fileIMG, PictureDescriptor *descriptIMG) {
+   
+}
+
+void getMatrixRED(FILE *fileIMG, PictureDescriptor *descriptIMG) {
+   
+}
+
+void getMatrixGREEN(FILE *fileIMG, PictureDescriptor *descriptIMG){
+   
+}
+
+void getMatrixBLUE(FILE *fileIMG, PictureDescriptor *descriptIMG){
+   
+}
+
 /*Change mode*/
 void setMode(PictureDescritor *pd ,Mode m) {
   pd->writingMode = m;

@@ -20,7 +20,7 @@ Dimension getSizePicture(FILE *fileIMG) {
 PictureDescriptor createPictureDescriptor(FILE *fileIMG){
    Dimension size;
    int matrixRED , *matrixGREEN , *matrixBLUE;
-   int pixelIntensityRED[256] , int pixelIntensityGREEN[256] , int pixelIntensityBLUE[256];
+   int pixelIntensityRED[256]={0} , int pixelIntensityGREEN[256]={0} , int pixelIntensityBLUE[256]={0};
    int i , j;
    
    fopen(fileIMG);
@@ -41,14 +41,17 @@ PictureDescriptor createPictureDescriptor(FILE *fileIMG){
    for(i=0 ; i<size.wdith ; i++){ // scan the whole matrix : 1rst Red
       for(j=0; j<size.height ; j++)
          fscanf(fileIMG , "%d" , matrixRED[i][j]);
+         pixelIntensityRED[ matrixRED[i][j] ]++; // +1 in the position of the same intensity value pixel.
    }
    for(i=0 ; i<size.wdith ; i++){ // scan the whole matrix : 2nd green
       for(j=0; j<size.height ; j++)
          fscanf(fileIMG , "%d" , matrixGREEN[i][j]);
+         pixelIntensityGREEN[ matrixGREEN[i][j] ]++; // +1 in the position of the same intensity value pixel.
    }
    for(i=0 ; i<size.wdith ; i++){ // scan the whole matrix : 3th blue
       for(j=0; j<size.height ; j++)
          fscanf(fileIMG , "%d" , matrixBLUE[i][j]);
+         pixelIntensityGREEN[ matrixGREEN[i][j] ]++; // +1 in the position of the same intensity value pixel.
    }
    fclose(fileIMG);
 }

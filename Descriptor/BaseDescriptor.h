@@ -6,7 +6,7 @@
 #include "TextDescriptor.h"
 #include "PictureDescriptor.h"
 #include "SoundDescriptor.h"
-#include "../Type_Bool.h"
+#include "Type_Bool.h"
 
 #ifndef BASE_DESCRIPTOR
 #define BASE_DESCRIPTOR
@@ -25,7 +25,7 @@ void initStack(DescriptorBase * p);
 void printStack(DescriptorBase p);
 
 // Checks if the the stack is empty
-BOOL stackIsEmpty(DescriptorBase p);
+Bool stackIsEmpty(DescriptorBase p);
 
 // Stack an element into p
 void stack(DescriptorBase * p, void e, fileType t);

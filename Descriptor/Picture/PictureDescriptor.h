@@ -8,6 +8,26 @@
 /*Initialize a new picture's descriptor*/
 void initPictureDescriptor(PictureDescriptor *pd);
 
+/**
+ * Take the first line of the text file about the linked image.
+ */
+void getSizePicture(FILE *fileIMG, PictureDescriptor *descriptIMG);
+
+/**
+ * Take the Nsize next lines which are the linked red matrix of the image...
+ */
+void getMatrixRED(FILE *fileIMG, PictureDescriptor *descriptIMG);
+
+/**
+ * ... the next Nsize lines, the linked green matric ...
+ */
+void getMatrixGREEN(FILE *fileIMG, PictureDescriptor *descriptIMG);
+
+/**
+ * and the next Nsize lines, the matrix of blue of the linked image.
+ */
+void getMatrixBLUE(FILE *fileIMG, PictureDescriptor *descriptIMG);
+
 /*Change mode*/
 void setMode(Mode *m);
 

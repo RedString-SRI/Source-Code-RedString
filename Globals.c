@@ -1,6 +1,8 @@
 /**
  * \file Globals.c
  * \brief Configuration global variables
+ * 
+ * Those globals are initialised by the function initGlobals() in Configurator
  * \author Morgan Chabaud \n
  * How to use : http://c.developpez.com/faq/?page=Les-variables-globales
  */

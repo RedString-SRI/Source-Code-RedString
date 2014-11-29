@@ -1,8 +1,12 @@
 #include "PictureDescriptor.h
 "
 /*Initialize a new picture's descriptor*/
-void initPictureDescriptor(PictureDescriptor *pd) {
-  
+PictureDescriptor PictureDescriptor(FILE* file) {
+   int pd->id=;
+  Mode pd->writingMode=AUTO;
+  int pd->nbcomp = 0;
+  int pd->nbquantif =64;
+  int pd->*histogram=NULL;
 }
 
 /*Change mode*/
@@ -25,7 +29,9 @@ int getNbcomp(PictureDescritor pd) {
   return pd.nbcomp;
 }
 
-/**/
+/**
+ * 
+*/
 void setNbquantif(PictureDescritor *pd, int n) {
   pd->nbquantif = n;
 }
@@ -35,12 +41,18 @@ int getNbquantif(PictureDescritor pd ){
   return pd.nbquantif;
 }
 
-/*Creat the image's histogramm*/
+/**
+ *Create an histogramm with the 64 values possibles.
+ * It give the number of picture's pixel which have an intensity value : red, blue, green or gray level.
+ */
 void createHistogramm(){
   
 }
 
-/*Print the image's histogramm*/
+/**
+*Print the image's histogramm.
+* his function permit to watch the percentage about pixel's value.
+*/
 void printHistogramm() {
   
 }

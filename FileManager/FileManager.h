@@ -30,7 +30,7 @@ Bool pathExists(char const * path);
  * \return TRUE : If the file exist.\n
  * FALSE : If the file doesn't exist.
  */
-Bool fileExist(char const * path);
+Bool fileExists(char const * path);
 
 /**
  * \brief Copies a file

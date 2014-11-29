@@ -16,12 +16,12 @@ int main()
 	Bool hasPassed;
 	printf("\n\n\n\n\t\Tester_FileManager :\n");
 	
-	hasPassed = tests_fileExists(FALSE);
+	/*hasPassed = tests_fileExists(FALSE);
 	if(hasPassed)
 		printf("\n\t\tTests_fileExists : Success\n");
 	else
 		printf("\n\t\tTests_fileExists : Failure\n");
-	
+	*/
 	hasPassed = tests_copyFile(TRUE);
 	if(hasPassed)
 		printf("\n\t\tTests_copyFile (depends on fileExists): Success\n");

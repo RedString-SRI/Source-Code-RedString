@@ -1,14 +1,16 @@
-copyFile fopen: No such file or directory
-copyFile fileNamePossible: Invalid argument
+copyFile fread: Bad file descriptor
+copyFile fread: Bad file descriptor
 
 
 
 
 	Tester_FileManager :
 
-		Tests_fileExist : Success
+		Tests_fileExists : Success
 
-File to copy doen't exist : Pass
-File to copy doen't exist : Fail
+File to copy doesn't exist : 
+cc_-72538972__(null)Fail
+File name of the wanted copy already exists : 
+cc_-72538972__(null)Fail
 		Tests_copyFile : Failure
 	Tester_End

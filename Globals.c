@@ -17,8 +17,6 @@ int globs_nbElemInterval; // There is intervals in a window.
                           // They contains that number of elements (value of of a little time during signal).
                           
 // PictureDescriptor
-int nbcomp;
-int Nbquantif; // the number of hight bits read to make the histogram
 int globs_nbWeightyBits; // The number of weighty bits to get on each pixel component
 int globs_compTolerance;  // The comparison tolerance for pixels
                           // Ex : 1 means that two average pixels can have maximum 1 "point" difference

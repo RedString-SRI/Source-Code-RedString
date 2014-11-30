@@ -28,7 +28,7 @@ PictureDescriptor createPictureDescriptor(FILE *fileIMG){
    int tmpBit;
    int i , j , tmpval=1;
    
-   fopen(fileIMG);
+   fopen(fileIMG, 'r');
    size=getSizePicture(fileIMG);
    quantif=getNbquantif(pd); // GIVE PD
    
@@ -44,8 +44,8 @@ PictureDescriptor createPictureDescriptor(FILE *fileIMG){
          fscanf(fileIMG , "%d" , matrix[2*size.height+i][j]); // on BLUE matrix
          while(quantif!=0) {
                matrix[i][j]%=(255/tmpval);
-               matrix[1*size.height+i][j]%=(255/tmpval);
-               matrix[2*size.height+i][j]%=(255/tmpval);
+               matrix[1*size.height+i][j]%=((int)(255/tmpval) + tmpval!=1 ); //+ tmpval!=1 : differentiate 127 of 128, because (int)255/2=127, but bit2=1 if number is a modulo of 128, not 127
+               matrix[2*size.height+i][j]%=((int)(255/tmpval) + tmpval!=1 );
               if( matrix[i][j] == 0 )  tmpBit+= power(2,3+quantif); // on RED matrix, for example quantif=2 : modulo 128, 255
               if( matrix[1*size.height+i][j] == 0 )  tmpBit+= power(2,1+quantif); // on  GREEN matrix
               if( matrix[2*size.height+i][j] == 0 )  tmpBit+=1*power(2,quantif-1); // on BLUE matrix
@@ -64,7 +64,7 @@ PictureDescriptor createPictureDescriptor(FILE *fileIMG){
          bit[tmpBit-1]++;
       }   
    }
-  createHistogram( bit[], size );
+  createHistogram( bit[], size , quantif);
    fclose(fileIMG);
 }
 
@@ -104,14 +104,26 @@ int getNbquantif(PictureDescritor pd ){
  *Create an histogramm with the 64 values possibles.
  * It give the number of picture's pixel which have an intensity value : red, blue, green or gray level.
  */
-void createHistogram(int bit[] , Dimension dim){
+void createHistogram(int bit[] , Dimension dim , int quantif){
+  float tab[power(3,quantif)]; // 3 colors of Nquantif bits
+  int i;
   
+  for(i=0 ; i<power(3,quantif) ; i++);
+   tab[i] = bit[i]/(dim.height*dim.width); // give a percentage about IntensityValuePixel on numberPixel.
 }
 
 /**
 *Print the image's histogram.
 * his function permit to watch the percentage about pixel's value.
 */
-void printHistogram() {
-  
+void printHistogram(FILE *descriptIMG) {
+   int i;
+   char c;
+   // NEED to know
+   
+   fopen(descriptIMG,'r');
+   for(i=0 ; i<8 ; i++){ // Permit to place himself at the 8th lines, where the histogram's array start.
+            fgets(NULL , 200 , descriptIMG ); // read a line and economise memories
+         }
+   for(i=0 ; i< Nbquantif)
 }

@@ -16,12 +16,12 @@ int main()
 	Bool hasPassed;
 	printf("\n\n\n\n\t\Tester_FileManager :\n");
 	
-	/*hasPassed = tests_fileExists(FALSE);
+	hasPassed = tests_fileExists(FALSE);
 	if(hasPassed)
 		printf("\n\t\tTests_fileExists : Success\n");
 	else
 		printf("\n\t\tTests_fileExists : Failure\n");
-	*/
+	
 	hasPassed = tests_copyFile(TRUE);
 	if(hasPassed)
 		printf("\n\t\tTests_copyFile (depends on fileExists): Success\n");
@@ -75,7 +75,7 @@ Bool tests_copyFile(Bool details)
 	/** File to copy doesn't exist **/
 	if(details)
 		printf("\nFile to copy doesn't exist : ");
-	if(copyFile("copiedFile_empty", "copyFile_unexisting"))
+	if(copyFile("./copiedFile_empty", "./copyFile_unexisting"))
 	{
 		if(details)
 			printf("Fail");
@@ -83,7 +83,7 @@ Bool tests_copyFile(Bool details)
 	}
 	else
 	{
-		if(fileExists("copiedFile_empty"))
+		if(fileExists("./copiedFile_empty"))
 		{
 			if(details)
 				printf("Fail");
@@ -100,7 +100,7 @@ Bool tests_copyFile(Bool details)
 	/** File name of the wanted copy already exists **/
 	if(details)
 		printf("\nFile name of the wanted copy already exists : ");
-	if(copyFile("existingFile", "copyFile_empty"))
+	if(copyFile("./existingFile", "./existingFile"))
 	{
 		if(details)
 			printf("Pass");
@@ -111,6 +111,7 @@ Bool tests_copyFile(Bool details)
 			printf("Fail");
 		testPassed = FALSE;
 	}
+
 	
 	/** File **/
 	

@@ -100,7 +100,7 @@ Bool tests_copyFile(Bool details)
 	/** File name of the wanted copy already exists **/
 	if(details)
 		printf("\nFile name of the wanted copy already exists : ");
-	if(copyFile("existingFile", "copyFile_empty"))
+	if(copyFile("existingFile", "existingFile"))
 	{
 		if(details)
 			printf("Pass");
@@ -111,6 +111,7 @@ Bool tests_copyFile(Bool details)
 			printf("Fail");
 		testPassed = FALSE;
 	}
+
 	
 	/** File **/
 	

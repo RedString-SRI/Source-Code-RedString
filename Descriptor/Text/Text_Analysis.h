@@ -1,4 +1,4 @@
-//file text_analysis.h
+//file Text_Analysis.h
 // brief  All the functions necessary to analyse a text and then proceed to its indexation
 //Author Estelle Randria
 //Date : 11/28/2014

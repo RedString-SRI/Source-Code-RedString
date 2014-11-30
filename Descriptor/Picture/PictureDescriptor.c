@@ -2,7 +2,7 @@
 #include "math.h"
 #include "stdio.h"
 #include "stdlib.h"
-"
+
 /*Initialize a new picture's descriptor*/
 PictureDescriptor initPictureDescriptor(FILE* file) {
    //OPEN FILE CONFIGURATOR TO CATCH DATAS TO INITIALIZE DESCRIPTOR

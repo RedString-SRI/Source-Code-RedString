@@ -58,7 +58,7 @@ PictureDescriptor createPictureDescriptor(FILE *fileIMG){
           * 2nd round:quantif=1 & tmpval=2 --> matRED[][]%128=0 --> tmpBit=32
           *                                 --> matGREEN[][]%128=0 --> tmpBIT=36
           *                                 --> matBLUE[][]%255=16 --> tmpBIT=36
-          *--> bit[36]++
+          *--> bit[36-1]++
           */
          }
          bit[tmpBit-1]++;

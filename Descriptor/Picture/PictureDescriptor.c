@@ -64,7 +64,7 @@ PictureDescriptor createPictureDescriptor(FILE *fileIMG){
          bit[tmpBit-1]++;
       }   
    }
-  
+  createHistogram( bit[], size );
    fclose(fileIMG);
 }
 
@@ -104,14 +104,14 @@ int getNbquantif(PictureDescritor pd ){
  *Create an histogramm with the 64 values possibles.
  * It give the number of picture's pixel which have an intensity value : red, blue, green or gray level.
  */
-void createHistogramm(){
+void createHistogram(int bit[] , Dimension dim){
   
 }
 
 /**
-*Print the image's histogramm.
+*Print the image's histogram.
 * his function permit to watch the percentage about pixel's value.
 */
-void printHistogramm() {
+void printHistogram() {
   
 }

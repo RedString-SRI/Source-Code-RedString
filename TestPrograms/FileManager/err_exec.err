@@ -1,14 +1,14 @@
+copyFile fopen file: No such file or directory
 
 
 
 
-	Tester_FileManager :
+	Tester_FileManager (without verifying written data, done a la mano) :
 
 		Tests_fileExists : Success
 
-File to copy doesn't exist : first20first___copiedFile_empty_0--20--___copiedFile_empty_01--20--___copiedFile_empty_01--20--
-readSizeOutside : 0Fail
-File name of the wanted copy already exists : first16first___existingFile_0--16--___existingFile_01--16--___existingFile_01--16--
-readSizeOutside : 0Pass
-		Tests_copyFile : Failure
+		Tests_copyFile : Failure (may be caused by root)
+1a
+New int : 1 and a
+		Tests_readStruct : Success
 	Tester_End

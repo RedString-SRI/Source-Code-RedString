@@ -17,7 +17,6 @@
 #define CONFIGURATOR
 
 #define CONF_FILE_NAME "parameters.conf"
-
 // TextDescriptor
 extern int globs_occurThreshold;
 extern int globs_maxTerms;

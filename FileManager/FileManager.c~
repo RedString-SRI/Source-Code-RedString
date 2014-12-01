@@ -184,11 +184,11 @@ Bool readStruct(FILE* file, void ** wStruct, size_t structSize)
 
 Bool writeStruct(FILE* file, void ** rStruct, size_t structSize)
 {
-	if(fwrite(*rStruct, structSize, 1, file)) 
+	if(fread(*rStruct, structSize, 1, file)) 
 		return TRUE;
 	else
 	{
-		perror("readStruct fwrite");
+		perror("readStruct fread");
 		return FALSE;
 	}
 }

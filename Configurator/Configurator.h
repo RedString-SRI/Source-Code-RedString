@@ -46,9 +46,44 @@ typedef struct{
 }WritableGlobs;
 
 /**
- * \brief Initialise global variables with the configuration file
+ * \brief Initialise the configurator module
+ * 
+ * Look into the configuration file, if it is already set, it loads those variables
+ * into the global ones. If it is not set, ask the user to type them in, write them
+ * int the configuration file and loads them too. \n
+ * If the configuration file does not exist, it will create it.
  */
 Bool initConfigurator();
+
+/**
+ * \brief Ask the user to tape in configuration variables and set them straight after
+ */
+void askGlobsVariables();
+
+/**
+ * \brief Initialise global variables
+ * 
+ * Initialise global variables with globs
+ * \param globs The WritableGlobs you want to initialise the global variables with
+ */
+void setGlobsVariables(WritableGlobs const * globs);
+
+/**
+ * \brief Save global variables to the configuration file
+ * 
+ * Write global variables globs to the configuration file pointed by confFile
+ * \param confFile The configuration file to be written
+ * \param globs The WritableGlobs that are already initialised
+ */
+Bool writeGlobs(WritableGlobs const * globs, FILE* confFile);
+
+/**
+ * \brief Initialise global variables from the configuration file
+ * 
+ * Initialise global variables from the configuration file pointed by confFile
+ * \param confFile The configuration file to be read
+ */
+Bool readGlobs(FILE* confFile);
 
 /**
  * \brief Compares the first word of a line

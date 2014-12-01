@@ -8,21 +8,91 @@
 
 Bool initConfigurator()
 {
-	WritableGlobs* globs = malloc(sizeof(*globs));
-	FILE* confFile = fopen(CONF_FILE_NAME, "rb");
+	FILE* confFile = fopen(CONF_FILE_NAME, "wb+");
 	if(confFile == NULL)
 	{
-		perror("copyFile fopen file");
+		perror("initConfigurator fopen confFile");
 		return FALSE;
 	}
-	readStruct(confFile, &globs, sizeof(*globs));
+	// If it fits the size of an WritableGlobs, we'll consider it well written
+	if(fileSize(CONF_FILE_NAME) == sizeof(WritableGlobs))
+	{
+// May be doable in a log file
+		if(readGlobs(confFile))
+			printf("\nConfiguration variables loaded successfully.");
+		else
+/** Error Management **/;
+	}
+	else
+	{
+		printf("\nFirst you need to configure indexing parameters...")
+		askGlobsVariables();
+		printf("\nIndexing parameters are now up-to-date");
+	}
 	
+	fclose(confFile);
+}
+
+void askGlobsVariables()
+{
+	WritableGlobs globs;
+	// BASIC INPUT TO SECURE
+	printf("\n\tText indexation :\n\t Tape the occurrence threshold for words : ");
+	scanf("%d", &globs->textDesc_occurThreshold);
+	printf("\tTape the maximum terms to keep for a file : ");
+	scanf("%d", &globs->textDesc_maxTerms);
+	printf("\n\tPicture indexation :\n\tTape the number of"
+		"Weighty bits to store for each pixel component : ");
+	scanf("%d", &globs->pictureDesc_nbWeightyBits);
+	printf("\tTape the comparison tolerance between two pixels : ");
+	scanf("%d", &globs->pictureDesc_compTolerance);
+	printf("\n\tSound indexation : \n\tTape the window Size : ");
+	scanf("%d", &globs->soundDesc_windowSize);
+	printf("\tTape the number of elements to keep in each interval of a window : ");
+	scanf("%d", &globs->soundDesc_nbElemInterval);
+
+	setGlobsVariables(&globs);
+}
+
+void setGlobsVariables(WritableGlobs const * globs)
+{
+	// Needa to some tests there. For max or min values for example.
 	globs_occurThreshold = globs->textDesc_occurThreshold;
 	globs_maxTerms = globs->textDesc_maxTerms;
 	globs_windowSize = globs->soundDesc_windowSize;
 	globs_nbElemInterval = globs->soundDesc_nbElemInterval;
 	globs_nbWeightyBits = globs->pictureDesc_nbWeightyBits;
 	globs_compTolerance = globs->pictureDesc_compTolerance;
+}
+
+
+Bool writeGlobs(WritableGlobs const * globs, FILE* confFile)
+{
+	if(writeStruct(confFile, &globs, sizeof(*globs)))
+	{
+/** Error Management **/
+		return FALSE;
+	}
+	
+	// Updating variables into global variables
+	setGlobsVariables(&globs);
+	return TRUE;
+}
+
+Bool readGlobs(FILE* confFile)
+{
+	WritableGlobs * globs = malloc(sizeof(*globs));
+
+	if(!readStruct(confFile, &globs, sizeof(*globs)))
+	{
+/** Error Management **/
+		return FALSE;
+	}
+	
+	// Updating variables into global variables
+	setGlobsVariables(&globs);
+	
+	return TRUE;
 }
 
 Bool matchKey (char const * line, char const * key)

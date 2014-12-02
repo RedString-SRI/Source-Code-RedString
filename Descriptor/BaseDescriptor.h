@@ -13,22 +13,22 @@
 #define BASE_DESCRIPTOR
 
 
-// Initializes a stack with a null pointer p
-void initStack(BaseDescriptor * p);
+// Initializes a list with a null pointer p
+void initList(BaseDescriptor * base);
 
-// Prints every elements of the stack
-void printStack(BaseDescriptor p);
+// Prints every elements of the list, just using this for debugging
+void printList(BaseDescriptor base);
 
-// Checks if the the stack is empty
-Bool stackIsEmpty(BaseDescriptor p);
+// Checks if the the list is empty
+Bool listIsEmpty(BaseDescriptor base);
 
-// Stack an element into p
-void stack(BaseDescriptor * p, void * e, fileType t);
+// Add a descriptor into the base
+void addDescriptor(BaseDescriptor * base, void * structDescriptor, FileType type);
 
-// unstack the first element
-void unstack(BaseDescriptor * p);
+// Remove the descriptor with the same id as the one in the parameter
+void remove(BaseDescriptor * base);
 
 // The user has to give elements to stack into the BaseDescriptor
-void writeStack(BaseDescriptor * p, fileType t);
+void writeList(BaseDescriptor * base, FileType type);
 
 #endif

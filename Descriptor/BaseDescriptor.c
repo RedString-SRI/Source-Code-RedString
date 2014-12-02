@@ -9,35 +9,36 @@ void clearBuffer() {
 }
 */
 
-// Initializes a stack with a null pointer p
-void initStack(DescriptorBase * p){
-    *p = NULL;
+// Initializes a list with a null pointer p
+void initList(BaseDescriptor * base){
+    *base = NULL;
 }
 
-// Prints every elements of the stack
-void printStack(DescriptorBase p){
-    // If the stack is empty
-    if(stackIsEmpty(p))
-        /** Erreur **/
+// Prints every elements of the list, just using this for debugging
+void printList(BaseDescriptor base){
+    // If the list is empty
+    if(listIsEmpty(base))
+        /** Error **/
     else{
-        void * ptr_p = p;
-        // We are using the pointer to travel few every element of the stack until the last one
-        while(p!=NULL){
-            printElement(ptr_p->element);
+        BaseDescriptor ptr_p = base;
+        // We are using the pointer to travel few every element of the list until the last one
+        while(ptr_p!=NULL){
+            printElement(*(ptr_p->element));
             ptr_p = ptr_p->next;
         }
     }
 }
 
-// Checks if the the stack is empty
-BOOL stackIsEmpty(DescriptorBase p){
-    return(p==NULL);
+// Checks if the the list is empty
+Bool listIsEmpty(BaseDescriptor base){
+    return(base==NULL);
 }
 
-// Stack an element into p
-void stack(DescriptorBase * p, void * e, fileType t){
-    void * ptr_p;
-    switch(t){
+
+// Add a descriptor into the base
+void addDescriptor(BaseDescriptor * base, void * structDescriptor, FileType type){
+    BaseDescriptor ptr_p;
+    switch(type){
         case TEXT: ptr_p = malloc(sizeof(TextDescriptor));
         break;
         case IMAGE: ptr_p = malloc(sizeof(PictureDescriptor));
@@ -45,11 +46,11 @@ void stack(DescriptorBase * p, void * e, fileType t){
         case SOUND: ptr_p = malloc(sizeof(SoundDescriptor));
         break;
     }
-    if(ptr_p==NULL)
-        messageError(2);
+    if(*base==NULL)
+        /** Error **/
     else{
-        ptr_p->next = *p;
-        *p = ptr_p;
+        ptr_p->next = *base;
+        *base = ptr_p;
         affectElement(&(ptr_p->element), *e);
     }
 }

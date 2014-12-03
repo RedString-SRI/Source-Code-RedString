@@ -32,19 +32,9 @@ void setNbcomp(int n);
 int getNbcomp();
 
 /**
- *\brief Permite to know how many high bits functions need to read
-*/
-void setNbquantif(int n);
-
-/**
-*\brief return nbquantif
-*/
-int getNbquantif();
-
-/**
  *\brief Creat the image's histogramm
 */
-void createHistogram(int bit[] , Dimension dim , int quantif);
+void createHistogram(int bit[] , Dimension dim);
 
 /**
  *\brief Print the image's histogramm

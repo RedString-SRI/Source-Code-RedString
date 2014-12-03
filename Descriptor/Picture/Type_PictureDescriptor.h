@@ -14,7 +14,6 @@ typedef struct{
   Dimension size[2];
   Mode writingMode;
   int nbcomp ; /*d is the picture's number of components*/
-  int nbquantif ; /*n is the number of bits picked for the quantification*/
   int *histogram; // Will be an array of size : 2^(d*n)
 
 }PictureDescriptor;

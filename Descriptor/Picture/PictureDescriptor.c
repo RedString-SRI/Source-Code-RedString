@@ -7,9 +7,7 @@
 PictureDescriptor initPictureDescriptor(FILE* file) {
    //OPEN FILE CONFIGURATOR TO CATCH DATAS TO INITIALIZE DESCRIPTOR
    int pd->id= 000000000;
-  Mode pd->writingMode=AUTO;
   int pd->nbcomp = 0;
-  int pd->nbquantif =2;
   int pd->*histogram=NULL;
 }
 //===================================================================================================
@@ -22,6 +20,7 @@ Dimension getSizePicture(FILE *fileIMG) {
 }
 //===================================================================================================
 PictureDescriptor createPictureDescriptor(FILE *fileIMG){
+   int quantif = globs_nbWeightyBits;
    Dimension size;
    int *matrixRED ;
    int bit[256]={0} ;
@@ -30,7 +29,6 @@ PictureDescriptor createPictureDescriptor(FILE *fileIMG){
    
    fopen(fileIMG, 'r');
    size=getSizePicture(fileIMG);
-   quantif=getNbquantif(pd); // GIVE PD
    
    matrix=(*int)malloc(size.width*sizeof(int)); //matrix 1 dimension ...
    for(i=0 ; i<size.heigth ; i++)
@@ -64,19 +62,10 @@ PictureDescriptor createPictureDescriptor(FILE *fileIMG){
          bit[tmpBit-1]++;
       }   
    }
-  createHistogram( bit[], size , quantif);
+  createHistogram( bit[], size);
    fclose(fileIMG);
 }
-//===================================================================================================
-/*Change mode*/
-void setMode(PictureDescritor *pd ,Mode m) {
-  pd->writingMode = m;
-}
-//===================================================================================================
-/*return mode*/
-Mode getMode(PictureDescriptor pd) {
-  return pd.writingMode;
-}
+
 //===================================================================================================
 /**/
 void setNbcomp(PictureDescritor *pd, int n) {
@@ -89,26 +78,14 @@ int getNbcomp(PictureDescritor pd) {
 }
 //===================================================================================================
 /**
- * 
-*/
-void setNbquantif(int n) {
-  pd->nbquantif = n;
-}
-//===================================================================================================
-/*return nbquantif*/
-int getNbquantif(){
-  return pd.nbquantif;
-}
-//===================================================================================================
-/**
  *Create an histogramm with the 64 values possibles.
  * It give the number of picture's pixel which have an intensity value : red, blue, green or gray level.
  */
-void createHistogram(int bit[] , Dimension dim , int quantif){
-  float tab[power(3,quantif)]; // 3 colors of Nquantif bits
+void createHistogram(int bit[] , Dimension dim){
+  float tab[power(3,globs_nbWeightyBits)]; // 3 colors of Nquantif bits
   int i;
   
-  for(i=0 ; i<power(3,quantif) ; i++);
+  for(i=0 ; i<power(3,globs_nbWeightyBits) ; i++);
    tab[i] = bit[i]/(dim.height*dim.width); // give a percentage about IntensityValuePixel on numberPixel.
 }
 //===================================================================================================
@@ -120,9 +97,7 @@ void printHistogram(FILE *descriptIMG) {
    int i , j , NbIntensity , size1 , size2 , size;
    float array; // percentage given of descriptIMG
    char c;
-   // NEED to know Nbquantif !!!!!!!!!!!!!!!
-   Nbquantif=getNbquantif();
-   NbIntensity= power(2,3*Nbquantif); // if nbQuantif=2 --> 2^(3*2)=64
+   NbIntensity= power(2,3*globs_nbWeightyBits); // if globs_nbWeightyBits=2 --> 2^(3*2)=64
    array=(*float)malloc(NbIntensity*sizeof(float));
    
    fopen(descriptIMG,'r');
@@ -135,12 +110,12 @@ void printHistogram(FILE *descriptIMG) {
    
    for(i=0 ; i< NbIntensity ; i++) // get back histogram datas.
       fscanf(descriptIMG , "%f" , array[i]);
-      
+   printf("\n\t>=======================================<\n" , size);
    for(i=0 ; i<NbIntensity/2 ; i++){ // printf the histigram
       printf("val%3d:" , i+1);   for(j=0;j<array[i]*10 ; j++) printf('o'); 
       printf("%d" , array[i]);   for(j=0;j<(1-array[i])*10 ; j++) printf(' '); // give a visual graphic whose the value's size appear on 10 'o' at 100%
        printf("val%3d:" , NbIntensity/2+i);   for(j=0;j<array[NbIntensity/2+i-1]*10 ; j++) printf('o'); 
       printf("%d" , array[NbIntensity/2+i-1]);   for(j=0;j<(1-array[NbIntensity/2+i-1])*10 ; j++) printf(' ');
    }
-   printf("\n>==== On %d read pixels ====<\n" , size);
+   printf("\n\t>========== On %d read pixels ==========<\n" , size);
 }

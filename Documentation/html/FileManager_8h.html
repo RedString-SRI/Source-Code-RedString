@@ -99,7 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;errno.h&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
 <code>#include &lt;limits.h&gt;</code><br/>
-<code>#include &quot;<a class="el" href="Type__Bool_8h_source.html">../Type_Bool.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Type__Bool_8h_source.html">Type_Bool.h</a>&quot;</code><br/>
 </div>
 <p><a href="FileManager_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -110,19 +110,25 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4dc77f74ea9ea00a5e17a682417de3c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#a4dc77f74ea9ea00a5e17a682417de3c1">FileExist</a> (char const *path)</td></tr>
-<tr class="memdesc:a4dc77f74ea9ea00a5e17a682417de3c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests if the file associated to a path exists.  <a href="#a4dc77f74ea9ea00a5e17a682417de3c1"></a><br/></td></tr>
-<tr class="memitem:ab7f1fb54aeb02df14e335fd5d44f0c3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#ab7f1fb54aeb02df14e335fd5d44f0c3a">copyFile</a> (char const *fileName, char const *newFileName)</td></tr>
-<tr class="memdesc:ab7f1fb54aeb02df14e335fd5d44f0c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies a file.  <a href="#ab7f1fb54aeb02df14e335fd5d44f0c3a"></a><br/></td></tr>
+<tr class="memitem:a44c6903f9a2881e7dc9c008b3c53ef8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#a44c6903f9a2881e7dc9c008b3c53ef8d">fileExists</a> (char const *path)</td></tr>
+<tr class="memdesc:a44c6903f9a2881e7dc9c008b3c53ef8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if the file associated to a path exists.  <a href="#a44c6903f9a2881e7dc9c008b3c53ef8d"></a><br/></td></tr>
+<tr class="memitem:ac46f9758cf2735ae1e48f0517925739e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#ac46f9758cf2735ae1e48f0517925739e">fileSize</a> (FILE *file)</td></tr>
+<tr class="memdesc:ac46f9758cf2735ae1e48f0517925739e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Give a file size.  <a href="#ac46f9758cf2735ae1e48f0517925739e"></a><br/></td></tr>
+<tr class="memitem:ac288e3880e93430286bd86703ef94bfb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#ac288e3880e93430286bd86703ef94bfb">copyFile</a> (char const *newFileName, char const *fileName)</td></tr>
+<tr class="memdesc:ac288e3880e93430286bd86703ef94bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy a file.  <a href="#ac288e3880e93430286bd86703ef94bfb"></a><br/></td></tr>
 <tr class="memitem:a4758f8eeb094546a6f2f74bdf89d35e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#a4758f8eeb094546a6f2f74bdf89d35e1">writeFile</a> (char const *path, char const *data)</td></tr>
 <tr class="memdesc:a4758f8eeb094546a6f2f74bdf89d35e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data in path.  <a href="#a4758f8eeb094546a6f2f74bdf89d35e1"></a><br/></td></tr>
+<tr class="memitem:ad6dfeabf590d0419141b73f78d75d398"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#ad6dfeabf590d0419141b73f78d75d398">readStruct</a> (FILE *file, void **wStruct, size_t structSize)</td></tr>
+<tr class="memdesc:ad6dfeabf590d0419141b73f78d75d398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a structure from a file.  <a href="#ad6dfeabf590d0419141b73f78d75d398"></a><br/></td></tr>
+<tr class="memitem:a3ed627777f06d11a709cddda990856f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ed627777f06d11a709cddda990856f8"></a>
+<a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>writeStruct</b> (FILE *file, void **rStruct, size_t structSize)</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A high-level file manager set of functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Morgan Chabaud <br/>
  tmpNote : <a href="http://stackoverflow.com/questions/11699596/how-to-set-errno-value">http://stackoverflow.com/questions/11699596/how-to-set-errno-value</a> </dd></dl>
 </div><h2>Function Documentation</h2>
-<a class="anchor" id="ab7f1fb54aeb02df14e335fd5d44f0c3a"></a>
+<a class="anchor" id="ac288e3880e93430286bd86703ef94bfb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -130,13 +136,13 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a> copyFile </td>
           <td>(</td>
           <td class="paramtype">char const *&#160;</td>
-          <td class="paramname"><em>fileName</em>, </td>
+          <td class="paramname"><em>newFileName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">char const *&#160;</td>
-          <td class="paramname"><em>newFileName</em>&#160;</td>
+          <td class="paramname"><em>fileName</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -146,7 +152,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Copies a file. </p>
+<p>Copy a file. </p>
 <p>It copies a fileName named newFileName to a new file named newFileName.<br/>
  If the given newFileName does not already exist, the function tries to rename it 100 times like "name(i)").</p>
 <p>Errors are returned if fileName is not able to be opened in read mode </p>
@@ -155,12 +161,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4dc77f74ea9ea00a5e17a682417de3c1"></a>
+<a class="anchor" id="a44c6903f9a2881e7dc9c008b3c53ef8d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a> FileExist </td>
+          <td class="memname"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a> fileExists </td>
           <td>(</td>
           <td class="paramtype">char const *&#160;</td>
           <td class="paramname"><em>path</em></td><td>)</td>
@@ -169,8 +175,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Tests if the file associated to a path exists. </p>
-<p>The user must to give the file path like ~/TP/main.c An errno is set accordingly. </p>
+<p>Test if the file associated to a path exists. </p>
+<p>The user must to give the file path like ~/TP/main.c An errno is set accordingly. <br/>
+ Note : a directory is also a file </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>The path of the file. </td></tr>
@@ -179,6 +186,77 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE : If the file exist.<br/>
  FALSE : If the file doesn't exist. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac46f9758cf2735ae1e48f0517925739e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int fileSize </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Give a file size. </p>
+<p>It gives the file size in bytes </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>The file you want to have its size </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The file size in bytes </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad6dfeabf590d0419141b73f78d75d398"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a> readStruct </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>wStruct</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>structSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a structure from a file. </p>
+<p>It reads the structure from file into writedStruct. The file needs to be at the good position. If the following structSize bytes don't fit writeStruct, an error is thrown </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>The FILE pointer to the file to read at the right position (begining of the structure) </td></tr>
+    <tr><td class="paramname">writedStruct</td><td>readStruct will store data read from the file into writedStruct </td></tr>
+    <tr><td class="paramname">structSize</td><td>is the size of your writedStruct </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE : Reading is successful <br/>
+ FALSE : An error has occurred. </dd></dl>
 
 </div>
 </div>
@@ -216,7 +294,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 28 2014 17:39:26 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 2 2014 16:08:52 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

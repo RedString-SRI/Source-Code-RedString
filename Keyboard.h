@@ -5,6 +5,8 @@
  */
 
 #include <stdlib.h>
+#include <unistd.h> 
+#include <sys/time.h> 
 
 #ifndef KEYBOARD
 #define KEYBOARD
@@ -75,8 +77,15 @@ int getKeyboard_Double(double * typedDouble, double min, double max);
  * 0 : An unknown error has occurred \n
  * -1 : The user types too much characters \n
  * -2 : The user types not enough characters \n
- * -3 : The user does not type a digit but press 'Enter' \n
+ * -3 : The user does not type a character but press 'Enter' \n
  */
 int getKeyboard_String(char * typedString, int minChar, int maxChar);
+
+/**
+ * \brief Empty stdin
+ * 
+ * Empty the stdin buffer with getchar method.
+ */
+void emptyStdin();
 
 #endif

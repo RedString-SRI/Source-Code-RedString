@@ -84,8 +84,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">Configurator.h File Reference</div>  </div>
 </div><!--header-->
@@ -99,12 +101,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;unistd.h&gt;</code><br/>
 <code>#include &lt;fcntl.h&gt;</code><br/>
 <code>#include &lt;errno.h&gt;</code><br/>
-<code>#include &quot;<a class="el" href="Type__Bool_8h_source.html">../Type_Bool.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Type__Bool_8h_source.html">Type_Bool.h</a>&quot;</code><br/>
 </div>
 <p><a href="Configurator_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structWritableGlobs.html">WritableGlobs</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a3edec6598c37d4349611c7f3777ec35f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3edec6598c37d4349611c7f3777ec35f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIGURATOR</b></td></tr>
+<tr class="memitem:a2cd2569ad265c592841edccef10ca5f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2cd2569ad265c592841edccef10ca5f0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONF_FILE_NAME</b>&#160;&#160;&#160;&quot;parameters.conf&quot;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aed205edc72d035712ac39db62689382e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#aed205edc72d035712ac39db62689382e">initConfigurator</a> ()</td></tr>
+<tr class="memdesc:aed205edc72d035712ac39db62689382e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the configurator module.  <a href="#aed205edc72d035712ac39db62689382e"></a><br/></td></tr>
+<tr class="memitem:adb9e56e7bfb84d8df08d62e29c0f751d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb9e56e7bfb84d8df08d62e29c0f751d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#adb9e56e7bfb84d8df08d62e29c0f751d">askGlobsVariables</a> ()</td></tr>
+<tr class="memdesc:adb9e56e7bfb84d8df08d62e29c0f751d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ask the user to tape in configuration variables and set them straight after. <br/></td></tr>
+<tr class="memitem:a998a136c624ac0cb32294fdc3279010a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#a998a136c624ac0cb32294fdc3279010a">setGlobsVariables</a> (<a class="el" href="structWritableGlobs.html">WritableGlobs</a> const *globs)</td></tr>
+<tr class="memdesc:a998a136c624ac0cb32294fdc3279010a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise global variables.  <a href="#a998a136c624ac0cb32294fdc3279010a"></a><br/></td></tr>
+<tr class="memitem:ac67621a9cdc8e1b19f9e6a801102413e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#ac67621a9cdc8e1b19f9e6a801102413e">writeGlobs</a> (<a class="el" href="structWritableGlobs.html">WritableGlobs</a> const *globs, FILE *confFile)</td></tr>
+<tr class="memdesc:ac67621a9cdc8e1b19f9e6a801102413e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save global variables to the configuration file.  <a href="#ac67621a9cdc8e1b19f9e6a801102413e"></a><br/></td></tr>
+<tr class="memitem:a3f096b46b9c3eb91c0e621c19bdc7e83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#a3f096b46b9c3eb91c0e621c19bdc7e83">readGlobs</a> (FILE *confFile)</td></tr>
+<tr class="memdesc:a3f096b46b9c3eb91c0e621c19bdc7e83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise global variables from the configuration file.  <a href="#a3f096b46b9c3eb91c0e621c19bdc7e83"></a><br/></td></tr>
 <tr class="memitem:a807ab90699414160690418503b8d9e96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#a807ab90699414160690418503b8d9e96">matchKey</a> (char const *line, char const *key)</td></tr>
 <tr class="memdesc:a807ab90699414160690418503b8d9e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares the first word of a line.  <a href="#a807ab90699414160690418503b8d9e96"></a><br/></td></tr>
 <tr class="memitem:a714e6339e00ecd7f4777358a78239813"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#a714e6339e00ecd7f4777358a78239813">matchedLineKey</a> (int pFileDescriptor, char const *pKey)</td></tr>
@@ -115,6 +139,21 @@ Functions</h2></td></tr>
 <tr class="memdesc:aee4489f2b11a8b7592127c6a116fc9bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the next line of a file.  <a href="#aee4489f2b11a8b7592127c6a116fc9bb"></a><br/></td></tr>
 <tr class="memitem:a4c8a7da85f281bb4a1f7106b19f42c0b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Configurator_8h.html#a4c8a7da85f281bb4a1f7106b19f42c0b">ignoreSpaces</a> (char const *str, int position)</td></tr>
 <tr class="memdesc:a4c8a7da85f281bb4a1f7106b19f42c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates a position ignoring spaces.  <a href="#a4c8a7da85f281bb4a1f7106b19f42c0b"></a><br/></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a2628ced2a8d11366cfd9486f8603568f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2628ced2a8d11366cfd9486f8603568f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>globs_occurThreshold</b></td></tr>
+<tr class="memitem:a5419ab887a8afdab1cccc36c0c2a2272"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5419ab887a8afdab1cccc36c0c2a2272"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>globs_maxTerms</b></td></tr>
+<tr class="memitem:aef25c0d40f5fdeab55984476a5c8d291"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef25c0d40f5fdeab55984476a5c8d291"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>globs_windowSize</b></td></tr>
+<tr class="memitem:add3a033cb704ef48bd71064f8b80a0b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add3a033cb704ef48bd71064f8b80a0b8"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>globs_nbElemInterval</b></td></tr>
+<tr class="memitem:a5c02f9e4f57559b79c1f6ce4bde8cfe2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c02f9e4f57559b79c1f6ce4bde8cfe2"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>globs_nbWeightyBits</b></td></tr>
+<tr class="memitem:ad8f4ce5ddb1baa918f8ce9761a422524"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8f4ce5ddb1baa918f8ce9761a422524"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>globs_compTolerance</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A file configurator system. </p>
@@ -149,6 +188,25 @@ Functions</h2></td></tr>
 <p>From str and a position, it returns the next position (meaning after the spaces) <br/>
  Ex : ignoreSpaces("This    chain", 4) return 8. So the begining of "chain". </p>
 <dl class="section return"><dt>Returns</dt><dd>The position of the next caracter (from the position given) excluding only spaces </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aed205edc72d035712ac39db62689382e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a> initConfigurator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise the configurator module. </p>
+<p>Look into the configuration file, if it is already set, it loads those variables into the global ones. If it is not set, ask the user to type them in, write them int the configuration file and loads them too. <br/>
+ If the configuration file does not exist, it will create it. </p>
 
 </div>
 </div>
@@ -259,6 +317,31 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a3f096b46b9c3eb91c0e621c19bdc7e83"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a> readGlobs </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>confFile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise global variables from the configuration file. </p>
+<p>Initialise global variables from the configuration file pointed by confFile </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">confFile</td><td>The configuration file to be read </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="aee4489f2b11a8b7592127c6a116fc9bb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -279,10 +362,71 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a998a136c624ac0cb32294fdc3279010a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setGlobsVariables </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structWritableGlobs.html">WritableGlobs</a> const *&#160;</td>
+          <td class="paramname"><em>globs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise global variables. </p>
+<p>Initialise global variables with globs </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">globs</td><td>The <a class="el" href="structWritableGlobs.html">WritableGlobs</a> you want to initialise the global variables with </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac67621a9cdc8e1b19f9e6a801102413e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a> writeGlobs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structWritableGlobs.html">WritableGlobs</a> const *&#160;</td>
+          <td class="paramname"><em>globs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>confFile</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save global variables to the configuration file. </p>
+<p>Write global variables globs to the configuration file pointed by confFile </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">confFile</td><td>The configuration file to be written </td></tr>
+    <tr><td class="paramname">globs</td><td>The <a class="el" href="structWritableGlobs.html">WritableGlobs</a> that are already initialised </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 28 2014 17:39:26 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 2 2014 16:08:52 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

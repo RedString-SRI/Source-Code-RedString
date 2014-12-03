@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['descriptor',['descriptor',['../structdescriptor.html',1,'']]]
+  ['descriptor',['Descriptor',['../structDescriptor.html',1,'']]],
+  ['dimension',['Dimension',['../structDimension.html',1,'']]]
 ];

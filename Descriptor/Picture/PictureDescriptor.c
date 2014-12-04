@@ -14,15 +14,15 @@ PictureDescriptor initPictureDescriptor(FILE* file) {
 Dimension getSizePicture(FILE *fileIMG) {
    Dimension dim;
 
-   fscanf(fileIMG,"%d", dim->width); 
-   fscanf(fileIMG,"%d", dim->height);
+   fscanf(fileIMG,"%d", &(dim.width)); 
+   fscanf(fileIMG,"%d", &(dim.height));
    return dim;
 }
 //===================================================================================================
 PictureDescriptor createPictureDescriptor(FILE *fileIMG){
    int quantif = globs_nbWeightyBits;
    Dimension size;
-   int *matrixRED ;
+   int matrix ;
    int bit[256]={0} ;
    int tmpBit;
    int i , j , tmpval=1;
@@ -30,11 +30,11 @@ PictureDescriptor createPictureDescriptor(FILE *fileIMG){
    fopen(fileIMG, 'r');
    size=getSizePicture(fileIMG);
    
-   matrix=(*int)malloc(size.width*sizeof(int)); //matrix 1 dimension ...
-   for(i=0 ; i<size.heigth ; i++)
-   *matrix[i]=(*int)malloc(size.height*3*sizeof(int)); // grow up into matrix with 2 dimensions
+   matrix=(int*)malloc(size.width*sizeof(int)); //matrix 1 dimension ...
+   for(i=0 ; i<size.height ; i++)
+   matrix+i)=(*int)malloc((size.height*3)*sizeof(int)); // grow up into matrix with 2 dimensions
       
-   for(i=0 ; i<size.wdith ; i++){ // scan the whole matrix : 1rst Red , 2nd Green , 3th Blue
+   for(i=0 ; i<size.width ; i++){ // scan the whole matrix : 1rst Red , 2nd Green , 3th Blue
       for(j=0; j<size.height ; j++) {
          tmpBit=0;
          fscanf(fileIMG , "%d" , matrix[i][j]); // on RED matrix
@@ -68,12 +68,12 @@ PictureDescriptor createPictureDescriptor(FILE *fileIMG){
 
 //===================================================================================================
 /**/
-void setNbcomp(PictureDescritor *pd, int n) {
+void setNbcomp(PictureDescriptor *pd, int n) {
   pd->nbcomp = n;
 }
 //===================================================================================================
 /*return nbcomp*/
-int getNbcomp(PictureDescritor pd) {
+int getNbcomp(PictureDescriptor pd) {
   return pd.nbcomp;
 }
 //===================================================================================================

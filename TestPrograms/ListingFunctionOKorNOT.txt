@@ -1,0 +1,53 @@
+                            IN CONFIGURATOR:
+Bool initConfigurator();
+void askGlobsVariables();
+void setGlobsVariables(WritableGlobs const * globs);
+Bool writeGlobs(WritableGlobs const * globs, FILE* confFile);
+Bool readGlobs(FILE* confFile);
+Bool matchKey (char const * line, char const * key);
+char* matchedLineKey (int pFileDescriptor, char const * pKey);
+char* matchedValueLine (char const * line, char separator);
+char* readLine (int fileDescriptor);
+int ignoreSpaces(char const * str, int position);
+
+                            IN BASE DESCRIPTOR:
+void initList(BaseDescriptor * base);
+void printList(BaseDescriptor base);
+Bool listIsEmpty(BaseDescriptor base);
+void addDescriptor(BaseDescriptor * base, void * structDescriptor, FileType type);
+void remove(BaseDescriptor * base);
+void writeList(BaseDescriptor * base, FileType type);
+
+                            IN BASE DESCRIPTOR IMG:
+void initPictureDescriptor(PictureDescriptor *pd);                                      OK
+Dimension getSizePicture(FILE *fileIMG);                                                OK
+PictureDescriptor createPictureDescriptor(FILE *fileIMG);
+void setNbcomp(int n);
+int getNbcomp();
+void createHistogram(int bit[] , Dimension dim);
+void printHistogram(FILE *descriptIMG);
+
+                            IN BASE DESCRIPTOR SOUND:
+                            
+                            
+                            IN BASE DESCRIPTOR TXT:
+Bool isAWord (char * word) ;
+int endOfWord (char * word) ;
+Bool isABeacon (char * word) ;
+Bool isWordRelevant (const char * word) ;
+int wordAppearance (char * word) ;
+
+                            IN FILE MANAGER:
+Bool fileExists(char const * path);
+int fileSize(FILE* file);
+Bool copyFile(char const * newFileName, char const * fileName);
+Bool writeFile(char const * path, char const * data);
+Bool readStruct(FILE* file, void ** wStruct, size_t structSize);
+Bool writeStruct(FILE* file, void ** rStruct, size_t structSize);
+
+                            IN KEYBOARD:
+int getKeyboard_Long(long * typedLong, long min, long max);
+int getKeyboard_Double(double * typedDouble, double min, double max);
+int getKeyboard_String(char * typedString, int minChar, int maxChar);
+void emptyStdin();
+int valeur_dans_stdin();

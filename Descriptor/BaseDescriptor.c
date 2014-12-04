@@ -13,7 +13,7 @@ void clearBuffer() {
 void initList(BaseDescriptor * base){
     *base = NULL;
 }
-
+//===================================================================================================
 // Prints every elements of the list, just using this for debugging
 void printList(BaseDescriptor base){
     // If the list is empty
@@ -28,13 +28,12 @@ void printList(BaseDescriptor base){
         }
     }
 }
-
+//===================================================================================================
 // Checks if the the list is empty
 Bool listIsEmpty(BaseDescriptor base){
     return(base==NULL);
 }
-
-
+//===================================================================================================
 // Add a descriptor into the base
 void addDescriptor(BaseDescriptor * base, void * structDescriptor, FileType type){
     BaseDescriptor ptr_p;
@@ -54,7 +53,7 @@ void addDescriptor(BaseDescriptor * base, void * structDescriptor, FileType type
         affectElement(&(ptr_p->element), *e);
     }
 }
-
+//===================================================================================================
 // Unstack the first element
 void unstack(DescriptorBase * p){
     if(stackIsEmpty(*p))
@@ -65,7 +64,7 @@ void unstack(DescriptorBase * p){
         free(ptr_p);
     }
 }
-
+//===================================================================================================
 // The user has to give elements to stack into the DescriptorBase
 void writeStack(DescriptorBase * p, fileType t){
     switch(t){

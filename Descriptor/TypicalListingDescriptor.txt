@@ -1,0 +1,19 @@
+IDfile    nameFile    path_descriptor_file    
+IDfile    nameFile    path_descriptor_file  
+IDfile    nameFile    path_descriptor_file  
+IDfile    nameFile    path_descriptor_file  
+...
+etc
+
+
+/**
+ * \file TypicalListingDescriptor.txt
+ * \brief Listing of Descriptor
+ * \author Gabriel.DR
+ * \version 0.1
+ * \date 04 December 2014
+ *
+ * It's Important to respect this structure !!!!
+ * If anyone change it, this person must to change the source code of his functions !!!
+ *
+ */

@@ -32,7 +32,7 @@ Bool initConfigurator()
 	
 	fclose(confFile);
 }
-
+//===================================================================================================
 void askGlobsVariables()
 {
 	WritableGlobs globs;
@@ -53,7 +53,7 @@ void askGlobsVariables()
 
 	setGlobsVariables(&globs);
 }
-
+//===================================================================================================
 void setGlobsVariables(WritableGlobs const * globs)
 {
 	// Needa to some tests there. For max or min values for example.
@@ -64,8 +64,7 @@ void setGlobsVariables(WritableGlobs const * globs)
 	globs_nbWeightyBits = globs->pictureDesc_nbWeightyBits;
 	globs_compTolerance = globs->pictureDesc_compTolerance;
 }
-
-
+//===================================================================================================
 Bool writeGlobs(WritableGlobs const * globs, FILE* confFile)
 {
 	if(writeStruct(confFile, &globs, sizeof(*globs)))
@@ -78,7 +77,7 @@ Bool writeGlobs(WritableGlobs const * globs, FILE* confFile)
 	setGlobsVariables(&globs);
 	return TRUE;
 }
-
+//===================================================================================================
 Bool readGlobs(FILE* confFile)
 {
 	WritableGlobs * globs = malloc(sizeof(*globs));
@@ -94,7 +93,7 @@ Bool readGlobs(FILE* confFile)
 	
 	return TRUE;
 }
-
+//===================================================================================================
 Bool matchKey (char const * line, char const * key)
 {
 	Bool hasMatched = FALSE;
@@ -137,7 +136,7 @@ Bool matchKey (char const * line, char const * key)
 
 	return hasMatched;
 }
-
+//===================================================================================================
 char* matchedLineKey(int fileDescriptor, char const * key)
 {
 	char *currentLine;
@@ -161,7 +160,7 @@ char* matchedLineKey(int fileDescriptor, char const * key)
 	
 	return currentLine;
 }
-
+//===================================================================================================
 char* matchedValueLine (char const * line, char separator)
 {
 	char* valueLine;
@@ -207,7 +206,7 @@ char* matchedValueLine (char const * line, char separator)
 	}
 	return valueLine;
 }
-
+//===================================================================================================
 char* readLine (int fileDescriptor)
 {
 	char *line, character;
@@ -253,7 +252,7 @@ char* readLine (int fileDescriptor)
 
 	return line;
 }
-
+//===================================================================================================
 int ignoreSpaces(char const * str, int position)
 {
 	if(str == NULL)

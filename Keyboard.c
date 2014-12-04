@@ -9,11 +9,11 @@
 int getKeyboard_Long(long * typedLong, long min, long max)
 {
 }
-
+//===================================================================================================
 int getKeyboard_Double(double * typedDouble, double min, double max)
 {
 }
-
+//===================================================================================================
 int getKeyboard_String(char * typedString, int minChar, int maxChar)
 {
 	int typedStrLen;
@@ -35,14 +35,14 @@ int getKeyboard_String(char * typedString, int minChar, int maxChar)
 	
 		
 }
-
+//===================================================================================================
 void emptyStdin()
 {
 	int c = 0;
 	if(valeur_dans_stdin() == 1)
 		while((c = getchar()) != '\n' && c != EOF);
 }
-
+//===================================================================================================
 int valeur_dans_stdin(void)
 { 
     fd_set fds; 

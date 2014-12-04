@@ -1,7 +1,7 @@
 #include "PictureDescriptor.h"
 #include "math.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /*Initialize a new picture's descriptor*/
 PictureDescriptor initPictureDescriptor(FILE* file) {

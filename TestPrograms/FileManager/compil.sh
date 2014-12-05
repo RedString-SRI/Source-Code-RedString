@@ -5,7 +5,7 @@ if [ `echo $?`  == 0 ]
 then
 	echo "Compilation successed."
 	echo -e "Executing test program:\n"
-	./Test_FileManager_Program 500 >& err_exec.err
+	./Test_FileManager_Program 2> err_exec.err
 
 	echo -e "\n\n\tErrors shown while executing:\n"
 	cat err_exec.err

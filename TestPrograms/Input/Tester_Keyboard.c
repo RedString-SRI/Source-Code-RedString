@@ -6,29 +6,17 @@
 
 
 #include "Keyboard.h"
+#include "FileManager.h"
+#include "Type_Bool.h"
 
 int main()
 {
-	int t;
-	if(1)//valeur_dans_stdin() == 1)
-		printf("vide\n");
-	else
-		printf("plein\n");
-	
-	scanf("%d", &t);
-	printf("My character : %d\n", t);
-		emptyStdin();
-
-	scanf("%d", &t);
-	printf("My character : %d\n", t);
-	
-	if(valeur_dans_stdin() == 1)
-		printf("vide\n");
-	else
-		printf("plein\n");
-	emptyStdin();
-	if(valeur_dans_stdin() == 1)
-		printf("vide\n");
-	else
-		printf("plein\n");
+	int i;
+		char string[80], str[80];
+		printf("enter an integer:\n");
+		getKeyboard_String(str, 0, 10);
+		printf("enter a string:\n");
+		getKeyboard_String(string, 0, 10);
+		printf("You typed %s and \"%s\"\n", str, string);
+		return 0;
 }

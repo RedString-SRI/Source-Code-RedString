@@ -17,7 +17,7 @@ int getKeyboard_Double(double * typedDouble, double min, double max)
 int getKeyboard_String(char * typedString, int minChar, int maxChar)
 {
 	size_t typedStrLen;
-	emptyStdin();
+	//emptyStdin();
 	
 	errno = 0;
 	if(fgets(typedString, minChar, stdin) == NULL)
@@ -33,7 +33,7 @@ int getKeyboard_String(char * typedString, int minChar, int maxChar)
 	if(typedStrLen > maxChar)
 		return -1;
 	
-		
+	return 1;	
 }
 
 void emptyStdin()

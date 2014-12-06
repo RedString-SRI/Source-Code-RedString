@@ -6,6 +6,7 @@
 
 #include "Keyboard.h"
 
+//===================================================================================================
 int getKeyboard_Long(long * typedLong, long min, long max)
 {
 	char *retStrtol;
@@ -45,7 +46,7 @@ int getKeyboard_Long(long * typedLong, long min, long max)
 	*typedLong = value;
 	return 1;
 }
-
+//===================================================================================================
 int getKeyboard_Double(double * typedDouble, double min, double max)
 {
 	char *retStrtod;
@@ -85,7 +86,7 @@ int getKeyboard_Double(double * typedDouble, double min, double max)
 	*typedDouble = value;
 	return 1;
 }
-
+//===================================================================================================
 int getKeyboard_String(char * typedString, int minChar, int maxChar)
 {
 	size_t typedStrLen;
@@ -115,7 +116,7 @@ int getKeyboard_String(char * typedString, int minChar, int maxChar)
 	
 	return 1;	
 }
-
+//===================================================================================================
 void emptyStdin()
 {
 	int c = 0;

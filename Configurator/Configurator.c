@@ -6,6 +6,7 @@
 
 #include "Configurator.h"
 
+//===================================================================================================
 Bool initConfigurator()
 {
 	FILE* confFile = fopen(CONF_FILE_NAME, "wb+");

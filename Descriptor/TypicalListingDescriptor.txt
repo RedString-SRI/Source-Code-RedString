@@ -1,3 +1,30 @@
+
+
+Same thing as the configurator structure you wanted to do.
+Those data are going to be written in binary mode instead of "ascii".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 IDfile    nameFile    path_descriptor_file    
 IDfile    nameFile    path_descriptor_file  
 IDfile    nameFile    path_descriptor_file  

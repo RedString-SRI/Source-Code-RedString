@@ -1,4 +1,0 @@
-/tmp/ccUWa36e.o: In function `main':
-Tester_Keyboard.c:(.text+0x30): undefined reference to `getKeyboard_String'
-Tester_Keyboard.c:(.text+0x58): undefined reference to `getKeyboard_String'
-collect2: error: ld returned 1 exit status

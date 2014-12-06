@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gcc  Tester_Keyboard.c -I ../../ -I ../../Input -I /home/rayope/SRI/FilRouge/Source-Code-RedString/FileManager -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Input -o Test_Keyboard_Program  >& error_compil.err
+gcc ../../Input/Keyboard.c Tester_Keyboard.c -I /home/rayope/SRI/FilRouge/Source-Code-RedString/ -I /home/rayope/SRI/FilRouge/Source-Code-RedString/FileManager -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Input -o Test_Keyboard_Program  >& error_compil.err
 if [ `echo $?`  == 0 ]
 then
 	echo "Compilation successed."

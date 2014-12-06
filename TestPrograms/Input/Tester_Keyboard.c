@@ -14,6 +14,8 @@ Bool tests_getKeyboard_Long(Bool);
 Bool tests_getKeyboard_Double(Bool);
 Bool tests_getKeyboard_String(Bool);
 
+
+//===================================================================================================
 int main()
 {
 	Bool hasPassed;
@@ -40,7 +42,7 @@ int main()
 	
 	printf("\tTester_End\n");
 }
-
+//===================================================================================================
 Bool tests_getKeyboard_Long(Bool details)
 {
 	Bool testPassed = TRUE;
@@ -208,7 +210,7 @@ Bool tests_getKeyboard_Long(Bool details)
 	
 	return testPassed;
 }
-
+//===================================================================================================
 Bool tests_getKeyboard_Double(Bool details)
 {
 	Bool testPassed = TRUE;
@@ -360,7 +362,7 @@ Bool tests_getKeyboard_Double(Bool details)
 	
 	return testPassed;
 }
-
+//===================================================================================================
 Bool tests_getKeyboard_String(Bool details)
 {
 	Bool testPassed = TRUE;

@@ -6,6 +6,7 @@
 
 #include "FileManager.h"
 
+//===================================================================================================
 Bool fileExists(char const * path) {
     if(path != NULL)
     {
@@ -20,7 +21,7 @@ Bool fileExists(char const * path) {
     	return FALSE;
     }
 }
-
+//===================================================================================================
 int fileSize(FILE* file)
 {
 	int size;
@@ -37,7 +38,7 @@ int fileSize(FILE* file)
 		return -1;
 	}
 }
-
+//===================================================================================================
 Bool copyFile(char const * newFileName, char const * fileName)
 {
 	Bool fileNamePossible, fileCopied = FALSE;
@@ -147,7 +148,7 @@ Bool copyFile(char const * newFileName, char const * fileName)
 	fclose(newFile);
 	return fileCopied;
 }
-
+//===================================================================================================
 Bool writeFile(char const * path, char const * data)
 {
 	FILE *file = fopen(path, "w+");
@@ -170,7 +171,7 @@ Bool writeFile(char const * path, char const * data)
 
 	return saved;
 }
-
+//===================================================================================================
 Bool readStruct(FILE* file, void ** wStruct, size_t structSize)
 {
 	if(fread(*wStruct, structSize, 1, file)) 
@@ -181,7 +182,7 @@ Bool readStruct(FILE* file, void ** wStruct, size_t structSize)
 		return FALSE;
 	}
 }
-
+//===================================================================================================
 Bool writeStruct(FILE* file, void ** rStruct, size_t structSize)
 {
 	if(fwrite(*rStruct, structSize, 1, file)) 

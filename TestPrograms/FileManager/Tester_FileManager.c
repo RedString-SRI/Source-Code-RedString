@@ -18,6 +18,7 @@ typedef struct{
 	char b;
 }Integ;
 
+//===================================================================================================
 int main()
 {
 	Bool hasPassed;
@@ -46,7 +47,7 @@ int main()
 	
 	printf("\tTester_End\n");
 }
-
+//===================================================================================================
 Bool tests_readStruct(Bool details)
 {
 	Bool testPassed = TRUE;
@@ -81,7 +82,7 @@ Bool tests_readStruct(Bool details)
 	fclose(file);
 	return testPassed;
 }
-
+//===================================================================================================
 Bool tests_fileExists(Bool details)
 {
 	Bool testPassed = TRUE;
@@ -117,7 +118,7 @@ Bool tests_fileExists(Bool details)
 	}
 	return testPassed;
 }
-
+//===================================================================================================
 Bool tests_fileSize(Bool details)
 {
 	Bool testPassed = TRUE;
@@ -139,7 +140,7 @@ Bool tests_fileSize(Bool details)
 	}
 	return testPassed;
 }
-
+//===================================================================================================
 Bool tests_copyFile(Bool details)
 {
 	Bool testPassed = TRUE;

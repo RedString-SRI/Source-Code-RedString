@@ -18,7 +18,6 @@
  */
 typedef struct{
   int id;       /*!< Idendifier of the descriptor. It is unique. */
-  Mode writingMode;     /*!< This is the writing mode. */
   double** histogram;   /*!< This histogram sizes k*m.
                             k : Windows number
                             m : Intervals number */

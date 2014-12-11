@@ -35,16 +35,15 @@ Bool isWordRelevant (const char * word) ;
 int wordAppearance (char * word) ;
 
                             IN FILE MANAGER:
-Bool fileExists(char const * path);
-int fileSize(FILE* file);
-Bool copyFile(char const * newFileName, char const * fileName);
+Bool fileExists(char const * path);                                                 OK
+int fileSize(FILE* file);                                                           OK
+Bool copyFile(char const * newFileName, char const * fileName);                     OK
 Bool writeFile(char const * path, char const * data);
 Bool readStruct(FILE* file, void ** wStruct, size_t structSize);
 Bool writeStruct(FILE* file, void ** rStruct, size_t structSize);
 
                             IN KEYBOARD:
-int getKeyboard_Long(long * typedLong, long min, long max);
-int getKeyboard_Double(double * typedDouble, double min, double max);
-int getKeyboard_String(char * typedString, int minChar, int maxChar);
-void emptyStdin();
-int valeur_dans_stdin();
+int getKeyboard_Long(long * typedLong, long min, long max);                         OK
+int getKeyboard_Double(double * typedDouble, double min, double max);               OK
+int getKeyboard_String(char * typedString, int minChar, int maxChar);               OK
+void emptyStdin();                                                                  OK

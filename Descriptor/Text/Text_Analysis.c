@@ -8,7 +8,7 @@
 #include "Type_Bool.h" 
 #include "text_analysis.h" 
 
-void readWordbyWord(FILE *file){
+void readWordbyWord(char path[]){
 	int i=0;
 	int j;
 	char c;
@@ -16,14 +16,14 @@ void readWordbyWord(FILE *file){
 	char *listWord;
 	char *listWordRepetition;
 	
-	fopen(file , 'r');
+	fopen(path , 'r');
 	while(c != EOF) { // while isn't the end of the file ...
 		fgetc(file);
 		// if c == beacon ...etc
 		// if c== slash ...etc
 		// if c== antislash ...etc
 		// if c== is not a correct char ..etc
-		else if(c == 32) {// !=Space
+		else if(c == 32) {// ==Space
 			listWord=(char*)malloc(sizeof(char)); // add a place to put a word
 			listWord=(char**)malloc((i+1)*sizeof(char*)); // create the place with i char to put the word into the list --> matrix 2dim
 			for(j=0 ; j<i ; j++)
@@ -42,11 +42,10 @@ void readWordbyWord(FILE *file){
 //===================================================================================================
 Bool isAWord (char * word) {
 	int i = 0 ; 
-	if ((word[0] >= 32 || word[0] <= 37) || (word[0] >= 39 && word[0] <= 47) || (word[0] >= 58 && word[0] <= 64) || (word[0] >= 91 && word[0] <= 96) || (word[0] >=123 && word[0] <=137) || (word[0] == 139) || (word[0] >= 143 && word[0] <= 153) || (word[0] == 155) || (word[0] >= 160 && word[0] <=191) || (word[0] == 256)) 
-//NOP :/ ??? 	// if( (word[0])>=65 && word[0]<=90) || (word[0])>=97 && word[0]<=122) || (word[0])>=97 && word[0]<=122) return TRUE;
-			return FALSE ;
+	if( (word[0])>=65 && word[0]<=90) || (word[0])>=97 && word[0]<=122) || (word[0])>=97 && word[0]<=122) return TRUE;
+			return TRUE ;
 		else 
-			return TRUE ; 
+			return FALSE ; 
 } 
 //===================================================================================================
 int endOfWord (char * word) {

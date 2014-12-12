@@ -11,5 +11,7 @@
 #ifndef SOUND_DESCRIPTOR
 #define SOUND_DESCRIPTOR
 
+SoundDescriptor * createDescriptor(FILE* file);
+
 #endif
 

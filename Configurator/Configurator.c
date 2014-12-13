@@ -49,8 +49,12 @@ void askGlobsVariables()
 	scanf("%d", &globs->pictureDesc_compTolerance);
 	printf("\n\tSound indexation : \n\tTape the window Size : ");
 	scanf("%d", &globs->soundDesc_windowSize);
-	printf("\tTape the number of elements to keep in each interval of a window : ");
-	scanf("%d", &globs->soundDesc_nbElemInterval);
+	printf("\tTape the number of interval in a window : ");
+	scanf("%d", &globs->soundDesc_nbInterval);
+	printf("\tTape the minimum frequency: ");
+	scanf("%lf", &globs->soundDesc_minFrequency);
+	printf("\tTape the maximum frequency: ");
+	scanf("%lf", &globs->soundDesc_maxFrequency);
 
 	setGlobsVariables(&globs);
 }
@@ -61,7 +65,9 @@ void setGlobsVariables(WritableGlobs const * globs)
 	globs_occurThreshold = globs->textDesc_occurThreshold;
 	globs_maxTerms = globs->textDesc_maxTerms;
 	globs_windowSize = globs->soundDesc_windowSize;
-	globs_nbElemInterval = globs->soundDesc_nbElemInterval;
+	globs_nbInterval = globs->soundDesc_nbInterval;
+	globs_minFrequency = globs->soundDesc_minFrequency;
+	globs_maxFrequency = globs->soundDesc_maxFrequency;
 	globs_nbWeightyBits = globs->pictureDesc_nbWeightyBits;
 	globs_compTolerance = globs->pictureDesc_compTolerance;
 }

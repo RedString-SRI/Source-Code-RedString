@@ -37,6 +37,7 @@ int fileSize(FILE* file)
 		perror("fileSize file");
 		return -1;
 	}
+	return size;
 }
 //===================================================================================================
 Bool copyFile(char const * newFileName, char const * fileName)

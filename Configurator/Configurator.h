@@ -24,7 +24,9 @@ extern int globs_maxTerms;
 
 // SoundDescriptor
 extern int globs_windowSize;
-extern int globs_nbElemInterval; 
+extern int globs_nbInterval;
+extern double globs_minFrequency;
+extern double globs_maxFrequency;
 
 // PictureDescriptor
 extern int globs_nbWeightyBits;
@@ -37,8 +39,9 @@ typedef struct{
 
 	// SoundDescriptor
 	int soundDesc_windowSize; // The sound signal will be split in x windows. So it is their size.
-	int soundDesc_nbElemInterval; // There is intervals in a window.
-				// They contains that number of elements (value of of a little time during signal).
+	int soundDesc_nbInterval; // The number of intervals in a window.
+	double soundDesc_minFrequency; // The minimum frequency of a sound file
+	double soundDesc_maxFrequency; // The maxmimum frequency of a sound file
 				
 	// PictureDescriptor
 	int pictureDesc_nbWeightyBits; // The number of weighty bits to get on each pixel component

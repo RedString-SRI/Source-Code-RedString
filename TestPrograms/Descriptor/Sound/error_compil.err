@@ -1,0 +1,5 @@
+../../../Descriptor/Sound/SoundDescriptor.c: In function ‘createDescriptor’:
+../../../Descriptor/Sound/SoundDescriptor.c:60:2: warning: passing argument 2 of ‘readStruct’ from incompatible pointer type [enabled by default]
+In file included from ../../../Descriptor/Sound/SoundDescriptor.h:11:0,
+                 from ../../../Descriptor/Sound/SoundDescriptor.c:10:
+/home/rayope/SRI/FilRouge/Source-Code-RedString/FileManager/FileManager.h:79:6: note: expected ‘void **’ but argument is of type ‘double **’

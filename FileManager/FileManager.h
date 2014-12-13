@@ -67,12 +67,12 @@ Bool writeFile(char const * path, char const * data);
 /**
  * \brief Read a structure from a file
  * 
- * It reads the structure from file into writedStruct.
+ * It reads the structure from file into wStruct.
  * The file needs to be at the good position. If the following structSize
- * bytes don't fit writeStruct, an error is thrown
+ * bytes don't fit wStruct, an error is thrown
  * \param file The FILE pointer to the file to read at the right position (begining of the structure)
- * \param writedStruct readStruct will store data read from the file into writedStruct
- * \param structSize is the size of your writedStruct
+ * \param wStruct readStruct will store data read from the file into wStruct
+ * \param structSize is the size of your wStruct
  * \return TRUE : Reading is successful \n
  * FALSE : An error has occurred.
  */

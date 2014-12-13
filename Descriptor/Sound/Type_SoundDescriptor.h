@@ -4,7 +4,6 @@
  * \author Morgan Chabaud
  */
 
-#include "Type_WritingMode.h"
 
 #ifndef TYPE_SOUND_DESCRIPTOR
 #define TYPE_SOUND_DESCRIPTOR
@@ -18,7 +17,7 @@
  */
 typedef struct{
   int id;       /*!< Idendifier of the descriptor. It is unique. */
-  double** histogram;   /*!< This histogram sizes k*m.
+  int** histogram;   /*!< This histogram sizes k*m.
                             k : Windows number
                             m : Intervals number */
 }SoundDescriptor;

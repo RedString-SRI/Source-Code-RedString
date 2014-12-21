@@ -78,6 +78,17 @@ Bool writeFile(char const * path, char const * data);
  */
 Bool readStruct(FILE* file, void ** wStruct, size_t structSize);
 
+/**
+ * \brief Write a structure into a file
+ * 
+ * It writes rStruct into file.
+ * The file needs to be at the good position and opened in writing mode.
+ * \param file The FILE pointer to the file to write at the right position
+ * \param rStruct writeStruct will write data from rStruct into the file
+ * \param structSize is the size of your rStruct
+ * \return TRUE : Reading is successful \n
+ * FALSE : An error has occurred.
+ */
 Bool writeStruct(FILE* file, void ** rStruct, size_t structSize);
 
 #endif

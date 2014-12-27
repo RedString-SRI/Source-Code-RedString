@@ -1,10 +1,35 @@
+/**
+ * \file Type_BaseDescriptor.h
+ * \brief Base Descriptor and List Base Descriptor Type
+ * \author Maxime Sanmartin
+ */
+#ifndef TYPE_BASEDESCRIPTOR_H_INCLUDED
+#define TYPE_BASEDESCRIPTOR_H_INCLUDED
 
-#ifndef TYPE_BASE_DESCRIPTOR
-#define TYPE_BASE_DESCRIPTOR
-
+/**
+ * \struct Descriptor
+ * \brief A descriptor base
+ *
+ * This structure is a chained list of descriptors. It is used
+ * to manage every descriptor by his type
+ */
 typedef struct Descriptor{
   void * element;
   struct Descriptor * next;
 } *BaseDescriptor; // DescriptorBase is represented by a list of generic Descriptors, and is a pointer to the first element of the list
 
-#endif
+/**
+ * \struct FileDescriptor
+ * \brief A list file-descriptor
+ *
+ * This structure make the link between a file and his descriptor as a list.
+ * The date is the time when the file was indexed
+ */
+typedef struct FileDescriptor{
+    long adress;
+    int date;
+    FILE * path;
+    struct FileDescriptor * next;
+} *ListeBaseDesc;
+
+#endif // TYPE_BASEDESCRIPTOR_H_INCLUDED

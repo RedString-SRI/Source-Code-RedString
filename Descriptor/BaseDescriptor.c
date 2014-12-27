@@ -1,20 +1,16 @@
+/**
+ * \file BaseDescriptor.c
+ * \brief A list of Descriptors
+ * \author Maxime Sanmartin \n
+ */
 
 #include "BaseDescriptor.h"
-/*
-//Permit to clear out the buffer : Use to secure datas
-void clearBuffer() {
-    int c = 0;
-    while (c != '\n' && c != EOF)
-        c = getchar();
-}
-*/
 
-// Initializes a list with a null pointer p
 void initList(BaseDescriptor * base){
     *base = NULL;
 }
+
 //===================================================================================================
-// Prints every elements of the list, just using this for debugging
 void printList(BaseDescriptor base){
     // If the list is empty
     if(listIsEmpty(base))
@@ -28,57 +24,108 @@ void printList(BaseDescriptor base){
         }
     }
 }
+
 //===================================================================================================
-// Checks if the the list is empty
 Bool listIsEmpty(BaseDescriptor base){
     return(base==NULL);
 }
+
 //===================================================================================================
-// Add a descriptor into the base
-void addDescriptor(BaseDescriptor * base, void * structDescriptor, FileType type){
-    BaseDescriptor ptr_p;
-    switch(type){
-        case TEXT: ptr_p = malloc(sizeof(TextDescriptor));
-        break;
-        case IMAGE: ptr_p = malloc(sizeof(PictureDescriptor));
-        break;
-        case SOUND: ptr_p = malloc(sizeof(SoundDescriptor));
-        break;
-    }
-    if(*base==NULL)
-        /** Error **/
+void addDescriptor(BaseDescriptor *base, void * structDescriptor, FileType type){
+    if(listIsEmpty(*base))
+        *base = structDescriptor;
     else{
-        ptr_p->next = *base;
-        *base = ptr_p;
-        affectElement(&(ptr_p->element), *e);
+        BaseDescriptor ptr_p = *base;
+		// We will go to the last element of the chained list
+        do{
+            if(ptr_p->next == NULL)
+                break;
+            ptr_p = ptr_p->next;
+        }while(ptr_p != NULL);
+        ptr_p->next = structDescriptor;
     }
+    /** DO THE SAME ON THE FILE BASEDESCRIPTOR **/
+    FILE * fileAdd = fopen("BaseDescriptor", "a");
 }
+
 //===================================================================================================
-// Unstack the first element
-void unstack(DescriptorBase * p){
-    if(stackIsEmpty(*p))
-        messageError(1);
+BaseDescriptor initBaseDescriptor(FileType fileType){
+	BaseDescriptor newBase;
+	char * fileDescriptor;
+	switch(fileType){
+		case TEXT: fileDescriptor = "TextBaseDescriptor";
+        break;
+        case PICTURE: fileDescriptor = "PictureBaseDescriptor";
+        break;
+        case SOUND: fileDescriptor = "SoundBaseDescriptor";
+        break; 
+	}
+	while(fgetc(fileDescriptor))
+		addDescriptor(&newBase, readFile(fileDescriptor))
+	return newBase;
+}
+
+//===================================================================================================
+ListeBaseDesc initListBaseDescriptor(FileType fileType){
+	char * fileDescriptor;	
+	switch(fileType){
+		case TEXT: fileDescriptor = "TextListBaseDescriptor";
+        break;
+        case PICTURE: fileDescriptor = "PictureListBaseDescriptor";
+        break;
+        case SOUND: fileDescriptor = "SoundListBaseDescriptor";
+        break;
+	}
+	FILE * fileList = fopen(fileDescriptor, "r");
+	if(fileList == NULL)
+		/** Error **/
+	else{
+		ListBaseDesc newList;
+		long adress;
+		int date;
+		FILE * path;
+		while(fscanf(fileList, "%d %d %d", (long)adress, (FILE *)path, date) != EOF)
+			addListBaseDesc(&newList, path, adress, date);
+	}
+	fclose(fileDescriptor);
+	return newList;
+}
+
+//===================================================================================================
+void addListBaseDesc(ListBaseDesc * listBaseDesc, char * path, long adress, int date){
+	
+}
+
+//===================================================================================================
+void remove(DescriptorBase * p){
+    if(listIsEmpty(*p))
+        /** error **/
     else{
-        void * ptr_p = *p;
-        *p = ptr_p->next;
-        free(ptr_p);
+        BaseDescriptor ptr_p = *base;
+        do{
+            if(ptr_p->next == NULL)
+                break;
+            ptr_p = ptr_p->next;
+        }while(ptr_p != NULL);
+        free(ptr_p->next)
     }
+    /** DO THE SAME ON THE FILE BASEDESCRIPTOR **/
 }
+
 //===================================================================================================
-// The user has to give elements to stack into the DescriptorBase
-void writeStack(DescriptorBase * p, fileType t){
+void writeList(DescriptorBase * p, fileType t){
     switch(t){
         case TEXT: ptr_p = TextDescriptor e;
         break;
-        case IMAGE: ptr_p = PictureDescriptor e;
+        case PICTURE: ptr_p = PictureDescriptor e;
         break;
         case SOUND: ptr_p = SoundDescriptor e;
         break;
     }
     char choice = 0;
     do{
-        stack(p, writeElement(&e), t)
-        printf("Do you wan't to add another element (Y,N)?\n");
+        addDescriptor(p, writeElement(&e), t)
+        printf("Do you wan't to add another descriptor (Y,N)?\n");
         scanf("%s", &choice);
     }while(choice != "n" && choice != "N");
 }

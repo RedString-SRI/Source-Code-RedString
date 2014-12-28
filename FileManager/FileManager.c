@@ -175,22 +175,29 @@ Bool writeFile(char const * path, char const * data)
 //===================================================================================================
 Bool readStruct(FILE* file, void ** wStruct, size_t structSize)
 {
-	if(fread(*wStruct, structSize, 1, file)) 
+	errno = 0;
+	fread(*wStruct, 1, structSize, file);
+
+	if(!feof(file) && !ferror(file)) 
 		return TRUE;
 	else
 	{
 		perror("readStruct fread");
 		return FALSE;
 	}
+	clearerr(file);
 }
 //===================================================================================================
 Bool writeStruct(FILE* file, void ** rStruct, size_t structSize)
 {
-	if(fwrite(*rStruct, structSize, 1, file)) 
+	errno = 0;
+	fwrite(*rStruct, structSize, 1, file);
+	if(!feof(file) && !ferror(file))
 		return TRUE;
 	else
 	{
 		perror("readStruct fwrite");
 		return FALSE;
 	}
+	clearerr(file);
 }

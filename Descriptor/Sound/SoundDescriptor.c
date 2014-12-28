@@ -34,16 +34,33 @@ SoundDescriptor * createDescriptor(FILE* file)
 	int iInterval, iElem, iWindow;	// Increments
 	int nbWindows = (fSize / doubleSize) / globs_windowSize + 1;
 	// (fSize / doubleSize)  is the number of values in the file
-	//printf("____%d____", nbWindows);
+
 	descriptor->histogram = malloc(sizeof(*descriptor->histogram) * nbWindows);
 	
 	for(iInterval = 0; iInterval < globs_nbInterval; iInterval++)
 	{
-		//===========================================================================================================================================================================================================================================================================================================================
-		//////////////////////////////////// NEEEEEEEEDDDDDDDDDDDSSSSSSSSSSSS TOOOOOOOOO BEEEEEEEEEEE EXPLAINEDDDDDDDDDD
+		/* We want to know percentages of the interval value between globs_maxFrequency and globs_minFrequency,
+		 * Let's say a is globs_minFrequency and b is globs_maxFrequency:
+		 * --------a----------b--------
+		 * But, 0 < a < b or
+		 * 	a < 0 < b or
+		 * 	a < b < 0	(We've excluded operators "<=")
+		 * So we want to store percentages of this interval value in intervalsThreshold.
+		 * Example:
+		 * 	globs_nbInterval = 3;
+		 * 	globs_minFrequency = -4;
+		 * 	globs_maxFrequency = 2;
+		 * 	So we want intervalsThreshold[0] = 1/3 of the interval between min and max frequency when positioning at min
+		 * 					 = (1/3) * (max - min) + min
+		 * 					 = -2
+		 * 		intervalsThreshold[1] = 2/3 of the interval between min and max frequency when positioning at min
+		 * 				      = (2/3) * (max - min) + min
+		 * 				      = 0
+		 * 		intervalsThreshold[2] = 3/3 ....
+		 * 				      = 2
+		 */
 		intervalsThreshold[iInterval] = ((iInterval + 1) / (double)globs_nbInterval) * (globs_maxFrequency - globs_minFrequency)
 					+ globs_minFrequency;
-		//printf("\nintervalsThreshold : %f", intervalsThreshold[iInterval]);
 	}
 	
 	// Initialise the histogram with zeros
@@ -53,20 +70,16 @@ SoundDescriptor * createDescriptor(FILE* file)
 		for(iInterval = 0; iInterval < globs_nbInterval; iInterval++)
 			descriptor->histogram[iWindow][iInterval] = 0;
 	}
-fflush(stdout);
-	//printf("\nglobs_windowSize : %d globs_nbInterval : %d, globs_maxFrequency : %f globs_minFrequency : %f", globs_windowSize, globs_nbInterval, globs_maxFrequency, globs_minFrequency);
 	
 	iElem = iWindow = iInterval = 0;
 	while(readStruct(file, &tmp, doubleSize))
 	{
 		if(iElem == globs_windowSize)
 		{
-			if(iInterval < globs_nbInterval)
-			//printf("\niWindow : %d, iElem : %d histo : %d", iWindow, iElem, descriptor->histogram[iWindow][iInterval]);
-			fflush(stdout);
 			iElem = 0;
 			iWindow++;
 		}
+		// Test file is not in the not in the same endian system as the testing system.
 		*tmp = endianSwap_double(*tmp);
 		if(*tmp <= intervalsThreshold[0])
 			(descriptor->histogram[iWindow][0])++;
@@ -77,7 +90,6 @@ fflush(stdout);
 				if(*tmp <= intervalsThreshold[iInterval])
 				{
 					(descriptor->histogram[iWindow][iInterval])++;
-					//printf("d_______%d", iInterval);
 					break;		
 				}				
 			}

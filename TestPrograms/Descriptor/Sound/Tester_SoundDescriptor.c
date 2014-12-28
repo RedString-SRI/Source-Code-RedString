@@ -32,6 +32,7 @@ int main()
 Bool tests_createDescriptor(Bool details)
 {
 	Bool testPassed = TRUE;
+	SoundDescriptor *soundDesc;
 	FILE* testFile = fopen("/home/rayope/SRI/FilRouge/data/SON_CORPUS/corpus_m6.bin", "rb");
 	if(testFile == NULL)
 	{
@@ -45,8 +46,9 @@ Bool tests_createDescriptor(Bool details)
 	globs_minFrequency = -1;
 	// Display a file
 	if(details)
-		printf("\nIt displays the test file: ");
-	if(createDescriptor(testFile) == NULL)
+		printf("\nIt creates a descriptor:");
+	soundDesc = createDescriptor(testFile);
+	if(soundDesc != NULL)
 	{
 		if(details)
 			printf("Pass");
@@ -58,6 +60,7 @@ Bool tests_createDescriptor(Bool details)
 		testPassed = FALSE;
 	}
 
+	free(soundDesc);
 	fclose(testFile);
 	return testPassed;
 }

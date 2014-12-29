@@ -130,7 +130,7 @@ void ResearchMenu(){
 			scanf("%s" , w); // enter a word ......
 			if(isAColor(w)){
 				byColor(w);
-				system("clear");
+				//system("clear");
 			}
 			else printf("ERROR Color\n");
 			break;

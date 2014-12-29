@@ -1,7 +1,8 @@
                             --->NEED FUNCTION TO CREATE :<---
-float findColor(path , colorDecimal);
-int findSound(path , frequence);
-int findColor(path , soughtWord);
+float findColor(path , colorDecimal); // return the occurcence of the color's apparition
+int findWord(path , soughtWord); // return the occurcence of the word's apparition
+int findSound(path , frequence); // return the occurcence of the frequence's apparition
+
                             
                             IN CONFIGURATOR:
 Bool initConfigurator();

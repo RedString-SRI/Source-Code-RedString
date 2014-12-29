@@ -76,7 +76,8 @@ void IndexationMenu(){
 			if(ExistingPath(w)){
 				system("clear");
 			}
-			else printf("ERROR Path\n");  
+			else 
+				printf("ERROR Path\n");  
 			break;
 		case(2):  
 			system("clear");

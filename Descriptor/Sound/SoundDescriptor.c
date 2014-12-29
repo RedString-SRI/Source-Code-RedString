@@ -1,10 +1,10 @@
 /**
  * \file SoundDescriptor.c
- * \brief Sound descriptor manager
+ * \brief Sound desc manager
  * \author Morgan Chabaud
  * \date 25 november 2014
  * 
- * This file defines all functions available for sound descriptors.
+ * This file defines all functions available for sound descs.
  */
 
 #include "SoundDescriptor.h"
@@ -23,19 +23,21 @@ double endianSwap_double(double dbl)
 	return dblRet;
 }
 
-SoundDescriptor * createDescriptor(FILE* file)
+SoundDescriptor * createSoundDesc(FILE* file)
 {
 	int doubleSize = sizeof(double),
 		fSize = fileSize(file);
-	double *tmp = malloc(sizeof(double)),
-		*intervalsThreshold = malloc(sizeof(double) * globs_nbInterval);
-		// + 1 because : an interval : |-----| : There is two thresholds
-	SoundDescriptor * descriptor = malloc(sizeof(SoundDescriptor));
+	double *tmp = malloc(sizeof(*tmp)),
+		*intervalsThreshold = malloc(sizeof(*intervalsThreshold) * globs_nbInterval);
+		
+	SoundDescriptor * desc = malloc(sizeof(*desc));
 	int iInterval, iElem, iWindow;	// Increments
-	int nbWindows = (fSize / doubleSize) / globs_windowSize + 1;
+	int nbWindows = (fSize / doubleSize) / globs_windowSize + 2;
 	// (fSize / doubleSize)  is the number of values in the file
-
-	descriptor->histogram = malloc(sizeof(*descriptor->histogram) * nbWindows);
+	// + 1 because : an interval : |-----| : There is two thresholds
+	// another +1 for the ending NULL
+	
+	desc->histogram = malloc(sizeof(*desc->histogram) * nbWindows);
 	
 	for(iInterval = 0; iInterval < globs_nbInterval; iInterval++)
 	{
@@ -66,10 +68,18 @@ SoundDescriptor * createDescriptor(FILE* file)
 	// Initialise the histogram with zeros
 	for(iWindow = 0; iWindow < nbWindows; iWindow++)
 	{
-		descriptor->histogram[iWindow] = malloc(sizeof(double) * globs_nbInterval);
+		desc->histogram[iWindow] = malloc(sizeof(int) * globs_nbInterval);
 		for(iInterval = 0; iInterval < globs_nbInterval; iInterval++)
-			descriptor->histogram[iWindow][iInterval] = 0;
+			desc->histogram[iWindow][iInterval] = 0;
 	}
+	// The last iWindow is going to be set to NULL
+	// in order to be able to read this array without its size
+	// (globs_nbInterval is a global variable...)
+	//
+	// Why not have looped with (iWindow < (nbWindows - 1))?
+	// To avoid the calculous in a potentially large loop
+	free(desc->histogram[iWindow - 1]);
+	desc->histogram[iWindow - 1] = NULL;
 	
 	iElem = iWindow = iInterval = 0;
 	while(readStruct(file, &tmp, doubleSize))
@@ -82,25 +92,81 @@ SoundDescriptor * createDescriptor(FILE* file)
 		// Test file is not in the not in the same endian system as the testing system.
 		*tmp = endianSwap_double(*tmp);
 		if(*tmp <= intervalsThreshold[0])
-			(descriptor->histogram[iWindow][0])++;
+			(desc->histogram[iWindow][0])++;
 		else
 		{
 			for(iInterval = 0; iInterval < globs_nbInterval; iInterval++)
 			{
 				if(*tmp <= intervalsThreshold[iInterval])
 				{
-					(descriptor->histogram[iWindow][iInterval])++;
+					(desc->histogram[iWindow][iInterval])++;
+					//printf("%f", desc->histogram[iWindow][iInterval]);
 					break;		
 				}				
 			}
 			if(*tmp > intervalsThreshold[globs_nbInterval - 1])
-				(descriptor->histogram[iWindow][globs_nbInterval - 1])++;
+				(desc->histogram[iWindow][globs_nbInterval - 1])++;
 		}
 		
 		iElem++;
 	}
-	
+	/** WHO THE FUCK EMITS THIS "INVALID ARGUMENT" ERROR MESSAGE?????? **/
+	// perror("fin");
 	free(tmp);
 	free(intervalsThreshold);
-	return descriptor;
+	return desc;
+}
+
+void printSoundDesc(SoundDescriptor const * desc)
+{
+	int iInterval, iWindow = 0;
+	printf("\nId: %d", desc->id);
+	
+	while(desc->histogram[iWindow] != NULL)
+	{
+		for(iInterval = 0; iInterval < globs_nbInterval; iInterval++)
+			printf("%d|", desc->histogram[iWindow][iInterval]);
+		printf("\n");
+		iWindow++;
+	}
+}
+
+void writeSoundDesc(FILE* file, SoundDescriptor* desc)
+{
+	int iInterval, iWindow = 0;
+	// Write desc->id
+	writeStruct(file, &desc->id, sizeof(int));
+	
+	// Write desc->histogram
+	while(desc->histogram[iWindow] != NULL)
+	{
+		writeStruct(file, &desc->histogram[iWindow], sizeof(int) * globs_nbInterval);
+		iWindow++;
+	}
+}
+
+SoundDescriptor * readSoundDesc(FILE* file)
+{
+	SoundDescriptor * desc = malloc(sizeof(*desc));
+	int iElem, iWindow;	// Increments
+	int nbWindows = (fileSize(file) / sizeof(double)) / globs_windowSize + 1;
+	// (fSize / doubleSize)  is the number of values in the file
+	// + 1 because : an interval : |-----| : There is two thresholds
+	
+	// Read desc->id
+	readStruct(file, &desc->id, sizeof(int));
+	
+	desc->histogram = malloc(sizeof(*desc->histogram) * (nbWindows + 1));
+	// another +1 for the ending NULL
+	
+	// Read desc->id
+	for(iWindow = 0; iWindow < nbWindows; iWindow++)
+	{
+		desc->histogram[iWindow] = malloc(sizeof(double) * globs_nbInterval);
+		readStruct(file, &desc->histogram[iWindow], sizeof(int) * globs_nbInterval);
+	}
+	// Set NULL in the last one
+	desc->histogram[iWindow] = NULL;
+
+	return desc;
 }

@@ -192,6 +192,7 @@ Bool writeStruct(FILE* file, void ** rStruct, size_t structSize)
 {
 	errno = 0;
 	fwrite(*rStruct, structSize, 1, file);
+	
 	if(!feof(file) && !ferror(file))
 		return TRUE;
 	else

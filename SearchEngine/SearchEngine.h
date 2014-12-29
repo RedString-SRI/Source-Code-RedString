@@ -13,6 +13,10 @@
 #include<stdlib.h>
 #include<string.h>
 
+
+ enum COLOR(BLACK(000000), LIGHTGRAY(101010), DARKGRAY(010101), WHITE(111111), 
+            RED(110000), PINK(111010), YELLOW(001111), PURPLE(??????), 
+            BROWN(??????), GREEN(001100), BLUE(000011) );
 /**
 * \brief byColor.
 * Search specifiquely in an image's descriptor a color:

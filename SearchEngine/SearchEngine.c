@@ -10,7 +10,13 @@
 */
 
 void byColor(char color[]){
-
+  int DecreaseOrder[];
+  int colorDecimal = (int)color; // NEED TO BE CHECK !!!!!!
+  while(/*PAS FIN LISTE BASE DESCRIPTOR*/) {
+    if(findColor(path , colorDecimal) ) {
+    
+    }
+  }
 }
 //===================================================================================================
 void byAuthor(){

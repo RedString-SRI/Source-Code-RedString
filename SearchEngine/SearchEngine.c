@@ -39,6 +39,7 @@ void byColor(char color[]){
   printf("You want to open it one ? Which one ? \n");
   scanf("%d" , &i); // now, "i" is a choice
   if(i<0 || i>size) printf("ERROR choice\n");
+  if(i=0) ResearchMenu() ;
 }
 //===================================================================================================
 void byAuthor(){

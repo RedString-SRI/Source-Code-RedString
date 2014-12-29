@@ -11,10 +11,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "TextDescriptor.h"
-#include "PictureDescriptor.h"
-#include "SoundDescriptor.h"
-#include "Type_Bool.h"
+#include "Text/TextDescriptor.h"
+#include "Picture/PictureDescriptor.h"
+#include "Sound/SoundDescriptor.h"
+#include "../Type_Bool.h"
 #include "Type_FileType.h"
 #include "Type_BaseDescriptor.h"
 
@@ -80,7 +80,7 @@ ListeBaseDesc initListBaseDescriptor(FileType fileType);
  * \param the address of the descriptor
  * \param the date of indexation
 */
-void addListBaseDesc(ListBaseDesc * listBaseDesc, char * path, long adress, int date);
+void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength], long address, int date);
 
 /**
  * \brief remove the last descriptor from the base

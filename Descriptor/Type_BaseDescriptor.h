@@ -26,10 +26,10 @@ typedef struct Descriptor{
  * The date is the time when the file was indexed
  */
 typedef struct FileDescriptor{
-    long adress;
-    int date;
-    FILE * path;
+    long address; // the address of the descriptor
+    int date; // the last date of indexation
+    char path[globs_maxPathLength]; // path of the file
     struct FileDescriptor * next;
-} *ListeBaseDesc;
+} *ListeBaseDesc; //ListBaseDesc is an ordered chained list of file-descriptor structure 
 
 #endif // TYPE_BASEDESCRIPTOR_H_INCLUDED

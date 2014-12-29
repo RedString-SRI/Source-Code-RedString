@@ -11,6 +11,16 @@ typedef struct {
 	char * word;
 	int occur;
 	} Term	;
+	
+typedef struct { 
+	Term t ; 
+	Term * ptr_next ; 
+	} Index ; 
+
+typedef Index * i ; 
+
+
+int textNbChar(const char * path) ; 
 
 //Meant for word recognition (a word is built with fonts or numbers. If a string counts one or more symbol then it is NOT a word. 
 

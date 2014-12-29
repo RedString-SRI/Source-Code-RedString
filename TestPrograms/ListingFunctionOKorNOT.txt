@@ -1,3 +1,8 @@
+                            --->NEED FUNCTION TO CREATE :<---
+float findColor(path , colorDecimal);
+int findSound(path , frequence);
+int findColor(path , soughtWord);
+                            
                             IN CONFIGURATOR:
 Bool initConfigurator();
 void askGlobsVariables();

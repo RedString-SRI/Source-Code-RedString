@@ -3,7 +3,6 @@
  * \brief The Boolean type
  * \author Morgan Chabaud
  * \date 25 november 2014
- * 
  */
 
 #ifndef TYPE_BOOL

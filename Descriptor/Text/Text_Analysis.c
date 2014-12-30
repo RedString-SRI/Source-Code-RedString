@@ -20,8 +20,8 @@ void readWordbyWord(char path[]){
 	while(c != EOF) { // while isn't the end of the file ...
 		c=fgetc(file);
 		if(IsInBeacons(c,file)) continue ; 
-		// if c== slash ...etc
-		// if c== antislash ...etc
+		if(c=='\\')continue ;
+		if(c==antislash) continue;
 		// if c== is not a correct char ..etc
 		else if(c == 32) {// ==Space
 			listWord=(char*)malloc(sizeof(char)); // add a place to put a word

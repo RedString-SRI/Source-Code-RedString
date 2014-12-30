@@ -7,19 +7,17 @@
 #include "Keyboard.h"
 
 //===================================================================================================
-int getKeyboard_Long(long * typedLong, long min, long max)
-{
+int getKeyboard_Long(long * typedLong, long min, long max){
+	
 	char *retStrtol;
 	char strLong[LONG_MAX_STRLEN];
 	long value;	// The value of the string written by the user
 	
 	*typedLong = 0;	// If errors occur, it will be that value
 	
-	switch(getKeyboard_String(strLong, 1, LONG_MAX_STRLEN))
-	{
+	switch(getKeyboard_String(strLong, 1, LONG_MAX_STRLEN)){
 		case 1:
 			break;
-		
 		default:
 			return 0;
 	}		
@@ -28,15 +26,13 @@ int getKeyboard_Long(long * typedLong, long min, long max)
 	value = strtol(strLong, &retStrtol, 10);
 	if(retStrtol != NULL && retStrtol[0] != '\0')	// The user hasn't typed digits only
 	{
-		if(errno == ERANGE)
-		{
+		if(errno == ERANGE){
 			perror("getKeyboard_Long strtol");
 			return 1;
 		}
 		// else (retStrtol == strLong) or (retStrtol[0] >= '0' && retStrtol[0] <= '9')
 		return -4;
 	}
-	
 	// Test long value
 	if(value < min)
 		return -2;
@@ -47,19 +43,17 @@ int getKeyboard_Long(long * typedLong, long min, long max)
 	return 1;
 }
 //===================================================================================================
-int getKeyboard_Double(double * typedDouble, double min, double max)
-{
+int getKeyboard_Double(double * typedDouble, double min, double max){
+	
 	char *retStrtod;
 	char strDouble[DBL_MAX_STRLEN];
 	double value;	// The value of the string written by the user
 	
 	*typedDouble = 0;	// If errors occur, it will be that value
 	
-	switch(getKeyboard_String(strDouble, 1, DBL_MAX_STRLEN))
-	{
+	switch(getKeyboard_String(strDouble, 1, DBL_MAX_STRLEN)){
 		case 1:
 			break;
-		
 		default:
 			return 0;
 	}		
@@ -68,8 +62,7 @@ int getKeyboard_Double(double * typedDouble, double min, double max)
 	value = strtod(strDouble, &retStrtod);
 	if(retStrtod != NULL && retStrtod[0] != '\0')	// The user hasn't typed digits only
 	{
-		if(errno == ERANGE)
-		{
+		if(errno == ERANGE){
 			perror("getKeyboard_Double strtod");
 			return 1;
 		}
@@ -87,8 +80,8 @@ int getKeyboard_Double(double * typedDouble, double min, double max)
 	return 1;
 }
 //===================================================================================================
-int getKeyboard_String(char * typedString, int minChar, int maxChar)
-{
+int getKeyboard_String(char * typedString, int minChar, int maxChar) {
+	
 	size_t typedStrLen;
 	char * ptrNewLineChar;
 	
@@ -117,8 +110,7 @@ int getKeyboard_String(char * typedString, int minChar, int maxChar)
 	return 1;	
 }
 //===================================================================================================
-void emptyStdin()
-{
+void emptyStdin() {
 	int c = 0;
 	while((c = getchar()) != '\n' && c != EOF);
 }

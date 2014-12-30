@@ -18,8 +18,8 @@ void readWordbyWord(char path[]){
 	
 	FILE *file=fopen(path , 'r');
 	while(c != EOF) { // while isn't the end of the file ...
-		fgetc(file);
-		// if c == beacon ...etc
+		c=fgetc(file);
+		if(IsInBeacons(c,file)) continue ; 
 		// if c== slash ...etc
 		// if c== antislash ...etc
 		// if c== is not a correct char ..etc
@@ -40,41 +40,23 @@ void readWordbyWord(char path[]){
 	fclose(file);
 }
 //===================================================================================================
-Bool isAWord (char * word) {
+Bool isAChar (char word) {
 	int i = 0 ; 
-	if( (word[0])>=65 && word[0]<=90) || (word[0])>=97 && word[0]<=122) || (word[0])>=97 && word[0]<=122) return TRUE;
+	if( (word[0])>=65 && word[0]<=90) || (word[0])>=97 && word[0]<=122) || (word[0])>=97 && word[0]<=122)
 			return TRUE ;
 		else 
 			return FALSE ; 
 } 
 //===================================================================================================
-int endOfWord (char * word) {
-	int j = 0 ;
-	while (	word[j] != (int) NULL) {
-		j++ ; 
+Bool isInBeacons (char word,  FILE f) {
+	int k=word; 
+	if (k == '<') {
+		while(k!='>')
+			k = fgetc(f) ; 
+		return TRUE;
 	}
-	return j ; 
-}
-//===================================================================================================
-Bool isABeacon (char * word) {
-	int k ; 
-	if (word[0] == '<') 
-		{ k = endOfWord(word) ; 
-		   if (word[k] == '>') 
-				return TRUE ;
-		   else 
-				return FALSE ; 
-		}
-	else if ((word[0] == '<') && (word[1] == '/')) 
-		{ k = endOfWord(word) ; 
-			if (word[k] == '>') 
-				return TRUE ; 
-			else 
-				return FALSE ;
-		}
-	
-		else 
-			return FALSE ; 
+	else 
+		return FALSE ; 
 }
 //===================================================================================================
 Bool isWordRelevant (const char * word) {
@@ -90,7 +72,6 @@ Bool isWordRelevant (const char * word) {
 int wordAppearance (char * word) {
 	int appearance = 0 ; 
 }
-
 //====================================================================================================
 int textNbchar(const char * path) 
 	{ 	int nb_char = 0 ; 
@@ -100,7 +81,6 @@ int textNbchar(const char * path)
 		return nb_char - 1 ;
 		fclose(text) ; 
 	}
-
 //===================================================================================================================
 void stockWord (const char * path) { 
 	int tmpc = 0 ; 
@@ -126,26 +106,24 @@ int textNbchar(const char * path)
 		return nb_char - 1 ;
 		fclose(text) ; 
 	}
-
 //===================================================================================================================
-void initIndex (Index * i) 
-	{ *i =  NULL ; 
-	}
+void initIndex (Index *i) { 
+	*i =  NULL ; 
+}
 
 //===================================================================================================================	
 Bool indexEmpty (Index i) {
 	if (i == NULL) 
 		return TRUE ; 
-	else return FALSE ; 
+	else 
+		return FALSE ; 
 }
-
 //===================================================================================================================
 void initTerm (Term term) {
 	term.word = NULL ; 
 	term.occur = 0 ; 
 	term.ptr_next = NULL ; 
 }
-
 //==================================================================================================================
 void createTerm (Term term , char * w) {
 	initTerm (term) ; 

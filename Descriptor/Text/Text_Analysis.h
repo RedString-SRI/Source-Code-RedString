@@ -50,6 +50,10 @@ Bool indexEmpty (Index i) ;
 //Initialisation of a term. 
 void initTerm (Term term) ;
 
+//Create a new term. 
+void createTerm (Term term , char * w) ; 
+	
+
 //Add a term in the index. 
 void addTerm (Index * i , Term term) ;
 

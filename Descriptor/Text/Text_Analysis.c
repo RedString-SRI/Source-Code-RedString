@@ -181,6 +181,21 @@ void removeTerm (Index * i) {
 		}
 	}
 	
+void addOccurences (Index * i , Term t) {
+	if (*i == NULL) 
+		printf ("END") ; 
+	else 
+		{ if (doesTermExist (i , t) == TRUE) 
+			{	while (*i != NULL) 	
+				{ if	(t.word == (*i) -> word) 
+					{ (*i) -> occur++ ; 
+					  break ; 
+					}
+				}
+			}
+		}
+} 	
+	
 int main () {
 	printf ("%d\n" , text_nbchar("/home/mahenina/FIL_ROUGE/Test")) ;
 } 

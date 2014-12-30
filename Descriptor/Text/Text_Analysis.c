@@ -26,7 +26,7 @@ void readWordbyWord(char path[]){
 		if(c==' '){i=0 ; continue;}
 		i++;
 		
-		while(i<=3){
+		while(i>3){
 			listWord=(char*)malloc(sizeof(char)); // add a place to put a word
 			if(i==4) listWord=(char**)malloc((i+1)*sizeof(char*)); // create the column only if the word>=4 chars
 			

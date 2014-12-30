@@ -6,7 +6,7 @@
 #ifndef GENERIC_STACK_H_INCLUDED
 #define GENERIC_STACK_H_INCLUDED
 
-#include "Type_Bool.h"
+#include "../Type_Bool.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -23,9 +23,7 @@ typedef struct cell{
 	struct cell * next;
 } * Stack;
 
-void printElement(void * e, char fileType);
-
-void writeFile(FILE * file, void * e, char fileType);
+void printElement(void * e, char type);
 
 /**
  * \brief Initialize a stack
@@ -41,7 +39,7 @@ void initStack(Stack * s);
  * Print every element of the stack from the last to first element stacked
  * \param a stack to print
 */
-void printStack(Stack s, char fileType);
+void printStack(Stack s, char type);
 
 /**
  * \brief check if the stack is empty
@@ -60,7 +58,7 @@ Bool stackIsEmpty(Stack s);
  * \param a stack to update
  * \param an element to add
 */
-void stack(Stack * s, void * e, char fileType);
+void stack(Stack * s, void * e);
 
 /**
  * \brief unstack

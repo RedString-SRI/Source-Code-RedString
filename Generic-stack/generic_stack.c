@@ -5,25 +5,29 @@
  */
 #include "generic_stack.h"
 
-void printElement(void * e, char fileType){}
-
-void writeFile(FILE * file, void * e, char fileType){}
+//-------------------------------------------------------------------------------------
+void printElement(void * e, char type){
+	switch(type){
+		case 's' : printf("%s", (char *)e);
+		break;
+		case 'i' : printf("%d", *((int *)e));
+	}
+}
 
 //-------------------------------------------------------------------------------------
 void initStack(Stack * s){
 	*s = NULL;
-	system("touch text.txt");
 }
 
 //-------------------------------------------------------------------------------------
-void printStack(Stack s, char fileType){
+void printStack(Stack s, char type){
 	if(s == NULL)
 		/** Error **/;
 	else{
         Stack saux = s;
         printf("The stack is:\n");
 		while(saux != NULL){
-			printElement(saux->element, fileType); // The user has to implement this for the type he wants to use
+			printElement(saux->element, type);
 			saux = saux->next;
 		}
 	}
@@ -35,7 +39,7 @@ Bool stackIsEmpty(Stack s){
 }
 
 //-------------------------------------------------------------------------------------
-void stack(Stack * s, void * e, char fileType){
+void stack(Stack * s, void * e){
 	Stack ptr_add = (Stack) malloc(sizeof(struct cell));
 	if(ptr_add==NULL)
 		/** Error **/;
@@ -43,14 +47,6 @@ void stack(Stack * s, void * e, char fileType){
 		ptr_add->element = e;
 		ptr_add->next = *s;
         *s = ptr_add;
-	}
-	FILE * file = fopen("test.txt", "w");
-	if(file==NULL)
-		/** Error **/;
-	else{
-		rewind(file);
-		writeFile(file, e, fileType); // The user has to implement this for the type he wants to use
-		fclose(file);
 	}
 }
 

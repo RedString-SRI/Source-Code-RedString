@@ -1,3 +1,4 @@
+                            
                             --->NEED FUNCTION TO CREATE :<---
 float findColor(path , colorDecimal); // return the occurcence of the color's apparition in A file
 int findWord(path , soughtWord); // return the occurcence of the word's apparition in A file

@@ -38,10 +38,10 @@ void readWordbyWord(char path[]){
 				listWordRepetition[i]++; // +1 for the existing word
 				i=0; // putting back at zero to start the save of a new word
 			}
-		}
-		else{
-			word[i]=c;
-			i++;
+			else{
+				word[i]=c;
+				i++;
+			}
 		}
 	}
 	fclose(file);

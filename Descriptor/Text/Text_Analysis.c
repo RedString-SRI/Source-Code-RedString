@@ -159,7 +159,7 @@ void removeFromIndex (Index * i , Term termtoremove) {
 		else 
 			{ 
 			while (*i != NULL) 
-				{ if (*i ->word == termtoremove.word) 
+				{ if ((*i) ->word == termtoremove.word) 
  					{ Index * ptr_stock = i ; 
 					*i = (*i) ->ptr_next ;
 					aux = *(*ptr_stock) ; 

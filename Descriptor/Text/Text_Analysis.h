@@ -7,17 +7,11 @@
 #include <string.h> 
 #define TMAX 100
 
-typedef struct {
+typedef struct term {
 	char * word;
 	int occur;
-	} Term	;
-	
-typedef struct { 
-	Term t ; 
-	Term * ptr_next ; 
-	} Index ; 
-
-typedef Index * i ; 
+	struct term *ptr_next ; 
+	} Term, *Index ; 
 
 
 int textNbChar(const char * path) ; 

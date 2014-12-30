@@ -21,7 +21,7 @@ void readWordbyWord(char path[]){
 		c=fgetc(file);
 		if(IsInBeacons(c,file)) continue ; 
 		if(c=='\\')continue ;
-		if(c==antislash) continue;
+		if(c=='/') continue;
 		// if c== is not a correct char ..etc
 		else if(c == 32) {// ==Space
 			listWord=(char*)malloc(sizeof(char)); // add a place to put a word

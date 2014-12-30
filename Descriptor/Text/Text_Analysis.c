@@ -101,28 +101,56 @@ int textNbchar(const char * path)
 		fclose(text) ; 
 	}
 
+int textNbchar(const char * path) 
+	{ 	int nb_char = 0 ; 
+		FILE * text = fopen(path,"r") ; 
+	  	while (fgetc(text) != EOF) 
+			 nb_char++ ;
+		return nb_char - 1 ;
+		fclose(text) ; 
+	}
+
+
 void initIndex (Index * i) 
-	{ *i = NULL ; 
+	{ *i =  NULL ; 
 	}
 	
-int indexEmpty (Index i) {
+Bool indexEmpty (Index i) {
 	if (i == NULL) 
-		return 0 ; 
-	else return 1 ; 
+		return TRUE ; 
+	else return FALSE ; 
 }
 
-void initTerm (Term t) {
-	t.word = NULL ; 
-	t.occur = 0 ; 
+void initTerm (Term term) {
+	term.word = NULL ; 
+	term.occur = 0 ; 
 }
 
-void addTerm (Index * i , Term t) { 
+void addTerm (Index * i , Term term) { 
 	Index * ptr_index = (Index *) malloc(sizeof(Index)) ; 
-		(*ptr_index).term = t ;
-		(*ptr_index).ptr_next = *i ; 
-		*i = ptr_index ; 		
+		(*ptr_index) -> word = term.word ;
+		(*ptr_index) -> occur = term.occur ; 
+		(*ptr_index) -> ptr_next = *i ; 
+		i = ptr_index ; 		
 	}
 
+Bool doesTermExist (Index * i , Term term) {
+	if (*i == NULL) {
+		printf ("END") ; 
+	}
+	else 
+		{ while (*i != NULL) 
+			{ if ((*i) -> word == term.word)
+				return TRUE ; 
+			
+			else 
+				{ *i = (*i) -> ptr_next ; 
+				  doesTermExist (i , term) ;
+				}
+			 }
+		}
+	}
+				
 void removeFromIndex (Index * i , Term termtoremove) {
 		Term aux ; 
 		if (*i == NULL) {
@@ -131,16 +159,28 @@ void removeFromIndex (Index * i , Term termtoremove) {
 		else 
 			{ 
 			while (*i != NULL) 
-				{ if ((*i) -> t == termtoremove) 
- 					{ Index * ptr_stock = *i ; 
-					*i = (*i)->ptr_next ;
-					aux = (*ptr_stock).t ; 
+				{ if (*i ->word == termtoremove.word) 
+ 					{ Index * ptr_stock = i ; 
+					*i = (*i) ->ptr_next ;
+					aux = *(*ptr_stock) ; 
 					free(ptr_stock) ; 
 					} 
 				 else 
 					{ *i = (*i) -> ptr_next ;
-					  removeFromIndex (Index * i , Term termtoremove) ;
+					  removeFromIndex (i , termtoremove) ;
 					}
 				}
 			}
 	}
+
+void removeTerm (Index * i) {
+	while (*i != NULL) 
+		{ if ((*i) -> occur < TMAX)
+			{ removeFromIndex (i , *(*i)) ; 
+			}
+		}
+	}
+	
+int main () {
+	printf ("%d\n" , text_nbchar("/home/mahenina/FIL_ROUGE/Test")) ;
+} 

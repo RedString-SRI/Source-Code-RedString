@@ -124,6 +124,13 @@ Bool indexEmpty (Index i) {
 void initTerm (Term term) {
 	term.word = NULL ; 
 	term.occur = 0 ; 
+	term.ptr_next = NULL ; 
+}
+
+void createTerm (Term term , char * w) {
+	initTerm (term) ; 
+	term.word = w ; 
+	term.occur++ ; 
 }
 
 void addTerm (Index * i , Term term) { 

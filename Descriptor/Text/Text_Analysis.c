@@ -101,6 +101,23 @@ int textNbchar(const char * path)
 		fclose(text) ; 
 	}
 
+//===================================================================================================================
+void stockWord (const char * path) { 
+	int tmpc = 0 ; 
+	int i = 0 ; 
+	char word[50] ; 
+	FILE * text = fopen(path,"r") ; 
+	 
+	do 
+        {	  tmpc = fgetc(text) ;
+            word[i] = tmpc ; 
+		  printf("%c" , word[i]) ; 
+            i++ ; 
+        } while (tmpc != ' ') ; // On continue tant que fgetc n'a pas retourné un espace (fin de mot)
+	fclose(text) ; 
+ }
+ 
+ //==================================================================================================================
 int textNbchar(const char * path) 
 	{ 	int nb_char = 0 ; 
 		FILE * text = fopen(path,"r") ; 
@@ -110,29 +127,33 @@ int textNbchar(const char * path)
 		fclose(text) ; 
 	}
 
-
+//===================================================================================================================
 void initIndex (Index * i) 
 	{ *i =  NULL ; 
 	}
-	
+
+//===================================================================================================================	
 Bool indexEmpty (Index i) {
 	if (i == NULL) 
 		return TRUE ; 
 	else return FALSE ; 
 }
 
+//===================================================================================================================
 void initTerm (Term term) {
 	term.word = NULL ; 
 	term.occur = 0 ; 
 	term.ptr_next = NULL ; 
 }
 
+//==================================================================================================================
 void createTerm (Term term , char * w) {
 	initTerm (term) ; 
 	term.word = w ; 
 	term.occur++ ; 
 }
 
+//==================================================================================================================
 void addTerm (Index * i , Term term) { 
 	Index * ptr_index = (Index *) malloc(sizeof(Index)) ; 
 		(*ptr_index) -> word = term.word ;
@@ -141,6 +162,7 @@ void addTerm (Index * i , Term term) {
 		i = ptr_index ; 		
 	}
 
+//==================================================================================================================
 Bool doesTermExist (Index * i , Term term) {
 	if (*i == NULL) {
 		printf ("END") ; 
@@ -158,6 +180,7 @@ Bool doesTermExist (Index * i , Term term) {
 		}
 	}
 				
+//==================================================================================================================
 void removeFromIndex (Index * i , Term termtoremove) {
 		Term aux ; 
 		if (*i == NULL) {
@@ -180,6 +203,7 @@ void removeFromIndex (Index * i , Term termtoremove) {
 			}
 	}
 
+//=================================================================================================================
 void removeTerm (Index * i) {
 	while (*i != NULL) 
 		{ if ((*i) -> occur < TMAX)
@@ -188,6 +212,7 @@ void removeTerm (Index * i) {
 		}
 	}
 	
+//=================================================================================================================
 void addOccurences (Index * i , Term t) {
 	if (*i == NULL) 
 		printf ("END") ; 
@@ -202,7 +227,8 @@ void addOccurences (Index * i , Term t) {
 			}
 		}
 } 	
-	
+
+//==================================================================================================================	
 int main () {
 	printf ("%d\n" , text_nbchar("/home/mahenina/FIL_ROUGE/Test")) ;
 } 

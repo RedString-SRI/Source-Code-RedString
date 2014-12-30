@@ -16,7 +16,7 @@ void readWordbyWord(char path[]){
 	char *listWord;
 	char *listWordRepetition;
 	
-	fopen(path , 'r');
+	FILE *file=fopen(path , 'r');
 	while(c != EOF) { // while isn't the end of the file ...
 		fgetc(file);
 		// if c == beacon ...etc
@@ -90,3 +90,57 @@ Bool isWordRelevant (const char * word) {
 int wordAppearance (char * word) {
 	int appearance = 0 ; 
 }
+
+//====================================================================================================
+int textNbchar(const char * path) 
+	{ 	int nb_char = 0 ; 
+		FILE * text = fopen(path,"r") ; 
+	  	while (fgetc(text) != EOF) 
+			 nb_char++ ;
+		return nb_char - 1 ;
+		fclose(text) ; 
+	}
+
+void initIndex (Index * i) 
+	{ *i = NULL ; 
+	}
+	
+int indexEmpty (Index i) {
+	if (i == NULL) 
+		return 0 ; 
+	else return 1 ; 
+}
+
+void initTerm (Term t) {
+	t.word = NULL ; 
+	t.occur = 0 ; 
+}
+
+void addTerm (Index * i , Term t) { 
+	Index * ptr_index = (Index *) malloc(sizeof(Index)) ; 
+		(*ptr_index).term = t ;
+		(*ptr_index).ptr_next = *i ; 
+		*i = ptr_index ; 		
+	}
+
+void removeFromIndex (Index * i , Term termtoremove) {
+		Term aux ; 
+		if (*i == NULL) {
+			printf ("END") ;
+		}
+		else 
+			{ 
+			while (*i != NULL) 
+				{ if ((*i) -> t == termtoremove) 
+ 					{ Index * ptr_stock = *i ; 
+					*i = (*i)->ptr_next ;
+					aux = (*ptr_stock).t ; 
+					free(ptr_stock) ; 
+					} 
+				 else 
+					{ *i = (*i) -> ptr_next ;
+					  removeFromIndex (Index * i , Term termtoremove) ;
+					}
+				}
+			}
+	}

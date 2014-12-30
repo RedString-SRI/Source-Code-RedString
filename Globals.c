@@ -6,6 +6,10 @@
  * \author Morgan Chabaud \n
  * How to use : http://c.developpez.com/faq/?page=Les-variables-globales
  */
+ 
+//=================================================================================================== 
+// ListBaseDescriptor
+int globs_maxPathLength; // The maximum path length for an indexed file
 //=================================================================================================== 
 // TextDescriptor
 int globs_occurThreshold; // The minimum occurrences (in the indexed file) to store a word in a descriptor 

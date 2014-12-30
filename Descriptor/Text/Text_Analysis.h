@@ -7,10 +7,14 @@
 #include <string.h> 
 #define TMAX 100
 
-typedef struct {
+typedef struct term {
 	char * word;
 	int occur;
-	} Term	;
+	struct term *ptr_next ; 
+	} Term, *Index ; 
+
+
+int textNbChar(const char * path) ; 
 
 //Meant for word recognition (a word is built with fonts or numbers. If a string counts one or more symbol then it is NOT a word. 
 

@@ -10,6 +10,7 @@
 */
 
 void byColor(char color[]){
+  
   int *OrderPercentage;
   int colorDecimal = (int)color; // NEED TO BE CHECK !!!!!!
   float percent , tmpFloat;
@@ -35,7 +36,7 @@ void byColor(char color[]){
   // print list
   printf("+=========================+\n");
   for(i=1 ; i<=size ; i++)
-  	printf("%2i : %20s --> %.2f\n" , i , path , orderPercentage[i] );
+    printf("%2i : %20s --> %.2f\n" , i , path , orderPercentage[i] );
   printf("+===================0.EXIT+\n");
   printf("You want to open it one ? Which one ? \n");
   scanf("%d" , &i); // now, "i" is a choice

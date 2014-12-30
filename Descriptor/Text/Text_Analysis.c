@@ -28,10 +28,9 @@ void readWordbyWord(char path[]){
 		
 		while(i>3){
 			listWord=(char*)malloc(sizeof(char)); // add a place to put a word
-			if(i==4) listWord=(char**)malloc((i+1)*sizeof(char*)); // create the column only if the word>=4 chars
-			
+		
 			if(c == ' ') { // A space
-				listWord=(char**)malloc(sizeof(char*)); // create the place with +1 char to put the word into the list --> matrix 2dim
+				listWord=(char**)malloc((i+1)*sizeof(char*)); // create the place with +1 char to put the word into the list --> matrix 2dim
 				for(j=0 ; j<i ; j++)
 					*(listWord+i)=word[i]; // save the word ...
 				listWordRepetition=(char*)malloc(sizeof(char));

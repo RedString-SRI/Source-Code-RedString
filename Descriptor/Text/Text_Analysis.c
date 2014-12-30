@@ -20,7 +20,7 @@ void readWordbyWord(char path[]){
 	
 	while(c != EOF) { // while isn't the end of the file ...
 		c=fgetc(file);
-		if(IsInBeacons(c,file)) continue ; 
+		if(IsInBeacons(c,file)){ i=0 ; continue ;}
 		if(c=='\\'){i=0 ; continue;}
 		if(c=='/'){i=0 ; continue;}
 		if(c==' '){i=0 ; continue;}

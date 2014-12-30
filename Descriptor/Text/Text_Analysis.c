@@ -17,20 +17,27 @@ void readWordbyWord(char path[]){
 	char *listWordRepetition;
 	
 	FILE *file=fopen(path , 'r');
+	
 	while(c != EOF) { // while isn't the end of the file ...
 		c=fgetc(file);
 		if(IsInBeacons(c,file)) continue ; 
 		if(c=='\\'){i=0 ; continue;}
 		if(c=='/'){i=0 ; continue;}
-		// if c== is not a correct char ..etc
-		else if(c == 32) {// ==Space
+		if(c==' '){i=0 ; continue;}
+		i++;
+		
+		while(i<=3){
 			listWord=(char*)malloc(sizeof(char)); // add a place to put a word
-			listWord=(char**)malloc((i+1)*sizeof(char*)); // create the place with i char to put the word into the list --> matrix 2dim
-			for(j=0 ; j<i ; j++)
-				*(listWord+i)=word[i]; // save the word ...
-			listWordRepetition=(char*)malloc(sizeof(char));
-			listWordRepetition[i]++; // +1 for the existing word
-			i=0; // putting back at zero to start the save of a new word
+			if(i==4) listWord=(char**)malloc((i+1)*sizeof(char*)); // create the column only if the word>=4 chars
+			
+			if(c == ' ') { // A space
+				listWord=(char**)malloc(sizeof(char*)); // create the place with +1 char to put the word into the list --> matrix 2dim
+				for(j=0 ; j<i ; j++)
+					*(listWord+i)=word[i]; // save the word ...
+				listWordRepetition=(char*)malloc(sizeof(char));
+				listWordRepetition[i]++; // +1 for the existing word
+				i=0; // putting back at zero to start the save of a new word
+			}
 		}
 		else{
 			word[i]=c;
@@ -58,15 +65,6 @@ Bool isInBeacons (char word,  FILE f) {
 	else 
 		return FALSE ; 
 }
-//===================================================================================================
-Bool isWordRelevant (const char * word) {
-	int wordLenght ;
-	wordLenght = strlen(word) ; 
-	if (wordLenght < 3) 
-		return FALSE ;
-	else 
-		return TRUE ;
-}	
 //===================================================================================================
 //This function counts the number of appearances of a word in a text. 
 int wordAppearance (char * word) {

@@ -16,7 +16,7 @@ void readWordbyWord(char path[]){
 	char *listWord;
 	char *listWordRepetition;
 	
-	fopen(path , 'r');
+	FILE *file=fopen(path , 'r');
 	while(c != EOF) { // while isn't the end of the file ...
 		fgetc(file);
 		// if c == beacon ...etc

@@ -2,9 +2,10 @@
 
 int main(){
 	Stack s;
+	int a = 3;
 	initStack(&s);
 	printStack(s, 'i');
-	stack(&s, (void *)3);
+	stack(&s, a);
 	printStack(s, 'i');
 	return 0;
 }

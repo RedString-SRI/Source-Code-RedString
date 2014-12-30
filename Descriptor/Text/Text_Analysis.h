@@ -24,6 +24,10 @@ Bool isAWord (char * word) ;
 
 int endOfWord (char * word) ;
 
+//Supposed to print the word.
+void stockWord (const char * path) ; 
+
+
 //We also have to make a difference between a word and a beacon : a beacon is of the form "<beacon opening> word </beacon closing>  . 
 
 Bool isABeacon (char * word) ;

@@ -76,7 +76,7 @@ Bool writeFile(char const * path, char const * data);
  * \return TRUE : Reading is successful \n
  * FALSE : An error has occurred.
  */
-Bool readStruct(FILE* file, void ** wStruct, size_t structSize);
+Bool readStruct(FILE* file, void * wStruct, size_t structSize);
 
 /**
  * \brief Write a structure into a file
@@ -89,6 +89,6 @@ Bool readStruct(FILE* file, void ** wStruct, size_t structSize);
  * \return TRUE : Reading is successful \n
  * FALSE : An error has occurred.
  */
-Bool writeStruct(FILE* file, void ** rStruct, size_t structSize);
+Bool writeStruct(FILE* file, void * rStruct, size_t structSize);
 
 #endif

@@ -35,6 +35,18 @@ extern double globs_maxFrequency;
 SoundDescriptor * createSoundDesc(FILE* file);
 
 /**
+ * \brief Give the size (when written in a file) of the descriptor
+ *
+ * When written in a file with the function writeSoundDesc,
+ * the size of the sound descriptor could be different that
+ * his in-memory size. So this function returns the needed size
+ * to write it into a file. 
+ * \param desc The descriptor to have its size
+ * \return The in-file size of the descriptor
+ */
+int soundDescSize(SoundDescriptor const * desc);
+
+/**
  * \brief Print a sound descriptor in console
  * 
  * \param desc The descriptor to be displayed

@@ -12,6 +12,8 @@
 #include <errno.h>
 
 #include "Type_Bool.h"
+#include "Type_WritableGlobs.h"
+#include "Keyboard.h"
 
 #ifndef CONFIGURATOR
 #define CONFIGURATOR
@@ -31,22 +33,6 @@ extern double globs_maxFrequency;
 // PictureDescriptor
 extern int globs_nbWeightyBits;
 extern int globs_compTolerance;
-
-typedef struct{
-	// TextDescriptor
-	int textDesc_occurThreshold; // The minimum occurrences (in the indexed file) to store a word in a descriptor 
-	int textDesc_maxTerms; // The number of word to keep in the descriptor
-
-	// SoundDescriptor
-	int soundDesc_windowSize; // The sound signal will be split in x windows. So it is their size.
-	int soundDesc_nbInterval; // The number of intervals in a window.
-	double soundDesc_minFrequency; // The minimum frequency of a sound file
-	double soundDesc_maxFrequency; // The maxmimum frequency of a sound file
-				
-	// PictureDescriptor
-	int pictureDesc_nbWeightyBits; // The number of weighty bits to get on each pixel component
-	int pictureDesc_compTolerance;
-}WritableGlobs;
 
 /**
  * \brief Initialise the configurator module

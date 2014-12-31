@@ -26,7 +26,7 @@ Bool initConfigurator()
 	}
 	else
 	{
-		printf("\nFirst you need to configure indexing parameters...")
+		printf("\nFirst you need to configure indexing parameters...");
 		askGlobsVariables();
 		printf("\nIndexing parameters are now up-to-date");
 	}
@@ -37,24 +37,47 @@ Bool initConfigurator()
 void askGlobsVariables()
 {
 	WritableGlobs globs;
-	// BASIC INPUT TO SECURE
-	printf("\n\tText indexation :\n\t Tape the occurrence threshold for words : ");
-	scanf("%d", &globs->textDesc_occurThreshold);
-	printf("\tTape the maximum terms to keep for a file : ");
-	scanf("%d", &globs->textDesc_maxTerms);
-	printf("\n\tPicture indexation :\n\tTape the number of"
+	
+	printf("\n\tText indexation :\n\t Enter the occurrence threshold for words : ");
+	while(!getKeyboard_Long(&globs.textDesc_occurThreshold, 0, INT_MAX))
+		printf("Please enter a value between %d and %d", 0, INT_MAX);
+	//scanf("%d", &globs.textDesc_occurThreshold);
+	
+	printf("\tEnter the maximum terms to keep for a file : ");
+	while(!getKeyboard_Long(&globs.textDesc_maxTerms, 0, INT_MAX))
+		printf("Please enter a value between %d and %d", 0, INT_MAX);
+	//scanf("%d", &globs.textDesc_maxTerms);
+	
+	printf("\n\tPicture indexation :\n\tEnter the number of"
 		"Weighty bits to store for each pixel component : ");
-	scanf("%d", &globs->pictureDesc_nbWeightyBits);
-	printf("\tTape the comparison tolerance between two pixels : ");
-	scanf("%d", &globs->pictureDesc_compTolerance);
-	printf("\n\tSound indexation : \n\tTape the window Size : ");
-	scanf("%d", &globs->soundDesc_windowSize);
-	printf("\tTape the number of interval in a window : ");
-	scanf("%d", &globs->soundDesc_nbInterval);
-	printf("\tTape the minimum frequency: ");
-	scanf("%lf", &globs->soundDesc_minFrequency);
-	printf("\tTape the maximum frequency: ");
-	scanf("%lf", &globs->soundDesc_maxFrequency);
+	while(!getKeyboard_Long(&globs.pictureDesc_nbWeightyBits, 0, INT_MAX))
+		printf("Please enter a value between %d and %d", 0, INT_MAX);
+	//scanf("%d", &globs.pictureDesc_nbWeightyBits);
+	
+	printf("\tEnter the comparison tolerance between two pixels : ");
+	while(!getKeyboard_Long(&globs.pictureDesc_compTolerance, 0, INT_MAX))
+		printf("Please enter a value between %d and %d", 0, INT_MAX);
+	//scanf("%d", &globs.pictureDesc_compTolerance);
+	
+	printf("\n\tSound indexation : \n\tEnter the window Size : ");
+	while(!getKeyboard_Long(&globs.soundDesc_windowSize, 0, INT_MAX))
+		printf("Please enter a value between %d and %d", 0, INT_MAX);
+	//scanf("%d", &globs.soundDesc_windowSize);
+	
+	printf("\tEnter the number of interval in a window : ");
+	while(!getKeyboard_Long(&globs.soundDesc_nbInterval, 0, INT_MAX))
+		printf("Please enter a value between %d and %d", 0, INT_MAX);
+	//scanf("%d", &globs.soundDesc_nbInterval);
+	
+	printf("\tEnter the minimum frequency: ");
+	while(!getKeyboard_Double(&globs.soundDesc_minFrequency, DBL_MIN, DBL_MAX))
+		printf("Please enter a value between %d and %d", DBL_MIN, DBL_MAX);
+	//scanf("%lf", &globs.soundDesc_minFrequency);
+			
+	printf("\tEnter the maximum frequency: ");
+	while(!getKeyboard_Double(&globs.soundDesc_maxFrequency, globs.soundDesc_minFrequency, DBL_MAX))
+		printf("Please enter a value between %d and %d", globs.soundDesc_minFrequency, DBL_MAX);
+	//scanf("%lf", &globs.soundDesc_maxFrequency);
 
 	setGlobsVariables(&globs);
 }
@@ -74,14 +97,14 @@ void setGlobsVariables(WritableGlobs const * globs)
 //===================================================================================================
 Bool writeGlobs(WritableGlobs const * globs, FILE* confFile)
 {
-	if(writeStruct(confFile, &globs, sizeof(*globs)))
+	if(writeStruct(confFile, globs, sizeof(*globs)))
 	{
 /** Error Management **/
 		return FALSE;
 	}
 	
 	// Updating variables into global variables
-	setGlobsVariables(&globs);
+	setGlobsVariables(globs);
 	return TRUE;
 }
 //===================================================================================================
@@ -89,14 +112,14 @@ Bool readGlobs(FILE* confFile)
 {
 	WritableGlobs * globs = malloc(sizeof(*globs));
 
-	if(!readStruct(confFile, &globs, sizeof(*globs)))
+	if(!readStruct(confFile, globs, sizeof(*globs)))
 	{
 /** Error Management **/
 		return FALSE;
 	}
 	
 	// Updating variables into global variables
-	setGlobsVariables(&globs);
+	setGlobsVariables(globs);
 	
 	return TRUE;
 }

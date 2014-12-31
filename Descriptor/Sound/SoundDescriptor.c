@@ -119,6 +119,17 @@ SoundDescriptor * createSoundDesc(FILE* file)
 	return desc;
 }
 //===================================================================================================
+int soundDescSize(SoundDescriptor const * desc)
+{
+	int size = 0;
+	size += sizeof(desc->address);
+	size += sizeof(desc->nbWindows);
+	size += sizeof(int) * globs_nbInterval * (desc->nbWindows - 1);
+	size += sizeof(int *);
+	
+	return size;
+}
+//===================================================================================================
 void printSoundDesc(SoundDescriptor const * desc)
 {
 	int iInterval, iWindow, nbWindows = desc->nbWindows - 1;

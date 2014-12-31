@@ -33,7 +33,6 @@ int main()
 	else
 		printf("\n\t\tTests_printSoundDesc: Failure\n");
 
-	fflush(stdout);
 	hasPassed = tests_writeSoundDesc(FALSE);
 		if(hasPassed)
 		printf("\n\t\tTests_createDescriptor: Success\n");
@@ -131,7 +130,7 @@ Bool tests_writeSoundDesc(Bool details)
 	soundDesc->address = 666;
 	//printSoundDesc(soundDesc);
 	writeSoundDesc(testFile, soundDesc);
-	
+	//printf("Desc size %d", soundDescSize(soundDesc));
 	fseek(testFile, 0, SEEK_SET);
 	newSoundDesc = readSoundDesc(testFile);
 	//printSoundDesc(newSoundDesc);

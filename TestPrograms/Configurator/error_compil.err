@@ -1,0 +1,25 @@
+../../Configurator/Configurator.c: In function ‘askGlobsVariables’:
+../../Configurator/Configurator.c:42:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+In file included from ../../Configurator/Configurator.h:16:0,
+                 from ../../Configurator/Configurator.c:7:
+/home/rayope/SRI/FilRouge/Source-Code-RedString/Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
+../../Configurator/Configurator.c:47:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+In file included from ../../Configurator/Configurator.h:16:0,
+                 from ../../Configurator/Configurator.c:7:
+/home/rayope/SRI/FilRouge/Source-Code-RedString/Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
+../../Configurator/Configurator.c:53:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+In file included from ../../Configurator/Configurator.h:16:0,
+                 from ../../Configurator/Configurator.c:7:
+/home/rayope/SRI/FilRouge/Source-Code-RedString/Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
+../../Configurator/Configurator.c:58:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+In file included from ../../Configurator/Configurator.h:16:0,
+                 from ../../Configurator/Configurator.c:7:
+/home/rayope/SRI/FilRouge/Source-Code-RedString/Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
+../../Configurator/Configurator.c:63:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+In file included from ../../Configurator/Configurator.h:16:0,
+                 from ../../Configurator/Configurator.c:7:
+/home/rayope/SRI/FilRouge/Source-Code-RedString/Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
+../../Configurator/Configurator.c:68:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+In file included from ../../Configurator/Configurator.h:16:0,
+                 from ../../Configurator/Configurator.c:7:
+/home/rayope/SRI/FilRouge/Source-Code-RedString/Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’

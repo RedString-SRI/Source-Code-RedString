@@ -10,6 +10,8 @@
 #include <unistd.h> 
 #include <sys/time.h> 
 #include <errno.h>
+#include <limits.h>
+#include <float.h> // DBL_MAX
 
 #ifndef KEYBOARD
 #define KEYBOARD

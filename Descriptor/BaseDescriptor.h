@@ -1,11 +1,11 @@
 /**
- * \file BaseDescriptor.h
+ * \file BaseDesc.h
  * \brief A list of Descriptors
  * \author Maxime Sanmartin \n
  */
 
-#ifndef BASEDESCRIPTOR_H_INCLUDED
-#define BASEDESCRIPTOR_H_INCLUDED
+#ifndef BaseDesc_H_INCLUDED
+#define BaseDesc_H_INCLUDED
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,7 +16,7 @@
 #include "Sound/SoundDescriptor.h"
 #include "../Type_Bool.h"
 #include "Type_FileType.h"
-#include "Type_BaseDescriptor.h"
+#include "Type_BaseDesc.h"
 
 #ifndef BASE_DESCRIPTOR
 #define BASE_DESCRIPTOR
@@ -25,51 +25,51 @@
  * \brief begin a chained list of descriptors
  *
  * Initializes a list with a null pointer p
- * \param a BaseDescriptor's file type base to init the list
+ * \param a BaseDesc's file type base to init the list
  */
-void initList(BaseDescriptor * base);
+void initList(BaseDesc * base);
 
 /**
  * \brief Prints on the output every descriptor of the base
  *
  * Prints every elements of the list, just using this for debugging
- * \param a BaseDescriptor's file type to print
+ * \param a BaseDesc's file type to print
  */
-void printList(BaseDescriptor base);
+void printList(BaseDesc base);
 
 /**
  * \brief Checks if the the list is empty
  *
  * Return TRUE if the list is empty
- * \param a BaseDescriptor's file type to check
+ * \param a BaseDesc's file type to check
  */
-Bool listIsEmpty(BaseDescriptor base);
+Bool listIsEmpty(BaseDesc base);
 
 /**
  * \brief Add a descriptor into the base
  *
- * Add a descriptor at the end of the list and at the end of the file BaseDescriptor
- * \param a BaseDescriptor's file type update
- * \param a structDescriptor to add
+ * Add a descriptor at the end of the list and at the end of the file BaseDesc
+ * \param a BaseDesc's file type update
+ * \param a structDesc to add
  * \param a type for the descriptor
  */
-void addDescriptor(BaseDescriptor *base, void * structDescriptor, FileType type);
+void addDescriptor(BaseDesc *base, void * structDesc, FileType type);
 
 /**
- * \brief Initialize a BaseDescriptor from a file
+ * \brief Initialize a BaseDesc from a file
  *
- * Create a list with all of the descriptors from the file BaseDescriptor
+ * Create a list with all of the descriptors from the file BaseDesc
  * \param a fileType to choose
 */
-BaseDescriptor initBaseDescriptor(FileType fileType);
+BaseDesc initBaseDesc(FileType fileType);
 
 /**
- * \brief Initialize a ListBaseDescriptor from a file
+ * \brief Initialize a ListBaseDesc from a file
  *
  * Create an ordered list of file-descriptor-date structure
  * param a fileType to choose
 */
-ListeBaseDesc initListBaseDescriptor(FileType fileType);
+ListBaseDesc initListBaseDesc(FileType fileType);
 
 /**
  * \brief Add a new element in the listBaseDesc
@@ -88,15 +88,15 @@ void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength]
  * remove the last element from the base list
  * \param the base to update
 */
-void remove(BaseDescriptor * base);
+void remove(BaseDesc * base, FileType type);
 
 /**
- * \brief The user has to give elements to stack into the BaseDescriptor, only for debugging
+ * \brief The user has to give elements to stack into the BaseDesc, only for debugging
  *
  * add elements to the list from the input
  * \param the base to write
  * \param the type to choose
 */
-void writeList(BaseDescriptor * base, FileType type);
+void writeList(BaseDesc * base, FileType type);
 
-#endif // BASEDESCRIPTOR_H_INCLUDED
+#endif // BaseDesc_H_INCLUDED

@@ -8,9 +8,13 @@
 //-------------------------------------------------------------------------------------
 void printElement(void * e, char type){
 	switch(type){
-		case 's' : printf("%s", (char *)e);
+		case 's' : printf("%s\n", (char *)e);
 		break;
-		case 'i' : printf("%d", *((int *)e));
+		case 'i' : printf("%d\n", *((int *)e));
+		break;
+		case 'l' : printf("%ld\n", *((long *)e));
+		break;
+		// If you need other type, just add another case
 	}
 }
 
@@ -21,7 +25,7 @@ void initStack(Stack * s){
 
 //-------------------------------------------------------------------------------------
 void printStack(Stack s, char type){
-	if(s == NULL)
+	if(stackIsEmpty(s))
 		/** Error **/;
 	else{
         Stack saux = s;

@@ -29,7 +29,7 @@ void writeList(BaseDescriptor * base, FileType type);
 Dimension getSizePicture(FILE *fileIMG);                                                OK
 PictureDescriptor createPictureDescriptor(FILE *fileIMG);                               OK                        
 void createHistogram(int bit[] , Dimension dim);                                        OK
-void printHistogram(FILE *descriptIMG);                                                 X ERROR
+void printHistogram(FILE *descriptIMG);                                                 OK
 
                             IN BASE DESCRIPTOR SOUND:
                             

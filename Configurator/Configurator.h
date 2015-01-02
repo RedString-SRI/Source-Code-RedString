@@ -45,9 +45,15 @@ extern int globs_compTolerance;
 Bool initConfigurator();
 
 /**
- * \brief Ask the user to tape in configuration variables and set them straight after
+ * \brief Ask the user to tape in configuration variables and set & save them straight after
+ * 
+ * \param confFile The configurator file. Cursor at the begining.
+ * Needs to be opened in writing mode
+ * \return TRUE : Variables have been set and saved correctly \n
+ * FALSE : An error has occurred, variables can't be saved in a
+ * configuration file
  */
-void askGlobsVariables();
+Bool enterGlobsVariables(FILE* confFile);
 
 /**
  * \brief Initialise global variables

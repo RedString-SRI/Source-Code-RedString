@@ -15,8 +15,8 @@ int getKeyboard_Long(long * typedLong, long min, long max)
 	
 	*typedLong = 0;	// If errors occur, it will be that value
 	
-	switch(getKeyboard_String(strLong, 1, LONG_MAX_STRLEN))
-	{
+	switch(getKeyboard_String(strLong, 1, LONG_MAX_STRLEN + 1))	// +1 for '\n' of
+	{								// getKeyboard_String
 		case 1:
 			break;
 		
@@ -55,8 +55,8 @@ int getKeyboard_Double(double * typedDouble, double min, double max)
 	
 	*typedDouble = 0;	// If errors occur, it will be that value
 	
-	switch(getKeyboard_String(strDouble, 1, DBL_MAX_STRLEN))
-	{
+	switch(getKeyboard_String(strDouble, 1, DBL_MAX_STRLEN + 1))	// +1 for '\n' of
+	{								// getKeyboard_String
 		case 1:
 			break;
 		

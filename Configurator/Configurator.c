@@ -9,77 +9,85 @@
 //===================================================================================================
 Bool initConfigurator()
 {
-	FILE* confFile = fopen(CONF_FILE_NAME, "wb+");
+	FILE* confFile = fopen(CONF_FILE_NAME, "rb");
 	if(confFile == NULL)
 	{
 		perror("initConfigurator fopen confFile");
 		return FALSE;
 	}
+	
 	// If it fits the size of an WritableGlobs, we'll consider it well written
-	if(fileSize(CONF_FILE_NAME) == sizeof(WritableGlobs))
+	if(fileSize(confFile) == sizeof(WritableGlobs))
 	{
-// May be doable in a log file
 		if(readGlobs(confFile))
 			printf("\nConfiguration variables loaded successfully.");
 		else
-/** Error Management **/;
+		{
+			printf("\nAn error has occurred when loading the configuration file");
+			return FALSE;
+		}
 	}
 	else
 	{
+		fclose (confFile);
+		// Open the configurator file in writing mode
+		confFile = fopen(CONF_FILE_NAME, "wb+");
+		if(confFile == NULL)
+		{
+			perror("initConfigurator fopen confFile");
+			return FALSE;
+		}
+		
 		printf("\nFirst you need to configure indexing parameters...");
-		askGlobsVariables();
+		if(!enterGlobsVariables(confFile))
+			printf("\nAn error has occurred while saving the configuration file");
+		
 		printf("\nIndexing parameters are now up-to-date");
 	}
 	
 	fclose(confFile);
+	return TRUE;
 }
 //===================================================================================================
-void askGlobsVariables()
+Bool enterGlobsVariables(FILE* confFile)
 {
 	WritableGlobs globs;
 	
 	printf("\n\tText indexation :\n\t Enter the occurrence threshold for words : ");
-	while(!getKeyboard_Long(&globs.textDesc_occurThreshold, 0, INT_MAX))
-		printf("Please enter a value between %d and %d", 0, INT_MAX);
-	//scanf("%d", &globs.textDesc_occurThreshold);
+	while(getKeyboard_Long(&globs.textDesc_occurThreshold, 0, INT_MAX) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
 	printf("\tEnter the maximum terms to keep for a file : ");
-	while(!getKeyboard_Long(&globs.textDesc_maxTerms, 0, INT_MAX))
-		printf("Please enter a value between %d and %d", 0, INT_MAX);
-	//scanf("%d", &globs.textDesc_maxTerms);
+	while(getKeyboard_Long(&globs.textDesc_maxTerms, 0, INT_MAX) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
-	printf("\n\tPicture indexation :\n\tEnter the number of"
-		"Weighty bits to store for each pixel component : ");
-	while(!getKeyboard_Long(&globs.pictureDesc_nbWeightyBits, 0, INT_MAX))
-		printf("Please enter a value between %d and %d", 0, INT_MAX);
-	//scanf("%d", &globs.pictureDesc_nbWeightyBits);
+	printf("\n\tPicture indexation :\n\tEnter the number of "
+		"weighty bits to store for each pixel component : ");
+	while(getKeyboard_Long(&globs.pictureDesc_nbWeightyBits, 0, INT_MAX) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
 	printf("\tEnter the comparison tolerance between two pixels : ");
-	while(!getKeyboard_Long(&globs.pictureDesc_compTolerance, 0, INT_MAX))
-		printf("Please enter a value between %d and %d", 0, INT_MAX);
-	//scanf("%d", &globs.pictureDesc_compTolerance);
+	while(getKeyboard_Long(&globs.pictureDesc_compTolerance, 0, INT_MAX) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
 	printf("\n\tSound indexation : \n\tEnter the window Size : ");
-	while(!getKeyboard_Long(&globs.soundDesc_windowSize, 0, INT_MAX))
-		printf("Please enter a value between %d and %d", 0, INT_MAX);
-	//scanf("%d", &globs.soundDesc_windowSize);
+	while(getKeyboard_Long(&globs.soundDesc_windowSize, 0, INT_MAX) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
 	printf("\tEnter the number of interval in a window : ");
-	while(!getKeyboard_Long(&globs.soundDesc_nbInterval, 0, INT_MAX))
-		printf("Please enter a value between %d and %d", 0, INT_MAX);
-	//scanf("%d", &globs.soundDesc_nbInterval);
+	while(getKeyboard_Long(&globs.soundDesc_nbInterval, 0, INT_MAX) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
 	printf("\tEnter the minimum frequency: ");
-	while(!getKeyboard_Double(&globs.soundDesc_minFrequency, DBL_MIN, DBL_MAX))
-		printf("Please enter a value between %d and %d", DBL_MIN, DBL_MAX);
-	//scanf("%lf", &globs.soundDesc_minFrequency);
+	while(getKeyboard_Double(&globs.soundDesc_minFrequency, -DBL_MAX, DBL_MAX) != 1)
+		printf("\t\tPlease enter a value between %f and %f: ", -DBL_MAX, DBL_MAX);
 			
 	printf("\tEnter the maximum frequency: ");
-	while(!getKeyboard_Double(&globs.soundDesc_maxFrequency, globs.soundDesc_minFrequency, DBL_MAX))
-		printf("Please enter a value between %d and %d", globs.soundDesc_minFrequency, DBL_MAX);
-	//scanf("%lf", &globs.soundDesc_maxFrequency);
+	while(getKeyboard_Double(&globs.soundDesc_maxFrequency, globs.soundDesc_minFrequency, DBL_MAX) != 1
+		|| globs.soundDesc_maxFrequency == globs.soundDesc_minFrequency)
+		printf("\t\tPlease enter a value between %f (excluded) and %f: ", globs.soundDesc_minFrequency, DBL_MAX);
 
-	setGlobsVariables(&globs);
+	return writeGlobs(&globs, confFile);
 }
 //===================================================================================================
 void setGlobsVariables(WritableGlobs const * globs)
@@ -97,7 +105,7 @@ void setGlobsVariables(WritableGlobs const * globs)
 //===================================================================================================
 Bool writeGlobs(WritableGlobs const * globs, FILE* confFile)
 {
-	if(writeStruct(confFile, globs, sizeof(*globs)))
+	if(!writeStruct(confFile, globs, sizeof(*globs)))
 	{
 /** Error Management **/
 		return FALSE;

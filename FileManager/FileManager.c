@@ -160,9 +160,7 @@ Bool writeFile(char const * path, char const * data)
 		if(fputs(data, file) != EOF)
 			saved = TRUE;
 		else
-		{
 			perror("Error saveFile_fputs");
-		}
 		fclose(file);
 	}
 	else

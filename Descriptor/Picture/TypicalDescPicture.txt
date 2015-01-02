@@ -1,9 +1,4 @@
-name file
-ID file
-path file
-path text associated picture file
-path descriptor file
-
+ID
 size picture 200 200
 Array histogram percentage
 

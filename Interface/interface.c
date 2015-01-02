@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 void IndexationMenu();
 void ResearchMenu();
 void mainMenu();
 void clearBuffer();
+
 //========================================================
 void clearBuffer() {
     int c = 0;

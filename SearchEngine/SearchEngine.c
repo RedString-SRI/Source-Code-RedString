@@ -33,7 +33,8 @@ void byColor(char color[]){
   		}
     }
   }
-  // print list
+  
+  //+=========================+ print list
   printf("+=========================+\n");
   for(i=1 ; i<=size ; i++)
     printf("%2i : %20s --> %.2f\n" , i , path , orderPercentage[i] );

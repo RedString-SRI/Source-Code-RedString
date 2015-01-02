@@ -1,20 +1,26 @@
 Bool isAChar (char word) {
+printf("FONCTION 1:\n");
 	int i = 0 ; 
 	if( (word[0])>=65 && word[0]<=90) || (word[0])>=97 && word[0]<=122) || (word[0])>=97 && word[0]<=122)
 			return TRUE ;
+			printf("true\n");
 		else 
 			return FALSE ; 
+			printf("false\n");
 } 
 //===================================================================================================
 Bool isInBeacons (char word,  FILE f) {
+printf("FONCTION 1:\n");
 	int k=word; 
 	if (k == '<') {
 		while(k!='>')
-			k = fgetc(f) ; 
+			{ k = fgetc(f) ; printf("%c " , k);
+		printf("true\n");
 		return TRUE;
+		
 	}
 	else 
-		return FALSE ; 
+		{return FALSE ; printf("false\n"); }
 }
 //====================================================================================================
 int textNbchar(const char * path) 

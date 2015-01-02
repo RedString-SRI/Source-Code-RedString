@@ -7,44 +7,50 @@
 #include <string.h>
 #include "Type_Bool.h" 
 #include "text_analysis.h" 
-
-void readWordbyWord(char path[]){
+void readWordbyWord(const char * path){
 	int i=0;
 	int j;
 	char c;
 	char word[50];
 	char *listWord;
 	char *listWordRepetition;
-	
-	FILE *file=fopen(path , 'r');
-	
-	while(c != EOF) { // while isn't the end of the file ...
-		c=fgetc(file);
-		if(IsInBeacons(c,file)){ i=0 ; continue ;}
+	FILE *text=fopen(path , "r");
+	while(c != EOF) 
+	{ // while isn't the end of the file ...
+		c=fgetc(text);
+		if(isInBeacons(path,c)){ i=0 ; continue ;}
 		if(c=='\\'){i=0 ; continue;}
 		if(c=='/'){i=0 ; continue;}
 		if(c==' '){i=0 ; continue;}
 		i++;
-		
-		while(i>3){
+		while(i>3)
+		  {
 			listWord=(char*)malloc(sizeof(char)); // add a place to put a word
-		
-			if(c == ' ') { // A space
+			if(c == ' ') 
+			{ // A space
 				listWord=(char**)malloc((i+1)*sizeof(char*)); // create the place with +1 char to put the word into the list --> matrix 2dim
-				for(j=0 ; j<i ; j++)
-					*(listWord+i)=word[i]; // save the word ...
+				for(j=0 ; j<i ; j++) 
+				{
+				*(listWord+i)=word[i]; // save the word ...
 				listWordRepetition=(char*)malloc(sizeof(char));
 				listWordRepetition[i]++; // +1 for the existing word
 				i=0; // putting back at zero to start the save of a new word
+				}
 			}
-			else{
+			else
+			{
 				word[i]=c;
 				i++;
 			}
+
 		}
 	}
-	fclose(file);
+	
+fclose(text);
 }
+
+
+
 //===================================================================================================
 Bool isAChar (char word) {
 	int i = 0 ; 
@@ -54,16 +60,19 @@ Bool isAChar (char word) {
 			return FALSE ; 
 } 
 //===================================================================================================
-Bool isInBeacons (char word,  FILE f) {
-	int k=word; 
-	if (k == '<') {
+Bool isInBeacons (const char * path, char word) {
+	FILE * text = fopen(path,"r") ;
+	int k=word;
+	if (k == '<')
+	 {
 		while(k!='>')
-			k = fgetc(f) ; 
+		k = fgetc(text) ;
 		return TRUE;
 	}
-	else 
-		return FALSE ; 
-}
+	else
+		{ return FALSE ; }
+	fclose(text) ; 
+} 
 //====================================================================================================
 int textNbchar(const char * path) 
 	{ 	int nb_char = 0 ; 
@@ -74,21 +83,6 @@ int textNbchar(const char * path)
 		fclose(text) ; 
 	}
 //===================================================================================================================
-void stockWord (const char path) { 
-	int tmpc = 0 ; 
-	int i = 0 ; 
-	char word[50] ; 
-	FILE *text = fopen(path,"r") ; 
-	 
-	do{
-		tmpc = fgetc(text) ;
-            	word[i] = tmpc ; 
-		printf("%c" , word[i]) ; 
-            	i++ ; 
-        } 
-        while (tmpc != ' ') ; // On continue tant que fgetc n'a pas retourné un espace (fin de mot)
-	fclose(text) ; 
- }
  //==================================================================================================================
 int textNbchar(const char * path) {
 	int nb_char = 0 ; 

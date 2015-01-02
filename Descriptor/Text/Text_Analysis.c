@@ -83,6 +83,11 @@ int textNbchar(const char * path)
 		fclose(text) ; 
 	}
 //===================================================================================================================
+void termDetails (Term term) {
+	printf ("The word is : %s\n" , term.word) ;
+	printf ("The number of appearances is : %d\n" , term.occur) ; 
+} 
+
  //==================================================================================================================
 int textNbchar(const char * path) {
 	int nb_char = 0 ; 
@@ -105,16 +110,19 @@ Bool indexIsEmpty (Index i) {
 		return FALSE ; 
 }
 //===================================================================================================================
-void initTerm (Term t) {
-	t.word = NULL ; 
-	t.occur = 0 ; 
-	t.ptr_next = NULL ; 
+void initTerm (Term * term) {
+	term -> word = NULL ; 
+	term -> occur = 0 ; 
+	term -> ptr_next = NULL ; 
+	printf ("term initialized\n") ; 
 }
+
 //==================================================================================================================
-void createTerm (Term t , char w) {
-	initTerm (t) ; 
-	t.word = w ; 
-	t.occur++ ; 
+void createTerm (Term * term , char * w) {
+	initTerm (term) ; 
+	term -> word = w ; 
+	term -> occur++ ;
+	printf ("Term created\n") ; 
 }
 
 //==================================================================================================================
@@ -184,7 +192,4 @@ void addOccurences (Index * i , Term t) {
 	}
 } 	
 /*==================================================================================================================	
-int main () {
-	printf ("%d\n" , text_nbchar("/home/mahenina/FIL_ROUGE/Test")) ;
-} 
-*/
+

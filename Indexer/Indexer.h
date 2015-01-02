@@ -12,8 +12,8 @@
 
 
 #include "Type_FileType.h"
-#include "Type_BaseDescriptor.h"
-#include "SoundDescriptor.h"
+#include "Type_BaseDesc.h"
+#include "SoundDesc.h"
 
 #ifndef INDEXER
 #define INDEXER

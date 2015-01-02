@@ -1,13 +1,19 @@
+In file included from ../../Indexer/Indexer.h:15:0,
+                 from ../../Indexer/Indexer.c:7:
+/home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor/Type_BaseDescriptor.h:31:15: error: ‘globs_maxPathLength’ undeclared here (not in a function)
 ../../Indexer/Indexer.c: In function ‘indexation’:
-../../Indexer/Indexer.c:73:3: warning: passing argument 1 of ‘updateIndexableFile’ discards ‘const’ qualifier from pointer target type [enabled by default]
+../../Indexer/Indexer.c:76:3: warning: passing argument 1 of ‘updateIndexableFile’ discards ‘const’ qualifier from pointer target type [enabled by default]
 In file included from ../../Indexer/Indexer.c:7:0:
 ../../Indexer/Indexer.h:38:6: note: expected ‘char *’ but argument is of type ‘const char *’
 ../../Indexer/Indexer.c: In function ‘indexFiles’:
-../../Indexer/Indexer.c:128:28: warning: initialization makes pointer from integer without a cast [enabled by default]
-../../Indexer/Indexer.c:129:31: warning: initialization makes pointer from integer without a cast [enabled by default]
-../../Indexer/Indexer.c:138:15: warning: assignment from incompatible pointer type [enabled by default]
-../../Indexer/Indexer.c:142:15: warning: assignment from incompatible pointer type [enabled by default]
-../../Indexer/Indexer.c:146:15: warning: assignment from incompatible pointer type [enabled by default]
-../../Indexer/Indexer.c:151:20: warning: assignment makes pointer from integer without a cast [enabled by default]
-../../Indexer/Indexer.c:159:54: warning: dereferencing ‘void *’ pointer [enabled by default]
-../../Indexer/Indexer.c:159:54: error: request for member ‘address’ in something not a structure or union
+../../Indexer/Indexer.c:131:28: warning: initialization makes pointer from integer without a cast [enabled by default]
+../../Indexer/Indexer.c:132:31: warning: initialization makes pointer from integer without a cast [enabled by default]
+../../Indexer/Indexer.c:141:15: warning: assignment from incompatible pointer type [enabled by default]
+../../Indexer/Indexer.c:145:15: warning: assignment from incompatible pointer type [enabled by default]
+../../Indexer/Indexer.c:149:15: warning: assignment from incompatible pointer type [enabled by default]
+../../Indexer/Indexer.c:154:20: warning: assignment makes pointer from integer without a cast [enabled by default]
+../../Indexer/Indexer.c:162:54: warning: dereferencing ‘void *’ pointer [enabled by default]
+../../Indexer/Indexer.c:162:54: error: request for member ‘address’ in something not a structure or union
+In file included from /home/rayope/SRI/FilRouge/Source-Code-RedString/Indexer/Indexer.h:15:0,
+                 from Tester_Indexer.c:9:
+/home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor/Type_BaseDescriptor.h:31:15: error: ‘globs_maxPathLength’ undeclared here (not in a function)

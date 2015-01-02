@@ -1,5 +1,5 @@
 /**
- * \file Type_TextDescriptor.h
+ * \file Type_TextDesc.h
  * \brief 
  * \author 
  * \date 
@@ -8,11 +8,11 @@
 #include "Type_WritingMode.h"
 #include "Type_Term.h"
 
-#ifndef TYPE_TEXTDESCRIPTOR
-#define TYPE_TEXTDESCRIPTOR
+#ifndef TYPE_TEXTDesc
+#define TYPE_TEXTDesc
 
 /**
- * \struct TextDescriptor
+ * \struct TextDesc
  * \brief 
  *
  * This type is used to ...
@@ -23,6 +23,6 @@ typedef struct{
 	Term *terms;
 	int nbTerms;
 	int nbWords;
-}TextDescriptor;
+}TextDesc;
 
 #endif

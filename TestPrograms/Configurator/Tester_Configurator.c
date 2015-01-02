@@ -8,17 +8,17 @@
 #include "Type_Bool.h"
 
 
-// TextDescriptor
+// TextDesc
 extern int globs_occurThreshold;
 extern int globs_maxTerms;
 
-// SoundDescriptor
+// SoundDesc
 extern int globs_windowSize;
 extern int globs_nbInterval;
 extern double globs_minFrequency;
 extern double globs_maxFrequency;
 
-// PictureDescriptor
+// PictureDesc
 extern int globs_nbWeightyBits;
 extern int globs_compTolerance;
 

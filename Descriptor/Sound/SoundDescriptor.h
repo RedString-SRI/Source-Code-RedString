@@ -1,78 +1,78 @@
 /**
- * \file SoundDescriptor.h
- * \brief Sound descriptor manager
+ * \file SoundDesc.h
+ * \brief Sound desc manager
  * \author Morgan Chabaud
  * \date 25 november 2014
  * 
- * This file declares all functions available for sound descriptors.
+ * This file declares all functions available for sound descs.
  */
 
-#include "Type_SoundDescriptor.h"
+#include "Type_SoundDesc.h"
 #include "FileManager.h"
 
 
-#ifndef SOUND_DESCRIPTOR
-#define SOUND_DESCRIPTOR
+#ifndef SOUND_Desc
+#define SOUND_Desc
 
 #define SIZEDOUBLE 8
 
-// SoundDescriptor
+// SoundDesc
 extern int globs_windowSize;
 extern int globs_nbInterval; 
 extern double globs_minFrequency; 
 extern double globs_maxFrequency; 
 
 /**
- * \brief Create a sound descriptor
+ * \brief Create a sound desc
  * 
  * Given a file with a pointer at the begining, this function
- * returns a SoundDescriptor. This descriptor contains a
+ * returns a SoundDesc. This desc contains a
  * histogram resulting from a quantification of values described
  * in the sound file.
- * \param file The file descriptor pointing at the begining of
+ * \param file The file desc pointing at the begining of
  * the sound file
  */
-SoundDescriptor * createSoundDesc(FILE* file);
+SoundDesc * createSoundDesc(FILE* file);
 
 /**
- * \brief Give the size (when written in a file) of the descriptor
+ * \brief Give the size (when written in a file) of the desc
  *
  * When written in a file with the function writeSoundDesc,
- * the size of the sound descriptor could be different that
+ * the size of the sound desc could be different that
  * his in-memory size. So this function returns the needed size
  * to write it into a file. 
- * \param desc The descriptor to have its size
- * \return The in-file size of the descriptor
+ * \param desc The desc to have its size
+ * \return The in-file size of the desc
  */
-int soundDescSize(SoundDescriptor const * desc);
+int soundDescSize(SoundDesc const * desc);
 
 /**
- * \brief Print a sound descriptor in console
+ * \brief Print a sound desc in console
  * 
- * \param desc The descriptor to be displayed
+ * \param desc The desc to be displayed
  */
-void printSoundDesc(SoundDescriptor const * desc);
+void printSoundDesc(SoundDesc const * desc);
 
 /**
- * \brief Write a sound descriptor to a file
+ * \brief Write a sound desc to a file
  * 
  * Write desc to file (at the current position), so file
  * needs to be opened in the approriate writing mode
  * \param file The file you want to be written
- * \param desc The descriptor which is going to be
+ * \param desc The desc which is going to be
  * appended to the file
  */
-void writeSoundDesc(FILE* file, SoundDescriptor* desc);
+void writeSoundDesc(FILE* file, SoundDesc* desc);
 
 /**
- * \brief Read a sound descriptor from a file
+ * \brief Read a sound desc from a file
  * 
- * Read a sound descriptor from a file (at the current position)
+ * Read a sound desc from a file (at the current position)
  * and returns it, so the file needs to be opened in
  * the approriate reading mode
  * \param file The file you want to be read
- * \return The descriptor which is going to store the read one
+ * \return The desc which is going to store the read one
  */
-SoundDescriptor * readSoundDesc(FILE* file);
+SoundDesc * readSoundDesc(FILE* file);
 #endif
 

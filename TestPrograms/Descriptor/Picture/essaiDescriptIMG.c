@@ -14,7 +14,7 @@ typedef struct{
   int nbcomp ; /*d is the picture's number of components*/
   int *histogram; // Will be an array of size : 2^(d*n)
 
-}PictureDescriptor;
+}PictureDesc;
 //
 //
 //
@@ -23,7 +23,7 @@ int globs_nbWeightyBits=2; ///*USE A WRONG VARIABLE GLOBALE*/
 //
 //
 Dimension getSizePicture(FILE *fileIMG);
-void createPictureDescriptor(char path[]);
+void createPictureDesc(char path[]);
 void createHistogram(FILE *file ,int bit[] , Dimension dim , int size);
 void printHistogram(char path[]);
 //===================================================================================================
@@ -31,9 +31,9 @@ void printHistogram(char path[]);
 //===================================================================================================
 int main()
 {
-   ///* CreateDescriptor manage getSizeDimension& createHistogramm
+   ///* CreateDesc manage getSizeDimension& createHistogramm
    char file[50]="fileTEST.txt";
-   createPictureDescriptor(file); // during this function, concatanation : Test.txt -> descriptTest.txt
+   createPictureDesc(file); // during this function, concatanation : Test.txt -> descriptTest.txt
    printHistogram(file); // So, histogram of the descript
 
     return 0;
@@ -51,7 +51,7 @@ Dimension getSizePicture(FILE *fileIMG) {
    return dim;
 }
 //===================================================================================================
-void createPictureDescriptor(char path[]){
+void createPictureDesc(char path[]){
    int quantif = globs_nbWeightyBits;
    Dimension size;
    int *matrix ;

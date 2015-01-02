@@ -1,14 +1,14 @@
 /**
- * \file TextDescriptor.h
+ * \file TextDesc.h
  * \brief
  * \author
  * \date 
  *
  */
 
-#include "Type_TextDescriptor.h"
+#include "Type_TextDesc.h"
 
-#ifndef TEXTDESCRIPTOR
-#define TEXTDESCRIPTOR
+#ifndef TEXTDesc
+#define TEXTDesc
 
 #endif

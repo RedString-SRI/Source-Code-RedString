@@ -1,22 +1,22 @@
 /**
- * \file BaseDescriptor.c
- * \brief A list of Descriptors
+ * \file BaseDesc.c
+ * \brief A list of descs
  * \author Maxime Sanmartin \n
  */
 
-#include "BaseDescriptor.h"
+#include "BaseDesc.h"
 
-void initList(BaseDescriptor * base){
+void initList(BaseDesc * base){
     *base = NULL;
 }
 
 //===================================================================================================
-void printList(BaseDescriptor base){
+void printList(BaseDesc base){
     // If the list is empty
     if(listIsEmpty(base))
         /** Error **/
     else{
-        BaseDescriptor ptr_p = base;
+        BaseDesc ptr_p = base;
         // We are using the pointer to travel few every element of the list until the last one
         while(ptr_p!=NULL){
             printElement(*(ptr_p->element));
@@ -26,18 +26,18 @@ void printList(BaseDescriptor base){
 }
 
 //===================================================================================================
-Bool listIsEmpty(BaseDescriptor base){
+Bool listIsEmpty(BaseDesc base){
     return(base==NULL);
 }
 
 //===================================================================================================
-void addDescriptor(BaseDescriptor *base, void * structDescriptor, FileType type){
-	BaseDescriptor ptr_add = (BaseDescriptor) malloc(sizeof(struct Descriptor));    
-	ptr_add->element = structDescriptor;
+void addDesc(BaseDesc *base, void * structDesc, FileType type){
+	BaseDesc ptr_add = (BaseDesc) malloc(sizeof(struct desc));    
+	ptr_add->element = structDesc;
 	if(listIsEmpty(*base))
         *base = ptr_add;
     else{
-        BaseDescriptor ptr_p = *base;
+        BaseDesc ptr_p = *base;
 		// We will go to the last element of the chained list to add next to it the new element
         do{
             if(ptr_p->next == NULL)
@@ -46,17 +46,17 @@ void addDescriptor(BaseDescriptor *base, void * structDescriptor, FileType type)
         }while(ptr_p != NULL);
         ptr_p->next = ptr_add;
     }
-    // DO THE SAME ON THE FILE BASEDESCRIPTOR
+    // DO THE SAME ON THE FILE BASEDesc
 	FILE * fileAdd;
 	switch(type){
-		case TEXT: TextDescriptor * desc = (TextDescriptor*)structDescriptor;
-			fileAdd = fopen("TextBaseDescriptor", "a");
+		case TEXT: TextDesc * desc = (TextDesc*)structDesc;
+			fileAdd = fopen("TextBaseDesc", "a");
         break;
-        case PICTURE: PictureDescriptor * desc = (PictureDescriptor*)structDescriptor;
-			fileAdd = fopen("PictureBaseDescriptor", "a");
+        case PICTURE: PictureDesc * desc = (PictureDesc*)structDesc;
+			fileAdd = fopen("PictureBaseDesc", "a");
         break;
-        case SOUND: SoundDescriptor * desc = (SoundDescriptor*)structDescriptor;
-			fileAdd = fopen("SoundBaseDescriptor", "a");
+        case SOUND: SoundDesc * desc = (SoundDesc*)structDesc;
+			fileAdd = fopen("SoundBaseDesc", "a");
         break; 
 	}
 	writeFile(fileAdd, desc);
@@ -64,23 +64,23 @@ void addDescriptor(BaseDescriptor *base, void * structDescriptor, FileType type)
 }
 
 //===================================================================================================
-BaseDescriptor initBaseDescriptor(FileType fileType){
-	BaseDescriptor newBase;
-	char * fileDescriptor;
+BaseDesc initBaseDesc(FileType fileType){
+	BaseDesc newBase;
+	char * fileDesc;
 	switch(fileType){
-		case TEXT: fileDescriptor = "TextBaseDescriptor";
+		case TEXT: fileDesc = "TextBaseDesc";
         break;
-        case PICTURE: fileDescriptor = "PictureBaseDescriptor";
+        case PICTURE: fileDesc = "PictureBaseDesc";
         break;
-        case SOUND: fileDescriptor = "SoundBaseDescriptor";
+        case SOUND: fileDesc = "SoundBaseDesc";
         break;
 	}
-	FILE * baseDesc = fopen(fileDescriptor, "r");
-	void * structDescriptor;
-	BaseDescriptor ptr_p;
-	while(structDescriptor = readFile(baseDesc)){
-		BaseDescriptor ptr_add = (BaseDescriptor) malloc(sizeof(struct Descriptor));    
-		ptr_add->element = structDescriptor;
+	FILE * baseDesc = fopen(fileDesc, "r");
+	void * structDesc;
+	BaseDesc ptr_p;
+	while(structDesc = readFile(baseDesc)){
+		BaseDesc ptr_add = (BaseDesc) malloc(sizeof(struct desc));    
+		ptr_add->element = structDesc;
 		if(listIsEmpty(newBase)){
 		    newBase = ptr_add;
 			ptr_p = newBase;
@@ -95,17 +95,17 @@ BaseDescriptor initBaseDescriptor(FileType fileType){
 }
 
 //===================================================================================================
-ListeBaseDesc initListBaseDescriptor(FileType fileType){
-	char * fileDescriptor;	
+ListeBaseDesc initListBaseDesc(FileType fileType){
+	char * fileDesc;	
 	switch(fileType){
-		case TEXT: fileDescriptor = "TextListBaseDescriptor";
+		case TEXT: fileDesc = "TextListBaseDesc";
         break;
-        case PICTURE: fileDescriptor = "PictureListBaseDescriptor";
+        case PICTURE: fileDesc = "PictureListBaseDesc";
         break;
-        case SOUND: fileDescriptor = "SoundListBaseDescriptor";
+        case SOUND: fileDesc = "SoundListBaseDesc";
         break;
 	}
-	FILE * fileList = fopen(fileDescriptor, "r");
+	FILE * fileList = fopen(fileDesc, "r");
 	if(fileList == NULL)
 		/** Error **/;
 	else{
@@ -122,7 +122,7 @@ ListeBaseDesc initListBaseDescriptor(FileType fileType){
 
 //===================================================================================================
 void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength], long address, int date){
-	BaseDescriptor ptr_add = (BaseDescriptor) malloc(sizeof(struct FileDescriptor));
+	BaseDesc ptr_add = (BaseDesc) malloc(sizeof(struct FileDesc));
 	ptr_add->path = path;
 	ptr_add->address = address;
 	ptr_add->date = date;
@@ -133,8 +133,8 @@ void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength]
 	else{
 		// We create two traveler pointers, one which check the address with the one from the new element : ptr_pres, 
 		// and another to do again chaining : ptr_prev
-		BaseDescriptor ptr_prev = *base;
-		BaseDescriptor ptr_pres = *base;
+		BaseDesc ptr_prev = *base;
+		BaseDesc ptr_pres = *base;
 		while(ptr_pres != NULL){
 			if(ptr_pres->address > address){
 				ptr_add->next = ptr_pres;
@@ -151,15 +151,15 @@ void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength]
 		if(ptr_pres == NULL)
 			ptr_prev->next = ptr_add;
 	}
-	//DO THE SAME ON THE FILE LISTBASEDESCRIPTOR
+	//DO THE SAME ON THE FILE LISTBASEDesc
 }
 
 //===================================================================================================
-void remove(DescriptorBase * p){
+void remove(DescBase * p){
     if(listIsEmpty(*p))
         /** error **/;
     else{
-        BaseDescriptor ptr_p = *base;
+        BaseDesc ptr_p = *base;
         do{
             if(ptr_p->next == NULL)
                 break;
@@ -167,23 +167,23 @@ void remove(DescriptorBase * p){
         }while(ptr_p != NULL);
         free(ptr_p->next)
     }
-    // DO THE SAME ON THE FILE BASEDESCRIPTOR
+    // DO THE SAME ON THE FILE BASEDesc
 }
 
 //===================================================================================================
-void writeList(DescriptorBase * p, fileType t){
+void writeList(DescBase * p, fileType t){
     switch(t){
-        case TEXT: ptr_p = TextDescriptor e;
+        case TEXT: ptr_p = TextDesc e;
         break;
-        case PICTURE: ptr_p = PictureDescriptor e;
+        case PICTURE: ptr_p = PictureDesc e;
         break;
-        case SOUND: ptr_p = SoundDescriptor e;
+        case SOUND: ptr_p = SoundDesc e;
         break;
     }
     char choice = 0;
     do{
-        addDescriptor(p, writeElement(&e), t)
-        printf("Do you want to add another descriptor (Y,N)?\n");
+        addDesc(p, writeElement(&e), t)
+        printf("Do you want to add another desc (Y,N)?\n");
         scanf("%s", &choice);
     }while(choice != "n" && choice != "N");
 }

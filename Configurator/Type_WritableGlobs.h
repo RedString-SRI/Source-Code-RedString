@@ -20,17 +20,17 @@
  * the corresponding ones in this structure.
  */
 typedef struct{
-	// TextDescriptor
-	int textDesc_occurThreshold; /*!< The minimum occurrences (in the indexed file) to store a word in a descriptor  */
-	int textDesc_maxTerms; /*!< The number of word to keep in the descriptor */
+	// TextDesc
+	int textDesc_occurThreshold; /*!< The minimum occurrences (in the indexed file) to store a word in a desc  */
+	int textDesc_maxTerms; /*!< The number of word to keep in the desc */
 
-	// SoundDescriptor
+	// SoundDesc
 	int soundDesc_windowSize; /*!< The sound signal will be split in x windows. So it is their size. */
 	int soundDesc_nbInterval; /*!< The number of intervals in a window. */
 	double soundDesc_minFrequency; /*!< The minimum frequency of a sound file */
 	double soundDesc_maxFrequency; /*!< The maxmimum frequency of a sound file */
 				
-	// PictureDescriptor
+	// PictureDesc
 	int pictureDesc_nbWeightyBits; /*!< The number of weighty bits to get on each pixel component */
 	int pictureDesc_compTolerance; /*!< The comparison tolerance value for pictures */
 }WritableGlobs;

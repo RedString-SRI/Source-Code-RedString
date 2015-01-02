@@ -112,7 +112,7 @@ Bool copyFile(char const * newFileName, char const * fileName)
 	}
 	
     
-	// Opening file descriptors
+	// Opening file descs
 	file = fopen(fileName, "rb");
 	if(file == NULL)
 	{

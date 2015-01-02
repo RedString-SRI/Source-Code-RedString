@@ -1,9 +1,9 @@
-#include "PictureDescriptor.h"
+#include "PictureDesc.h"
 #include "math.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-/*Initialize a new picture's descriptor*/
+/*Initialize a new picture's desc*/
 Dimension getSizePicture(FILE *fileIMG) {
    Dimension dim;
 
@@ -12,7 +12,7 @@ Dimension getSizePicture(FILE *fileIMG) {
    return dim;
 }
 //===================================================================================================
-PictureDescriptor createPictureDescriptor(FILE *fileIMG){
+PictureDesc createPictureDesc(FILE *fileIMG){
    int quantif = globs_nbWeightyBits;
    Dimension size;
    int *matrix ;
@@ -61,12 +61,12 @@ PictureDescriptor createPictureDescriptor(FILE *fileIMG){
 
 //===================================================================================================
 /**/
-void setNbcomp(PictureDescriptor *pd, int n) {
+void setNbcomp(PictureDesc *pd, int n) {
   pd->nbcomp = n;
 }
 //===================================================================================================
 /*return nbcomp*/
-int getNbcomp(PictureDescriptor pd) {
+int getNbcomp(PictureDesc pd) {
   return pd.nbcomp;
 }
 //===================================================================================================

@@ -1,6 +1,6 @@
 /**
- * \file PictureDescriptor.h
- * \brief picture descriptor
+ * \file PictureDesc.h
+ * \brief picture desc
  * \author Gabriel.DR
  * \version 0.1
  * \date 30 November 2014
@@ -9,11 +9,11 @@
 
 #include "Type_PictureDescritor.h"
 
-#ifndef PICTURE_DESCRIPTOR
-#define PICTURE_DESCRIPTOR
+#ifndef PICTURE_Desc
+#define PICTURE_Desc
 
-/*Initialize a new picture's descriptor*/
-void initPictureDescriptor(PictureDescriptor *pd);
+/*Initialize a new picture's desc*/
+void initPictureDesc(PictureDesc *pd);
 
 /**
  *\brief Give the size of the picture 
@@ -21,9 +21,9 @@ void initPictureDescriptor(PictureDescriptor *pd);
 Dimension getSizePicture(FILE *fileIMG);
 
 /**
- *\brief create the picture's descriptor
+ *\brief create the picture's desc
  */
-PictureDescriptor createPictureDescriptor(FILE *fileIMG);
+PictureDesc createPictureDesc(FILE *fileIMG);
 
 /**/
 void setNbcomp(int n);

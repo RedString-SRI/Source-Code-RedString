@@ -5,7 +5,7 @@
 * \version 0.1
 * \date 7 December 2014
 *
-* All the way to do research in the listeBaseDescriptor
+* All the way to do research in the listeBaseDesc
 *
 */
 
@@ -16,13 +16,13 @@ void byColor(char color[]){
   float percent , tmpFloat;
   int iThPath = 0;
   int size=0, i , tmpInt;
-  while(/*PAS FIN LISTE BASE DESCRIPTOR*/) {
-  	iThPath++; // can read the Ith file of the descriptor base
+  while(/*PAS FIN LISTE BASE desc*/) {
+  	iThPath++; // can read the Ith file of the desc base
   	percent = findColor(path , colorDecimal) // NEED TO CREAT THIS FUNCTION !!!!;
     if(percent) { 
     	*OrderPercentage = (int*)malloc(sizeof(int)); // add the new percentage of the associate file // FLOAT ???
     	size++;
-    	**OrderPercentage = (int**)malloc(sizeof(int*)): // add in the same colomn the number if the Ith file of the descriptor base :
+    	**OrderPercentage = (int**)malloc(sizeof(int*)): // add in the same colomn the number if the Ith file of the desc base :
     	// Matrix 2xN  percent | ... | ...
     	//			  Ith file | ... | ...
   		for(i=0 ; i<size ; i++){ // In order
@@ -68,13 +68,13 @@ void byOccurenceWord(char word[] ){
   int wordOcurr ; 
   int iThPath = 0;
   int size=0, i , tmpInt;
-  while(/*PAS FIN LISTE BASE DESCRIPTOR*/) {
-  	iThPath++; // can read the Ith file of the descriptor base
+  while(/*PAS FIN LISTE BASE desc*/) {
+  	iThPath++; // can read the Ith file of the desc base
   	wordOcurr = findWord(path , colorDecimal) // NEED TO CREAT THIS FUNCTION !!!!;
     if(wordOcurr) { 
     	*OrderOcurr = (int*)malloc(sizeof(int)); // add the new percentage of the associate file
     	size++;
-    	**OrderOcurr = (int**)malloc(sizeof(int*)): // add in the same colomn the number if the Ith file of the descriptor base :
+    	**OrderOcurr = (int**)malloc(sizeof(int*)): // add in the same colomn the number if the Ith file of the desc base :
     	// Matrix 2xN  percent | ... | ...
     	//			  Ith file | ... | ...
   		for(i=0 ; i<size ; i++){ // In order

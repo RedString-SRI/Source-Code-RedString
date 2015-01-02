@@ -18,13 +18,13 @@ int main()
 {
 	Bool hasPassed;
 
-	printf("\n\n\n\n\tTester_SoundDescriptor:\n");
+	printf("\n\n\n\n\tTester_SoundDesc:\n");
 	
 	hasPassed = tests_foo(TRUE);
 	if(hasPassed)
-		printf("\n\t\tTests_createDescriptor: Success\n");
+		printf("\n\t\tTests_createDesc: Success\n");
 	else
-		printf("\n\t\tTests_createDescriptor: Failure\n");
+		printf("\n\t\tTests_createDesc: Failure\n");
 
 	printf("\tTester_End\n");
 }

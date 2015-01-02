@@ -175,22 +175,22 @@ Bool matchKey (char const * line, char const * key)
 	return hasMatched;
 }
 //===================================================================================================
-char* matchedLineKey(int fileDescriptor, char const * key)
+char* matchedLineKey(int fileDesc, char const * key)
 {
 	char *currentLine;
 	Bool keyFound = FALSE;
 	
 	// Begining at the begining !
-	lseek(fileDescriptor, 0, SEEK_SET);
-	currentLine = readLine(fileDescriptor);
-	// Test if key is at the begining of a line by testing each line until fileDescriptor "ends"
+	lseek(fileDesc, 0, SEEK_SET);
+	currentLine = readLine(fileDesc);
+	// Test if key is at the begining of a line by testing each line until fileDesc "ends"
 	// If the key is found in a line, the loop stops.
 	while(currentLine[0] != '\0' && !keyFound)
 	{	
 		if(matchKey(currentLine, key))
 			keyFound = TRUE;			
 		else	// read the next line
-			currentLine = readLine(fileDescriptor);
+			currentLine = readLine(fileDesc);
 	}
 	
 	if(!keyFound)
@@ -245,7 +245,7 @@ char* matchedValueLine (char const * line, char separator)
 	return valueLine;
 }
 //===================================================================================================
-char* readLine (int fileDescriptor)
+char* readLine (int fileDesc)
 {
 	char *line, character;
 	int isEnding, length = 30;	// isEnding : returned int from read(...)
@@ -255,7 +255,7 @@ char* readLine (int fileDescriptor)
 	
 
 	i = 0;
-	isEnding = read(fileDescriptor, &character, sizeof(char));
+	isEnding = read(fileDesc, &character, sizeof(char));
 
 	// isEnding is higher than 0 if something has been copied in character
 	if(isEnding > 0)
@@ -263,7 +263,7 @@ char* readLine (int fileDescriptor)
 		// line is allocated with an initial length, if it is not enough, it is going to be reallocated
 		line = malloc(sizeof(*line) * length);
 		
-		// Test each character of fileDescriptor's current line until it find '\n'
+		// Test each character of fileDesc's current line until it find '\n'
 		while(character != '\n' && isEnding > 0)
 		{
 			// If the initial length is not enough, it reallocates line
@@ -273,9 +273,9 @@ char* readLine (int fileDescriptor)
 				line = realloc (line, length);
 			}
 			
-			// Character by character, it copies fileDescriptor's current line in line
+			// Character by character, it copies fileDesc's current line in line
 			line[i++] = character;
-			isEnding = read (fileDescriptor, &character, sizeof(char));
+			isEnding = read (fileDesc, &character, sizeof(char));
 		}
 	
 		// It secures the line's end with '\0'

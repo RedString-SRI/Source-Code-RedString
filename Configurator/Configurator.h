@@ -20,17 +20,17 @@
 
 #define CONF_FILE_NAME "parameters.conf"
 
-// TextDescriptor
+// TextDesc
 extern int globs_occurThreshold;
 extern int globs_maxTerms;
 
-// SoundDescriptor
+// SoundDesc
 extern int globs_windowSize;
 extern int globs_nbInterval;
 extern double globs_minFrequency;
 extern double globs_maxFrequency;
 
-// PictureDescriptor
+// PictureDesc
 extern int globs_nbWeightyBits;
 extern int globs_compTolerance;
 
@@ -93,13 +93,13 @@ Bool matchKey (char const * line, char const * key);
 /**
  * \brief Looks for a line containing a key in a file
  * 
- * Looks for the first line begining with key in the file linked to fileDescriptor.
- * \param fileDescriptor : The file you want to search into
+ * Looks for the first line begining with key in the file linked to fileDesc.
+ * \param fileDesc : The file you want to search into
  * \param key : The first word of a line you want to be returned
  * \return The line associated to key in the file or NULL if there
  * is no line in the file begining with key.
  */
-char* matchedLineKey (int pFileDescriptor, char const * pKey);
+char* matchedLineKey (int pFileDesc, char const * pKey);
 
 /**
  * \brief Gives the value of the line (specific line)
@@ -119,11 +119,11 @@ char* matchedValueLine (char const * line, char separator);
 /**
  * \brief Reads the next line of a file
  * 
- * Reads the next line of the file pointed by fileDescriptor.
+ * Reads the next line of the file pointed by fileDesc.
  * 
  * \return Either the next line or a char '\0' if an error has occurred
  */
-char* readLine (int fileDescriptor);
+char* readLine (int fileDesc);
 
 /**
  * \brief Indicates a position ignoring spaces

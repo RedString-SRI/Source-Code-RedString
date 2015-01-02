@@ -68,6 +68,7 @@ void createPictureDesc(char path[]){
       printf("SIZE : %d %d\n" , size.height , size.width);
    matrix=(int*)malloc((size.width*size.height*3)*sizeof(int)); //matrix 1 dimension ...
     printf("MALLOC OK \n\n");
+    
    for(i=0 ; i<size.width*size.height ; i++){ // scan the whole matrix : 1rst Red , 2nd Green , 3th Blue
     printf("=====LOOP %d \n" , i);
          tmpBit=0;
@@ -75,12 +76,14 @@ void createPictureDesc(char path[]){
          fscanf(file , "%d" , matrix+1*size.height*size.height+i); // on GREEN matrix
          fscanf(file , "%d" , matrix+2*size.height*size.height+i); // on BLUE matrix
         printf("3 GET OK \n");
+        
          while(quantif > 0) {
                 printf("==LOOP while \n");
                 printf("CALCUL : %d ; %d ; %d\n" , matrix[i] , matrix[1*size.height*size.width+i] ,matrix[2*size.height*size.width+i]);
                matrix[i] %= (255/tmpval);
                matrix[1*size.height*size.width+i] %= ((int)(255/tmpval) + (tmpval!=1) ); //+ tmpval!=1 : differentiate 127 of 128, because (int)255/2=127, but bit2=1 if number is a modulo of 128, not 127
                matrix[2*size.height*size.width+i] %= ((int)(255/tmpval) + (tmpval!=1) );
+               
             printf("CALCUL OK : %d ; %d ; %d\n" , matrix[i] , matrix[1*size.height*size.width+i] ,matrix[2*size.height*size.width+i]);
             if( matrix[i] == 0 ){printf("RED : 255/%d \n" , tmpval);
                 tmpBit+= pow(2,3+quantif);} // on RED matrix, for example quantif=2 : modulo 128, 255
@@ -88,6 +91,7 @@ void createPictureDesc(char path[]){
                 tmpBit+= pow(2,1+quantif);} // on  GREEN matrix
             if( matrix[2*size.height*size.width+i] == 0 ){printf("BLUE : 255/%d \n" , tmpval);
                 tmpBit+=1*pow(2,quantif-1);} // on BLUE matrix
+                
             quantif--;
             tmpval++;
          /*For example (255,128,16) and quantif=2
@@ -111,17 +115,8 @@ void createPictureDesc(char path[]){
     }
     printf("\nEXIT LOOP FOR=====\n");
     a=pow(2,globs_nbWeightyBits*3);
-    for(i=0 ; i<a ; i++)
-        printf("%d " , bit[i]);
-        strcat(des,path);
-        strcpy(path,des); //to use this new name descriptTest.txt for the fallowing function in the main function
-        printf("%s\n" , des);
-    descriptIMG = fopen(des , "w");
-    fprintf(descriptIMG , "%s\n" , path);
-    fprintf(descriptIMG , "0\n");
-    fprintf(descriptIMG , "%s\n" , path);
-    fprintf(descriptIMG , "%s\n" , path);
-    fprintf(descriptIMG , "%s\n\n" , path);
+    
+    
     fprintf(descriptIMG , "%d %d\n" , size.height , size.width);
     createHistogram( descriptIMG , bit, size , pow(2,globs_nbWeightyBits*3));
 
@@ -162,16 +157,11 @@ void printHistogram(char path[]) {
    array = (float*)malloc(NbIntensity*sizeof(float));
    printf("%d\n" , NbIntensity);
 
-// Permit to place himself at the 7th lines, where the histogram's array start and the sizes.
-            // read a line and economise memories
-        while((c = fgetc(file)) && (i<5)){
-                putchar(c);
-                if(c=='\n') i++;
-            }
    fscanf(file , "%d" , &size1);
    fscanf(file , "%d" , &size2);
    size = size1*size2;
     printf("%d %d=%d\n" , size1 , size2 , size);
+    
    for(i=0 ; i< NbIntensity ; i++) // get back histogram datas.
       {fscanf(file , "%f" , array[i]); printf("%f " , array[i]);}
    printf("\n\t>=======================================<\n" , size);

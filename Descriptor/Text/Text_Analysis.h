@@ -67,3 +67,6 @@ void removeTerm (Index * i) ;
 
 //This function increments the appearances if the word already exist in the Index ; 
 void addOccurences (Index * i , Term t) ;
+
+//Show the terms details 
+void termDetails (Term term) ; 

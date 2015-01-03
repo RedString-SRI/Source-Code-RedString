@@ -3,7 +3,6 @@
 float findColor(char path[] ,int colorDecimal); // return the occurcence of the color's apparition in A file
 int findWord(char path[] ,char soughtWord[]); // return the occurcence of the word's apparition in A file
 float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc);
-float compareFileIMG(char path1[] ,char path2[]);
 float compareFileTXT(char path1[] ,char path2[]);
 
                             
@@ -32,6 +31,7 @@ Dimension getSizePicture(FILE *fileIMG);                                        
 PictureDescriptor createPictureDescriptor(FILE *fileIMG);                               OK                        
 void createHistogram(int bit[] , Dimension dim);                                        OK
 void printHistogram(FILE *descriptIMG);                                                 OK
+float compareFileIMG(char path1[] ,char path2[])
 
                             IN BASE DESCRIPTOR SOUND:
                             

@@ -48,6 +48,8 @@ void byColor(char color[]);
 * \brief byAuthor.
 * Search in whichever desc a author in alphabetic order.
 */
+float compareFileIMG(char path1[] ,char path2[]);
+
 void byAuthor();
 
 /**

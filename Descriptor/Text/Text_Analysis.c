@@ -126,13 +126,14 @@ void createTerm (Term * term , char * w) {
 }
 
 //==================================================================================================================
-void addTerm (Index *i , Term t) { 
-	Index * ptr_index = (Index *) malloc(sizeof(Index)) ; 
-	(*ptr_index) -> word = t.word ;
-	(*ptr_index) -> occur = t.occur ; 
-	(*ptr_index) -> ptr_next = *i ; 
-	i = ptr_index ; 		
-}
+void addTerm (Index * i , Term term) { 
+	Term * ptr_Term = (Term *) malloc(sizeof(Term)) ; 
+		*(ptr_Term) = term ; 
+		(*ptr_Term).ptr_next = *i ; 
+		*i = ptr_Term ; 	
+		printf("Term added\n") ; 	
+	}
+	
 //==================================================================================================================
 Bool doesTermExist (Index *i , Term t) {
 	if (*i == NULL)
@@ -168,6 +169,20 @@ void removeFromIndex (Index * i , Term termtoremove) {
 				}
 			}
 		}
+}
+
+//=================================================================================================================
+void returnIndex (Index i) {
+	if (i == NULL) 
+	{ printf ("END\n") ; 
+	}
+	else 
+	{ while (i !=NULL) 
+		{ printf ("%s\n" , i -> word) ;
+		  i = i -> ptr_next ; 
+		  returnIndex(i) ; 
+		}
+	}
 }
 //=================================================================================================================
 void removeTerm (Index * i) {

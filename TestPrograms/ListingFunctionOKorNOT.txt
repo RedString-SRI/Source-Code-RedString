@@ -2,7 +2,7 @@
                             --->NEED FUNCTION TO CREATE :<---
 float findColor(char path[] ,int colorDecimal); // return the occurcence of the color's apparition in A file
 int findWord(char path[] ,char soughtWord[]); // return the occurcence of the word's apparition in A file
-float compareSoundDesc(SoundDesc *desc1 ,SoundDesc *desc2);
+float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc);
 float compareFileIMG(char path1[] ,char path2[]);
 float compareFileTXT(char path1[] ,char path2[]);
 

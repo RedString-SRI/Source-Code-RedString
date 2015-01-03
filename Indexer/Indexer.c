@@ -8,8 +8,8 @@
 
 
 /** Following declarations are made for testing **/
-typedef int TextDesc;
-typedef int PictureDesc;
+typedef struct {long address;}TextDesc;
+typedef struct {long address;}PictureDesc;
 
 TextDesc * createTextDesc(FILE* file)
 {
@@ -134,19 +134,23 @@ void indexFiles(FilePathStack const * filePathStack)
 	char * tmpPathFile;
 	void * tmpDesc;		// the desc being written at the moment (in the while)
 	void * (*createDesc)(char *);
+	long address;
 	
 	switch(filePathStack->fileType)
 	{
 		case TEXT:
 			createDesc = createTextDesc;
+			address = ((TextDesc*)tmpDesc)->address;
 			break;
 			
 		case PICTURE:
 			createDesc = createPictureDesc;
+			address = ((PictureDesc*)tmpDesc)->address;
 			break;
 			
 		case SOUND:
 			createDesc = createSoundDesc;
+			address = ((SoundDesc*)tmpDesc)->address;
 			break;
 	}
 	
@@ -159,7 +163,7 @@ void indexFiles(FilePathStack const * filePathStack)
 		/** MUTEX ? 0_0 =) **/
 		addDesc(&baseDesc, &tmpDesc, filePathStack->fileType);
 		/** Following tmpDesc->address won't compile... **/
-		addListBaseDesc(&listBaseDesc, tmpPathFile, tmpDesc->address, date);
+		addListBaseDesc(&listBaseDesc, tmpPathFile, address, date);
 		/** MUTEX ? 0_0 =) **/
 	}
 }

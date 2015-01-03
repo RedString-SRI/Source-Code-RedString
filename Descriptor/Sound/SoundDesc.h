@@ -11,8 +11,8 @@
 #include "FileManager.h"
 
 
-#ifndef SOUND_Desc
-#define SOUND_Desc
+#ifndef SOUND_DESC
+#define SOUND_DESC
 
 #define SIZEDOUBLE 8
 

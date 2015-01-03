@@ -13,10 +13,14 @@
 
 #include "Type_FileType.h"
 #include "Type_BaseDesc.h"
+#include "BaseDesc.h"
 #include "SoundDesc.h"
 
 #ifndef INDEXER
 #define INDEXER
+
+
+extern int globs_maxPathLength;
 
 typedef int Stack;
 

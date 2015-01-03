@@ -5,7 +5,6 @@
  * \date 
  */
 
-#include "Type_WritingMode.h"
 #include "Type_Term.h"
 
 #ifndef TYPE_TEXTDesc
@@ -19,7 +18,6 @@
  */
 typedef struct{
 	int id;
-	Mode writingMode;
 	Term *terms;
 	int nbTerms;
 	int nbWords;

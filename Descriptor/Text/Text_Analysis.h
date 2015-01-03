@@ -42,6 +42,12 @@ int textNbChar(const char * path) ;
 //This function checks if the term already exists in the index. 
 Bool doesTermExist (Index * i , Term term) ;
 
+//Retunr the term
+void displayTerm (Term t) ;
+
+//Return the Index 
+void returnIndex (Index i) ; 
+
 //Initialisation of the index. 
 void initIndex (Index * i) ;
 

@@ -91,6 +91,7 @@ void IndexationMenu(){
 }
 //========================================================
 void ResearchMenu(){
+	FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
 	char a;
 	char w[];
 	char freq;
@@ -149,4 +150,5 @@ void ResearchMenu(){
 			exit(0); 
 			break;
 	}
+	fclose(listBASE);
 }

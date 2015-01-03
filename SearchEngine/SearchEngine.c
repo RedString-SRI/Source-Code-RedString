@@ -45,6 +45,34 @@ void byColor(char color[]){
   if(i=0) ResearchMenu() ;
 }
 //===================================================================================================
+float compareFileIMG(char path1[] ,char path2[]){
+  FILE *file1=fopen(path1,'r');
+  FILE *file2=fopen(path2,'r');
+  Dimension size1 , size2;
+  float percentCompare;
+  int max=pow(2,3*globs_nbWeightyBits);
+  float histo1[max] , histo2[max] , compare[max];
+  int i=0;
+  
+  //read sizes
+  fscanf(file1 , "%d" , size1->height); fscanf(file1 , "%d" , size1->width);
+  fscanf(file2 , "%d" , size2->height); fscanf(file2 , "%d" , size2->width);
+  
+  //read percentage histograms
+  while(!foef(file1) && !foef(file2) && i<max ) { //3 end steps to be secure
+    fscanf(file1 , "%f" , histo1+i);
+    fscanf(file2 , "%f" , histo2+i);
+    if (histo[i]>histo2[i]) compare[i] = 1-histo1[i]/histo2[i] ;
+    else compare[i] = 1-histo2[i]/histo1[i] ;
+    percentCompare+=compare[i]; // add every compare+i to be divide by the number of cells (max)
+    i++;
+  }
+  fclose(file1);
+  fclose(file2);
+  
+  return percentCompare/max ;
+}
+//===================================================================================================
 void byAuthor(){
 
 }

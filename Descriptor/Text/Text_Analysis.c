@@ -6,7 +6,25 @@
 #include <stdio.h>
 #include <string.h>
 #include "Type_Bool.h" 
-#include "text_analysis.h" 
+#include "text_analysis.h"
+
+
+Bool isInBeacons (const char * path, char word) {
+	FILE * text = fopen(path,"r") ;
+	int k=word;
+	if (k == '<')
+	 {
+		while(k!='>')
+		k = fgetc(text) ;
+		return TRUE;
+	}
+	else
+		{ return FALSE ; }
+	fclose(text) ; 
+} 
+
+//======================================================================
+
 void readWordbyWord(const char * path){
 	int i=0;
 	int j;
@@ -49,31 +67,39 @@ void readWordbyWord(const char * path){
 fclose(text);
 }
 
-
-
 //===================================================================================================
 Bool isAChar (char word) {
-	int i = 0 ; 
-	if( (word[0])>=65 && word[0]<=90) || (word[0])>=97 && word[0]<=122) || (word[0])>=97 && word[0]<=122)
-			return TRUE ;
-		else 
-			return FALSE ; 
+int i = 0 ;
+if( (word[0])>=65 && word[0]<=90) || (word[0])>=97 && word[0]<=122) || (word[0])>=97 && word[0]<=122)
+return TRUE ;
+else
+return FALSE ;
 } 
-//===================================================================================================
-Bool isInBeacons (const char * path, char word) {
-	FILE * text = fopen(path,"r") ;
-	int k=word;
-	if (k == '<')
-	 {
-		while(k!='>')
-		k = fgetc(text) ;
-		return TRUE;
-	}
+
+//================================================================================
+
+int endOfWord (char * word) {
+int j = 0 ;
+while ( word[j] != (int) NULL) {
+j++ ;
+}
+return j ;
+}
+
+
+//================================================================================
+
+Bool isWordRelevant (const char * word) {
+	int wordLenght ;
+	wordLenght = strlen(word) ;
+	if (wordLenght < 3)
+		return FALSE ;
 	else
-		{ return FALSE ; }
-	fclose(text) ; 
+		return TRUE ;
 } 
-//====================================================================================================
+
+//================================================================================
+
 int textNbchar(const char * path) 
 	{ 	int nb_char = 0 ; 
 		FILE * text = fopen(path,"r") ; 
@@ -82,143 +108,157 @@ int textNbchar(const char * path)
 		return nb_char - 1 ;
 		fclose(text) ; 
 	}
-//===================================================================================================================
-void termDetails (Term term) {
-	printf ("The word is : %s\n" , term.word) ;
-	printf ("The number of appearances is : %d\n" , term.occur) ; 
-} 
 
- //==================================================================================================================
-int textNbchar(const char * path) {
-	int nb_char = 0 ; 
-	FILE * text = fopen(path,"r") ; 
-	while (fgetc(text) != EOF) 
-		nb_char++ ;
-		
-	fclose(text) ; 
-	return nb_char - 1 ;
+//=================================================================================
+
+void initIndex (Index * i) 
+	{ *i =  NULL ; 
+	  printf ("Index iniatialized\n") ; 
 	}
-//===================================================================================================================
-void initIndex (Index *i) { 
-	*i =  NULL ; 
-}
-//===================================================================================================================	
-Bool indexIsEmpty (Index i) {
+	
+//=================================================================================
+
+Bool indexEmpty (Index i) {
 	if (i == NULL) 
-		return TRUE ; 
+		return TRUE ;
 	else 
-		return FALSE ; 
+		return FALSE ;
 }
-//===================================================================================================================
-void initTerm (Term * term) {
-	term -> word = NULL ; 
-	term -> occur = 0 ; 
-	term -> ptr_next = NULL ; 
+
+//=================================================================================
+
+void initTerm (Term * t) {
+	t -> word = NULL ; 
+	t -> occur = 0 ; 
+	t -> ptr_next = NULL ; 
 	printf ("term initialized\n") ; 
 }
 
-//==================================================================================================================
-void createTerm (Term * term , char * w) {
-	initTerm (term) ; 
-	term -> word = w ; 
-	term -> occur++ ;
+//=================================================================================
+
+void createTerm (Term * t , char * w) {
+	initTerm (t) ; 
+	t -> word = w ; 
+	t -> occur++ ;
 	printf ("Term created\n") ; 
 }
 
-//==================================================================================================================
-void addTerm (Index * i , Term term) { 
+//==================================================================================
+
+void termDetails (Term t) {
+	printf ("The word is : %s\n" , t.word) ;
+	printf ("The number of appearances is : %d\n" , t.occur) ; 
+} 
+
+//===================================================================================
+ 
+void addTerm (Index * i , Term t) { 
 	Term * ptr_Term = (Term *) malloc(sizeof(Term)) ; 
-		*(ptr_Term) = term ; 
+		*(ptr_Term) = t ; 
 		(*ptr_Term).ptr_next = *i ; 
 		*i = ptr_Term ; 	
 		printf("Term added\n") ; 	
 	}
-	
-//==================================================================================================================
-Bool doesTermExist (Index *i , Term t) {
-	if (*i == NULL)
-		printf ("END") ; 
-	else { 
-		while (*i != NULL) { 
-			if ( (*i)->word == t.word)
-				return TRUE ; 
-			else { 
-				*i = (*i)->ptr_next ; 
-				doesTermExist (i , t) ;
-			}
+
+//=====================================================================================
+
+
+Bool doesTermExist (Index * i , Term t) {
+	if (*i == NULL) {
+		printf ("END\n") ; 
+	}
+	else 
+		{ while (*i != NULL) 
+			{ if ((*i) -> word == t.word)
+				{ return TRUE ; 
+				  break ; 
+				}
+			
+			else 
+				{ *i = (*i) -> ptr_next ; 
+				  doesTermExist (i , t) ;
+				}
+			 }
 		}
 	}
-}
-//==================================================================================================================
-void removeFromIndex (Index * i , Term termtoremove) {
+				
+//===================================================================================
+
+void removeFromIndex (Index * i , Term ttoremove) {
 		Term aux ; 
 		if (*i == NULL) {
-			printf ("END") ;
+			printf ("END\n") ;
 		}
-		else { 
-			while (*i != NULL) { 
-				if ((*i) ->word == termtoremove.word) { 
-				//	Index * ptr_stock = i ;  // COMPLETEMENT FAUX ! Index est une struct, je sais pas ce que tu as voulu faire ici
+		else 
+			{ 
+			while (*i != NULL) 
+				{ if ((*i) ->word == ttoremove.word) 
+ 					{ Index * ptr_stock = i ; 
 					*i = (*i) ->ptr_next ;
 					aux = *(*ptr_stock) ; 
 					free(ptr_stock) ; 
-				} 
-				else { 
-					*i = (*i) -> ptr_next ;
-					removeFromIndex(i , termtoremove) ;
+					} 
+				 else 
+					{ *i = (*i) -> ptr_next ;
+					  removeFromIndex (i , ttoremove) ;
+					}
 				}
 			}
-		}
-}
+	}
 
-//================================================================================================================
+//=====================================================================================
+
 void displayTerm (Term t) {
 	printf ("word : %s\t", t.word) ; 
 	printf ("number of appearances : %d\n" , t.occur) ; 
 }
 
-//=================================================================================================================
+//=====================================================================================
+ 
 void returnIndex (Index i) {
 	Term tmpTerm ; 
 	if (indexEmpty(i)) 
-		printf ("Index currently empty\n") ; 
+		printf ("No more term\n") ; 
 	else 
 	{ 
-		if (i == NULL) 
-		{ printf ("END\n") ; 
+		while (i !=NULL) 
+		{ tmpTerm = *i ; 
+		  displayTerm(tmpTerm) ; 
+		  i = i -> ptr_next ; 
+		  returnIndex(i) ; 
 		}
-		else 
-			{ while (i !=NULL) 
-			{ tmpTerm = *i ; 
-			displayTerm(tmpTerm) ; 
-		  	i = i -> ptr_next ; 
-		  	returnIndex(i) ; 
+	}
+	
+}
+
+//====================================================================================
+
+void removeTerm (Index * i) {
+	while (*i != NULL) 
+		{ if ((*i) -> occur < TMAX)
+			{ removeFromIndex (i , *(*i)) ; 
 			}
 		}
 	}
-}
 
-//=================================================================================================================
-void removeTerm (Index * i) {
-	while (*i != NULL) { 
-		if ((*i) -> occur < TMAX)
-			removeFromIndex (i , *(*i)) ; 
-	}
-}
-//=================================================================================================================
+//===================================================================================
+
 void addOccurences (Index * i , Term t) {
 	if (*i == NULL) 
-		printf ("END") ; 
-	else { 
-		if (doesTermExist (i , t) == TRUE) {	
-			while (*i != NULL) { 
-				if (t.word == (*i) -> word) { 
-					(*i) -> occur++ ; 
+		printf ("END\n") ; 
+	else 
+		{ if (doesTermExist (i , t) == TRUE) 
+			{	while (*i != NULL) 	
+				{ if	(t.word == (*i) -> word) 
+					{ (*i) -> occur++ ; 
 					  break ; 
+					}
 				}
 			}
 		}
-	}
-} 	
-/*==================================================================================================================	
+}
+
+//===================================================================================== 
+
+//==================================================================================================	
 

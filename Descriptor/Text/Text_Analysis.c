@@ -171,19 +171,33 @@ void removeFromIndex (Index * i , Term termtoremove) {
 		}
 }
 
+//================================================================================================================
+void displayTerm (Term t) {
+	printf ("word : %s\t", t.word) ; 
+	printf ("number of appearances : %d\n" , t.occur) ; 
+}
+
 //=================================================================================================================
 void returnIndex (Index i) {
-	if (i == NULL) 
-	{ printf ("END\n") ; 
-	}
+	Term tmpTerm ; 
+	if (indexEmpty(i)) 
+		printf ("Index currently empty\n") ; 
 	else 
-	{ while (i !=NULL) 
-		{ printf ("%s\n" , i -> word) ;
-		  i = i -> ptr_next ; 
-		  returnIndex(i) ; 
+	{ 
+		if (i == NULL) 
+		{ printf ("END\n") ; 
+		}
+		else 
+			{ while (i !=NULL) 
+			{ tmpTerm = *i ; 
+			displayTerm(tmpTerm) ; 
+		  	i = i -> ptr_next ; 
+		  	returnIndex(i) ; 
+			}
 		}
 	}
 }
+
 //=================================================================================================================
 void removeTerm (Index * i) {
 	while (*i != NULL) { 

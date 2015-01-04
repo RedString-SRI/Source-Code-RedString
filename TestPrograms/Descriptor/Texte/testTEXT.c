@@ -23,6 +23,6 @@ int main () {
 	printf ("After the update : \n") ; 
 //createTerm() checked
 	termDetails(term1) ;
-	increaseOccur(term1) ; 
+	increaseOccur(&term1) ; 
 	printf ("term1's occur : %d" , term1.occur) ; //affiche 1 au lieu d'afficher 2
 } 

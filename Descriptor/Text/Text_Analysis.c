@@ -8,6 +8,7 @@
 #include "Type_Bool.h" 
 #include "text_analysis.h"
 
+
 Bool isInBeacons (const char * path, char word) {
 	FILE * text = fopen(path,"r") ;
 	int k=word;
@@ -128,7 +129,9 @@ Bool indexEmpty (Index i) {
 
 void initTerm (Term * t) {
 	t -> word = NULL ; 
+	printf ("current word : %s\n", t->word) ;
 	t -> occur = 0 ; 
+	printf ("current occur : %d\n" , t->occur) ;  
 	printf ("term initialized\n") ; 
 }
 
@@ -137,7 +140,9 @@ void initTerm (Term * t) {
 void createTerm (Term * t , char * w) {
 	initTerm (t) ; 
 	t -> word = w ; 
+	printf ("current word : %s\n" , t-> word) ; 
 	t -> occur++ ;
+	printf ("current occur : %d\n" , t -> occur) ; 
 	printf ("Term created\n") ; 
 }
 
@@ -151,11 +156,16 @@ void termDetails (Term t) {
 //===================================================================================
  
 void addTerm (Index * i , Term t) { 
+	printf ("==== Add process started =====\n") ; 
+	printf ("=Term in parameters details=\n") ; 
+		termDetails (t) ; 
 	Cell * ptr_Cell = (Cell *) malloc(sizeof(Cell)) ; 
 		(*ptr_Cell).t1 = t ; 
 		(*ptr_Cell).ptr_next = *i ; 
+	printf ("=Term updated details=\n") ; 
+		termDetails ((*ptr_Cell).t1) ; 
 		*i = ptr_Cell ; 	
-		printf("Term added\n") ; 	
+		printf("==== Term added in the index ====\n") ; 	
 	}
 
 //=====================================================================================
@@ -166,14 +176,15 @@ Bool doesTermExist (Index * i , Term t) {
 		printf ("END\n") ; 
 	}
 	else 
-		{ while (*i != NULL) 
+		{ while (*i != NULL)  
 			{ if ((*i) -> t1.word == t.word)
 				{ return TRUE ; 
 				  break ; 
 				}
 			
 			else 
-				{ *i = (*i) -> ptr_next ; 
+				{ 
+				 *i = (*i) -> ptr_next ; 
 				}
 			 }
 		}
@@ -206,6 +217,7 @@ void removeFromIndex (Index * i , Term ttoremove) {
 //=====================================================================================
  
 void returnIndex (Index i) {
+	printf ("==== returnIndex process started =====\n") ; 
 	Cell tmpCell ; 
 	if (indexEmpty(i)) 
 		printf ("No more term\n") ; 
@@ -214,10 +226,11 @@ void returnIndex (Index i) {
 		while (i !=NULL) 
 		{ tmpCell = *i ; 
 		  termDetails(tmpCell.t1) ; 
+		  printf ("--------------\n") ; 
 		  i = i -> ptr_next ; 
-		  returnIndex(i) ; 
 		}
 	}
+	printf ("==== Index returned ======\n") ; 
 	
 }
 
@@ -263,3 +276,5 @@ void addOccurences (Index * i , Term t) {
 			}
 		}
 }
+
+//===================================================================================

@@ -75,10 +75,10 @@ void removeFromIndex (Index * i , Term termtoremove) ;
 void removeTerm (Index * i) ; 
 
 //Increase the appearances.
-void increaseOccur (Term t) ;
+void increaseOccur (Term * t) ;
 
 //Decrease the appearances. 
-void decreaseOccur (Term t) ;
+void decreaseOccur (Term * t) ;
 
 //This function increments the appearances if the word already exist in the Index ; 
 void addOccurences (Index * i , Term t) ;

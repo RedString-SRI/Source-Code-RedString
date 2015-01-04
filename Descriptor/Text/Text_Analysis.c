@@ -8,7 +8,6 @@
 #include "Type_Bool.h" 
 #include "text_analysis.h"
 
-
 Bool isInBeacons (const char * path, char word) {
 	FILE * text = fopen(path,"r") ;
 	int k=word;
@@ -68,13 +67,13 @@ fclose(text);
 }
 
 //===================================================================================================
-Bool isAChar (char word) {
+/*Bool isAChar (char word) {
 int i = 0 ;
 if( (word[0])>=65 && word[0]<=90) || (word[0])>=97 && word[0]<=122) || (word[0])>=97 && word[0]<=122)
 return TRUE ;
 else
 return FALSE ;
-} 
+} */
 
 //================================================================================
 
@@ -130,7 +129,6 @@ Bool indexEmpty (Index i) {
 void initTerm (Term * t) {
 	t -> word = NULL ; 
 	t -> occur = 0 ; 
-	t -> ptr_next = NULL ; 
 	printf ("term initialized\n") ; 
 }
 
@@ -153,10 +151,10 @@ void termDetails (Term t) {
 //===================================================================================
  
 void addTerm (Index * i , Term t) { 
-	Term * ptr_Term = (Term *) malloc(sizeof(Term)) ; 
-		*(ptr_Term) = t ; 
-		(*ptr_Term).ptr_next = *i ; 
-		*i = ptr_Term ; 	
+	Cell * ptr_Cell = (Cell *) malloc(sizeof(Cell)) ; 
+		(*ptr_Cell).t1 = t ; 
+		(*ptr_Cell).ptr_next = *i ; 
+		*i = ptr_Cell ; 	
 		printf("Term added\n") ; 	
 	}
 
@@ -169,14 +167,13 @@ Bool doesTermExist (Index * i , Term t) {
 	}
 	else 
 		{ while (*i != NULL) 
-			{ if ((*i) -> word == t.word)
+			{ if ((*i) -> t1.word == t.word)
 				{ return TRUE ; 
 				  break ; 
 				}
 			
 			else 
 				{ *i = (*i) -> ptr_next ; 
-				  doesTermExist (i , t) ;
 				}
 			 }
 		}
@@ -185,14 +182,14 @@ Bool doesTermExist (Index * i , Term t) {
 //===================================================================================
 
 void removeFromIndex (Index * i , Term ttoremove) {
-		Term aux ; 
+		Cell aux ; 
 		if (*i == NULL) {
 			printf ("END\n") ;
 		}
 		else 
 			{ 
 			while (*i != NULL) 
-				{ if ((*i) ->word == ttoremove.word) 
+				{ if ((*i) -> t1.word == ttoremove.word) 
  					{ Index * ptr_stock = i ; 
 					*i = (*i) ->ptr_next ;
 					aux = *(*ptr_stock) ; 
@@ -200,7 +197,6 @@ void removeFromIndex (Index * i , Term ttoremove) {
 					} 
 				 else 
 					{ *i = (*i) -> ptr_next ;
-					  removeFromIndex (i , ttoremove) ;
 					}
 				}
 			}
@@ -216,14 +212,14 @@ void displayTerm (Term t) {
 //=====================================================================================
  
 void returnIndex (Index i) {
-	Term tmpTerm ; 
+	Cell tmpCell ; 
 	if (indexEmpty(i)) 
 		printf ("No more term\n") ; 
 	else 
 	{ 
 		while (i !=NULL) 
-		{ tmpTerm = *i ; 
-		  displayTerm(tmpTerm) ; 
+		{ tmpCell = *i ; 
+		  displayTerm(tmpCell.t1) ; 
 		  i = i -> ptr_next ; 
 		  returnIndex(i) ; 
 		}
@@ -235,11 +231,23 @@ void returnIndex (Index i) {
 
 void removeTerm (Index * i) {
 	while (*i != NULL) 
-		{ if ((*i) -> occur < TMAX)
-			{ removeFromIndex (i , *(*i)) ; 
+		{ if ((*i) -> t1.occur < TMAX)
+			{ removeFromIndex (i , (*i) -> t1) ; 
 			}
 		}
 	}
+
+//===================================================================================
+
+void increaseOccur (Term t) {
+	t.occur++ ;
+}
+
+//===================================================================================
+
+void decreaseOccur (Term t) {
+	t.occur-- ; 
+}
 
 //===================================================================================
 
@@ -249,16 +257,11 @@ void addOccurences (Index * i , Term t) {
 	else 
 		{ if (doesTermExist (i , t) == TRUE) 
 			{	while (*i != NULL) 	
-				{ if	(t.word == (*i) -> word) 
-					{ (*i) -> occur++ ; 
+				{ if	(t.word == (*i) -> t1.word) 
+					{ increaseOccur((*i) -> t1) ; 
 					  break ; 
 					}
 				}
 			}
 		}
 }
-
-//===================================================================================== 
-
-//==================================================================================================	
-

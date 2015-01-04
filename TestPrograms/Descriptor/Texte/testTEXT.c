@@ -3,20 +3,26 @@
 //Author Estelle Randria
 //Date : 01/02/2015
 	
+int main () {
 	Index I ;  
 	char w[10] ; 
 	char w1[10] ; 
+	Term term1 , term2 ; 
 	strcpy (w, "sachet") ;
 	strcpy (w1, "chien") ;  
-	Term term1 , term2 ; 
-	printf ("%d\n" , textNbchar("/home/mahenina/FIL_ROUGE/Test")) ;
+	
+	printf ("number of characters of the text : %d\n" , textNbchar("/home/mahenina/FIL_ROUGE/Test")) ;
 	initIndex(&I) ; 
+//initIndex() checked. 
 	if(indexEmpty(I)) 
 		{ printf ("Index is currently empty\n") ; } 
+//indexEmpty() checked
 	initTerm(&term1) ; 
-	printf ("term1 word is %s\nterm1 occur is %d\n" , term1.word, term1.occur) ; 
-	createTerm(&term1, w) ; 
-	printf ("term1 word is %s\nterm1 occur is %d\n" , term1.word, term1.occur) ; 
 	termDetails(term1) ; 
-	createTerm(&term2, w1) ;
-	termDetails(term2) ;  
+	printf ("term1 creation :\n") ; createTerm(&term1, w) ; 
+	printf ("After the update : \n") ; 
+//createTerm() checked
+	termDetails(term1) ;
+	increaseOccur(term1) ; 
+	printf ("term1's occur : %d" , term1.occur) ; //affiche 1 au lieu d'afficher 2
+} 

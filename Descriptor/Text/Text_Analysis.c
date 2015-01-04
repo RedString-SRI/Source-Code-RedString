@@ -202,12 +202,6 @@ void removeFromIndex (Index * i , Term ttoremove) {
 			}
 	}
 
-//=====================================================================================
-
-void displayTerm (Term t) {
-	printf ("word : %s\t", t.word) ; 
-	printf ("number of appearances : %d\n" , t.occur) ; 
-}
 
 //=====================================================================================
  
@@ -219,7 +213,7 @@ void returnIndex (Index i) {
 	{ 
 		while (i !=NULL) 
 		{ tmpCell = *i ; 
-		  displayTerm(tmpCell.t1) ; 
+		  termDetails(tmpCell.t1) ; 
 		  i = i -> ptr_next ; 
 		  returnIndex(i) ; 
 		}
@@ -239,14 +233,18 @@ void removeTerm (Index * i) {
 
 //===================================================================================
 
-void increaseOccur (Term t) {
-	t.occur++ ;
+void increaseOccur (Term * t) {
+	printf ("current word : %s\ncurrent occur : %d\n" , t -> word ,t -> occur) ;
+	(t ->occur)++ ;
+	printf ("new occur : %d\n", t -> occur) ; 
 }
 
 //===================================================================================
 
-void decreaseOccur (Term t) {
-	t.occur-- ; 
+void decreaseOccur (Term * t) {
+	printf ("current word : %s\ncurrent occur : %d\n" , t -> word ,t -> occur) ;
+	(t ->occur)-- ;
+	printf ("new occur : %d\n", t -> occur)  ;
 }
 
 //===================================================================================
@@ -258,7 +256,7 @@ void addOccurences (Index * i , Term t) {
 		{ if (doesTermExist (i , t) == TRUE) 
 			{	while (*i != NULL) 	
 				{ if	(t.word == (*i) -> t1.word) 
-					{ increaseOccur((*i) -> t1) ; 
+					{ increaseOccur(&((*i) -> t1)) ; 
 					  break ; 
 					}
 				}

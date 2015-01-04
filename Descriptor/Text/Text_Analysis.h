@@ -8,11 +8,15 @@
 #define TMAX 100
 
 typedef struct term {
-	char * word;
-	int occur;
-	struct term *ptr_next ; 
-	} Term, *Index ; 
+char * word;
+int occur;
+//struct term *ptr_next ;
+} Term ; //*Index ;
 
+typedef struct cell {
+Term t1 ; 
+struct cell *ptr_next ;
+} Cell, *Index ; 
 
 int textNbChar(const char * path) ; 
 
@@ -70,6 +74,11 @@ void removeFromIndex (Index * i , Term termtoremove) ;
 //Remove a term from the index under the condition that the number of appearances is inferior to the minimum required. 
 void removeTerm (Index * i) ; 
 
+//Increase the appearances.
+void increaseOccur (Term t) ;
+
+//Decrease the appearances. 
+void decreaseOccur (Term t) ;
 
 //This function increments the appearances if the word already exist in the Index ; 
 void addOccurences (Index * i , Term t) ;

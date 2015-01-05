@@ -51,7 +51,9 @@ void mainMenu(){
 }
 //========================================================
 void IndexationMenu(){
-	int choice;
+	int choice , validPath;
+	int const maxSizePath = 100;
+	char *path[maxSizePath];
 	
 	do{
 		printf("+=========================+\n");
@@ -69,13 +71,17 @@ void IndexationMenu(){
 	clearBuffer();
 	switch(choice){
 		case(1):
-			printf("Enter your path : \n");
-			scanf("%s" , w); // enter a path ......
-			if(ExistingPath(w)){
-				system("clear");
-			}
-			else 
-				printf("ERROR Path\n");  
+			printf("Add an empty path with \"Enter\" to start Indexation.\n");
+			printf("Enter your(s) path(s) : \n");
+			do {
+				validPath = getKeyboard_String(path,0, maxSizePath);
+				if(fileExists(path))
+					/*SAVE path IN A TABLE OF PATH TO INDEX FORWARD ???? */
+			} while ( validPath == 1 )
+			if(validPath==0)
+				indexation(*path , .... ); /*PROBLEM INDEXATION ! I DON'T HOW IT'S WORK THE MULTI PARAMS */
+			else
+				fprintf(stderr,"Error name path\n");
 			break;
 		case(2):  
 			system("clear");

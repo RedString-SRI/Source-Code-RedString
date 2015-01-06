@@ -36,13 +36,12 @@ int main () {
 	termDetails(term2) ; 
 	addTerm(&I , term2) ; 
 	returnIndex (I) ; 
-
-//Currently testing :
 	if (doesTermExist(&I, term1))
-		printf ("term1 exists\n") ; //it exists
+		printf ("term1 exists\n") ; 
 	else printf ("term1 doesn't exist\n") ;  
 	if (doesTermExist(&I , term2)) 
 		printf ("term2 exists\n") ;
-	else printf ("term2 doesn't exist\n") ; //it doesn't exist
+	else printf ("term2 doesn't exist\n") ; 
+ //doesTermExist() checked
 		
 } 

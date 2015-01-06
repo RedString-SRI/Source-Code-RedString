@@ -192,26 +192,33 @@ Bool doesTermExist (Index * i , Term t) {
 				
 //===================================================================================
 
-void removeFromIndex (Index * i , Term ttoremove) {
-		Cell aux ; 
-		if (*i == NULL) {
-			printf ("END\n") ;
-		}
-		else 
-			{ 
-			while (*i != NULL) 
-				{ if ((*i) -> t1.word == ttoremove.word) 
- 					{ Index * ptr_stock = i ; 
-					*i = (*i) ->ptr_next ;
-					aux = *(*ptr_stock) ; 
+Term removeFromIndex (Index * i , Term ttoremove) {
+		Term taux ; 
+		Cell caux ; 
+		while (*i != NULL) 
+		{
+			if (*i == NULL) 		
+				{ printf ("END\n") ;}
+			else 
+			{ 	
+				if ((*i) -> t1.word == ttoremove.word) 
+ 				{ 
+					Cell * ptr_stock = *i ; 
+					(*i) = (*i) ->ptr_next ;
+					while ((*i) -> ptr_next != NULL) 
+						{ (*i) -> next
+					taux = (ptr_stock) -> t1 ; 
 					free(ptr_stock) ; 
-					} 
+					return taux ; 
+					break ; 
+				} 
 				 else 
-					{ *i = (*i) -> ptr_next ;
-					}
-				}
+					{ *i = (*i) -> ptr_next ; }
+				
 			}
-	}
+			
+		}
+	}	
 
 
 //=====================================================================================

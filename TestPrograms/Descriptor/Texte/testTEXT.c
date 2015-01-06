@@ -12,6 +12,7 @@ int main () {
 	strcpy (w1, "calamar") ;  
 	
 	printf ("number of characters of the text : %d\n" , textNbchar("/home/mahenina/FIL_ROUGE/Test")) ;
+//textNbChar checked. 
 	initIndex(&I) ; 
 //initIndex() checked. 
 	if(indexEmpty(I)) 

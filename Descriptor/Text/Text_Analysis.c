@@ -177,7 +177,7 @@ Bool doesTermExist (Index * i , Term t) {
 	}
 	else 
 		{ while (*i != NULL)  
-			{ if ((*i) -> t1.word == t.word)
+			{ if (strcmp((*i) -> t1.word ,t.word))
 				{ return TRUE ; 
 				  break ; 
 				}

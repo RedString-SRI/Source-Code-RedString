@@ -205,8 +205,6 @@ Term removeFromIndex (Index * i , Term ttoremove) {
  				{ 
 					Cell * ptr_stock = *i ; 
 					(*i) = (*i) ->ptr_next ;
-					while ((*i) -> ptr_next != NULL) 
-						{ (*i) -> next
 					taux = (ptr_stock) -> t1 ; 
 					free(ptr_stock) ; 
 					return taux ; 

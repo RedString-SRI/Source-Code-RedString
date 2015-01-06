@@ -69,7 +69,7 @@ void createTerm (Term term , char * w) ;
 void addTerm (Index * i , Term term) ;
 
 //Remove a term from the index. 
-void removeFromIndex (Index * i , Term termtoremove) ;
+Term removeFromIndex (Index * i , Term termtoremove) ;
 
 //Remove a term from the index under the condition that the number of appearances is inferior to the minimum required. 
 void removeTerm (Index * i) ; 

@@ -44,7 +44,7 @@ int wordAppearance (char * word) ;
 int textNbChar(const char * path) ; 
 
 //This function checks if the term already exists in the index. 
-Bool doesTermExist (Index * i , Term term) ;
+Bool doesTermExist (Index i , Term term) ;
 
 //Retunr the term
 void displayTerm (Term t) ;

@@ -12,41 +12,27 @@
 #include <errno.h>
 
 #include "Type_Bool.h"
+#include "Type_WritableGlobs.h"
+#include "Keyboard.h"
 
 #ifndef CONFIGURATOR
 #define CONFIGURATOR
 
 #define CONF_FILE_NAME "parameters.conf"
 
-// TextDescriptor
+// TextDesc
 extern int globs_occurThreshold;
 extern int globs_maxTerms;
 
-// SoundDescriptor
+// SoundDesc
 extern int globs_windowSize;
 extern int globs_nbInterval;
 extern double globs_minFrequency;
 extern double globs_maxFrequency;
 
-// PictureDescriptor
+// PictureDesc
 extern int globs_nbWeightyBits;
 extern int globs_compTolerance;
-
-typedef struct{
-	// TextDescriptor
-	int textDesc_occurThreshold; // The minimum occurrences (in the indexed file) to store a word in a descriptor 
-	int textDesc_maxTerms; // The number of word to keep in the descriptor
-
-	// SoundDescriptor
-	int soundDesc_windowSize; // The sound signal will be split in x windows. So it is their size.
-	int soundDesc_nbInterval; // The number of intervals in a window.
-	double soundDesc_minFrequency; // The minimum frequency of a sound file
-	double soundDesc_maxFrequency; // The maxmimum frequency of a sound file
-				
-	// PictureDescriptor
-	int pictureDesc_nbWeightyBits; // The number of weighty bits to get on each pixel component
-	int pictureDesc_compTolerance;
-}WritableGlobs;
 
 /**
  * \brief Initialise the configurator module
@@ -59,9 +45,15 @@ typedef struct{
 Bool initConfigurator();
 
 /**
- * \brief Ask the user to tape in configuration variables and set them straight after
+ * \brief Ask the user to tape in configuration variables and set & save them straight after
+ * 
+ * \param confFile The configurator file. Cursor at the begining.
+ * Needs to be opened in writing mode
+ * \return TRUE : Variables have been set and saved correctly \n
+ * FALSE : An error has occurred, variables can't be saved in a
+ * configuration file
  */
-void askGlobsVariables();
+Bool enterGlobsVariables(FILE* confFile);
 
 /**
  * \brief Initialise global variables
@@ -101,13 +93,13 @@ Bool matchKey (char const * line, char const * key);
 /**
  * \brief Looks for a line containing a key in a file
  * 
- * Looks for the first line begining with key in the file linked to fileDescriptor.
- * \param fileDescriptor : The file you want to search into
+ * Looks for the first line begining with key in the file linked to fileDesc.
+ * \param fileDesc : The file you want to search into
  * \param key : The first word of a line you want to be returned
  * \return The line associated to key in the file or NULL if there
  * is no line in the file begining with key.
  */
-char* matchedLineKey (int pFileDescriptor, char const * pKey);
+char* matchedLineKey (int pFileDesc, char const * pKey);
 
 /**
  * \brief Gives the value of the line (specific line)
@@ -127,11 +119,11 @@ char* matchedValueLine (char const * line, char separator);
 /**
  * \brief Reads the next line of a file
  * 
- * Reads the next line of the file pointed by fileDescriptor.
+ * Reads the next line of the file pointed by fileDesc.
  * 
  * \return Either the next line or a char '\0' if an error has occurred
  */
-char* readLine (int fileDescriptor);
+char* readLine (int fileDesc);
 
 /**
  * \brief Indicates a position ignoring spaces

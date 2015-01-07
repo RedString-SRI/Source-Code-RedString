@@ -1,8 +1,9 @@
                             
                             --->NEED FUNCTION TO CREATE :<---
-float findColor(path , colorDecimal); // return the occurcence of the color's apparition in A file
-int findWord(path , soughtWord); // return the occurcence of the word's apparition in A file
-int findSound(path , frequence); // return the occurcence of the frequence's apparition in A file
+float findColor(char path[] ,int colorDecimal); // return the occurcence of the color's apparition in A file
+int findWord(char path[] ,char soughtWord[]); // return the occurcence of the word's apparition in A file
+float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc);
+float compareFileTXT(char path1[] ,char path2[]);
 
                             
                             IN CONFIGURATOR:
@@ -29,7 +30,8 @@ void writeList(BaseDescriptor * base, FileType type);
 Dimension getSizePicture(FILE *fileIMG);                                                OK
 PictureDescriptor createPictureDescriptor(FILE *fileIMG);                               OK                        
 void createHistogram(int bit[] , Dimension dim);                                        OK
-void printHistogram(FILE *descriptIMG);                                                 X ERROR
+void printHistogram(FILE *descriptIMG);                                                 OK
+float compareFileIMG(char path1[] ,char path2[])
 
                             IN BASE DESCRIPTOR SOUND:
                             

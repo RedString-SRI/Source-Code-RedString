@@ -9,54 +9,85 @@
 //===================================================================================================
 Bool initConfigurator()
 {
-	FILE* confFile = fopen(CONF_FILE_NAME, "wb+");
+	FILE* confFile = fopen(CONF_FILE_NAME, "rb");
 	if(confFile == NULL)
 	{
 		perror("initConfigurator fopen confFile");
 		return FALSE;
 	}
+	
 	// If it fits the size of an WritableGlobs, we'll consider it well written
-	if(fileSize(CONF_FILE_NAME) == sizeof(WritableGlobs))
+	if(fileSize(confFile) == sizeof(WritableGlobs))
 	{
-// May be doable in a log file
 		if(readGlobs(confFile))
 			printf("\nConfiguration variables loaded successfully.");
 		else
-/** Error Management **/;
+		{
+			printf("\nAn error has occurred when loading the configuration file");
+			return FALSE;
+		}
 	}
 	else
 	{
-		printf("\nFirst you need to configure indexing parameters...")
-		askGlobsVariables();
+		fclose (confFile);
+		// Open the configurator file in writing mode
+		confFile = fopen(CONF_FILE_NAME, "wb+");
+		if(confFile == NULL)
+		{
+			perror("initConfigurator fopen confFile");
+			return FALSE;
+		}
+		
+		printf("\nFirst you need to configure indexing parameters...");
+		if(!enterGlobsVariables(confFile))
+			printf("\nAn error has occurred while saving the configuration file");
+		
 		printf("\nIndexing parameters are now up-to-date");
 	}
 	
 	fclose(confFile);
+	return TRUE;
 }
 //===================================================================================================
-void askGlobsVariables()
+Bool enterGlobsVariables(FILE* confFile)
 {
 	WritableGlobs globs;
-	// BASIC INPUT TO SECURE
-	printf("\n\tText indexation :\n\t Tape the occurrence threshold for words : ");
-	scanf("%d", &globs->textDesc_occurThreshold);
-	printf("\tTape the maximum terms to keep for a file : ");
-	scanf("%d", &globs->textDesc_maxTerms);
-	printf("\n\tPicture indexation :\n\tTape the number of"
-		"Weighty bits to store for each pixel component : ");
-	scanf("%d", &globs->pictureDesc_nbWeightyBits);
-	printf("\tTape the comparison tolerance between two pixels : ");
-	scanf("%d", &globs->pictureDesc_compTolerance);
-	printf("\n\tSound indexation : \n\tTape the window Size : ");
-	scanf("%d", &globs->soundDesc_windowSize);
-	printf("\tTape the number of interval in a window : ");
-	scanf("%d", &globs->soundDesc_nbInterval);
-	printf("\tTape the minimum frequency: ");
-	scanf("%lf", &globs->soundDesc_minFrequency);
-	printf("\tTape the maximum frequency: ");
-	scanf("%lf", &globs->soundDesc_maxFrequency);
+	
+	printf("\n\tText indexation :\n\t Enter the occurrence threshold for words : ");
+	while(getKeyboard_Long(&globs.textDesc_occurThreshold, 0, INT_MAX) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
+	
+	printf("\tEnter the maximum terms to keep for a file : ");
+	while(getKeyboard_Long(&globs.textDesc_maxTerms, 0, INT_MAX) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
+	
+	printf("\n\tPicture indexation :\n\tEnter the number of "
+		"weighty bits to store for each pixel component : ");
+	while(getKeyboard_Long(&globs.pictureDesc_nbWeightyBits, 0, INT_MAX) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
+	
+	printf("\tEnter the comparison tolerance between two pixels : ");
+	while(getKeyboard_Long(&globs.pictureDesc_compTolerance, 0, INT_MAX) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
+	
+	printf("\n\tSound indexation : \n\tEnter the window Size : ");
+	while(getKeyboard_Long(&globs.soundDesc_windowSize, 0, INT_MAX) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
+	
+	printf("\tEnter the number of interval in a window : ");
+	while(getKeyboard_Long(&globs.soundDesc_nbInterval, 0, INT_MAX) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
+	
+	printf("\tEnter the minimum frequency: ");
+	while(getKeyboard_Double(&globs.soundDesc_minFrequency, -DBL_MAX, DBL_MAX) != 1)
+		printf("\t\tPlease enter a value between %f and %f: ", -DBL_MAX, DBL_MAX);
+			
+	printf("\tEnter the maximum frequency: ");
+	while(getKeyboard_Double(&globs.soundDesc_maxFrequency, globs.soundDesc_minFrequency, DBL_MAX) != 1
+		|| globs.soundDesc_maxFrequency == globs.soundDesc_minFrequency)
+		printf("\t\tPlease enter a value between %f (excluded) and %f: ", globs.soundDesc_minFrequency, DBL_MAX);
 
-	setGlobsVariables(&globs);
+	return writeGlobs(&globs, confFile);
 }
 //===================================================================================================
 void setGlobsVariables(WritableGlobs const * globs)
@@ -74,14 +105,14 @@ void setGlobsVariables(WritableGlobs const * globs)
 //===================================================================================================
 Bool writeGlobs(WritableGlobs const * globs, FILE* confFile)
 {
-	if(writeStruct(confFile, &globs, sizeof(*globs)))
+	if(!writeStruct(confFile, globs, sizeof(*globs)))
 	{
 /** Error Management **/
 		return FALSE;
 	}
 	
 	// Updating variables into global variables
-	setGlobsVariables(&globs);
+	setGlobsVariables(globs);
 	return TRUE;
 }
 //===================================================================================================
@@ -89,14 +120,14 @@ Bool readGlobs(FILE* confFile)
 {
 	WritableGlobs * globs = malloc(sizeof(*globs));
 
-	if(!readStruct(confFile, &globs, sizeof(*globs)))
+	if(!readStruct(confFile, globs, sizeof(*globs)))
 	{
 /** Error Management **/
 		return FALSE;
 	}
 	
 	// Updating variables into global variables
-	setGlobsVariables(&globs);
+	setGlobsVariables(globs);
 	
 	return TRUE;
 }
@@ -144,22 +175,22 @@ Bool matchKey (char const * line, char const * key)
 	return hasMatched;
 }
 //===================================================================================================
-char* matchedLineKey(int fileDescriptor, char const * key)
+char* matchedLineKey(int fileDesc, char const * key)
 {
 	char *currentLine;
 	Bool keyFound = FALSE;
 	
 	// Begining at the begining !
-	lseek(fileDescriptor, 0, SEEK_SET);
-	currentLine = readLine(fileDescriptor);
-	// Test if key is at the begining of a line by testing each line until fileDescriptor "ends"
+	lseek(fileDesc, 0, SEEK_SET);
+	currentLine = readLine(fileDesc);
+	// Test if key is at the begining of a line by testing each line until fileDesc "ends"
 	// If the key is found in a line, the loop stops.
 	while(currentLine[0] != '\0' && !keyFound)
 	{	
 		if(matchKey(currentLine, key))
 			keyFound = TRUE;			
 		else	// read the next line
-			currentLine = readLine(fileDescriptor);
+			currentLine = readLine(fileDesc);
 	}
 	
 	if(!keyFound)
@@ -214,7 +245,7 @@ char* matchedValueLine (char const * line, char separator)
 	return valueLine;
 }
 //===================================================================================================
-char* readLine (int fileDescriptor)
+char* readLine (int fileDesc)
 {
 	char *line, character;
 	int isEnding, length = 30;	// isEnding : returned int from read(...)
@@ -224,7 +255,7 @@ char* readLine (int fileDescriptor)
 	
 
 	i = 0;
-	isEnding = read(fileDescriptor, &character, sizeof(char));
+	isEnding = read(fileDesc, &character, sizeof(char));
 
 	// isEnding is higher than 0 if something has been copied in character
 	if(isEnding > 0)
@@ -232,7 +263,7 @@ char* readLine (int fileDescriptor)
 		// line is allocated with an initial length, if it is not enough, it is going to be reallocated
 		line = malloc(sizeof(*line) * length);
 		
-		// Test each character of fileDescriptor's current line until it find '\n'
+		// Test each character of fileDesc's current line until it find '\n'
 		while(character != '\n' && isEnding > 0)
 		{
 			// If the initial length is not enough, it reallocates line
@@ -242,9 +273,9 @@ char* readLine (int fileDescriptor)
 				line = realloc (line, length);
 			}
 			
-			// Character by character, it copies fileDescriptor's current line in line
+			// Character by character, it copies fileDesc's current line in line
 			line[i++] = character;
-			isEnding = read (fileDescriptor, &character, sizeof(char));
+			isEnding = read (fileDesc, &character, sizeof(char));
 		}
 	
 		// It secures the line's end with '\0'

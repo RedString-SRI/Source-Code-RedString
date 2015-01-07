@@ -8,11 +8,15 @@
 #define TMAX 100
 
 typedef struct term {
-	char * word;
-	int occur;
-	struct term *ptr_next ; 
-	} Term, *Index ; 
+char * word;
+int occur;
+//struct term *ptr_next ;
+} Term ; //*Index ;
 
+typedef struct cell {
+Term t1 ; 
+struct cell *ptr_next ;
+} Cell, *Index ; 
 
 int textNbChar(const char * path) ; 
 
@@ -21,16 +25,13 @@ int textNbChar(const char * path) ;
 Bool isAWord (char * word) ;
 
 //Supposing the word is memorize into a table, this function counts the number of fonts in a word to find where the end of the word is located. 
-
 int endOfWord (char * word) ;
 
-//Supposed to print the word.
-void stockWord (const char * path) ; 
-
+//For reading text 
+void readWordbyWord(const char * path) ;
 
 //We also have to make a difference between a word and a beacon : a beacon is of the form "<beacon opening> word </beacon closing>  . 
-
-Bool isABeacon (char * word) ;
+Bool isInBeacons (const char * path, char word) ; 
 
 // A word is considered as relevant if it contains more than three fonts ; this function help us to define if a word is relevant. 
 
@@ -44,6 +45,12 @@ int textNbChar(const char * path) ;
 
 //This function checks if the term already exists in the index. 
 Bool doesTermExist (Index * i , Term term) ;
+
+//Retunr the term
+void displayTerm (Term t) ;
+
+//Return the Index 
+void returnIndex (Index i) ; 
 
 //Initialisation of the index. 
 void initIndex (Index * i) ;
@@ -62,11 +69,19 @@ void createTerm (Term term , char * w) ;
 void addTerm (Index * i , Term term) ;
 
 //Remove a term from the index. 
-void removeFromIndex (Index * i , Term termtoremove) ;
+Term removeFromIndex (Index * i , Term termtoremove) ;
 
 //Remove a term from the index under the condition that the number of appearances is inferior to the minimum required. 
 void removeTerm (Index * i) ; 
 
+//Increase the appearances.
+void increaseOccur (Term * t) ;
+
+//Decrease the appearances. 
+void decreaseOccur (Term * t) ;
 
 //This function increments the appearances if the word already exist in the Index ; 
 void addOccurences (Index * i , Term t) ;
+
+//Show the terms details 
+void termDetails (Term term) ; 

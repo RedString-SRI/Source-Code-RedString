@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gcc ../../FileManager/FileManager.c ../../Indexer/Indexer.c ../../Globals.c ../../Descriptor/Sound/SoundDescriptor.c Tester_Indexer.c -I /home/rayope/SRI/FilRouge/Source-Code-RedString/ -I /home/rayope/SRI/FilRouge/Source-Code-RedString/FileManager -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor/Sound -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Indexer -o Test_Indexer_Program  >& error_compil.err
+gcc ../../FileManager/FileManager.c ../../Indexer/Indexer.c ../../Globals.c ../../Descriptor/Sound/SoundDesc.c ../../Descriptor/BaseDesc.c Tester_Indexer.c -I /home/rayope/SRI/FilRouge/Source-Code-RedString/ -I /home/rayope/SRI/FilRouge/Source-Code-RedString/FileManager -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor/Sound -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Indexer -o Test_Indexer_Program  >& error_compil.err
 if [ `echo $?`  == 0 ]
 then
 	echo "Compilation successed."

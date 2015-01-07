@@ -112,7 +112,7 @@ Bool copyFile(char const * newFileName, char const * fileName)
 	}
 	
     
-	// Opening file descriptors
+	// Opening file descs
 	file = fopen(fileName, "rb");
 	if(file == NULL)
 	{
@@ -160,9 +160,7 @@ Bool writeFile(char const * path, char const * data)
 		if(fputs(data, file) != EOF)
 			saved = TRUE;
 		else
-		{
 			perror("Error saveFile_fputs");
-		}
 		fclose(file);
 	}
 	else

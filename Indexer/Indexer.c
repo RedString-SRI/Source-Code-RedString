@@ -6,20 +6,23 @@
 
 #include "Indexer.h"
 
-typedef int TextDescriptor;
-typedef int PictureDescriptor;
 
-TextDescriptor * createTextDesc(FILE* file)
+/** Following declarations are made for testing **/
+typedef struct {long address;}TextDesc;
+typedef struct {long address;}PictureDesc;
+
+TextDesc * createTextDesc(FILE* file)
 {
 	return NULL;
 }
 
-PictureDescriptor * createPictureDesc(FILE* file)
+PictureDesc * createPictureDesc(FILE* file)
 {
 	return NULL;
 }
+/** Previous declarations are made for testing **/
 
-
+//===================================================================================================
 void foo(char *fmt, ...)
 {
     va_list ap;
@@ -48,7 +51,7 @@ void foo(char *fmt, ...)
     }
     va_end(ap);
 }
-
+//===================================================================================================
 void indexation(char const * dirPath, ...)
 {
 	va_list ap;
@@ -122,28 +125,36 @@ void indexation(char const * dirPath, ...)
 	wait(NULL);
 	wait(NULL);
 }
-
+//===================================================================================================
 void indexFiles(FilePathStack const * filePathStack)
 {
-	BaseDescriptor baseDesc = initBaseDesc(filePathStack->fileType);
-	ListeBaseDesc listBaseDesc = initListBaseDescriptor(filePathStack->fileType);
+	BaseDesc baseDesc = initBaseDesc(filePathStack->fileType);
+	ListeBaseDesc listBaseDesc = initListBaseDesc(filePathStack->fileType);
 	int date = getDate();
 	char * tmpPathFile;
-	void * tmpDesc;		// the descriptor being written at the moment (in the while)
+	void * tmpDesc;		// the desc being written at the moment (in the while)
 	void * (*createDesc)(char *);
+<<<<<<< HEAD
 	int * (*tab);
+=======
+	long address;
+	
+>>>>>>> c37d8666579de8b8d1c9081b28837de2c104d40b
 	switch(filePathStack->fileType)
 	{
 		case TEXT:
 			createDesc = createTextDesc;
+			address = ((TextDesc*)tmpDesc)->address;
 			break;
 			
 		case PICTURE:
 			createDesc = createPictureDesc;
+			address = ((PictureDesc*)tmpDesc)->address;
 			break;
 			
 		case SOUND:
 			createDesc = createSoundDesc;
+			address = ((SoundDesc*)tmpDesc)->address;
 			break;
 	}
 	
@@ -154,9 +165,9 @@ void indexFiles(FilePathStack const * filePathStack)
 		
 		
 		/** MUTEX ? 0_0 =) **/
-		addDescriptor(&baseDesc, &tmpDesc, filePathStack->fileType);
+		addDesc(&baseDesc, &tmpDesc, filePathStack->fileType);
 		/** Following tmpDesc->address won't compile... **/
-		addListBaseDesc(&listBaseDesc, tmpPathFile, tmpDesc->address, date);
+		addListBaseDesc(&listBaseDesc, tmpPathFile, address, date);
 		/** MUTEX ? 0_0 =) **/
 	}
 }

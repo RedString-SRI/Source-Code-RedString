@@ -1,46 +1,9 @@
+#include "PictureDesc.h"
+#include "math.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <math.h>
 
-typedef struct{
-  int height;
-  int width;
-}Dimension;
 
-typedef struct{
-  int id;
-  Dimension size[2];
-  int nbcomp ; /*d is the picture's number of components*/
-  int *histogram; // Will be an array of size : 2^(d*n)
-
-}PictureDesc;
-//
-//
-//
-int globs_nbWeightyBits=2; ///*USE A WRONG VARIABLE GLOBALE*/
-//
-//
-//
-Dimension getSizePicture(FILE *fileIMG);
-void createPictureDesc(char path[]);
-void createHistogram(FILE *file ,int bit[] , Dimension dim , int size);
-void printHistogram(char path[]);
-//===================================================================================================
-//===================================================================================================
-//===================================================================================================
-int main()
-{
-   ///* CreateDesc manage getSizeDimension& createHistogramm
-   char file[50]="fileTEST.txt";
-   createPictureDesc(file); // during this function, concatanation : Test.txt -> descriptTest.txt
-   printHistogram(file); // So, histogram of the descript
-
-    return 0;
-}
-//===================================================================================================
-//===================================================================================================
-//===================================================================================================
 Dimension getSizePicture(FILE *fileIMG) {
    Dimension dim;
 
@@ -52,7 +15,7 @@ Dimension getSizePicture(FILE *fileIMG) {
 void createPictureDesc(char path[]){
    int quantif = globs_nbWeightyBits;
    Dimension size;
-   int *matrix ;
+   int *matrix , nbrMatrix;
    int bit[256]={0} ;
    int tmpBit;
    int i , j , tmpval=1;
@@ -61,29 +24,24 @@ void createPictureDesc(char path[]){
 
    FILE *file=fopen(path, "r");
    size=getSizePicture(file);
-   matrix=(int*)malloc((size.width*size.height*3)*sizeof(int)); //matrix 1 dimension ...
+   nbrMatrix=fscanf(file, "%d" , &nbrMatrix);
+   matrix=(int*)malloc((size.width*size.height*nbrMatrix)*sizeof(int)); //matrix 1 dimension ...
 
-   for(i=0 ; i<size.width*size.height ; i++){ // scan the whole matrix : 1rst Red , 2nd Green , 3th Blue
+   for(i=0 ; i<size.width*size.height ; i++){ // scan the whole matrix : 1rst Red , 2nd Green , 3th Blue : for nbrMAtrix=3
          tmpBit=0;
          fscanf(file , "%d" , matrix+i); // on RED matrix
          fscanf(file , "%d" , matrix+1*size.height*size.height+i); // on GREEN matrix
          fscanf(file , "%d" , matrix+2*size.height*size.height+i); // on BLUE matrix
 
          while(quantif > 0) {
-               matrix[i] %= (255/tmpval);
-               matrix[1*size.height*size.width+i] %= ((int)(255/tmpval) + (tmpval!=1) ); //+ tmpval!=1 : differentiate 127 of 128, because (int)255/2=127, but bit2=1 if number is a modulo of 128, not 127
-               matrix[2*size.height*size.width+i] %= ((int)(255/tmpval) + (tmpval!=1) );
-
-            if( matrix[i] == 0 )
-                tmpBit+= pow(2,3+quantif); // on RED matrix, for example quantif=2 : modulo 128, 255
-            if( matrix[1*size.height*size.width+i] == 0 )
-                tmpBit+= pow(2,1+quantif); // on  GREEN matrix
-            if( matrix[2*size.height*size.width+i] == 0 )
-                tmpBit+=1*pow(2,quantif-1); // on BLUE matrix
-
+               for(j=0 ; j<nbrMatrix ; j++){
+                  matrix[j*size.height*size.width+i] %= ((int)(255/tmpval) + (tmpval!=1) ); //+ tmpval!=1 : differentiate 127 of 128, because (int)255/2=127, but bit2=1 if number is a modulo of 128, not 127
+                  tmpBit+= pow(2,2*j+quantif-1);
+               }
+               
             quantif--;
             tmpval++;
-         /*For example (255,128,16) and quantif=2
+         /*For example (255,128,16) and quantif=2 and nbrMatrix3(RED,GREEN,BLUE)
           * 1rst round:quantif=2 & tmpval=1 --> matRED[]%255=0 --> tmpBit=32
           *                                 --> matGREEN[]%255=128 --> tmpBIT=32
           *                                 --> matBLUE[]%255=16 --> tmpBIT=32

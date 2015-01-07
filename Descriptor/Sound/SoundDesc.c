@@ -1,5 +1,5 @@
 /**
- * \file SoundDescriptor.c
+ * \file SoundDesc.c
  * \brief Sound desc manager
  * \author Morgan Chabaud
  * \date 25 november 2014
@@ -7,7 +7,7 @@
  * This file defines all functions available for sound descs.
  */
 
-#include "SoundDescriptor.h"
+#include "SoundDesc.h"
 
 //===================================================================================================
 double endianSwap_double(double dbl)
@@ -25,14 +25,14 @@ double endianSwap_double(double dbl)
 	return dblRet;
 }
 //===================================================================================================
-SoundDescriptor * createSoundDesc(FILE* file)
+SoundDesc * createSoundDesc(FILE* file)
 {
 	int doubleSize = sizeof(double),
 		fSize = fileSize(file);
 	double *tmp = malloc(sizeof(*tmp)),
 		*intervalsThreshold = malloc(sizeof(*intervalsThreshold) * globs_nbInterval);
 		
-	SoundDescriptor * desc = malloc(sizeof(*desc));
+	SoundDesc * desc = malloc(sizeof(*desc));
 	int iInterval, iElem, iWindow;	// Increments
 	int nbWindows = (fSize / doubleSize) / globs_windowSize + 2;
 	// (fSize / doubleSize)  is the number of values in the file
@@ -119,7 +119,18 @@ SoundDescriptor * createSoundDesc(FILE* file)
 	return desc;
 }
 //===================================================================================================
-void printSoundDesc(SoundDescriptor const * desc)
+int soundDescSize(SoundDesc const * desc)
+{
+	int size = 0;
+	size += sizeof(desc->address);
+	size += sizeof(desc->nbWindows);
+	size += sizeof(int) * globs_nbInterval * (desc->nbWindows - 1);
+	size += sizeof(int *);
+	
+	return size;
+}
+//===================================================================================================
+void printSoundDesc(SoundDesc const * desc)
 {
 	int iInterval, iWindow, nbWindows = desc->nbWindows - 1;
 	// -1 to stop before desc->histogram[iWindow] == NULL
@@ -133,7 +144,7 @@ void printSoundDesc(SoundDescriptor const * desc)
 	}
 }
 //===================================================================================================
-void writeSoundDesc(FILE* file, SoundDescriptor* desc)
+void writeSoundDesc(FILE* file, SoundDesc* desc)
 {
 	int iInterval, iWindow, nbWindows = desc->nbWindows - 1;
 	// -1 to stop before desc->histogram[iWindow] == NULL
@@ -150,9 +161,9 @@ void writeSoundDesc(FILE* file, SoundDescriptor* desc)
 	writeStruct(file, &desc->histogram[iWindow], sizeof(int*));
 }
 //===================================================================================================
-SoundDescriptor * readSoundDesc(FILE* file)
+SoundDesc * readSoundDesc(FILE* file)
 {
-	SoundDescriptor * desc = malloc(sizeof(*desc));
+	SoundDesc * desc = malloc(sizeof(*desc));
 	const int histUpperSize = 5;	// The increment for array histogram
 	int iElem, iWindow;	// Increments
 	int nbWindows;

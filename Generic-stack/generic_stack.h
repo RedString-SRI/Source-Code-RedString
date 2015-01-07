@@ -13,7 +13,7 @@
 
 /**
  * \struct cell
- * \struct Descriptor
+ * \struct desc
  * \brief A generic element a pointer to the next structure
  *
  * This structure is used to manage temporary files

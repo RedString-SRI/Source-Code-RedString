@@ -5,7 +5,7 @@
 * \version 0.1
 * \date 7 December 2014
 *
-* All the way to do research in the listeBaseDescriptor
+* All the way to do research in the listeBaseDesc
 *
 */
 
@@ -27,7 +27,7 @@
             BLUE(000011) );
 /**
 * \brief byColor.
-* Search specifiquely in an image's descriptor a color:
+* Search specifiquely in an image's desc a color:
 * BLACK:    00 00 00 -> 0
 * LIGHTGRAY:10 10 10 -> 42
 * DARKGRAY: 01 01 01 -> 21
@@ -46,31 +46,33 @@ void byColor(char color[]);
 
 /**
 * \brief byAuthor.
-* Search in whichever descriptor a author in alphabetic order.
+* Search in whichever desc a author in alphabetic order.
 */
+float compareFileIMG(char path1[] ,char path2[]);
+
 void byAuthor();
 
 /**
 * \brief byModifDate.
-* Search specifiquely in whichever descriptor the recent modification in increasing order.
+* Search specifiquely in whichever desc the recent modification in increasing order.
 */
 void byModifDate();
 
 /**
 * \brief byCreatingDate.
-* Search specifiquely in whichever descriptor by Creating Date in increasing order.
+* Search specifiquely in whichever desc by Creating Date in increasing order.
 */
 void byCreatingDate();
 
 /**
 * \brief byNameFile.
-* Search specifiquely in whichever descriptor by Name's file in alphabetic order.
+* Search specifiquely in whichever desc by Name's file in alphabetic order.
 */
 void byNameFile();
 
 /**
 * \brief byOccurenceWord.
-* Search specifiquely in texte descriptor the files which get the most of researched words.
+* Search specifiquely in texte desc the files which get the most of researched words.
 */
 void byOccurenceWord();
 

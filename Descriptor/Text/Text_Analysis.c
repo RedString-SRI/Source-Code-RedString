@@ -171,20 +171,20 @@ void addTerm (Index * i , Term t) {
 //=====================================================================================
 
 
-Bool doesTermExist (Index * i , Term t) {
-	if (*i == NULL) {
+Bool doesTermExist (Index i , Term t) {
+	if (i == NULL) {
 		printf ("END\n") ; 
 	}
 	else 
-		{ while (*i != NULL)  
-			{ if (strcmp((*i) -> t1.word ,t.word))
+		{ while (i != NULL)  
+			{ if (strcmp(i -> t1.word ,t.word))
 				{ return TRUE ; 
 				  break ; 
 				}
 			
 			else 
 				{ 
-				 *i = (*i) -> ptr_next ; 
+				 i = i -> ptr_next ; 
 				}
 			 }
 		}
@@ -271,7 +271,7 @@ void addOccurences (Index * i , Term t) {
 	if (*i == NULL) 
 		printf ("END\n") ; 
 	else 
-		{ if (doesTermExist (i , t) == TRUE) 
+		{ if (doesTermExist (*i , t) == TRUE) 
 			{	while (*i != NULL) 	
 				{ if	(t.word == (*i) -> t1.word) 
 					{ increaseOccur(&((*i) -> t1)) ; 

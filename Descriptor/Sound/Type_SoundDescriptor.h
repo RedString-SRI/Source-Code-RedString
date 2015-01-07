@@ -16,7 +16,8 @@
  * a sound file. This is kind of a summary of it with some losses.
  */
 typedef struct{
-  int id;       /*!< Idendifier of the descriptor. It is unique. */
+  int address;       /*!< The address in the descriptor base. Idendifier of the descriptor. It is unique. */
+  int nbWindows;	/*!< The number of Windows stored in the histogram */
   int** histogram;   /*!< This histogram sizes k*m.
                             k : Windows number
                             m : Intervals number */

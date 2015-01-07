@@ -62,17 +62,16 @@ Bool tests_readStruct(Bool details)
 		return FALSE;
 	}
 	
-	
 	myInteg->a = 1;
 	myInteg->b = 'a';
 	
 	printf("%d%c", myInteg->a, myInteg->b);
-	if(!writeStruct(file, &myInteg, sizeof(Integ)))
+	if(!writeStruct(file, myInteg, sizeof(Integ)))
 		testPassed = FALSE;
 	
 	fseek(file, 0, SEEK_SET);
 	
-	if(!readStruct(file, &newInteg, sizeof(Integ)))
+	if(!readStruct(file, newInteg, sizeof(Integ)))
 		testPassed = FALSE;
 	
 	printf("\nNew int : %d and %c", newInteg->a, newInteg->b);

@@ -6,6 +6,20 @@
 
 #include "Indexer.h"
 
+typedef int TextDescriptor;
+typedef int PictureDescriptor;
+
+TextDescriptor * createTextDesc(FILE* file)
+{
+	return NULL;
+}
+
+PictureDescriptor * createPictureDesc(FILE* file)
+{
+	return NULL;
+}
+
+
 void foo(char *fmt, ...)
 {
     va_list ap;
@@ -40,7 +54,7 @@ void indexation(char const * dirPath, ...)
 	va_list ap;
 	char * tmpParam;
 	int textThread, pictureThread, soundThread;
-	PathStack pathStack;	// Contains the path
+	PathStacks pathStack;	// Contains the path
 				// of ready-to-be-indexed files
 	
 	// Initialise pathStack
@@ -111,13 +125,13 @@ void indexation(char const * dirPath, ...)
 
 void indexFiles(FilePathStack const * filePathStack)
 {
-	BaseDesc baseDesc = initBaseDesc(filePathStack->fileType);
-	ListBaseDescriptor listBaseDesc = initListBaseDescriptor(filePathStack->fileType);
+	BaseDescriptor baseDesc = initBaseDesc(filePathStack->fileType);
+	ListeBaseDesc listBaseDesc = initListBaseDescriptor(filePathStack->fileType);
 	int date = getDate();
 	char * tmpPathFile;
 	void * tmpDesc;		// the descriptor being written at the moment (in the while)
 	void * (*createDesc)(char *);
-	
+	int * (*tab);
 	switch(filePathStack->fileType)
 	{
 		case TEXT:

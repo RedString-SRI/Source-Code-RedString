@@ -8,10 +8,12 @@
 #include <stdarg.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <stdlib.h>
 
 
 #include "Type_FileType.h"
 #include "Type_BaseDescriptor.h"
+#include "SoundDescriptor.h"
 
 #ifndef INDEXER
 #define INDEXER
@@ -33,7 +35,7 @@ void indexation(char const * dirPath, ...);
 
 void foo(char *fmt, ...);
 
-void updateIndexableFile(char * dirPath, PathStacks pathStack);
+void updateIndexableFile(char * dirPath, PathStacks * pathStack);
 
 void indexFiles(FilePathStack const * filePathStack);
 

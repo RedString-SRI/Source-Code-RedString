@@ -4,7 +4,7 @@
  * \author Maxime Sanmartin \n
  */
 
-#include "BaseDesc.h"
+#include "BaseDescriptor.h"
 
 void initList(BaseDesc * base){
     *base = NULL;
@@ -14,12 +14,12 @@ void initList(BaseDesc * base){
 void printList(BaseDesc base){
     // If the list is empty
     if(listIsEmpty(base))
-        /** Error **/
+        /** Error **/;
     else{
         BaseDesc ptr_p = base;
         // We are using the pointer to travel few every element of the list until the last one
         while(ptr_p!=NULL){
-            printElement(*(ptr_p->element));
+            printElement(ptr_p->element);
             ptr_p = ptr_p->next;
         }
     }
@@ -47,15 +47,17 @@ void addDescriptor(BaseDesc *base, void * structDesc, FileType type){
         ptr_p->next = ptr_add;
     }
 	FILE * fileAdd;
+	SoundDescriptor * desc;
 	switch(type){
-		case TEXT: TextDescriptor * desc = (TextDescriptor*)structDesc;
+		/*case TEXT: TextDescriptor * desc = (TextDescriptor*)structDesc;
 			fileAdd = fopen("TextBaseDesc.db", "a");
         break;
         case PICTURE: PictureDescriptor * desc = (PictureDescriptor*)structDesc;
 			fileAdd = fopen("PictureBaseDesc.db", "a");
-        break;
-        case SOUND: SoundDescriptor * desc = (SoundDescriptor*)structDesc;
-			fileAdd = fopen("SoundBaseDesc.db", "a");
+        break;*/
+        case SOUND: 
+				SoundDescriptor * desc = (SoundDescriptor*)structDesc;
+				fileAdd = fopen("SoundBaseDesc.db", "a");
         break; 
 	}
 	writeFile(fileAdd, desc);
@@ -66,19 +68,27 @@ void addDescriptor(BaseDesc *base, void * structDesc, FileType type){
 BaseDesc initBaseDesc(FileType fileType){
 	BaseDesc newBase;
 	char * FileDesc;
-	switch(fileType){
-		case TEXT: strcpy(FileDesc, "TextBaseDesc.db");
-        break;
-        case PICTURE: strcpy(FileDesc, "PictureBaseDesc.db");
-        break;
-        case SOUND: strcpy(FileDesc, "SoundBaseDesc.db");
-        break;
-	}
+	int size_t = sizeof(struct Desc *);
 	FILE * baseDesc = fopen(FileDesc, "r");
 	void * structDesc;
 	BaseDesc ptr_p;
+	switch(type){
+		/*case TEXT: TextDescriptor * desc = (TextDescriptor*)structDesc;
+			fileAdd = fopen("TextBaseDesc.db", "a");
+			size_t += sizeof(TextDesc);
+        break;
+        case PICTURE: PictureDescriptor * desc = (PictureDescriptor*)structDesc;
+			fileAdd = fopen("PictureBaseDesc.db", "a");
+			size_t += sizeof(PictureDesc);
+        break;*/
+        case SOUND: 
+				SoundDescriptor * desc = (SoundDescriptor*)structDesc;
+				fileAdd = fopen("SoundBaseDesc.db", "a");
+				size_t += sizeof(SoundDesc);
+        break; 
+	}
 	while(structDesc = readFile(baseDesc)){
-		BaseDesc ptr_add = (BaseDesc) malloc(sizeof(struct Descriptor));    
+		BaseDesc ptr_add = (BaseDesc) malloc(size_t);    
 		ptr_add->element = structDesc;
 		if(listIsEmpty(newBase)){
 		    newBase = ptr_add;
@@ -97,10 +107,10 @@ BaseDesc initBaseDesc(FileType fileType){
 ListBaseDesc initListBaseDesc(FileType fileType){
 	char * fileDesc;	
 	switch(fileType){
-		case TEXT: strcpy(fileDesc,"TextListBaseDesc.db");
+		/*case TEXT: strcpy(fileDesc,"TextListBaseDesc.db");
 		break;
 		case PICTURE: strcpy(fileDesc, "PictureListBaseDesc.db");
-		break;
+		break;*/
 		case SOUND: strcpy(fileDesc, "SoundListBaseDesc.db");
 		break;
 	}
@@ -137,10 +147,10 @@ void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength]
 		Bool trouve = False;
 		char * fileDesc;	
 		switch(fileType){
-			case TEXT: strcpy(fileDesc,"TextListBaseDesc.db");
+			/*case TEXT: strcpy(fileDesc,"TextListBaseDesc.db");
 		    break;
 		    case PICTURE: strcpy(fileDesc, "PictureListBaseDesc.db");
-		    break;
+		    break;*/
 		    case SOUND: strcpy(fileDesc, "SoundListBaseDesc.db");
 		    break;
 		}
@@ -168,16 +178,16 @@ void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength]
 }
 
 //===================================================================================================
-void remove(BaseDesc * base, FileType type){
+void removeDesc(BaseDesc * base, FileType type){
     if(listIsEmpty(*base))
         /** error **/;
     else{
 		char * FileDesc;
 		switch(fileType){
-			case TEXT: strcpy(FileDesc, "TextBaseDesc.db");
+			/*case TEXT: strcpy(FileDesc, "TextBaseDesc.db");
 		    break;
 		    case PICTURE: strcpy(FileDesc, "PictureBaseDesc.db");
-		    break;
+		    break;*/
 		    case SOUND: strcpy(FileDesc, "SoundBaseDesc.db");
 		    break;
 		}
@@ -197,10 +207,10 @@ void remove(BaseDesc * base, FileType type){
 //===================================================================================================
 void writeList(BaseDesc * p, fileType t){
     switch(t){
-        case TEXT: ptr_p = TextDescriptor e;
+        /*case TEXT: ptr_p = TextDescriptor e;
         break;
         case PICTURE: ptr_p = PictureDescriptor e;
-        break;
+        break;*/
         case SOUND: ptr_p = SoundDescriptor e;
         break;
     }

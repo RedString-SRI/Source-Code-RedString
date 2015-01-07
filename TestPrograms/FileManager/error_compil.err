@@ -1,11 +1,4 @@
-Tester_FileManager.c: In function ‘tests_readStruct’:
-Tester_FileManager.c:69:2: warning: passing argument 2 of ‘writeStruct’ from incompatible pointer type [enabled by default]
-In file included from Tester_FileManager.c:8:0:
-/home/rayope/SRI/FilRouge/Source-Code-RedString/FileManager/FileManager.h:81:6: note: expected ‘void **’ but argument is of type ‘struct Integ **’
-Tester_FileManager.c:74:2: warning: passing argument 2 of ‘readStruct’ from incompatible pointer type [enabled by default]
-In file included from Tester_FileManager.c:8:0:
-/home/rayope/SRI/FilRouge/Source-Code-RedString/FileManager/FileManager.h:79:6: note: expected ‘void **’ but argument is of type ‘struct Integ **’
 Tester_FileManager.c: In function ‘tests_fileSize’:
-Tester_FileManager.c:129:2: warning: passing argument 1 of ‘fileSize’ from incompatible pointer type [enabled by default]
+Tester_FileManager.c:130:2: warning: passing argument 1 of ‘fileSize’ from incompatible pointer type [enabled by default]
 In file included from Tester_FileManager.c:8:0:
 /home/rayope/SRI/FilRouge/Source-Code-RedString/FileManager/FileManager.h:41:5: note: expected ‘struct FILE *’ but argument is of type ‘char *’

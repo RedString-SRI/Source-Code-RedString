@@ -4,19 +4,17 @@
  * \author Maxime Sanmartin \n
  */
 
-#ifndef BaseDesc_H_INCLUDED
-#define BaseDesc_H_INCLUDED
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "Text/TextDescriptor.h"
-#include "Picture/PictureDescriptor.h"
+/*#include "Text/TextDescriptor.h"
+#include "Picture/PictureDescriptor.h"*/
 #include "Sound/SoundDescriptor.h"
 #include "../Type_Bool.h"
 #include "Type_FileType.h"
-#include "Type_BaseDesc.h"
+#include "Type_BaseDescriptor.h"
+#include "../Globals.c"
 
 #ifndef BASE_DESCRIPTOR
 #define BASE_DESCRIPTOR
@@ -88,7 +86,7 @@ void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength]
  * remove the last element from the base list
  * \param the base to update
 */
-void remove(BaseDesc * base, FileType type);
+void removeDesc(BaseDesc * base, FileType type);
 
 /**
  * \brief The user has to give elements to stack into the BaseDesc, only for debugging
@@ -99,4 +97,4 @@ void remove(BaseDesc * base, FileType type);
 */
 void writeList(BaseDesc * base, FileType type);
 
-#endif // BaseDesc_H_INCLUDED
+#endif

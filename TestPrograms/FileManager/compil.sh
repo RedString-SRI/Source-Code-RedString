@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gcc ../../FileManager/FileManager.c Tester_FileManager.c -I /home/rayope/SRI/FilRouge/Source-Code-RedString/FileManager -I /home/rayope/SRI/FilRouge/Source-Code-RedString/ -pg -o Test_FileManager_Program  >& error_compil.err
+gcc ../../FileManager/FileManager.c Tester_FileManager.c -I /home/rayope/SRI/FilRouge/Source-Code-RedString/FileManager -I /home/rayope/SRI/FilRouge/Source-Code-RedString/ -pg -o Test_FileManager_Program  2> error_compil.err
 if [ `echo $?`  == 0 ]
 then
 	echo "Compilation successed."

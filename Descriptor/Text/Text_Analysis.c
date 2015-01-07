@@ -171,24 +171,29 @@ void addTerm (Index * i , Term t) {
 //=====================================================================================
 
 
+
 Bool doesTermExist (Index i , Term t) {
-	if (i == NULL) {
-		printf ("END\n") ; 
-	}
+	if (i == NULL) 
+		{ printf ("END\n") ; }
 	else 
-		{ while (i != NULL)  
-			{ if (strcmp(i -> t1.word ,t.word))
-				{ return TRUE ; 
-				  break ; 
+	
+	{	while (i != NULL)  
+			{ 
+				if (strcmp(i -> t1.word ,t.word))
+				{ 
+					return FALSE ; 
+					i = i -> ptr_next ; 
 				}
 			
 			else 
 				{ 
-				 i = i -> ptr_next ; 
+					return TRUE ;
+					break ; 
+					
 				}
 			 }
-		}
 	}
+}
 				
 //===================================================================================
 

@@ -134,12 +134,8 @@ void indexFiles(FilePathStack const * filePathStack)
 	char * tmpPathFile;
 	void * tmpDesc;		// the desc being written at the moment (in the while)
 	void * (*createDesc)(char *);
-<<<<<<< HEAD
-	int * (*tab);
-=======
 	long address;
 	
->>>>>>> c37d8666579de8b8d1c9081b28837de2c104d40b
 	switch(filePathStack->fileType)
 	{
 		case TEXT:

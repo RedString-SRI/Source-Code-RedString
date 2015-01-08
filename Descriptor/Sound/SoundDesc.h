@@ -2,7 +2,6 @@
  * \file SoundDesc.h
  * \brief Sound desc manager
  * \author Morgan Chabaud
- * \date 25 november 2014
  * 
  * This file declares all functions available for sound descs.
  */

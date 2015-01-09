@@ -158,41 +158,33 @@ void termDetails (Term t) {
 void addTerm (Index * i , Term t) { 
 	printf ("==== Add process started =====\n") ; 
 	printf ("=Term in parameters details=\n") ; 
-		termDetails (t) ; 
+	termDetails (t) ; 
 	Cell * ptr_Cell = (Cell *) malloc(sizeof(Cell)) ; 
-		(*ptr_Cell).t1 = t ; 
-		(*ptr_Cell).ptr_next = *i ; 
+	(*ptr_Cell).t1 = t ; 
+	(*ptr_Cell).ptr_next = *i ; 
 	printf ("=Term updated details=\n") ; 
-		termDetails ((*ptr_Cell).t1) ; 
-		*i = ptr_Cell ; 	
-		printf("==== Term added in the index ====\n") ; 	
-	}
+	termDetails ((*ptr_Cell).t1) ;
+	ptr_Cell->ptr_next = *i; 
+	*i = ptr_Cell ; 	
+	printf("==== Term added in the index ====\n") ; 	
+}
+
 
 //=====================================================================================
 
-
-
 Bool doesTermExist (Index i , Term t) {
+	Index ptr_dep = i;
 	if (i == NULL) 
-		{ printf ("END\n") ; }
+		printf ("END\n") ;
 	else 
-	
-	{	while (i != NULL)  
-			{ 
-				if (strcmp(i -> t1.word ,t.word))
-				{ 
-					return FALSE ; 
-					i = i -> ptr_next ; 
-				}
-			
+		while (ptr_dep != NULL)  
+		{ 
+			if (strcmp(ptr_dep->t1.word, t.word) == 0)
+				return TRUE; 
 			else 
-				{ 
-					return TRUE ;
-					break ; 
-					
-				}
-			 }
-	}
+				ptr_dep=ptr_dep->ptr_next;
+		}
+	return FALSE;
 }
 				
 //===================================================================================

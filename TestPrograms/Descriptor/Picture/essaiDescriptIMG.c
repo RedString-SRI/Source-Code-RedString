@@ -23,7 +23,7 @@ int globs_nbWeightyBits=2; ///*USE A WRONG VARIABLE GLOBALE*/
 //
 //
 Dimension getSizePicture(FILE *fileIMG);
-void createPictureDesc(char path[]);
+void createPictureDesc(FILE *file);
 void createHistogram(FILE *file ,int bit[] , Dimension dim , int size);
 void printHistogram(char path[]);
 //===================================================================================================
@@ -49,7 +49,7 @@ Dimension getSizePicture(FILE *fileIMG) {
    return dim;
 }
 //===================================================================================================
-void createPictureDesc(char path[]){
+void createPictureDesc(FILE *file){
    int quantif = globs_nbWeightyBits;
    Dimension size;
    int *matrix ;
@@ -57,9 +57,7 @@ void createPictureDesc(char path[]){
    int tmpBit;
    int i , j , tmpval=1;
    char des[20]="descript";
-   FILE *descriptIMG ;
 
-   FILE *file=fopen(path, "r");
    size=getSizePicture(file);
    matrix=(int*)malloc((size.width*size.height*3)*sizeof(int)); //matrix 1 dimension ...
 

@@ -31,7 +31,7 @@ int endOfWord (char * word) ;
 void readWordbyWord(const char * path) ;
 
 //We also have to make a difference between a word and a beacon : a beacon is of the form "<beacon opening> word </beacon closing>  . 
-Bool isInBeacons (const char * path, char word) ; 
+Bool isInBeacons (char * word) ; 
 
 // A word is considered as relevant if it contains more than three fonts ; this function help us to define if a word is relevant. 
 

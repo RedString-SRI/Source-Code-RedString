@@ -271,18 +271,23 @@ void decreaseOccur (Term * t) {
 
 //===================================================================================
 
-void addOccurences (Index * i , Term t) {
+void addOccurences (Index * i , char * word) {
+	Cell * ptr_Cell = (Cell *) malloc(sizeof(Cell)) ;
 	if (*i == NULL) 
 		printf ("END\n") ; 
 	else 
-		{ if (doesTermExist (*i , t) == TRUE) 
+		{ if (doesTermExist (*i , word)) 
+			ptr_Cell = *i ; 
 			{	while (*i != NULL) 	
-				{ if	(t.word == (*i) -> t1.word) 
+				{ if	(strcmp((*i) -> t1.word, word) == 0)  
 					{ increaseOccur(&((*i) -> t1)) ; 
+					  printf("occur increases\n") ; 
 					  break ; 
 					}
+				  else *i = (*i) -> ptr_next ; 
 				}
 			}
+			*i = ptr_Cell ; 
 		}
 }
 

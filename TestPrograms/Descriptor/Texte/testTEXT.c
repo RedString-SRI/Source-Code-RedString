@@ -59,4 +59,14 @@ int main () {
 		printf ("The word w5 is in beacons\n") ; 
 	else printf ("The word w5 isn't in beacons\n") ;
 //isInBeacons() checked 
+
+	createTerm(&term5, w5) ; 
+	addTerm(&I, term5) ; 
+	createTerm(&term4, w4) ; 
+	addTerm(&I, term4) ; 
+	returnIndex(I) ; 
+
+	addOccurences(&I, "Salamandre") ; 
+	returnIndex(I) ; 
+	//addOccurences() checked
 } 

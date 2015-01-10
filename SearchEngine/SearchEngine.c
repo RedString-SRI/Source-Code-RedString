@@ -31,8 +31,9 @@ void byColor(char color[]){
   				tmpInt=iThPAth ; iThPAth=orderPercentage[1][i]= ; orderPercentage[1][i]=tmpInt; // switch the number of the file
   			}
   		}
+  
     }
-  }
+}
   
   //+=========================+ print list
   printf("+=========================+\n");
@@ -46,9 +47,7 @@ void byColor(char color[]){
   if(i=0) ResearchMenu() ;
 }
 //===================================================================================================
-float compareFileIMG(char path1[] ,char path2[]){
-  FILE *file1=fopen(path1,'r');
-  FILE *file2=fopen(path2,'r');
+float compareFileIMG(FILE *file1 , FILE *file2){
   Dimension size1 , size2;
   float percentCompare;
   int max=pow(2,3*globs_nbWeightyBits);
@@ -68,9 +67,6 @@ float compareFileIMG(char path1[] ,char path2[]){
     percentCompare+=compare[i]; // add every compare+i to be divide by the number of cells (max)
     i++;
   }
-  fclose(file1);
-  fclose(file2);
-  
   return percentCompare/max ;
 }
 //===================================================================================================

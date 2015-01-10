@@ -1,35 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
+#include "DescriptIMG.h"
 
-typedef struct{
-  int height;
-  int width;
-}Dimension;
 
-typedef struct{
-  int id;
-  Dimension size[2];
-  int nbcomp ; /*d is the picture's number of components*/
-  int *histogram; // Will be an array of size : 2^(d*n)
-
-}PictureDesc;
-//
-//
-//
-int globs_nbWeightyBits=2; ///*USE A WRONG VARIABLE GLOBALE*/
-//
-//
-//
-Dimension getSizePicture(FILE *fileIMG);
-void createPictureDesc(FILE *file);
-void createHistogram(FILE *file ,int bit[] , Dimension dim , int size);
-void printHistogram(char path[]);
-
-//===================================================================================================
-//===================================================================================================
-//===================================================================================================
 Dimension getSizePicture(FILE *fileIMG) {
    Dimension dim;
 
@@ -116,12 +87,11 @@ void createHistogram(FILE *file ,int bit[], Dimension dim , int size){
 *Print the image's histogram.
 * his function permit to watch the percentage about pixel's value.
 */
-void printHistogram(char path[]) {
+void printHistogram(FILE *file) {
    int i=0 , j , size1 , size2 , size;
    int NbIntensity= pow(2,3*globs_nbWeightyBits); // if globs_nbWeightyBits=2 --> 2^(3*2)=64
    float array[NbIntensity]; // percentage given of descriptIMG
    char c;
-   FILE *file=fopen(path , "r");
 
    fscanf(file , "%d" , &size1);
    fscanf(file , "%d" , &size2);
@@ -143,5 +113,4 @@ void printHistogram(char path[]) {
         printf("\n");
    }
    printf("\n\t>======== %6d read pixels ========<\n" , size);
-   fclose(file);
 }

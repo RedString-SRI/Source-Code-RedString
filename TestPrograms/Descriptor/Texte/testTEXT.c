@@ -10,6 +10,9 @@ int main () {
 	Term term1 , term2 ; 
 	strcpy (w, "sachet") ;
 	strcpy (w1, "calamar") ;  
+	strcpy (w3, "Salamandre") ; 
+	strcpy (w4, "<antilope>") ;
+	strcpy (w5, "<achat") ; 
 	
 	printf ("number of characters of the text : %d\n" , textNbchar("/home/mahenina/FIL_ROUGE/Test")) ;
 //textNbChar checked. 
@@ -47,4 +50,13 @@ int main () {
 	
 	printf("number of letters : %d\n" , endOfWord(w3)) ; 
 //endOfWord() checked 
+
+	if (isInBeacons(w4)) 
+		printf ("The word w4 is in beacons\n") ;
+	else printf ("The word w4 isn't in beacons\n") ; 
+	
+	if (isInBeacons(w5))
+		printf ("The word w5 is in beacons\n") ; 
+	else printf ("The word w5 isn't in beacons\n") ;
+//isInBeacons() checked 
 } 

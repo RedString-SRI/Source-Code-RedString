@@ -6,6 +6,7 @@
  * This file defines all functions available for managing sound searching.
  */
 
+#include "SoundSearch.h"
 
 //===================================================================================================
 float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc)
@@ -20,27 +21,18 @@ float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc)
 	int iSearch, iIndex;	// Increments
 	int iTmpIndex;	// temporary index of indexedDesc, it can be incremented "faster" than iIndex
 			// If a sequence begins, iTmpIndex will be used to test the next window
-	float tmpMaxMatch, tmpMatch,
+	float tmpMaxMatch, tmpMatch, maxMatch = 0,
 		nbWinMatch = 0,
 		scalePercent;	// Scale percentage for a unique window
 				// amongst all the other of searchedDesc
 	Bool inSequence = FALSE;
 	
-	
-	for(iIndex = 0; iIndex < nbWinIndex; iIndex++)
-	{
-		for(iSearch = 0; iSearch < nbWinSearch; iSearch++)
-		{
-			
-		}
-	}
-	
 	if(nbWinSearch < nbWinIndex)
 	{
-		scalePercent = 1 / nbWinSearch;
-		
+		scalePercent = 1.0 / nbWinSearch;
+
 		// 0 --> nbWinSearch
-		for(iIndex = 0; iIndex < nbWinSearch; iIndex++)
+		for(iIndex = 0; iIndex < nbWinSearch; iIndex++, iSearchMax--)
 		{
 			// A new set of searchedDesc is about to start
 			// So we want a brand new sequence begining asap.
@@ -49,19 +41,19 @@ float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc)
 			inSequence = FALSE;
 			tmpMaxMatch = 0;
 			iTmpIndex = iIndex;
-			
-			for(iSearch = iSearchMax; iSearch < nbWinSearch; iSearch--)
+			for(iSearch = iSearchMax; iSearch < nbWinSearch; iSearch++)
 			{
 				// If the matching rate is higher than the configuration variable, we take it into account
-				if((tmpMatch = compareWindows(searchedDesc->histogram[iSearch], indexedDesc->histogram[iTmpIndex]) > globs_minWindowMatch)
+				tmpMatch = compareWindows(searchedDesc->histogram[iSearch], indexedDesc->histogram[iTmpIndex]);
+				if((tmpMatch >= globs_minWindowMatch))
 				{
 					// Begin or continue a sequence of matches
 					inSequence = TRUE;
-					tmpMaxMatch += tmpMatch * scalePercent;
+					tmpMaxMatch += scalePercent;
 					// Updating maxMatch of this window
 					if(tmpMaxMatch > maxMatch)
 						maxMatch = tmpMaxMatch;
-					if(iTmpIndex < nbWinSearch)
+					if(iTmpIndex < nbWinIndex)
 						iTmpIndex++;
 					else
 						break;	// The sequence is finished because we've reached the end of indexedDesc
@@ -69,17 +61,20 @@ float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc)
 				else
 				{
 					inSequence = FALSE;
-					tmpMaxMatch = 0;
+					tmpMaxMatch = 0.0;
 				}
+				/** Improvement to know where was the match to implement... 
+				if(tmpMaxMatch > 0.7)
+					printf("\nindex: %d__tmpMaxMatch : %f", iIndex, tmpMaxMatch);
+				**/
 			}
 		}
 		
-		
-		
 		// nbWinSearch --> (nbWinIndex - nbWinSearch)
 		// Note: nbFullWinCompare = (nbWinIndex - nbWinSearch)
-		for(; iIndex < nbFullWinCompare; iIndex++)
+		for(iIndex = nbWinSearch; iIndex < nbFullWinCompare; iIndex++)
 		{
+			//printf("\nSecond Part: nbWinSearch %d", nbWinSearch);
 			// A new set of searchedDesc is about to start
 			// So we want a brand new sequence begining asap.
 			// In order to do so, let's make like we start a
@@ -91,15 +86,16 @@ float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc)
 			for(iSearch = 0; iSearch < nbWinSearch; iSearch++)
 			{
 				// If the matching rate is higher than the configuration variable, we take it into account
-				if((tmpMatch = compareWindows(searchedDesc->histogram[iSearch], indexedDesc->histogram[iTmpIndex]) > globs_minWindowMatch)
+				tmpMatch = compareWindows(searchedDesc->histogram[iSearch], indexedDesc->histogram[iTmpIndex]);
+				if((tmpMatch >= globs_minWindowMatch))
 				{
 					// Begin or continue a sequence of matches
 					inSequence = TRUE;
-					tmpMaxMatch += tmpMatch * scalePercent;
+					tmpMaxMatch += scalePercent;
 					// Updating maxMatch of this window
 					if(tmpMaxMatch > maxMatch)
 						maxMatch = tmpMaxMatch;
-					if(iTmpIndex < nbWinSearch)
+					if(iTmpIndex < nbWinIndex)
 						iTmpIndex++;
 					else
 						break;	// The sequence is finished because we've reached the end of indexedDesc
@@ -107,13 +103,18 @@ float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc)
 				else
 				{
 					inSequence = FALSE;
-					tmpMaxMatch = 0;
+					tmpMaxMatch = 0.0;
 				}
+				/** Improvement to know where was the match to implement... 
+				if(tmpMaxMatch > 0.7)
+					printf("\nindex: %d__tmpMaxMatch : %f", iIndex, tmpMaxMatch);
+				**/
 			}
 		}
 		
 		// 0 --> nbWinSearch
-		for(; iIndex < nbWinIndex; iIndex++)
+		iSearchMax = nbWinSearch - 1;
+		for(; iIndex < nbWinIndex; iIndex++, iSearchMax--)
 		{
 			// A new set of searchedDesc is about to start
 			// So we want a brand new sequence begining asap.
@@ -123,18 +124,19 @@ float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc)
 			tmpMaxMatch = 0;
 			iTmpIndex = iIndex;
 			
-			for(iSearch = iSearchMax; iSearch >= 0; iSearch--)
+			for(iSearch = 0; iSearch < iSearchMax; iSearch++)
 			{
 				// If the matching rate is higher than the configuration variable, we take it into account
-				if((tmpMatch = compareWindows(searchedDesc->histogram[iSearch], indexedDesc->histogram[iTmpIndex]) > globs_minWindowMatch)
+				tmpMatch = compareWindows(searchedDesc->histogram[iSearch], indexedDesc->histogram[iTmpIndex]);
+				if((tmpMatch >= globs_minWindowMatch))
 				{
 					// Begin or continue a sequence of matches
 					inSequence = TRUE;
-					tmpMaxMatch += tmpMatch * scalePercent;
+					tmpMaxMatch += scalePercent;
 					// Updating maxMatch of this window
 					if(tmpMaxMatch > maxMatch)
 						maxMatch = tmpMaxMatch;
-					if(iTmpIndex < nbWinSearch)
+					if(iTmpIndex < nbWinIndex)
 						iTmpIndex++;
 					else
 						break;	// The sequence is finished because we've reached the end of indexedDesc
@@ -142,21 +144,36 @@ float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc)
 				else
 				{
 					inSequence = FALSE;
-					tmpMaxMatch = 0;
+					tmpMaxMatch = 0.0;
 				}
+				/** Improvement to know where was the match to implement... 
+				if(tmpMaxMatch > 0.7)
+					printf("\nindex: %d__tmpMaxMatch : %f", iIndex, tmpMaxMatch);
+				**/
 			}
 		}
 	}
+
+	return maxMatch;
 }
 
 float compareWindows(int* window1, int* window2)
 {
 	int i = 0, nbMatch = 0;
-	
+	int doubleNbInterval =  2 * globs_nbInterval;
 	
 	for(; i < globs_nbInterval; i++)
 	{
-		if(fabs(window1[i] - window2[i]) < globs_minQuantifMatch)
+		if(window2[i] < window1[i])
+		{
+			if((((float)window2[i]) / window1[i]) >= globs_minQuantifMatch)
+				nbMatch++;
+		}
+		else if(window1[i] == 0 && window2[i] == 0)
+			nbMatch++;
+		else if(window1[i] == 0 || window2[i] == 0)
+			continue;
+		else if((((float)window1[i]) / window2[i]) >= globs_minQuantifMatch)	// window1[i] <= window2[i]
 			nbMatch++;
 	}
 	

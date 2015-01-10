@@ -6,19 +6,22 @@
  * This file declares all functions available for managing sound searching.
  */
 
-#include "math.h"
+#include <math.h>
+#include <stdlib.h>
 
 #include "Type_SoundDesc.h"
+#include "Type_Bool.h"
 
 
 #ifndef SOUND_SEARCH
 #define SOUND_SEARCH
 
 extern int globs_nbInterval;
-float globs_minWindowMatch = 60/100;	// The minimum matching percentage of the average quantification
-					// value in the histogram
-float globs_minQuantifMatch = 95/100;	// The minimum matching percentage of a quantification value
-					// in a window to be considered as similar
+extern int globs_windowSize;
+extern double globs_maxFrequency;
+extern double globs_minFrequency;
+extern float globs_minQuantifMatch;
+extern float globs_minWindowMatch;
 
 /**
  * \brief Compare two sound descriptors

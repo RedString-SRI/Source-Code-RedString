@@ -11,7 +11,7 @@
 
 void byColor(char color[]){
   
-  int *OrderPercentage; // FLOAT ?
+  float *OrderPercentage;
   int colorDecimal = (int)color; // NEED TO BE CHECK !!!!!!
   float percent , tmpFloat;
   int iThPath = 0;
@@ -39,9 +39,10 @@ void byColor(char color[]){
   for(i=1 ; i<=size ; i++)
     printf("%2i : %20s --> %.2f\n" , i , path , orderPercentage[i] );
   printf("+===================0.EXIT+\n");
-  printf("You want to open it one ? Which one ? \n");
+  printf("DoYou want to open it one ? Which one ? \n");
   scanf("%d" , &i); // now, "i" is a choice
   if(i<0 || i>size) printf("ERROR choice\n");
+  else // OPEN THE FILE §§§§§!! !!!!!!
   if(i=0) ResearchMenu() ;
 }
 //===================================================================================================

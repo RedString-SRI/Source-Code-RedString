@@ -26,18 +26,7 @@ Dimension getSizePicture(FILE *fileIMG);
 void createPictureDesc(FILE *file);
 void createHistogram(FILE *file ,int bit[] , Dimension dim , int size);
 void printHistogram(char path[]);
-//===================================================================================================
-//===================================================================================================
-//===================================================================================================
-int main()
-{
-   ///* CreateDesc manage getSizeDimension& createHistogramm
-   char file[50]="fileTEST.txt";
-   createPictureDesc(file); // during this function, concatanation : Test.txt -> descriptTest.txt
-   printHistogram(file); // So, histogram of the descript
 
-    return 0;
-}
 //===================================================================================================
 //===================================================================================================
 //===================================================================================================
@@ -56,7 +45,11 @@ void createPictureDesc(FILE *file){
    int bit[256]={0} ;
    int tmpBit;
    int i , j , tmpval=1;
-   char des[20]="descript";
+   FILE *descriptIMG;
+   char des[20]="descript"; // Comment créer le nom du desc, je ne connais plus du coup le nom du fichier cible ??????
+   /**
+    * ?????????????????????????????????????
+   */
 
    size=getSizePicture(file);
    matrix=(int*)malloc((size.width*size.height*3)*sizeof(int)); //matrix 1 dimension ...
@@ -102,8 +95,6 @@ void createPictureDesc(FILE *file){
 
     createHistogram( descriptIMG , bit, size , pow(2,globs_nbWeightyBits*3) );
 
-   fclose(file);
-   fclose(descriptIMG);
 }
 
 //===================================================================================================

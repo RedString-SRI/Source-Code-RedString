@@ -9,18 +9,25 @@
 #include "text_analysis.h"
 
 
-Bool isInBeacons (const char * path, char word) {
-	FILE * text = fopen(path,"r") ;
-	int k=word;
-	if (k == '<')
-	 {
-		while(k!='>')
-		k = fgetc(text) ;
-		return TRUE;
-	}
-	else
-		{ return FALSE ; }
-	fclose(text) ; 
+Bool isInBeacons (char * word) {
+	int j = 0 ; 
+	char k ;
+	
+		if (word[0] == '<')
+	 	{	k = word[0]  ; 
+			while(k!= (int) NULL)
+				{   k = word[j] ;
+					printf (" %c\t " , k) ;
+					j++ ;   
+					if (k == '>')  
+						{
+						  return TRUE;
+						} 
+				}
+			return FALSE ; 
+		}
+		else 
+			return FALSE ; 
 } 
 
 //======================================================================

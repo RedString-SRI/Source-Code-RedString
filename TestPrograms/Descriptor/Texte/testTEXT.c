@@ -44,5 +44,7 @@ int main () {
 		printf ("term2 exists\n") ;
 	else printf ("term2 doesn't exist\n") ; 
  //doesTermExist() checked
-		
+	
+	printf("number of letters : %d\n" , endOfWord(w3)) ; 
+//endOfWord() checked 
 } 

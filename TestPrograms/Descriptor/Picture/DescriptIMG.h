@@ -12,8 +12,16 @@
 #ifndef PICTURE_Desc
 #define PICTURE_Desc
 
-/*Initialize a new picture's desc*/
-void initPictureDesc(PictureDesc *pd);
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+typedef struct{
+  int height;
+  int width;
+}Dimension;
+
 
 /**
  *\brief Give the size of the picture 
@@ -23,23 +31,17 @@ Dimension getSizePicture(FILE *fileIMG);
 /**
  *\brief create the picture's desc
  */
-PictureDesc createPictureDesc(FILE *fileIMG);
-
-/**/
-void setNbcomp(int n);
-
-/*return nbcomp*/
-int getNbcomp();
+void createPictureDesc(FILE *fileIMG);
 
 /**
  *\brief Creat the image's histogramm
 */
-void createHistogram(int bit[] , Dimension dim);
+void createHistogram(FILE *file ,int bit[], Dimension dim , int size);
 
 /**
  *\brief Print the image's histogramm
 */
-void printHistogram(FILE *descriptIMG);
+void printHistogram(FILE *file);
 
 
 #endif

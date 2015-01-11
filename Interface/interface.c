@@ -157,7 +157,6 @@ void ResearchMenu(){
 			else if(choice==0) ResearchMenu();
 			break;
 		case(3):
-			bySound();
 			printf("Enter your path to compare : \n");
 			validPath = getKeyboard_String(path,0, maxSizePath);
 			if(fileExists(path)){

@@ -26,7 +26,7 @@ typedef struct{
   long id;
   Dimension dim;
   float *histogram;
-};
+}IMGdesc;
 
 
 /**

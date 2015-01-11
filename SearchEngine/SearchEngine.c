@@ -17,6 +17,8 @@ void byColor(COLOR c){
   float percent , tmpFloat;
   int iThPath = 0;
   int size=0, i , tmpInt;
+  char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
+  
   while(/*PAS FIN LISTE BASE desc*/) {
   	iThPath++; // can read the Ith file of the desc base
   	percent = findColor(path , colorDecimal) // NEED TO CREAT THIS FUNCTION !!!!;

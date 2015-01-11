@@ -61,11 +61,9 @@ IMGDesc createPictureDesc(FILE *file){
       
    return imgDsc;
 }
-//===================================================================================================
 /**
-*Print the image's histogram.
-* his function permit to watch the percentage about pixel's value.
-*/
+* 			------> ONLY FOR DEBUUGING , CHECKING <--------------
+//===================================================================================================
 void printHistogram(char path[]) {
    IMGDesc desc;
    int i=0 , j size ;
@@ -94,7 +92,7 @@ void printHistogram(char path[]) {
    }
    printf("\n\t>======== %6d read pixels ========<\n" , size);
    fclose(file);
-}
+}*/
 //===================================================================================================
 void printIMGDesc(IMGDesc desc){
    int dim = pow(2,globs_nbWeightyBits*imgDsc.nbcomp);

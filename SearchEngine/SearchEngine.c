@@ -182,6 +182,67 @@ void byOccurenceWord(char word[] ){
 //===================================================================================================
 //==============================ASSOCIATED RESEARCH FOR SOUND========================================
 //===================================================================================================
-void bySOUNDSOUNDSOUND(){
-
+void bySound(){
+	//INIT ?
+	
+	printf("Enter your path to compare : \n");
+	validPath = getKeyboard_String(path,0, maxSizePath);
+	if(fileExists(path)){
+		ID=getID(path);
+		sdDesc=getDesc(listeBASE , ID , SOUND); // ???? NEED CHECKING <==============
+		while(!feof(listeBASE)){
+		// NEED TO CLEAR PATH BEFORE ?????????????????
+			fscanf(listeBASE , "%l" , &ID );
+			fscanf(listeBASE , "%s" , pathOfList); // Search the iTh path of the ListBASE
+			fscanf(listeBASE , "%d" , &date );
+			fileOfDesc=getDesc(listeBASE , ID , SOUND); // open the link of the linked descript
+			percent=compareSoundDesc(sdDesc , fileOfDesc );
+			addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
+			i++;
+		}
+		fclose(listeBASE);
+		printf("+=========================+\n");
+		printBestList(PilevalDesc , 0)
+		printf("+=================0.RETURN+\n");
+		printf("DoYou want to open it one ? Which one ? \n");
+  		scanf("%d" , &choice); // now, "i" is a choice
+  		if(choice<0 || choice>i) printf("ERROR choice\n");
+  		else {
+	  		strcat(openPath , getChoosenFile(PilevalDesc,choice));
+ 			system(openPath);
+ 		}
+	}
+	else printf("ERROR Sound\n");
+}
+//========================================================
+void addOrderVD(PileVD *pvd, float perct , char nFile){	
+	PileVD tmpPdv;
+	
+	if(((*pvd)->pct) < perct)
+			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
+			tmpPvd.pct = perct;
+			strcpy(tmpPdv.nameFile, nFile);
+			tmpPvd->NextVD= *pvd;
+			*pvd=tmpVD;
+	else {
+		if(((*pvd)->NextVD).pct <= perct){
+			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
+			tmpPvd.pct = perct;
+			strcpy(tmpPdv.nameFile, nFile);
+			tmpPvd->NextVD = (*pvd)->NextVD;
+			(*pvd)->NextVD=tmpPvd;
+		}
+		else addOrderVD( &((*pvd)->NextVD) , perct , nFile ); 
+	}		
+}
+//========================================================
+void printBestList(PileVD pvd , j){ //récursif
+	if(pvd==NULL) return;
+	printf("%3d. %30s --> %.2f" , j+1 , pvd.nameFile , pvd.pct*100 )
+	printBestList(pvd , j+1);
+}
+//========================================================
+char *getChoosenFile(PileVD PilevalDesc,int choice){
+	if(choice==0) return PilevalDasc.nameFile ;
+	else getChoosenFile( PilevalDesc, choice-1);
 }

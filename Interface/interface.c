@@ -21,6 +21,7 @@ void mainMenu(){
 		printf("+=========================+\n");
 		printf("|                         |\n");
 		printf("|1. INDEXATION            |\n");
+		printf("|                         |\n");
 		printf("|2. RESEARCH              |\n");
 		printf("|                         |\n");
 		printf("+===================0.EXIT+\n");
@@ -44,7 +45,6 @@ void mainMenu(){
 			exit(0); 
 			break;
 		default: 
-			messageError(0) ; 
 			exit(0); 
 			break;
 	}
@@ -58,13 +58,14 @@ void IndexationMenu(){
 	do{
 		printf("+=========================+\n");
 		printf("|                         |\n");
-		printf("|1. Enter your path       |\n");
-		printf("|2. ????????              |\n");
+		printf("|                         |\n");
+		printf("|1. Enter your(s) path(s) |\n");
+		printf("|                         |\n");
 		printf("|                         |\n");
 		printf("+=================0.RETURN+\n");
 
 		scanf("%d" , &choice);
-		if(choice!=1 && choice !=2 && choice!=0){
+		if(choice!=1 && choice!=0){
 			system("clear");
 		}
 	}while(choice!=1 && choice!=2 && choice!=0);
@@ -83,9 +84,6 @@ void IndexationMenu(){
 			else
 				fprintf(stderr,"Error name path\n");
 			break;
-		case(2):  
-			system("clear");
-			break;
 		case(0): 
 			system("clear");
 			mainMenu(0); 
@@ -101,8 +99,6 @@ void ResearchMenu(){
 	char a;
 	char w[];
 	char freq;
-	char comm[6]="ls -";
-	// FOR TESTING COMMAND UNIX
 	int choice;
 	
 	do{
@@ -110,7 +106,7 @@ void ResearchMenu(){
 		printf("|                         |\n");
 		printf("|1. Research a word       |\n");
 		printf("|2. Research a color      |\n");
-		printf("|3. Research a sound      |\n");
+		printf("|3. Research similar sound|\n");
 		printf("|                         |\n");
 		printf("+=================0.RETURN+\n");
 
@@ -131,20 +127,22 @@ void ResearchMenu(){
 			else printf("ERROR Word\n");
 			break;
 		case(2):
-			printf("Enter your color : \n");
-			scanf("%s" , w); // enter a word ......
-			if(isAColor(w)){
-				byColor(w);
-				//system("clear");
-			}
-			else printf("ERROR Color\n");
+			do{
+				printf("1. By named color ? \n");	
+				printf("2. composants by composants ? \n");
+				printf("+=================0.RETURN+\n");
+				scanf("%d" , &choice);
+			}while(choice!=1 && choice!=2 && choice!=0)
+			if(choice==1) byNamedColor();
+			else if(choice==2) cpsBYcps();
+			else if(choice==0) ResearchMenu();
 			break;
 		case(0): 
 			system("clear");
 			mainMenu(0); 
 			break;
 		case(3):
-			printf("Enter your frequence : \n");
+			printf("Enter your path to compare : \n");
 			scanf("%f" , &freq); // enter a frequence ......
 			if(isAFreq){
 				bySOUNDSOUNDSOUND(freq);

@@ -12,30 +12,28 @@ Dimension getSizePicture(FILE *fileIMG) {
    return dim;
 }
 //===================================================================================================
-void createPictureDesc(char path[]){
+IMGDesc createPictureDesc(FILE *file){
+   IMGDesc imgDsc;
    int quantif = globs_nbWeightyBits;
-   Dimension size;
-   int *matrix , nbrMatrix;
+   int nbVal;
+   int *matrix;
    int bit[256]={0} ;
    int tmpBit;
    int i , j , tmpval=1;
-   char des[20]="descript";
-   FILE *descriptIMG ;
+   
+   imgDsc.size=getSizePicture(file);
+   fscanf(file, "%d" , imgDsc->nbcomp);
+   matrix=(int*)malloc((imgDsc.size.width*imgDsc.size.height*imgDsc.nbcomp)*sizeof(int)); //matrix 1 dimension ...
 
-   FILE *file=fopen(path, "r");
-   size=getSizePicture(file);
-   nbrMatrix=fscanf(file, "%d" , &nbrMatrix);
-   matrix=(int*)malloc((size.width*size.height*nbrMatrix)*sizeof(int)); //matrix 1 dimension ...
-
-   for(i=0 ; i<size.width*size.height ; i++){ // scan the whole matrix : 1rst Red , 2nd Green , 3th Blue : for nbrMAtrix=3
+   for(i=0 ; i<imgDsc.size.width*imgDsc.size.height ; i++){ // scan the whole matrix : 1rst Red , 2nd Green , 3th Blue : for nbrMAtrix=3
          tmpBit=0;
          fscanf(file , "%d" , matrix+i); // on RED matrix
-         fscanf(file , "%d" , matrix+1*size.height*size.height+i); // on GREEN matrix
-         fscanf(file , "%d" , matrix+2*size.height*size.height+i); // on BLUE matrix
+         fscanf(file , "%d" , matrix+1*imgDsc.size.height*imgDsc.size.height+i); // on GREEN matrix
+         fscanf(file , "%d" , matrix+2*imgDsc.size.height*imgDsc.size.height+i); // on BLUE matrix
 
          while(quantif > 0) {
-               for(j=0 ; j<nbrMatrix ; j++){
-                  matrix[j*size.height*size.width+i] %= ((int)(255/tmpval) + (tmpval!=1) ); //+ tmpval!=1 : differentiate 127 of 128, because (int)255/2=127, but bit2=1 if number is a modulo of 128, not 127
+               for(j=0 ; j<imgDsc.nbcomp ; j++){
+                  matrix[j*imgDsc.size.height*imgDsc.size.width+i] %= ((int)(255/tmpval) + (tmpval!=1) ); //+ tmpval!=1 : differentiate 127 of 128, because (int)255/2=127, but bit2=1 if number is a modulo of 128, not 127
                   tmpBit+= pow(2,2*j+quantif-1);
                }
                
@@ -55,30 +53,13 @@ void createPictureDesc(char path[]){
          quantif=globs_nbWeightyBits;
          tmpBit=0;
          tmpval=1;
-    }
-    strcat(des,path);
-    descriptIMG = fopen(des,"w");
-    fprintf(descriptIMG , "%d %d\n" , size.height , size.width);
-
-    createHistogram( descriptIMG , bit, size , pow(2,globs_nbWeightyBits*3) );
-
-   fclose(file);
-   fclose(descriptIMG);
-}
-
-//===================================================================================================
-/**
- *Create an histogramm with the 64 values possibles.
- * It give the number of picture's pixel which have an intensity value : red, blue, green or gray level.
- */
-void createHistogram(FILE *file ,int bit[], Dimension dim , int size){
-    float tab[size]; // 3 colors of Nquantif bits
-    int i;
-
-  for(i=0 ; i<size ; i++){
-    tab[i] = (float)bit[i] / ((float)(dim.height*dim.width)); // give a percentage about IntensityValuePixel on numberPixel.
-    fprintf(file , "%.2f\t" , tab[i]);
-  }
+   }
+   nbVal=pow(2,globs_nbWeightyBits*imgDsc.nbcomp);
+   (*imgDsc)->histogram=(float*)malloc(nbVal*sizeof(float));
+   for(i=0 ; i<nbVal ; i++)
+      imgDsc->histogram[i] = (float)bit[i] / ((float)(imgDsc.size.height*imgDsc.size.width)); // give a percentage about IntensityValuePixel on numberPixel.
+      
+   return imgDsc;
 }
 //===================================================================================================
 /**
@@ -86,14 +67,16 @@ void createHistogram(FILE *file ,int bit[], Dimension dim , int size){
 * his function permit to watch the percentage about pixel's value.
 */
 void printHistogram(char path[]) {
-   int i=0 , j , size1 , size2 , size;
+   int i=0 , j , size1 , size2 , size , id , nbcp;
    int NbIntensity= pow(2,3*globs_nbWeightyBits); // if globs_nbWeightyBits=2 --> 2^(3*2)=64
    float array[NbIntensity]; // percentage given of descriptIMG
    char c;
    FILE *file=fopen(path , "r");
-
+   
+   fscanf(file , "%d" , &id);
    fscanf(file , "%d" , &size1);
    fscanf(file , "%d" , &size2);
+   fscanf(file , "%d" , &nbcp);
    size = size1*size2;
 
    for(i=0 ; i< NbIntensity ; i++) // get back histogram datas.
@@ -113,4 +96,38 @@ void printHistogram(char path[]) {
    }
    printf("\n\t>======== %6d read pixels ========<\n" , size);
    fclose(file);
+}
+//===================================================================================================
+void printIMGDesc(IMGDesc desc){
+   int dim = pow(2,globs_nbWeightyBits*imgDsc.nbcomp);
+   int i;
+   printf("ID:%l \tsize:%dx%d \tNbComposants:%d\n", desc.ID , desc.size.height , desc.size.width , desc.nbcomp);
+   for(i=0 ;i<dim ;i++)
+      printf("%f" , desc->histogram[i]);
+   printf("\n");
+}
+//===================================================================================================
+void writeIMGDesc(FILE* file, IMGDesc* desc){
+   int i, nbcp = desc->nbcomp;
+	
+	writeStruct(file, &desc->ID, sizeof(desc->ID));
+	writeStruct(file, &desc->(size.height), sizeof(desc->(size.height)));
+	writeStruct(file, &desc->(size.width), sizeof(desc->(size.width)));
+	writeStruct(file, &desc->nbcomp, sizeof(int));
+	for(i = 0; i < nbcomp; i++)
+		writeStruct(file, desc->histogram[i], sizeof(float));
+}
+//===================================================================================================
+IMGDesc readIMGDesc(FILE* file){
+   IMGDesc desc;
+   int i , max;
+   fscanf(file,"%l" , desc->ID);
+   fscanf(file,"%d" , desc->(size.height));
+   fscanf(file,"%d" , desc->(size.width));
+   fscanf(file,"%d" , desc->nbcomp);
+   max=pow(2,globs_nbWeightyBits*desc.nbcomp);
+   for(i=0 ; i<max ; i++)
+      fscanf(file,"%f" , desc->histogram[i]);
+   
+   return desc
 }

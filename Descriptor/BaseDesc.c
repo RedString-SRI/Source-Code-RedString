@@ -112,7 +112,15 @@ ListBaseDesc getFileDesc(ListBaseDesc list, long address){
 //===================================================================================================
 char * getFileName(ListBaseDesc list, long address){
 	ListBaseDesc listGet = getFileDesc(list, address);
-	return(listGet->path);
+	char * fileName;
+	int pathSize = strlen(listGet->path);
+	int i = 0;
+	while(listGet->path[pathSize-i++] == '/');
+	fileName = (char *) malloc(i * sizeof(char));
+	int j;	
+	for(j=1; j<i; j++)
+		fileName[j] = listGet->path[pathSize-i+j];
+	return fileName;
 }
 
 //===================================================================================================

@@ -106,11 +106,12 @@ void ResearchMenu(){
 	int const maxSizePath = 100;
 	char *path[maxSizePath] , *pathOfList[maxSizePath];
 	int choice;
-	float *percent;
+	float percent;
 	float *positionFile;
 	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
 	
-	PileVD *valDesc , tmpVD;
+	PileVD *PilevalDesc , tmpVD;
+	Val_Desc VD;
 	IMGdesc imgDsc;
 	SoundDesc sdDsc;
 	TextDesx txtDsc;
@@ -168,9 +169,9 @@ void ResearchMenu(){
 				// NEED TO CLEAR PATH BEFORE ?????????????????
 					fscanf(listeBASE , "%s" , pathOfList); // Search the iTh path of the ListBASE
 					fileOfDesc=getDesc(pathOfList); // open the link of the linked descript
-					tmpVD=(PileVD)malloc(sizeof(Val_Desc));
-					tmpVD.pct=compareSoundDesc(sdDesc , pathOfList );
+					valDesc.pct=compareSoundDesc(sdDesc , pathOfList );
 					//valDesc.nameFile
+					addOrderVD(*PilevalDesc , valDesc);
 					tmpVD->NextVD=valDesc;
 					valDesc=tmpVD;
 				}
@@ -184,4 +185,32 @@ void ResearchMenu(){
 			break;
 	}
 	fclose(listBASE);
+}
+
+void addOrderVD(PileVD *pvd, Val_Desc vd){	
+	PileVD tmpPdv;
+	if(*pvd==NULL){
+		*pvd = (PileVD)malloc(sizeof(Val_Desc));
+		((*pvd)->pct) = vd.pct;
+		(*pvd)->NextVD = NULL;	
+	}
+	else if(((*pvd)->pct) > vd.pct){
+		addOrderVD( &((*pvd)->NextVD) , vd.pct ); 
+	}
+	else {
+		tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
+		tmpPvd.pct = f;
+		strcpy(tmpPvd.nameFile,pvd->.nameFile);
+		pvd->NextVD = NULL;	
+	}		
+}
+
+void affiche_arbre(Arbre a){ //récursif
+	if(a==NULL) return;
+	if(a->leftCell != NULL)
+		affiche_arbre(a->leftCell);		
+	printf("%d\n", a->val);
+	if(a->rightCell != NULL)
+		affiche_arbre(a->rightCell);
+	
 }

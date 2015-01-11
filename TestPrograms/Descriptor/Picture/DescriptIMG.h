@@ -42,7 +42,7 @@ void createPictureDesc(FILE *fileIMG);
 /**
  *\brief Creat the image's histogramm
 */
-void createHistogram(FILE *file ,int bit[], IMGdesc imgDsc , int size);
+void createHistogram(FILE *file ,int bit[], IMGdesc *imgDsc , int size);
 
 /**
  *\brief Print the image's histogramm

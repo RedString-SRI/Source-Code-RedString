@@ -124,6 +124,17 @@ char * getFileName(ListBaseDesc list, long address){
 }
 
 //===================================================================================================
+long getAddress(ListBaseDesc list, char * path){
+	ListBaseDesc ptr_dep = list;
+	while(ptr_dep != NULL){
+		if(strcmp(ptr_dep->path, path) == 0)
+			return ptr_dep->address;
+		ptr_dep = ptr_dep->next;
+	}
+	return 0;
+}
+
+//===================================================================================================
 BaseDesc initBaseDesc(FileType fileType){
 	BaseDesc newBase;
 	int size = sizeof(struct desc *);
@@ -148,7 +159,7 @@ BaseDesc initBaseDesc(FileType fileType){
 				size += sizeof(SoundDesc);
         break; 
 	}
-	while(structDesc != NULL){ //I'm not sure this is NULL or EOF, ' have to check with descriptors fonction
+	while(structDesc != NULL){ // I'm not sure this is NULL or EOF, ' have to check with descriptors fonction
 		BaseDesc ptr_add = (BaseDesc) malloc(size);    
 		ptr_add->element = structDesc;
 		if(listIsEmpty(newBase)){

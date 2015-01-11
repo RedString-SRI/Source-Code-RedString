@@ -106,7 +106,7 @@ void ResearchMenu(){
 	int const maxSizePath = 100;
 	char *path[maxSizePath] , *pathOfList[maxSizePath];
 	int choice;
-	long ID; int date ,i=0;
+	long ID; int date i=0;
 	float percent;
 	float *positionFile;
 	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
@@ -156,11 +156,8 @@ void ResearchMenu(){
 			else if(choice==2) cpsBYcps();
 			else if(choice==0) ResearchMenu();
 			break;
-		case(0): 
-			system("clear");
-			mainMenu(0); 
-			break;
 		case(3):
+			bySound();
 			printf("Enter your path to compare : \n");
 			validPath = getKeyboard_String(path,0, maxSizePath);
 			if(fileExists(path)){
@@ -177,11 +174,24 @@ void ResearchMenu(){
 					i++;
 				}
 				fclose(listeBASE);
-				
+				printf("+=========================+\n");
+				printBestList(PilevalDesc , 0)
+				printf("+=================0.RETURN+\n");
+				printf("DoYou want to open it one ? Which one ? \n");
+  				scanf("%d" , &choice); // now, "i" is a choice
+  				if(choice<0 || choice>i) printf("ERROR choice\n");
+  				else {
+  					strcat(openPath , getChoosenFile(PilevalDesc,choice));
+  					system(openPath);
+  				}
 			}
 			else printf("ERROR Sound\n");
 			break;
-		default: 
+		case(0): 
+			system("clear");
+			mainMenu(0); 
+			break;
+		default: // to secure
 			exit(0); 
 			break;
 	}
@@ -208,12 +218,13 @@ void addOrderVD(PileVD *pvd, float perct , char nFile){
 	}		
 }
 //========================================================
-void affiche_arbre(Arbre a){ //récursif
-	if(a==NULL) return;
-	if(a->leftCell != NULL)
-		affiche_arbre(a->leftCell);		
-	printf("%d\n", a->val);
-	if(a->rightCell != NULL)
-		affiche_arbre(a->rightCell);
-	
+void printBestList(PileVD pvd , j){ //récursif
+	if(pvd==NULL) return;
+	printf("%3d. %30s --> %.2f" , j+1 , pvd.nameFile , pvd.pct*100 )
+	printBestList(pvd , j+1);
+}
+//========================================================
+char *getChoosenFile(PileVD PilevalDesc,int choice){
+	if(choice==0) return PilevalDasc.nameFile ;
+	else getChoosenFile( PilevalDesc, choice-1);
 }

@@ -10,14 +10,16 @@
 
 /*#include "Text/TextDescriptor.h"
 #include "Picture/PictureDescriptor.h"*/
-#include "Sound/SoundDescriptor.h"
-#include "../Type_Bool.h"
+#include "SoundDescriptor.h"
+#include "Type_Bool.h"
 #include "Type_FileType.h"
 #include "Type_BaseDescriptor.h"
-#include "../Globals.c"
+#include "Globals.c"
 
 #ifndef BASE_DESCRIPTOR
 #define BASE_DESCRIPTOR
+
+extern int globs_maxPathLength;
 
 /**
  * \brief begin a chained list of descriptors
@@ -26,6 +28,14 @@
  * \param a BaseDesc's file type base to init the list
  */
 void initList(BaseDesc * base);
+
+/**
+ * \brief create a new list base cell 
+ *
+ * Initialize an ordered list base cell
+ * \param a FileDesc to initialize
+ */
+void initListBase(struct FileDesc * list);
 
 /**
  * \brief Prints on the output every descriptor of the base
@@ -78,7 +88,7 @@ ListBaseDesc initListBaseDesc(FileType fileType);
  * \param the address of the descriptor
  * \param the date of indexation
 */
-void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength], long address, int date);
+void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength], long address, int date, FileType fileType);
 
 /**
  * \brief remove the last descriptor from the base
@@ -86,15 +96,6 @@ void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength]
  * remove the last element from the base list
  * \param the base to update
 */
-void removeDesc(BaseDesc * base, FileType type);
-
-/**
- * \brief The user has to give elements to stack into the BaseDesc, only for debugging
- *
- * add elements to the list from the input
- * \param the base to write
- * \param the type to choose
-*/
-void writeList(BaseDesc * base, FileType type);
+void removeDesc(BaseDesc * base, FileType t);
 
 #endif

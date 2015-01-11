@@ -26,14 +26,10 @@ Dimension getSizePicture(FILE *fileIMG);
 IMGDesc createPictureDesc(FILE *fileIMG);
 
 /**
- *\brief Creat the image's histogramm
-*/
-void createHistogram(int bit[] , Dimension dim);
-
-/**
- *\brief Print the image's histogramm
-*/
+ * ------> ONLY FOR DEBUGGING , CHECKING <----------
 void printHistogram(FILE *descriptIMG);
+*/
+
 
 /**
  * \brief Print a img desc in console

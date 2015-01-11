@@ -170,7 +170,7 @@ void ResearchMenu(){
 					fileOfDesc=getDesc(pathOfList); // open the link of the linked descript
 					tmpVD=(PileVD)malloc(sizeof(Val_Desc));
 					tmpVD.pct=compareSoundDesc(sdDesc , pathOfList );
-					//valDesc.
+					//valDesc.nameFile
 					tmpVD->NextVD=valDesc;
 					valDesc=tmpVD;
 				}

@@ -37,7 +37,7 @@ Dimension getSizePicture(FILE *fileIMG);
 /**
  *\brief create the picture's desc
  */
-void createPictureDesc(FILE *fileIMG);
+IMGdesc createPictureDesc(FILE *fileIMG);
 
 /**
  *\brief Creat the image's histogramm

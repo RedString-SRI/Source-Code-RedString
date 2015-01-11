@@ -24,7 +24,9 @@ enum COLOR(BLACK=000000,
             PURPLE=??????, 
             BROWN=??????, 
             GREEN=001100, 
-            BLUE=000011 );
+            LIGHTGREEN=001000, 
+            BLUE=000011,
+            LIGHTBLUE=000010);
 /**
 * \brief byColor.
 * Search specifiquely in an image's desc a color:

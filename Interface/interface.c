@@ -106,15 +106,16 @@ void ResearchMenu(){
 	int const maxSizePath = 100;
 	char *path[maxSizePath] , *pathOfList[maxSizePath];
 	int choice;
+	long ID; int date ,i=0;
 	float percent;
 	float *positionFile;
 	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
 	
 	PileVD *PilevalDesc , tmpVD;
 	Val_Desc VD;
-	IMGdesc imgDsc;
-	SoundDesc sdDsc;
-	TextDesx txtDsc;
+	IMGdesc imgDsc, tmpIdsc;
+	SoundDesc sdDsc, tmpSdsc;
+	TextDesx txtDsc , tmpTdsc;
 	FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
 	FILE *fileOfDesc;
 	FILE *GivenPath;
@@ -163,20 +164,20 @@ void ResearchMenu(){
 			printf("Enter your path to compare : \n");
 			validPath = getKeyboard_String(path,0, maxSizePath);
 			if(fileExists(path)){
-				sdDesc=getDesc(path); // ???? NEED CHECKING
-	// RECHERCHER LE DESC CORRESPONDANT AU PATH DONNER ???? !§§§§§ COMMENT FAIRE
+				ID=getID(path);
+				sdDesc=getDesc(listeBASE , ID , SOUND); // ???? NEED CHECKING <==============
 				while(!feof(listeBASE)){
 				// NEED TO CLEAR PATH BEFORE ?????????????????
+					fscanf(listeBASE , "%l" , &ID );
 					fscanf(listeBASE , "%s" , pathOfList); // Search the iTh path of the ListBASE
-					fileOfDesc=getDesc(pathOfList); // open the link of the linked descript
-					valDesc.pct=compareSoundDesc(sdDesc , pathOfList );
-					//valDesc.nameFile
-					addOrderVD(*PilevalDesc , valDesc);
-					tmpVD->NextVD=valDesc;
-					valDesc=tmpVD;
+					fscanf(listeBASE , "%d" , &date );
+					fileOfDesc=getDesc(listeBASE , ID , SOUND); // open the link of the linked descript
+					percent=compareSoundDesc(sdDesc , fileOfDesc );
+					addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
+					i++;
 				}
-				fclose();
-				system("clear");
+				fclose(listeBASE);
+				
 			}
 			else printf("ERROR Sound\n");
 			break;
@@ -184,27 +185,29 @@ void ResearchMenu(){
 			exit(0); 
 			break;
 	}
-	fclose(listBASE);
 }
-
-void addOrderVD(PileVD *pvd, Val_Desc vd){	
+//========================================================
+void addOrderVD(PileVD *pvd, float perct , char nFile){	
 	PileVD tmpPdv;
-	if(*pvd==NULL){
-		*pvd = (PileVD)malloc(sizeof(Val_Desc));
-		((*pvd)->pct) = vd.pct;
-		(*pvd)->NextVD = NULL;	
-	}
-	else if(((*pvd)->pct) > vd.pct){
-		addOrderVD( &((*pvd)->NextVD) , vd.pct ); 
-	}
+	
+	if(((*pvd)->pct) < perct)
+			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
+			tmpPvd.pct = perct;
+			strcpy(tmpPdv.nameFile, nFile);
+			tmpPvd->NextVD= *pvd;
+			*pvd=tmpVD;
 	else {
-		tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
-		tmpPvd.pct = f;
-		strcpy(tmpPvd.nameFile,pvd->.nameFile);
-		pvd->NextVD = NULL;	
+		if(((*pvd)->NextVD).pct <= perct){
+			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
+			tmpPvd.pct = perct;
+			strcpy(tmpPdv.nameFile, nFile);
+			tmpPvd->NextVD = (*pvd)->NextVD;
+			(*pvd)->NextVD=tmpPvd;
+		}
+		else addOrderVD( &((*pvd)->NextVD) , perct , nFile ); 
 	}		
 }
-
+//========================================================
 void affiche_arbre(Arbre a){ //récursif
 	if(a==NULL) return;
 	if(a->leftCell != NULL)

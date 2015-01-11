@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct{
+typedef struct vd{ // PILE DYnamic
 	float pct; // percentage or nbr Occurence about linked research
 	char nameFile[100]; // the name of the file to can open it.
+	struct vd *NextVD;
 }Val_Desc; // for easy the saving
 
 void IndexationMenu();

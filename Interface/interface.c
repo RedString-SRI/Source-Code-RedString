@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct{
+	float pct; // percentage or nbr Occurence about linked research
+	char nameFile[100]; // the name of the file to can open it.
+}Val_Desc; // for easy the saving
+
 void IndexationMenu();
 void ResearchMenu();
 void mainMenu();
@@ -95,11 +100,22 @@ void IndexationMenu(){
 }
 //========================================================
 void ResearchMenu(){
-	FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
-	char a;
-	char w[];
-	char freq;
+	char w[20];
+	int validPath;
+	int const maxSizePath = 100;
+	char *path[maxSizePath] , *pathOfList[maxSizePath];
 	int choice;
+	float *percent;
+	float *positionFile;
+	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
+	
+	Val_Desc valDesc;
+	IMGdesc imgDsc;
+	SoundDesc sdDsc;
+	TextDesx txtDsc;
+	FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
+	FILE *fileOfDesc;
+	FILE *GivenPath;
 	
 	do{
 		printf("+=========================+\n");
@@ -143,9 +159,18 @@ void ResearchMenu(){
 			break;
 		case(3):
 			printf("Enter your path to compare : \n");
-			scanf("%f" , &freq); // enter a frequence ......
-			if(isAFreq){
-				bySOUNDSOUNDSOUND(freq);
+			validPath = getKeyboard_String(path,0, maxSizePath);
+			if(fileExists(path)){
+				sdDesc=getDesc(path); // ???? NEED CHECKING
+	// RECHERCHER LE DESC CORRESPONDANT AU PATH DONNER ???? !§§§§§ COMMENT FAIRE
+				while(!feof(listeBASE)){
+				// NEED TO CLEAR PATH BEFORE ?????????????????
+					fscanf(listeBASE , "%s" , pathOfList); // Search the iTh path of the ListBASE
+					fileOfDesc=getDesc(pathOfList); // open the link of the linked descript
+					percent=compareSoundDesc(sdDesc , pathOfList );
+					
+				}
+				fclose();
 				system("clear");
 			}
 			else printf("ERROR Sound\n");

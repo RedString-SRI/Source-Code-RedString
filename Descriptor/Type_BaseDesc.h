@@ -3,8 +3,8 @@
  * \brief Base desc and List Base desc Type
  * \author Maxime Sanmartin
  */
-#ifndef TYPE_BASEDesc_H_INCLUDED
-#define TYPE_BASEDesc_H_INCLUDED
+#ifndef TYPE_BASEDESC_H_INCLUDED
+#define TYPE_BASEDESC_H_INCLUDED
 
 /**
  * \struct desc
@@ -16,7 +16,7 @@
 typedef struct desc{
   void * element;
   struct desc * next;
-} *BaseDesc; // descBase is represented by a list of generic descs, and is a pointer to the first element of the list
+} *BaseDesc; // BaseDesc is represented by a list of generic descs, and is a pointer to the first element of the list
 
 /**
  * \struct FileDesc
@@ -28,8 +28,8 @@ typedef struct desc{
 typedef struct FileDesc{
     long address; // the address of the desc
     int date; // the last date of indexation
-    char path[globs_maxPathLength]; // path of the file
+    char * path; // path of the file
     struct FileDesc * next;
-} *ListeBaseDesc; //ListBaseDesc is an ordered chained list of file-Desc structure 
+} *ListBaseDesc; //ListBaseDesc is an ordered chained list of file-Desc structure 
 
-#endif // TYPE_BASEDesc_H_INCLUDED
+#endif // TYPE_BASEDESC_H_INCLUDED

@@ -23,13 +23,7 @@ Dimension getSizePicture(FILE *fileIMG);
 /**
  *\brief create the picture's desc
  */
-PictureDesc createPictureDesc(FILE *fileIMG);
-
-/**/
-void setNbcomp(int n);
-
-/*return nbcomp*/
-int getNbcomp();
+IMGDesc createPictureDesc(FILE *fileIMG);
 
 /**
  *\brief Creat the image's histogramm

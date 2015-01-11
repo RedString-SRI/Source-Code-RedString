@@ -8,11 +8,12 @@
 * All the way to do research in the listeBaseDesc
 *
 */
-
-void byColor(char color[]){
+//===================================================================================================
+//==============================ASSOCIATED RESEARCH FOR IMAGE========================================
+//===================================================================================================
+void byColor(COLOR c){
   
   float *OrderPercentage;
-  int colorDecimal = (int)color; // NEED TO BE CHECK !!!!!!
   float percent , tmpFloat;
   int iThPath = 0;
   int size=0, i , tmpInt;
@@ -69,6 +70,61 @@ float compareFileIMG(FILE *file1 , FILE *file2){
   }
   return percentCompare/max ;
 }
+//========================================================
+void byNamedColor(){
+	COLOR c;
+	int choice;
+	
+	do{
+		printf("Enter your COLOR : \n");
+			scanf("%s" , c); // enter a word ......
+			if(isAColor(w))
+				byColor(w);
+			else {
+				printf("ERROR Color\n");
+				printf("Color possible : BLACK , DARKGRAY , LIGHTGRAY , WHITE , RED , PINK , YELLOW , PURPLE , BROWN , GREEN , LIGHTGREEN , BLUE , LIGHTBLUE\n");
+			}
+	}while(!isAColor(w));
+}
+//========================================================
+Bool isAColor(char c[]){
+	if(strcomp(c,BLACK)) byColor(BLACK); 
+        else if(strcomp(c,"LIGHTGRAY")) 	byColor(LIGHTGREY); 
+        else if(strcomp(c,"DARKGRAY")) 		byColor(DARKGREY);
+        else if(strcomp(c,"WHITE")		byColor(WHITE); 
+        else if(strcomp(c,"RED")) 		byColor(RED);
+        else if(strcomp(c,"PINK")) 		byColor(PINK);
+        else if(strcomp(c,"YELLOW")) 		byColor(YELLOW);
+        else if(strcomp(c,"PURPLE")) 		byColor(PURPLE); 
+        else if(strcomp(c,"BROWN")) 		byColor(BROWN); 
+        else if(strcomp(c,"GREEN")) 		byColor(GREEN); 
+        else if(strcomp(c,"LIGHTGREEN")) 	byColor(LIGHTGREEN);
+        else if(strcomp(c,"BLUE")) 		byColor(BLUE);
+        else if(strcomp(c,"LIGHTBLUE")) 	byColor(LIGHTBLUE);
+        else return FALSE;
+        return TRUE;
+}
+//========================================================
+void cpsBYcps(){
+	COLOR c;
+	printf("Value possible : 11 , 10 , 01 , 00 \n");
+	printf("Enter RED composants :\n");
+	scan("%d" , &c);
+	if(c!=11||c!=10||c!=01) c=0;
+	c = c<<(glob_nbWeightyBits);
+	printf("Enter GREEN composants :\n");
+	scan("%d" , &c);
+	if(c!=11||c!=10||c!=01) c=0;
+	c = c<<(glob_nbWeightyBits);
+	printf("Enter BLUE composants :\n");
+	scan("%d" , &c);
+	if(c!=11||c!=10||c!=01) c=0;
+	c = c<<(glob_nbWeightyBits);
+	
+	byColor(c);
+}
+//===================================================================================================
+//==============================ASSOCIATED RESEARCH FOR TEXT ========================================
 //===================================================================================================
 void byAuthor(){
 
@@ -121,6 +177,8 @@ void byOccurenceWord(char word[] ){
   if(i<0 || i>size) printf("ERROR choice\n");
   if(i=0) ResearchMenu() ;
 }
+//===================================================================================================
+//==============================ASSOCIATED RESEARCH FOR SOUND========================================
 //===================================================================================================
 void bySOUNDSOUNDSOUND(){
 

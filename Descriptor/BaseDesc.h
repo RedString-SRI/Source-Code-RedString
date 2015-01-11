@@ -85,6 +85,16 @@ void * getDesc(BaseDesc base, long address, FileType type);
 ListBaseDesc getFileDesc(ListBaseDesc list, long address);
 
 /**
+ * \brief Get the file name in the base
+ *
+ * Get the file name string with the address given in parameter
+ * \param a ListBaseDesc's list
+ * \param an address
+ * \return a string
+ */
+char * getFileName(ListBaseDesc list, long address);
+
+/**
  * \brief Initialize a BaseDesc from a file
  *
  * Create a list with all of the descriptors from the file BaseDesc

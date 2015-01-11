@@ -9,11 +9,11 @@ Dimension getSizePicture(FILE *fileIMG) {
    return dim;
 }
 //===================================================================================================
-void createPictureDesc(FILE *file){
+IMGdesc createPictureDesc(FILE *file){
+   IMGdesc imgDsc;
    int quantif = globs_nbWeightyBits;
-   Dimension size;
-   int *matrix ;
    int bit[256]={0} ;
+   int *matrix
    int tmpBit;
    int i , j , tmpval=1;
    FILE *descriptIMG;
@@ -21,26 +21,26 @@ void createPictureDesc(FILE *file){
    /**
     * ?????????????????????????????????????
    */
-
-   size=getSizePicture(file);
+   
+   imgDsc.dim=getSizePicture(file);
    matrix=(int*)malloc((size.width*size.height*3)*sizeof(int)); //matrix 1 dimension ...
 
    for(i=0 ; i<size.width*size.height ; i++){ // scan the whole matrix : 1rst Red , 2nd Green , 3th Blue
          tmpBit=0;
          fscanf(file , "%d" , matrix+i); // on RED matrix
-         fscanf(file , "%d" , matrix+1*size.height*size.height+i); // on GREEN matrix
-         fscanf(file , "%d" , matrix+2*size.height*size.height+i); // on BLUE matrix
+         fscanf(file , "%d" , matrix +1*imgDsc.dim.height*imgDsc.dim.height+i); // on GREEN matrix
+         fscanf(file , "%d" , matrix +2*imgDsc.dim.height*imgDsc.dim.height+i); // on BLUE matrix
 
          while(quantif > 0) {
                matrix[i] %= (255/tmpval);
-               matrix[1*size.height*size.width+i] %= ((int)(255/tmpval) + (tmpval!=1) ); //+ tmpval!=1 : differentiate 127 of 128, because (int)255/2=127, but bit2=1 if number is a modulo of 128, not 127
-               matrix[2*size.height*size.width+i] %= ((int)(255/tmpval) + (tmpval!=1) );
+               matrix[1*imgDsc.dim.height*imgDsc.dim.width+i] %= ((int)(255/tmpval) + (tmpval!=1) ); //+ tmpval!=1 : differentiate 127 of 128, because (int)255/2=127, but bit2=1 if number is a modulo of 128, not 127
+               matrix[2*imgDsc.dim.height*imgDsc.dim.width+i] %= ((int)(255/tmpval) + (tmpval!=1) );
 
             if( matrix[i] == 0 )
                 tmpBit+= pow(2,3+quantif); // on RED matrix, for example quantif=2 : modulo 128, 255
-            if( matrix[1*size.height*size.width+i] == 0 )
+            if( matrix[1*imgDsc.dim.height*imgDsc.dim.width+i] == 0 )
                 tmpBit+= pow(2,1+quantif); // on  GREEN matrix
-            if( matrix[2*size.height*size.width+i] == 0 )
+            if( matrix[2*imgDsc.dim.height*imgDsc.dim.width+i] == 0 )
                 tmpBit+=1*pow(2,quantif-1); // on BLUE matrix
 
             quantif--;
@@ -62,10 +62,12 @@ void createPictureDesc(FILE *file){
     }
     strcat(des,path);
     descriptIMG = fopen(des,"w");
-    fprintf(descriptIMG , "%d %d\n" , size.height , size.width);
+    fprintf(descriptIMG , "%l\n" , getNewID(IMAGE) ); // HOW IT'S GENERATE ????????????? !§!!!!!!
+    fprintf(descriptIMG , "%d %d\n" , imgDsc.dim.height , imgDsc.dim.width);
 
-    createHistogram( descriptIMG , bit, size , pow(2,globs_nbWeightyBits*3) );
+    createHistogram( descriptIMG , bit, &imgDsc , pow(2,globs_nbWeightyBits*3) );
 
+return imgDesc;
 }
 
 //===================================================================================================
@@ -73,13 +75,13 @@ void createPictureDesc(FILE *file){
  *Create an histogramm with the 64 values possibles.
  * It give the number of picture's pixel which have an intensity value : red, blue, green or gray level.
  */
-void createHistogram(FILE *file ,int bit[], Dimension dim , int size){
-    float tab[size]; // 3 colors of Nquantif bits
+void createHistogram(FILE *file ,int bit[], IMGdesc *imgDsc , int size){
     int i;
+    imgDsc->histogram=(float*)malloc(size*sizeof(float)); // 3 colors of Nquantif bits
 
   for(i=0 ; i<size ; i++){
-    tab[i] = (float)bit[i] / ((float)(dim.height*dim.width)); // give a percentage about IntensityValuePixel on numberPixel.
-    fprintf(file , "%.2f\t" , tab[i]);
+    imgDsc->histogram[i] = (float)bit[i] / ((float)((*imgDsc).dim.height * (*imgDsc).dim.width)); // give a percentage about IntensityValuePixel on numberPixel.
+    fprintf(file , "%.2f\t" , img->histogram[i]);
   }
 }
 //===================================================================================================

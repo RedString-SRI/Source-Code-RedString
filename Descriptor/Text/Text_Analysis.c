@@ -277,17 +277,19 @@ void addOccurences (Index * i , char * word) {
 		printf ("END\n") ; 
 	else 
 		{ if (doesTermExist (*i , word)) 
-			ptr_Cell = *i ; 
-			{	while (*i != NULL) 	
+			{	ptr_Cell = *i ; 
+				while (*i != NULL) 	
 				{ if	(strcmp((*i) -> t1.word, word) == 0)  
 					{ increaseOccur(&((*i) -> t1)) ; 
-					  printf("occur increases\n") ; 
+					  printf("occur increased\n") ; 
 					  break ; 
 					}
 				  else *i = (*i) -> ptr_next ; 
 				}
+				*i = ptr_Cell ; 
 			}
-			*i = ptr_Cell ; 
+		  else printf ("This word hasn't been found\n") ; 
+			
 		}
 }
 

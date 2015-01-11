@@ -22,6 +22,12 @@ typedef struct{
   int width;
 }Dimension;
 
+typedef struct{
+  long id;
+  Dimension dim;
+  float *histogram;
+};
+
 
 /**
  *\brief Give the size of the picture 

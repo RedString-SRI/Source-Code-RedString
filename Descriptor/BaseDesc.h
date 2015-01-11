@@ -8,16 +8,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*#include "Text/TextDescriptor.h"
-#include "Picture/PictureDescriptor.h"*/
-#include "SoundDescriptor.h"
+/*#include "TextDesc.h"
+#include "PictureDesc.h"*/
+#include "SoundDesc.h"
 #include "Type_Bool.h"
 #include "Type_FileType.h"
-#include "Type_BaseDescriptor.h"
+#include "Type_BaseDesc.h"
 #include "Globals.c"
 
-#ifndef BASE_DESCRIPTOR
-#define BASE_DESCRIPTOR
+#ifndef BASE_DESC
+#define BASE_DESC
 
 extern int globs_maxPathLength;
 
@@ -62,6 +62,27 @@ Bool listIsEmpty(BaseDesc base);
  * \param a type for the descriptor
  */
 void addDescriptor(BaseDesc *base, void * structDesc, FileType type);
+
+/**
+ * \brief Get a descriptor in the base
+ *
+ * Get the descriptor with the address given in parameter
+ * \param a BaseDesc's base
+ * \param an address
+ * \param a type for the descriptor
+ * \return an element descriptor
+ */
+void * getDesc(BaseDesc base, long address, FileType type);
+
+/**
+ * \brief Get a FileDesc in the base
+ *
+ * Get the FileDesc's pointer with the address given in parameter
+ * \param a ListBaseDesc's list
+ * \param an address
+ * \return a ListBaseDesc
+ */
+ListBaseDesc getFileDesc(ListBaseDesc list, long address);
 
 /**
  * \brief Initialize a BaseDesc from a file

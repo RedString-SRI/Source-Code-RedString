@@ -67,16 +67,14 @@ IMGDesc createPictureDesc(FILE *file){
 * his function permit to watch the percentage about pixel's value.
 */
 void printHistogram(char path[]) {
-   int i=0 , j , size1 , size2 , size , id , nbcp;
+   IMGDesc desc;
+   int i=0 , j size ;
    int NbIntensity= pow(2,3*globs_nbWeightyBits); // if globs_nbWeightyBits=2 --> 2^(3*2)=64
    float array[NbIntensity]; // percentage given of descriptIMG
    char c;
    FILE *file=fopen(path , "r");
-   
-   fscanf(file , "%d" , &id);
-   fscanf(file , "%d" , &size1);
-   fscanf(file , "%d" , &size2);
-   fscanf(file , "%d" , &nbcp);
+   desc=readIMGDesc(file); // It don't UPDATE ! BIKERFUL
+ 
    size = size1*size2;
 
    for(i=0 ; i< NbIntensity ; i++) // get back histogram datas.

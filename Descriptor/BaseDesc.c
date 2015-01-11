@@ -91,7 +91,7 @@ void * getDesc(BaseDesc base, long address, FileType type){
 			case SOUND: el_comp = (SoundDesc*)el_comp;
 			break;
 		}
-		if(el_comp->address == address)
+		if((*el_comp)->address == address)
 			return el_comp;
 		ptr_dep = ptr_dep->next;
 	}
@@ -110,9 +110,15 @@ ListBaseDesc getFileDesc(ListBaseDesc list, long address){
 }
 
 //===================================================================================================
+char * getFileName(ListBaseDesc list, long address){
+	ListBaseDesc listGet = getFileDesc(list, address);
+	return(listGet->path);
+}
+
+//===================================================================================================
 BaseDesc initBaseDesc(FileType fileType){
 	BaseDesc newBase;
-	int size = sizeof(struct Desc *);
+	int size = sizeof(struct desc *);
 	FILE * baseDesc;
 	void * structDesc;
 	BaseDesc ptr_p;

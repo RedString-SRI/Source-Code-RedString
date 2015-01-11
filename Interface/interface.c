@@ -6,7 +6,7 @@ typedef struct vd{ // PILE DYnamic
 	float pct; // percentage or nbr Occurence about linked research
 	char nameFile[100]; // the name of the file to can open it.
 	struct vd *NextVD;
-}Val_Desc; // for easy the saving
+}Val_Desc, *PileVD; // for easy the saving
 
 void IndexationMenu();
 void ResearchMenu();
@@ -110,7 +110,7 @@ void ResearchMenu(){
 	float *positionFile;
 	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
 	
-	Val_Desc valDesc;
+	PileVD *valDesc , tmpVD;
 	IMGdesc imgDsc;
 	SoundDesc sdDsc;
 	TextDesx txtDsc;
@@ -168,8 +168,11 @@ void ResearchMenu(){
 				// NEED TO CLEAR PATH BEFORE ?????????????????
 					fscanf(listeBASE , "%s" , pathOfList); // Search the iTh path of the ListBASE
 					fileOfDesc=getDesc(pathOfList); // open the link of the linked descript
-					percent=compareSoundDesc(sdDesc , pathOfList );
-					
+					tmpVD=(PileVD)malloc(sizeof(Val_Desc));
+					tmpVD.pct=compareSoundDesc(sdDesc , pathOfList );
+					//valDesc.
+					tmpVD->NextVD=valDesc;
+					valDesc=tmpVD;
 				}
 				fclose();
 				system("clear");

@@ -23,9 +23,9 @@ void byColor(COLOR c){
   	iThPath++; // can read the Ith file of the desc base
   	percent = findColor(path , colorDecimal) // NEED TO CREAT THIS FUNCTION !!!!;
     if(percent) { 
-    	*OrderPercentage = (int*)malloc(sizeof(int)); // add the new percentage of the associate file // FLOAT ???
+    	*OrderPercentage = (float*)malloc(sizeof(float)); // add the new percentage of the associate file // FLOAT ???
     	size++;
-    	**OrderPercentage = (int**)malloc(sizeof(int*)): // add in the same colomn the number if the Ith file of the desc base :
+    	**OrderPercentage = (float**)malloc(sizeof(float*)): // add in the same colomn the number if the Ith file of the desc base :
     	// Matrix 2xN  percent | ... | ...
     	//			  Ith file | ... | ...
   		for(i=0 ; i<size ; i++){ // In order
@@ -50,25 +50,20 @@ void byColor(COLOR c){
   if(i=0) ResearchMenu() ;
 }
 //===================================================================================================
-float compareFileIMG(FILE *file1 , FILE *file2){
-  Dimension size1 , size2;
+float compareFileIMG(IMGDesc imgD1 , IMGDesc imgD2){
   float percentCompare;
-  int max=pow(2,3*globs_nbWeightyBits);
-  float histo1[max] , histo2[max] , compare[max];
-  int i=0;
+  int max , i;
+  float compare[max];
   
-  //read sizes
-  fscanf(file1 , "%d" , size1->height); fscanf(file1 , "%d" , size1->width);
-  fscanf(file2 , "%d" , size2->height); fscanf(file2 , "%d" , size2->width);
-  
-  //read percentage histograms
-  while(!foef(file1) && !foef(file2) && i<max ) { //3 end steps to be secure
-    fscanf(file1 , "%f" , histo1+i);
-    fscanf(file2 , "%f" , histo2+i);
-    if (histo[i]>histo2[i]) compare[i] = 1-histo1[i]/histo2[i] ;
-    else compare[i] = 1-histo2[i]/histo1[i] ;
+  // To don't have memories overflowing 
+  if(imgD1.nbcomp<imgD2.nbcomp)
+  	max=pow(2,img1.nbcomp*globs_nbWeightyBits);
+  else
+  	max=pow(2,img2.nbcomp*globs_nbWeightyBits);
+  for(i=0; i<max ; i++){
+    if (imgD1->histogram[i]>imgD2.histogram[i]) compare[i] = 1-imgD1->histogram[i]/imgD2->histogram[i] ;
+    else compare[i] = 1-imgD1->histogram[i]/imgD2->histogram[i] ;
     percentCompare+=compare[i]; // add every compare+i to be divide by the number of cells (max)
-    i++;
   }
   return percentCompare/max ;
 }

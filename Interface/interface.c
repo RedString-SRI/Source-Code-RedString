@@ -99,25 +99,7 @@ void IndexationMenu(){
 }
 //========================================================
 void ResearchMenu(){
-	char w[20];
-	int validPath;
-	int const maxSizePath = 100;
-	char *path[maxSizePath] , *pathOfList[maxSizePath];
 	int choice;
-	long ID; int date i=0;
-	float percent;
-	float *positionFile;
-	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
-	
-	PileVD *PilevalDesc , tmpVD;
-	Val_Desc VD;
-	IMGdesc imgDsc, tmpIdsc;
-	SoundDesc sdDsc, tmpSdsc;
-	TextDesx txtDsc , tmpTdsc;
-	FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
-	FILE *fileOfDesc;
-	FILE *GivenPath;
-	BaseDesc BDimg , BDsound , BDtxt;
 	
 	do{
 		printf("+=========================+\n");
@@ -136,85 +118,12 @@ void ResearchMenu(){
 	clearBuffer();
 	switch(choice){
 		case(1):
-			printf("Enter your word : \n");
-			scanf("%s" , w); // enter a word ......
-			if(isAWord(w)){
-				byOcurrenceWord(w);
-				system("clear");
-			}
-			else printf("ERROR Word\n");
 			break;
 		case(2):
-			do{
-				printf("1. By named color ? \n");	
-				printf("2. composants by composants ? \n");
-				printf("3. by compare file ? \n");
-				printf("+=================0.RETURN+\n");
-				scanf("%d" , &choice);
-			}while(choice!=1 && choice!=2 && choice!=0)
-			if(choice==1) byNamedColor();
-			else if(choice==2) cpsBYcps();
-			else if(choice==3){
-				ID=getID(path);
-				sdDesc=getDesc(BDimg , ID , PICTURE); // ???? NEED CHECKING <==============
-				while(!feof(BDimg)){
-				// NEED TO CLEAR PATH BEFORE ?????????????????
-					fscanf(BDimg , "%l" , &ID );
-					fscanf(BDimg, "%s" , pathOfList); // Search the iTh path of the ListBASE
-					fscanf(BDimg , "%d" , &date );
-					fileOfDesc=getDesc(BDimg , ID , SOUND); // open the link of the linked descript
-					percent=compareSoundDesc(sdDesc , fileOfDesc );
-					addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
-					i++;
-				}
-				fclose(BDimg);
-				printf("+=========================+\n");
-				printBestList(PilevalDesc , 0)
-				printf("+=================0.RETURN+\n");
-				printf("DoYou want to open it one ? Which one ? \n");
-  				scanf("%d" , &choice); // now, "i" is a choice
-  				if(choice<0 || choice>i) printf("ERROR choice\n");
-  				else {
-  					strcat(openPath , getChoosenFile(PilevalDesc,choice));
-  					system(openPath);
-  				}
-			}
-			}
-			else ResearchMenu();
+			researchIMG();
 			break;
 		case(3):
-			printf("Enter your path to compare : \n");
-			do {
-				validPath = getKeyboard_String(path,0, maxSizePath);
-				if(!fileExists(path)) printf("This file don\'t exist\n");
-			} while (!fileExists(path) && validPath!=0)
-			if(!validPath) ResearchMenu();
-			else{
-				ID=getID(path);
-				sdDesc=getDesc(BDsound , ID , SOUND); // ???? NEED CHECKING <==============
-				while(!feof(BDsound)){
-				// NEED TO CLEAR PATH BEFORE ?????????????????
-					fscanf(BDsound , "%l" , &ID );
-					fscanf(BDsound, "%s" , pathOfList); // Search the iTh path of the ListBASE
-					fscanf(BDsound , "%d" , &date );
-					fileOfDesc=getDesc(BDsound , ID , SOUND); // open the link of the linked descript
-					percent=compareSoundDesc(sdDesc , fileOfDesc );
-					addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
-					i++;
-				}
-				fclose(BDimg);
-				printf("+=========================+\n");
-				printBestList(PilevalDesc , 0)
-				printf("+=================0.RETURN+\n");
-				printf("DoYou want to open it one ? Which one ? \n");
-  				scanf("%d" , &choice); // now, "i" is a choice
-  				if(choice<0 || choice>i) printf("ERROR choice\n");
-  				else {
-  					strcat(openPath , getChoosenFile(PilevalDesc,choice));
-  					system(openPath);
-  				}
-			}
-			else printf("ERROR Sound\n");
+			researchSound();
 			break;
 		case(0): 
 			system("clear");

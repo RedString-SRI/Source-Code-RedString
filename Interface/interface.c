@@ -8,20 +8,8 @@
 * Interface User/Machine IMH
 *
 */
-#include "BaseDesc.h"
+#include "interface.h"
 
-
-
-typedef struct vd{ // PILE DYnamic
-	float pct; // percentage or nbr Occurence about linked research
-	char nameFile[100]; // the name of the file to can open it.
-	struct vd *NextVD;
-}Val_Desc, *PileVD; // for easy the saving
-
-void IndexationMenu();
-void ResearchMenu();
-void mainMenu();
-void clearBuffer();
 
 //========================================================
 void clearBuffer() {
@@ -94,7 +82,7 @@ void IndexationMenu(){
 				validPath = getKeyboard_String(path,0, maxSizePath);
 				if(fileExists(path))
 					/*SAVE path IN A TABLE OF PATH TO INDEX FORWARD ???? */
-			} while ( validPath == 1 )
+			} while ( validPath > 0 ) //while !0=NULL or !-1=so littre or !=-2=ERROR
 			if(validPath==0)
 				indexation(*path , .... ); /*PROBLEM INDEXATION ! I DON'T HOW IT'S WORK THE MULTI PARAMS */
 			else

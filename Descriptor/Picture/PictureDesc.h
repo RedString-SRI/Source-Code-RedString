@@ -15,8 +15,6 @@
 #ifndef PICTURE_Desc
 #define PICTURE_Desc
 
-/*Initialize a new picture's desc*/
-void initPictureDesc(PictureDesc *pd);
 
 /**
  *\brief Give the size of the picture 
@@ -26,7 +24,7 @@ Dimension getSizePicture(FILE *fileIMG);
 /**
  *\brief create the picture's desc
  */
-IMGDesc createPictureDesc(FILE *fileIMG);
+IMGDesc createPictureDesc(FILE *file);
 
 /**
  * ------> ONLY FOR DEBUGGING , CHECKING <----------

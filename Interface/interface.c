@@ -1,6 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+/**
+* \file interface.c
+* \brief listing of research functions.
+* \author Gabriel DEL REY
+* \version 0.8
+* \date 12 December 2014
+*
+* Interface User/Machine IMH
+*
+*/
+#include "BaseDesc.h"
+
+
 
 typedef struct vd{ // PILE DYnamic
 	float pct; // percentage or nbr Occurence about linked research

@@ -3,8 +3,12 @@
 //Author Estelle Randria
 //Date : 11/28/2014
 
-#include <stdio.h> 
-#include <string.h> 
+#include "BAseDesc.h"
+#include "TYPE_Term.h"
+#include "TextDesc.h"
+#include "Type_TextDesc.h"
+
+
 #define TMAX 100
 
 typedef struct term {

@@ -123,6 +123,60 @@ void cpsBYcps(){
 	
 	byColor(c);
 }
+void researchIMG(){
+	char w[20];
+	int validPath;
+	int const maxSizePath = 100;
+	char *path[maxSizePath] , *pathOfList[maxSizePath];
+	int choice;
+	long ID; int date, i=0;
+	float percent;
+	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
+	
+	PileVD *PilevalDesc , tmpVD;
+	Val_Desc VD;
+	IMGdesc imgDsc, tmpIdsc;
+	FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
+	FILE *fileOfDesc;
+	FILE *GivenPath;
+	BaseDesc BDimg ;
+	
+	do{
+				printf("1. By named color ? \n");	
+				printf("2. composants by composants ? \n");
+				printf("3. by compare file ? \n");
+				printf("+=================0.RETURN+\n");
+				scanf("%d" , &choice);
+			}while(choice!=1 && choice!=2 && choice!=0)
+			if(choice==1) byNamedColor();
+			else if(choice==2) cpsBYcps();
+			else if(choice==3){
+				ID=getID(path);
+				imgDsc=getDesc(BDimg , ID , PICTURE); // ???? NEED CHECKING <==============
+				while(!feof(BDimg)){
+				// NEED TO CLEAR PATH BEFORE ?????????????????
+					fscanf(BDimg , "%l" , &ID );
+					fscanf(BDimg, "%s" , pathOfList); // Search the iTh path of the ListBASE
+					fscanf(BDimg , "%d" , &date );
+					fileOfDesc=getDesc(BDimg , ID , SOUND); // open the link of the linked descript
+					percent=compareIMGDesc(sdDesc , fileOfDesc );
+					addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
+					i++;
+				}
+				fclose(BDimg);
+				printf("+=========================+\n");
+				printBestList(PilevalDesc , 0)
+				printf("+=================0.RETURN+\n");
+				printf("DoYou want to open it one ? Which one ? \n");
+  				scanf("%d" , &choice); // now, "i" is a choice
+  				if(choice<0 || choice>i) printf("ERROR choice\n");
+  				else {
+  					strcat(openPath , getChoosenFile(PilevalDesc,choice));
+  					system(openPath);
+  				}
+			}
+			else ResearchMenu();
+}
 //===================================================================================================
 //==============================ASSOCIATED RESEARCH FOR TEXT ========================================
 //===================================================================================================
@@ -177,40 +231,77 @@ void byOccurenceWord(char word[] ){
   if(i<0 || i>size) printf("ERROR choice\n");
   if(i=0) ResearchMenu() ;
 }
+void researchTXT(){
+		char w[20];
+	int validPath;
+	int const maxSizePath = 100;
+	char *path[maxSizePath] , *pathOfList[maxSizePath];
+	int choice;
+	long ID; int date i=0;
+	float percent;
+	float *positionFile;
+	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
+	
+	PileVD *PilevalDesc , tmpVD;
+	Val_Desc VD;
+	IMGdesc imgDsc, tmpIdsc;
+	SoundDesc sdDsc, tmpSdsc;
+	TextDesx txtDsc , tmpTdsc;
+	FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
+	FILE *fileOfDesc;
+	FILE *GivenPath;
+	BaseDesc BDimg , BDsound , BDtxt;
+}
 //===================================================================================================
 //==============================ASSOCIATED RESEARCH FOR SOUND========================================
 //===================================================================================================
-void bySound(){
-	//INIT ?
+void ResearchSound(){
+	int validPath;
+	int const maxSizePath = 100;
+	char *path[maxSizePath] , *pathOfList[maxSizePath];
+	int choice;
+	long ID; int date, i=0;
+	float percent;
+	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
+	
+	PileVD PilevalDesc;
+	SoundDesc sdDsc, tmpSdsc;
+	FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
+	FILE *fileOfDesc;
+	FILE *GivenPath;
+	BaseDesc BDsound;
 	
 	printf("Enter your path to compare : \n");
-	validPath = getKeyboard_String(path,0, maxSizePath);
-	if(fileExists(path)){
-		ID=getID(path);
-		sdDesc=getDesc(listeBASE , ID , SOUND); // ???? NEED CHECKING <==============
-		while(!feof(listeBASE)){
-		// NEED TO CLEAR PATH BEFORE ?????????????????
-			fscanf(listeBASE , "%l" , &ID );
-			fscanf(listeBASE , "%s" , pathOfList); // Search the iTh path of the ListBASE
-			fscanf(listeBASE , "%d" , &date );
-			fileOfDesc=getDesc(listeBASE , ID , SOUND); // open the link of the linked descript
-			percent=compareSoundDesc(sdDesc , fileOfDesc );
-			addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
-			i++;
+		do {
+			validPath = getKeyboard_String(path,0, maxSizePath);
+			if(!fileExists(path)) printf("This file don\'t exist\n");
+		} while (!fileExists(path) && validPath!=0)
+		if(!validPath) ResearchMenu();
+		else{
+			ID=getID(path);
+			sdDesc=getDesc(BDsound , ID , SOUND); // ???? NEED CHECKING <==============
+			while(!feof(BDsound)){
+			// NEED TO CLEAR PATH BEFORE ?????????????????
+				fscanf(BDsound , "%l" , &ID );
+				fscanf(BDsound, "%s" , pathOfList); // Search the iTh path of the ListBASE
+				fscanf(BDsound , "%d" , &date );
+				fileOfDesc=getDesc(BDsound , ID , SOUND); // open the link of the linked descript
+				percent=compareSoundDesc(sdDesc , fileOfDesc );
+				addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
+				i++;
+			}
+			fclose(BDimg);
+			printf("+=========================+\n");
+			printBestList(PilevalDesc , 0)
+			printf("+=================0.RETURN+\n");
+			printf("DoYou want to open it one ? Which one ? \n");
+  			scanf("%d" , &choice); // now, "i" is a choice
+  			if(choice<0 || choice>i) printf("ERROR choice\n");
+  			else {
+  				strcat(openPath , getChoosenFile(PilevalDesc,choice));
+  				system(openPath);
+  			}
 		}
-		fclose(listeBASE);
-		printf("+=========================+\n");
-		printBestList(PilevalDesc , 0)
-		printf("+=================0.RETURN+\n");
-		printf("DoYou want to open it one ? Which one ? \n");
-  		scanf("%d" , &choice); // now, "i" is a choice
-  		if(choice<0 || choice>i) printf("ERROR choice\n");
-  		else {
-	  		strcat(openPath , getChoosenFile(PilevalDesc,choice));
- 			system(openPath);
- 		}
-	}
-	else printf("ERROR Sound\n");
 }
 //========================================================
 void addOrderVD(PileVD *pvd, float perct , char nFile){	
@@ -240,7 +331,7 @@ void printBestList(PileVD pvd , j){ //récursif
 	printBestList(pvd , j+1);
 }
 //========================================================
-char *getChoosenFile(PileVD PilevalDesc,int choice){
+char *getChoosenFile(PileVD PilevalDesc,int choice){ // return the nTh name of the Pile of file, to can open it easier.
 	if(choice==0) return PilevalDasc.nameFile ;
 	else getChoosenFile( PilevalDesc, choice-1);
 }

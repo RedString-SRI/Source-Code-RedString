@@ -135,6 +135,17 @@ long getAddress(ListBaseDesc list, char * path){
 }
 
 //===================================================================================================
+long descExists(ListBaseDesc list, char * path){
+	ListBaseDesc ptr_dep = list;
+	while(ptr_dep != NULL){
+		if(strcmp(ptr_dep->path, path) == 0)
+			return ptr_dep->address;
+		ptr_dep = ptr_dep->next;
+	}
+	return 0; // If we're leaving the loop
+}
+
+//===================================================================================================
 BaseDesc initBaseDesc(FileType fileType){
 	BaseDesc newBase;
 	int size = sizeof(struct desc *);

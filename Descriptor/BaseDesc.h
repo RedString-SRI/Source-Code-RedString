@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*#include "TextDesc.h"*/
-#include "PictureDesc.h"
+/*#include "TextDesc.h"
+#include "PictureDesc.h"*/
 #include "SoundDesc.h"
 #include "Type_Bool.h"
 #include "Type_FileType.h"
@@ -103,6 +103,16 @@ char * getFileName(ListBaseDesc list, long address);
  * \return the address
  */
 long getAddress(ListBaseDesc list, char * path);
+
+/**
+ * \brief Get the desc's id in the listBase
+ *
+ * Get the address of the descriptor using the indexed file path string
+ * \param a ListBaseDesc's list
+ * \param a path string
+ * \return the descriptor's id number
+ */
+long descExists(ListBaseDesc list, char * path);
 
 /**
  * \brief Initialize a BaseDesc from a file

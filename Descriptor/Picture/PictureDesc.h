@@ -6,6 +6,11 @@
  * \date 30 November 2014
  *
  */
+#include <math.h>
+#include "TYPE_PictureDesc.h"
+#include "BaseDesc.h"
+#include "FileManager.h"
+
 
 #include "Type_PictureDescritor.h"
 

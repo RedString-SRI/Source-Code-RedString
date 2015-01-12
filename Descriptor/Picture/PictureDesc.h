@@ -12,8 +12,6 @@
 #include "FileManager.h"
 
 
-#include "Type_PictureDescritor.h"
-
 #ifndef PICTURE_Desc
 #define PICTURE_Desc
 

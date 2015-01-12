@@ -1,7 +1,13 @@
+/**
+ * \file PictureDesc.c
+ * \brief picture desc
+ * \author Gabriel.DR
+ * \version 0.95
+ * \date 29 November 2014
+ *
+ */
+
 #include "PictureDesc.h"
-#include "math.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 
 Dimension getSizePicture(FILE *fileIMG) {

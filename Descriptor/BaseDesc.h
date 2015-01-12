@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*#include "TextDesc.h"
-#include "PictureDesc.h"*/
+/*#include "TextDesc.h"*/
+#include "PictureDesc.h"
 #include "SoundDesc.h"
 #include "Type_Bool.h"
 #include "Type_FileType.h"

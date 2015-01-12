@@ -3,9 +3,7 @@
 //Author Estelle Randria
 //Date : 11/28/2014
 
-#include <stdio.h>
-#include <string.h>
-#include "Type_Bool.h" 
+
 #include "text_analysis.h"
 
 

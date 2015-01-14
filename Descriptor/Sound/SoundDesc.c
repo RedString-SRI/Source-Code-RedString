@@ -169,10 +169,18 @@ SoundDesc * readSoundDesc(FILE* file)
 	
 
 	// Read desc->address
-	readStruct(file, &desc->address, sizeof(desc->address));
+	if(!readStruct(file, &desc->address, sizeof(desc->address)))
+	{
+		free(desc);
+		return NULL;
+	}
 	
 	// Read desc->nbWindows
-	readStruct(file, &desc->nbWindows, sizeof(int));
+	if(!readStruct(file, &desc->nbWindows, sizeof(int)))
+	{
+		free(desc);
+		return NULL;
+	}
 	nbWindows = desc->nbWindows - 1;
 	// -1 to stop before desc->histogram[iWindow] == NULL
 	
@@ -184,7 +192,11 @@ SoundDesc * readSoundDesc(FILE* file)
 	for(iWindow = 0; iWindow < nbWindows; iWindow++)
 	{
 		desc->histogram[iWindow] = malloc(sizeof(int) * globs_nbInterval);
-		readStruct(file, desc->histogram[iWindow], sizeof(int) * globs_nbInterval);
+		if(!readStruct(file, desc->histogram[iWindow], sizeof(int) * globs_nbInterval))
+		{
+			free(desc);
+			return NULL;
+		}
 	}
 
 	// Set NULL in the last one

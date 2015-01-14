@@ -37,6 +37,8 @@ float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc);
 /**
  * \brief Compare two windows are return their matching percentage
  * 
+ * It compares the two arrays with an error percentage.
+ *  Values have a match rate superior to globs_minQuantifMatch.
  * \param win1 One window you want to compare
  * \param win2 The other window to compare
  * \return The matching percentage

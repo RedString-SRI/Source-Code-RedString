@@ -1,20 +1,16 @@
-In file included from ../../Indexer/Indexer.h:15:0,
-                 from ../../Indexer/Indexer.c:7:
-/home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor/Type_BaseDesc.h:31:15: error: ‘globs_maxPathLength’ undeclared here (not in a function)
-In file included from /home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor/BaseDesc.h:15:0,
-                 from ../../Indexer/Indexer.h:16,
-                 from ../../Indexer/Indexer.c:7:
-/home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor/Picture/PictureDesc.h:10:35: fatal error: Type_PictureDescritor.h: No such file or directory
+In file included from ../../Indexer/Indexer.c:7:0:
+../../Indexer/Indexer.h:18:27: fatal error: generic_stack.h: No such file or directory
 compilation terminated.
-In file included from ../../Descriptor/BaseDesc.h:15:0,
-                 from ../../Descriptor/BaseDesc.c:11:
-../../Descriptor/Picture/PictureDesc.h:10:35: fatal error: Type_PictureDescritor.h: No such file or directory
-compilation terminated.
-In file included from /home/rayope/SRI/FilRouge/Source-Code-RedString/Indexer/Indexer.h:15:0,
-                 from Tester_Indexer.c:9:
-/home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor/Type_BaseDesc.h:31:15: error: ‘globs_maxPathLength’ undeclared here (not in a function)
-In file included from /home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor/BaseDesc.h:15:0,
-                 from /home/rayope/SRI/FilRouge/Source-Code-RedString/Indexer/Indexer.h:16,
-                 from Tester_Indexer.c:9:
-/home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor/Picture/PictureDesc.h:10:35: fatal error: Type_PictureDescritor.h: No such file or directory
+../../Descriptor/BaseDesc.c: In function ‘getDesc’:
+../../Descriptor/BaseDesc.c:94:1: error: expected expression before ‘<<’ token
+../../Descriptor/BaseDesc.c:108:1: error: expected expression before ‘==’ token
+../../Descriptor/BaseDesc.c:116:7: warning: dereferencing ‘void *’ pointer [enabled by default]
+../../Descriptor/BaseDesc.c:116:3: error: void value not ignored as it ought to be
+../../Descriptor/BaseDesc.c:118:1: error: expected expression before ‘>>’ token
+../../Descriptor/BaseDesc.c:118:9: error: invalid suffix "acd67cda2f5a004129f22e34a66296428690c1c" on integer constant
+../../Descriptor/BaseDesc.c: At top level:
+../../Descriptor/BaseDesc.c:121:2: error: expected identifier or ‘(’ before ‘return’
+../../Descriptor/BaseDesc.c:122:1: error: expected identifier or ‘(’ before ‘}’ token
+In file included from Tester_Indexer.c:9:0:
+/home/rayope/SRI/FilRouge/Source-Code-RedString/Indexer/Indexer.h:18:27: fatal error: generic_stack.h: No such file or directory
 compilation terminated.

@@ -7,7 +7,7 @@
 #include "Indexer.h"
 
 
-/** Following declarations are made for testing **/
+/** Following declarations are made for testing
 typedef struct {long address;}TextDesc;
 typedef struct {long address;}PictureDesc;
 
@@ -56,17 +56,18 @@ void indexation(char const * dirPath, ...)
 {
 	va_list ap;
 	char * tmpParam;
-	int textThread, pictureThread, soundThread;
+	int soundThread;//, textThread, pictureThread;
 	PathStacks pathStack;	// Contains the path
 				// of ready-to-be-indexed files
 	
 	// Initialise pathStack
-	initStack(pathStack.textPathStack.pathFile);
-	pathStack.textPathStack.fileType = TEXT;
-	initStack(pathStack.picturePathStack.pathFile);
-	pathStack.picturePathStack.fileType = PICTURE;
 	initStack(pathStack.soundPathStack.pathFile);
 	pathStack.soundPathStack.fileType = SOUND;
+	/*initStack(pathStack.textPathStack.pathFile);
+	pathStack.textPathStack.fileType = TEXT;
+	initStack(pathStack.picturePathStack.pathFile);
+	pathStack.picturePathStack.fileType = PICTURE;*/
+	
 	
 	// Fill pathStack with files of the directory
 	// paths given in parameter
@@ -86,32 +87,10 @@ void indexation(char const * dirPath, ...)
 	
 	// Let's index those crazy files
 	
-	// TEXT
-	textThread = fork();
-	if(textThread == -1)
-		/** Thread doesn't work, jump into slow mode.	TO BE IMPLEMENTED**/
-	
-	if(!textThread)	// The child
-	{
-		indexFiles(&pathStack.textPathStack);
-		exit(0);
-	}
-	
-	// PICTURE
-	pictureThread = fork();
-	if(pictureThread == -1)
-		/** Thread doesn't work, jump into slow mode.	TO BE IMPLEMENTED **/
-	
-	if(!pictureThread)	// The child
-	{
-		indexFiles(&pathStack.picturePathStack);
-		exit(0);
-	}
-	
 	// SOUND
 	soundThread = fork();
 	if(soundThread == -1)
-		/** Thread doesn't work, jump into slow mode.	TO BE IMPLEMENTED */
+		/// Thread doesn't work, jump into slow mode.	TO BE IMPLEMENTED
 	
 	if(!soundThread)	// The child
 	{
@@ -119,11 +98,33 @@ void indexation(char const * dirPath, ...)
 		exit(0);
 	}
 	
+	// TEXT
+	/*textThread = fork();
+	if(textThread == -1)
+		/// Thread doesn't work, jump into slow mode.	TO BE IMPLEMENTED
+	
+	if(!textThread)	// The child
+	{
+		indexFiles(&pathStack.textPathStack);
+		exit(0);
+	}*/
+	
+	// PICTURE
+	/*pictureThread = fork();
+	if(pictureThread == -1)
+		/// Thread doesn't work, jump into slow mode.	TO BE IMPLEMENTED
+	
+	if(!pictureThread)	// The child
+	{
+		indexFiles(&pathStack.picturePathStack);
+		exit(0);
+	}*/
+	
 	// The godfather is still waiting for his kids to be killed
 	/** TEST ON EXITS NEEDS TO BE WRITTEN **/
 	wait(NULL);
-	wait(NULL);
-	wait(NULL);
+	/*wait(NULL);
+	wait(NULL);*/
 }
 //===================================================================================================
 void indexFiles(FilePathStack const * filePathStack)
@@ -138,7 +139,12 @@ void indexFiles(FilePathStack const * filePathStack)
 	
 	switch(filePathStack->fileType)
 	{
-		case TEXT:
+		case SOUND:
+			createDesc = createSoundDesc;
+			address = ((SoundDesc*)tmpDesc)->address;
+			break;
+			
+		/*case TEXT:
 			createDesc = createTextDesc;
 			address = ((TextDesc*)tmpDesc)->address;
 			break;
@@ -146,12 +152,9 @@ void indexFiles(FilePathStack const * filePathStack)
 		case PICTURE:
 			createDesc = createPictureDesc;
 			address = ((PictureDesc*)tmpDesc)->address;
-			break;
+			break;*/
 			
-		case SOUND:
-			createDesc = createSoundDesc;
-			address = ((SoundDesc*)tmpDesc)->address;
-			break;
+		
 	}
 	
 	/** depiler doesn't exist..... TO BE REPLACED BY THE GOOD ONE **/

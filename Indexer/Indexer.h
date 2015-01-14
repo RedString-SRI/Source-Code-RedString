@@ -15,6 +15,7 @@
 #include "Type_BaseDesc.h"
 #include "BaseDesc.h"
 #include "SoundDesc.h"
+#include "generic_stack.h"
 
 #ifndef INDEXER
 #define INDEXER

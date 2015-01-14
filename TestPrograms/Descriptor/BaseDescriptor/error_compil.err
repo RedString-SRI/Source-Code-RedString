@@ -1,0 +1,4 @@
+../../../Descriptor/Sound/SoundDesc.c: In function ‘printSoundDesc’:
+../../../Descriptor/Sound/SoundDesc.c:136:2: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘int’ [-Wformat=]
+  printf("\nId: %ld", desc->address);
+  ^

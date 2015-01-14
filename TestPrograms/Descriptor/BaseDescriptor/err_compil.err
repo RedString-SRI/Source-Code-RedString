@@ -2,6 +2,13 @@
 ../../../Descriptor/Sound/SoundDesc.c:136:2: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘int’ [-Wformat=]
   printf("\nId: %ld", desc->address);
   ^
+../../../Descriptor/BaseDesc.c: In function ‘initBaseDesc’:
+../../../Descriptor/BaseDesc.c:186:5: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘long int’ [-Wformat=]
+     printf("%d\n", ftell(baseDesc));
+     ^
+../../../Descriptor/BaseDesc.c:194:3: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘long int’ [-Wformat=]
+   printf("%d\n", ftell(baseDesc));
+   ^
 test.c: In function ‘main’:
 test.c:18:2: warning: passing argument 1 of ‘listIsEmpty’ from incompatible pointer type [enabled by default]
   if(listIsEmpty(lbd))
@@ -10,10 +17,10 @@ In file included from test.c:1:0:
 ../../../Descriptor/BaseDesc.h:54:6: note: expected ‘BaseDesc’ but argument is of type ‘ListBaseDesc’
  Bool listIsEmpty(BaseDesc base);
       ^
-test.c:36:2: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘long int’ [-Wformat=]
+test.c:38:2: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘long int’ [-Wformat=]
   printf("%d number\n", descExists(lbd, "Monpenis"));
   ^
-test.c:40:2: warning: passing argument 1 of ‘listIsEmpty’ from incompatible pointer type [enabled by default]
+test.c:42:2: warning: passing argument 1 of ‘listIsEmpty’ from incompatible pointer type [enabled by default]
   if(!listIsEmpty(lbd))
   ^
 In file included from test.c:1:0:

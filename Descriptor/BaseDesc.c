@@ -70,7 +70,8 @@ void addDesc(BaseDesc *base, void * structDesc, FileType type){
 				fileAdd = fopen("SoundBaseDesc.db", "a");
 				writeSoundDesc(fileAdd, desc);
 		break;
-	}   
+	}
+	fprintf(fileAdd, "\n");
 	fclose(fileAdd);
 	BaseDesc ptr_add = (BaseDesc) malloc(size);
 	ptr_add->element = structDesc;
@@ -163,7 +164,7 @@ long descExists(ListBaseDesc list, char * path){
 
 //===================================================================================================
 BaseDesc initBaseDesc(FileType fileType){
-	BaseDesc newBase;
+	BaseDesc newBase = NULL;
 	int size = sizeof(struct desc *);
 	FILE * baseDesc;
 	void * structDesc;
@@ -171,24 +172,26 @@ BaseDesc initBaseDesc(FileType fileType){
 	void * desc;
 	switch(fileType){
 		/*case TEXT:
-				structDesc = readTextDesc(baseDesc);
 				baseDesc = fopen("TextBaseDesc.db", "r");
+				structDesc = readTextDesc(baseDesc);
 				size += sizeof(TextDesc);
         break;
         case PICTURE:
-				structDesc = readPictureDesc(baseDesc);
 				baseDesc = fopen("PictureBaseDesc.db", "r");
+				structDesc = readPictureDesc(baseDesc);
 				size += sizeof(PictureDesc);
         break;*/
         case SOUND:
-				structDesc = readSoundDesc(baseDesc);
 				baseDesc = fopen("SoundBaseDesc.db", "r");
+				printf("%d\n", ftell(baseDesc));
+				structDesc = readSoundDesc(baseDesc);				
 				size += sizeof(SoundDesc);
         break; 
 	}
-	while(structDesc != NULL){ // I'm not sure this is NULL or EOF, ' have to check with descriptors fonction
+	while(!feof(baseDesc)){
 		BaseDesc ptr_add = (BaseDesc) malloc(size);    
 		ptr_add->element = structDesc;
+		printf("%d\n", ftell(baseDesc));
 		if(listIsEmpty(newBase)){
 		    newBase = ptr_add;
 			ptr_p = newBase;
@@ -197,6 +200,7 @@ BaseDesc initBaseDesc(FileType fileType){
 			ptr_p->next = ptr_add;
 			ptr_p = ptr_p->next;
 		}
+		fseek(baseDesc, 1, SEEK_CUR);
 		switch(fileType){
 			/*case TEXT:
 					structDesc = readTextDesc(baseDesc);
@@ -308,18 +312,17 @@ void removeDesc(BaseDesc * base, FileType type){
     if(listIsEmpty(*base))
         /** error **/;
     else{
-		char * FileDesc;
+		FILE * baseDesc;
 		switch(type){
-			/*case TEXT: strcpy(FileDesc, "TextBaseDesc.db");
+			/*case TEXT: fopen("TextBaseDesc.db", "w+");
 		    break;
-		    case PICTURE: strcpy(FileDesc, "PictureBaseDesc.db");
+		    case PICTURE: fopen("PictureBaseDesc.db", "w+");
 		    break;*/
-		    case SOUND: strcpy(FileDesc, "SoundBaseDesc.db");
+		    case SOUND: fopen("SoundBaseDesc.db", "w+");
 		    break;
 		}
-		FILE * baseDesc = fopen(FileDesc, "w+");
         BaseDesc ptr_p = *base;
-        do{
+        while(ptr_p != NULL){
             if(ptr_p->next == NULL)
                 break;
 			switch(type){
@@ -334,8 +337,7 @@ void removeDesc(BaseDesc * base, FileType type){
 				break; 
 			}
             ptr_p = ptr_p->next;
-        }while(ptr_p != NULL);
-        free(ptr_p);
-		fclose(baseDesc);    
+		}
+        free(ptr_p);   
 	}
 }

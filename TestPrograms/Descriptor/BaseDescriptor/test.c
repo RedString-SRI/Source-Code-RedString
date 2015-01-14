@@ -19,8 +19,10 @@ int main(){
 		printf(" OK\n");
 	else
 		printf(" NOK\n");
-	printf("Add a new descriptor\n");
-	addDesc(&bd, tests_writeSoundDesc(FALSE), SOUND);
+	/*printf("Add a new descriptor\n");
+	addDesc(&bd, tests_writeSoundDesc(FALSE), SOUND);*/
+	printf("Initialize the SoundBase from the file\n");
+	bd = initBaseDesc(SOUND);
 	printf("Checking if the BaseDescriptor is not empty :");	
 	if(!listIsEmpty(bd))
 		printf(" OK\n");
@@ -41,6 +43,12 @@ int main(){
 		printf(" OK\n");
 	else
 		printf(" NOK\n");
+	/*removeDesc(&bd, SOUND);
+	printf("Checking if the BaseDescriptor is empty :");	
+	if(listIsEmpty(bd))
+		printf(" OK\n");
+	else
+		printf(" NOK\n");*/
 	printf("\n----------------Program terminated-----------------\n\n");
 }
 

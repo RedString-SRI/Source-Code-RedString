@@ -7,14 +7,10 @@
  *
  */
 #include <math.h>
-#include "TYPE_PictureDesc.h"
 #include "BaseDesc.h"
 #include "FileManager.h"
-
-<<<<<<< HEAD
 #include "Type_PictureDesc.h"
-=======
->>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
+
 
 #ifndef PICTURE_Desc
 #define PICTURE_Desc

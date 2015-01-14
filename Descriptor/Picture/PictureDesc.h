@@ -28,7 +28,7 @@ Dimension getSizePicture(FILE *fileIMG);
 /**
  *\brief create the picture's desc
  */
-IMGDesc createPictureDesc(FILE *file);
+PictureDesc createPictureDesc(FILE *file);
 
 /**
  * ------> ONLY FOR DEBUGGING , CHECKING <----------
@@ -41,7 +41,7 @@ void printHistogram(FILE *descriptIMG);
  * 
  * \param desc The desc to be displayed
  */
-void printIMGDesc(IMGDesc desc);
+void printIMGDesc(PictureDesc desc);
 
 /**
  * \brief Write a IMG desc to a file
@@ -52,7 +52,7 @@ void printIMGDesc(IMGDesc desc);
  * \param desc The desc which is going to be
  * appended to the file
  */
-void writeIMGDesc(FILE* file, IMGDesc* desc);
+void writeIMGDesc(FILE* file, PictureDesc* desc);
 
 /**
  * \brief Read a sound desc from a file
@@ -63,5 +63,5 @@ void writeIMGDesc(FILE* file, IMGDesc* desc);
  * \param file The file you want to be read
  * \return The desc which is going to store the read one
  */
-IMGDesc readIMGDesc(FILE* file);
+PictureDesc readIMGDesc(FILE* file);
 #endif

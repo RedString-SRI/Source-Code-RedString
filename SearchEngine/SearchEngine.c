@@ -315,28 +315,6 @@ char *getChoosenFile(PileVD PilevalDesc,int choice){ // return the nTh name of t
 	if(choice==0) return PilevalDasc.nameFile ;
 	else getChoosenFile( PilevalDesc, choice-1);
 }
-
-//========================================================
-void addOrderVD(PileVD *pvd, float perct , char nFile){	
-	PileVD tmpPdv;
-	
-	if(((*pvd)->pct) < perct)
-			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
-			tmpPvd.pct = perct;
-			strcpy(tmpPdv.nameFile, nFile);
-			tmpPvd->NextVD= *pvd;
-			*pvd=tmpVD;
-	else {
-		if(((*pvd)->NextVD).pct <= perct){
-			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
-			tmpPvd.pct = perct;
-			strcpy(tmpPdv.nameFile, nFile);
-			tmpPvd->NextVD = (*pvd)->NextVD;
-			(*pvd)->NextVD=tmpPvd;
-		}
-		else addOrderVD( &((*pvd)->NextVD) , perct , nFile ); 
-	}		
-}
 //========================================================
 void printBestList(PileVD pvd , j){ //récursif
 	if(pvd==NULL) return;

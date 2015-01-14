@@ -18,8 +18,8 @@ Dimension getSizePicture(FILE *fileIMG) {
    return dim;
 }
 //===================================================================================================
-IMGDesc createPictureDesc(FILE *file){
-   IMGDesc imgDsc;
+PictureDesc createPictureDesc(FILE *file){
+   PictureDesc imgDsc;
    int quantif = globs_nbWeightyBits;
    int nbVal;
    int *matrix;
@@ -100,7 +100,7 @@ void printHistogram(char path[]) {
    fclose(file);
 }*/
 //===================================================================================================
-void printIMGDesc(IMGDesc desc){
+void printIMGDesc(PictureDesc desc){
    int dim = pow(2,globs_nbWeightyBits*imgDsc.nbcomp);
    int i;
    printf("ID:%l \tsize:%dx%d \tNbComposants:%d\n", desc.ID , desc.size.height , desc.size.width , desc.nbcomp);
@@ -109,7 +109,7 @@ void printIMGDesc(IMGDesc desc){
    printf("\n");
 }
 //===================================================================================================
-void writeIMGDesc(FILE* file, IMGDesc* desc){
+void writeIMGDesc(FILE* file, PictureDesc* desc){
    int i, nbcp = desc->nbcomp;
 	
 	writeStruct(file, &desc->ID, sizeof(desc->ID));
@@ -120,8 +120,8 @@ void writeIMGDesc(FILE* file, IMGDesc* desc){
 		writeStruct(file, desc->histogram[i], sizeof(float));
 }
 //===================================================================================================
-IMGDesc readIMGDesc(FILE* file){
-   IMGDesc desc;
+PictureDesc readIMGDesc(FILE* file){
+   PictureDesc desc;
    int i , max;
    fscanf(file,"%l" , desc->ID);
    fscanf(file,"%d" , desc->(size.height));

@@ -53,7 +53,7 @@ void byColor(COLOR c){
   if(i=0) ResearchMenu() ;
 }
 //===================================================================================================
-float compareFileIMG(IMGDesc imgD1 , IMGDesc imgD2){
+float compareFileIMG(PictureDesc imgD1 , PictureDesc imgD2){
   float percentCompare;
   int max , i;
   float compare[max];
@@ -136,7 +136,7 @@ void researchIMG(FILE *imgbase){
 	
 	PileVD *PilevalDesc , tmpVD;
 	Val_Desc VD;
-	IMGdesc imgDsc, tmpIdsc;
+	Picturedesc imgDsc, tmpIdsc;
 	FILE *fileOfDesc;
 	FILE *GivenPath;
 	
@@ -177,22 +177,6 @@ void researchIMG(FILE *imgbase){
 }
 //===================================================================================================
 //==============================ASSOCIATED RESEARCH FOR TEXT ========================================
-//===================================================================================================
-void byAuthor(){
-
-}
-//===================================================================================================
-void byModifDate(){
-
-}
-//===================================================================================================
-void byCreatingDate(){
-
-}
-//===================================================================================================
-void byNameFile(){
-
-}
 //===================================================================================================
 void byOccurenceWord(char word[] ){
   
@@ -328,6 +312,39 @@ void printBestList(PileVD pvd , j){ //récursif
 }
 //========================================================
 char *getChoosenFile(PileVD PilevalDesc,int choice){ // return the nTh name of the Pile of file, to can open it easier.
+	if(choice==0) return PilevalDasc.nameFile ;
+	else getChoosenFile( PilevalDesc, choice-1);
+}
+
+//========================================================
+void addOrderVD(PileVD *pvd, float perct , char nFile){	
+	PileVD tmpPdv;
+	
+	if(((*pvd)->pct) < perct)
+			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
+			tmpPvd.pct = perct;
+			strcpy(tmpPdv.nameFile, nFile);
+			tmpPvd->NextVD= *pvd;
+			*pvd=tmpVD;
+	else {
+		if(((*pvd)->NextVD).pct <= perct){
+			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
+			tmpPvd.pct = perct;
+			strcpy(tmpPdv.nameFile, nFile);
+			tmpPvd->NextVD = (*pvd)->NextVD;
+			(*pvd)->NextVD=tmpPvd;
+		}
+		else addOrderVD( &((*pvd)->NextVD) , perct , nFile ); 
+	}		
+}
+//========================================================
+void printBestList(PileVD pvd , j){ //récursif
+	if(pvd==NULL) return;
+	printf("%3d. %30s --> %.2f" , j+1 , pvd.nameFile , pvd.pct*100 )
+	printBestList(pvd , j+1);
+}
+//========================================================
+char *getChoosenFile(PileVD PilevalDesc,int choice){
 	if(choice==0) return PilevalDasc.nameFile ;
 	else getChoosenFile( PilevalDesc, choice-1);
 }

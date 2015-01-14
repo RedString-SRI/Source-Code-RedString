@@ -315,14 +315,3 @@ char *getChoosenFile(PileVD PilevalDesc,int choice){ // return the nTh name of t
 	if(choice==0) return PilevalDasc.nameFile ;
 	else getChoosenFile( PilevalDesc, choice-1);
 }
-//========================================================
-void printBestList(PileVD pvd , j){ //récursif
-	if(pvd==NULL) return;
-	printf("%3d. %30s --> %.2f" , j+1 , pvd.nameFile , pvd.pct*100 )
-	printBestList(pvd , j+1);
-}
-//========================================================
-char *getChoosenFile(PileVD PilevalDesc,int choice){
-	if(choice==0) return PilevalDasc.nameFile ;
-	else getChoosenFile( PilevalDesc, choice-1);
-}

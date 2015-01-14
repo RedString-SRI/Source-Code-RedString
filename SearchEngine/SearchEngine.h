@@ -42,42 +42,70 @@ enum COLOR(BLACK=000000,
 * 
 *
 */
-void byColor(char color[]);
+void byColor(COLOR c);
 
 /**
-* \brief byAuthor.
-* Search in whichever desc a author in alphabetic order.
+* \brief compareFileIMG
+* Make a percent of difference bewteen 2 IMGDdesc.
 */
-float compareFileIMG(char path1[] ,char path2[]);
-
-void byAuthor();
+float compareFileIMG(PictureDesc imgD1, PictureDesc imgD2);
 
 /**
-* \brief byModifDate.
-* Search specifiquely in whichever desc the recent modification in increasing order.
+* \brief byNamedColor
+* Search IMG base the most appropriate pictures of the research.
 */
-void byModifDate();
+void byNamedColor();
+
+*/**
+* \brief isAColor
+* Say if the color in parameter is in the listing of possible colors.
+*/
+Bool isAColor(char c[]);
 
 /**
-* \brief byCreatingDate.
-* Search specifiquely in whichever desc by Creating Date in increasing order.
+* \brief cpsBYcps.
+* composants by composants. The user put the value of RED, next GREEN and BLUE and the appli search about it
 */
-void byCreatingDate();
+void cpsBYcps();
 
 /**
-* \brief byNameFile.
-* Search specifiquely in whichever desc by Name's file in alphabetic order.
+* \brief researchIMG
+* Search on the image's Base.
 */
-void byNameFile();
+void researchIMG(FILE *imgbase);
 
 /**
 * \brief byOccurenceWord.
 * Search specifiquely in texte desc the files which get the most of researched words.
 */
-void byOccurenceWord();
+void byOccurenceWord(char word);
 
 /**
-* \brief bySOUNDSOUNDSOUNDSOUND.
-* 
+* \brief researchTXT
+* Search on the text's Base.
 */
-void bySOUNDSOUNDSOUND(); // I DONT KNOW WHAT IT IS RESEARCHED IN SOUND FILES !!!!!
+void researchTXT(FILE *txtbase);
+
+/**
+* \brief researchSound
+* Search on the sound's Base.
+*/
+void researchSound(FILE *soundbase);
+
+/**
+* \brief addOrderVD
+* Do a list of decreasing pertinence of files
+*/
+void addOrderVD(PileVD *pvd, float perct , char nFile);
+
+/**
+* \brief printfBestList
+* Recursive, print the pertinence listing of the user's choice.
+*/
+void printBestList(PileVD pvd , j);
+
+/**
+* \brief getChoosenFile
+* Give the name of the coosen file by the user.
+*/
+char *getChoosenFile(PileVD PilevalDesc,int choice);

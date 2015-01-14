@@ -169,7 +169,8 @@ SoundDesc * readSoundDesc(FILE* file)
 	
 
 	// Read desc->address
-	readStruct(file, &desc->address, sizeof(desc->address));
+	if(!readStruct(file, &desc->address, sizeof(desc->address)))
+		return NULL;
 	
 	// Read desc->nbWindows
 	readStruct(file, &desc->nbWindows, sizeof(int));

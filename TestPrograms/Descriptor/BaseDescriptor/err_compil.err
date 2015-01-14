@@ -7,13 +7,16 @@ test.c:18:2: warning: passing argument 1 of ‘listIsEmpty’ from incompatible 
   if(listIsEmpty(lbd))
   ^
 In file included from test.c:1:0:
-../../../Descriptor/BaseDesc.h:53:6: note: expected ‘BaseDesc’ but argument is of type ‘ListBaseDesc’
+../../../Descriptor/BaseDesc.h:54:6: note: expected ‘BaseDesc’ but argument is of type ‘ListBaseDesc’
  Bool listIsEmpty(BaseDesc base);
       ^
-test.c:33:2: warning: passing argument 1 of ‘listIsEmpty’ from incompatible pointer type [enabled by default]
+test.c:36:2: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘long int’ [-Wformat=]
+  printf("%d number\n", descExists(lbd, "Monpenis"));
+  ^
+test.c:40:2: warning: passing argument 1 of ‘listIsEmpty’ from incompatible pointer type [enabled by default]
   if(!listIsEmpty(lbd))
   ^
 In file included from test.c:1:0:
-../../../Descriptor/BaseDesc.h:53:6: note: expected ‘BaseDesc’ but argument is of type ‘ListBaseDesc’
+../../../Descriptor/BaseDesc.h:54:6: note: expected ‘BaseDesc’ but argument is of type ‘ListBaseDesc’
  Bool listIsEmpty(BaseDesc base);
       ^

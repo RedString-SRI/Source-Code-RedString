@@ -47,7 +47,7 @@ Bool listIsEmpty(BaseDesc base){
 }
 
 //===================================================================================================
-void addDescriptor(BaseDesc *base, void * structDesc, FileType type){
+void addDesc(BaseDesc *base, void * structDesc, FileType type){
 	int size = sizeof(struct desc *);
 	FILE * fileAdd;
 	void * desc;
@@ -215,16 +215,15 @@ BaseDesc initBaseDesc(FileType fileType){
 
 //===================================================================================================
 ListBaseDesc initListBaseDesc(FileType fileType){
-	char * fileDesc;	
+	FILE * fileList;
 	switch(fileType){
-		/*case TEXT: strcpy(fileDesc,"TextListBaseDesc.db");
+		/*case TEXT: fileList = fopen("TextListBaseDesc.db", "r");
 		break;
-		case PICTURE: strcpy(fileDesc, "PictureListBaseDesc.db");
+		case PICTURE: fileList = fopen("PictureListBaseDesc.db", "r");
 		break;*/
-		case SOUND: strcpy(fileDesc, "SoundListBaseDesc.db");
+		case SOUND: fileList = fopen("SoundListBaseDesc.db", "r");
 		break;
 	}
-	FILE * fileList = fopen(fileDesc, "r");
 	ListBaseDesc newList = NULL;
 	if(fileList == NULL)
 		/** Error **/;
@@ -232,8 +231,22 @@ ListBaseDesc initListBaseDesc(FileType fileType){
 		long address;
 		int date;
 		char path[globs_maxPathLength];
-		while(fscanf(fileList, "%ld\t%s\t%d", &address, path, &date) != EOF)
-			addListBaseDesc(&newList, path, address, date, fileType);
+		ListBaseDesc ptr_add;
+		ListBaseDesc ptr_p;
+		while(fscanf(fileList, "%ld\t%s\t%d", &address, path, &date) != EOF){
+			ptr_add = (ListBaseDesc) malloc(sizeof(struct FileDesc));
+			ptr_add->path = (char *) malloc(globs_maxPathLength * sizeof(char));
+			strcpy(ptr_add->path, path);
+			ptr_add->address = address;
+			ptr_add->date = date;
+			ptr_add->next = NULL;
+			if(newList == NULL){
+				newList = ptr_add;
+				ptr_p = ptr_add;			
+			}
+			else
+				ptr_p->next = ptr_add;
+		}
 	}
 	fclose(fileList);
 	return newList;
@@ -265,18 +278,19 @@ void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength]
 		// We create two traveler pointers, one which check the address with the one from the new element : ptr_pres, 
 		// and another to do again chaining : ptr_prev
 		ListBaseDesc ptr_prev = *listBaseDesc;
-		ListBaseDesc ptr_pres = *listBaseDesc;
-		Bool found = FALSE;	
+		ListBaseDesc ptr_pres = *listBaseDesc;	
+		Bool done = FALSE;
 		while(ptr_pres != NULL){
-			fprintf(fileList, "%ld\t%s\t%d\n", ptr_pres->address, ptr_pres->path, ptr_pres->date);
-			if(ptr_pres->address > address && !found){
+			if(ptr_pres->address > address && !done){
 				ptr_add->next = ptr_pres;
-				if((*listBaseDesc)->next == NULL)
+				if(*listBaseDesc == ptr_prev)
 					*listBaseDesc = ptr_add;
 				else
 					ptr_prev->next = ptr_add;
-				found = TRUE;
+				done = TRUE;
+				fprintf(fileList, "%ld\t%s\t%d\n", ptr_add->address, ptr_add->path, ptr_add->date);
 			}
+			fprintf(fileList, "%ld\t%s\t%d\n", ptr_pres->address, ptr_pres->path, ptr_pres->date);
 			ptr_prev = ptr_pres;
 			ptr_pres = ptr_pres->next;
 		}
@@ -306,6 +320,8 @@ void removeDesc(BaseDesc * base, FileType type){
 		FILE * baseDesc = fopen(FileDesc, "w+");
         BaseDesc ptr_p = *base;
         do{
+            if(ptr_p->next == NULL)
+                break;
 			switch(type){
 				/*case TEXT:
 						writeTextDesc(baseDesc, ptr_p->element);
@@ -317,11 +333,9 @@ void removeDesc(BaseDesc * base, FileType type){
 						writeSoundDesc(baseDesc, ptr_p->element);
 				break; 
 			}
-            if(ptr_p->next == NULL)
-                break;
             ptr_p = ptr_p->next;
         }while(ptr_p != NULL);
-        free(ptr_p->next);
+        free(ptr_p);
 		fclose(baseDesc);    
 	}
 }

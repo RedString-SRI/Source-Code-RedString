@@ -20,15 +20,22 @@ int main(){
 	else
 		printf(" NOK\n");
 	printf("Add a new descriptor\n");
-	addDescriptor(&bd, tests_writeSoundDesc(FALSE), SOUND);
+	addDesc(&bd, tests_writeSoundDesc(FALSE), SOUND);
 	printf("Checking if the BaseDescriptor is not empty :");	
 	if(!listIsEmpty(bd))
 		printf(" OK\n");
 	else
 		printf(" NOK\n");
-	printf("Add a new file-descriptor\n");	
+	/*printf("Add a new file-descriptor\n");	
 	addListBaseDesc(&lbd, "Mabite", 1564343131, 12315, SOUND);
+	addListBaseDesc(&lbd, "MonPack", 156453431, 12315, SOUND);
 	addListBaseDesc(&lbd, "Monpenis", 15643431, 12315, SOUND);
+	addListBaseDesc(&lbd, "monEngin", 14546453431, 12315, SOUND);*/
+	printf("Initialize the SoundListBase from the file\n");	
+	lbd = initListBaseDesc(SOUND);
+	printf("%d number\n", descExists(lbd, "Monpenis"));
+	printf("Printing the SoundBaseDescriptor\n");
+	printList(bd, SOUND);
 	printf("Checking if the ListBaseDescriptor is not empty :");
 	if(!listIsEmpty(lbd))
 		printf(" OK\n");

@@ -10,17 +10,7 @@
 */
 #include "interface.h"
 
-<<<<<<< HEAD
-typedef struct vd{ // PILE DYnamic
-	float pct; // percentage or nbr Occurence about linked research
-	char nameFile[100]; // the name of the file to can open it.
-	struct vd *NextVD;
-}Val_Desc, *PileVD; // for easy the saving
 
-void IndexationMenu();
-void ResearchMenu();
-void mainMenu();
-void clearBuffer();
 =======
 >>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
 
@@ -125,7 +115,7 @@ void ResearchMenu(){
 	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
 	
 	PileVD *valDesc , tmpVD;
-	IMGdesc imgDsc;
+	PictureDesc imgDsc;
 	SoundDesc sdDsc;
 	TextDesx txtDsc;
 	FILE *IMGbase;
@@ -179,37 +169,5 @@ void ResearchMenu(){
 			exit(0); 
 			break;
 	}
-}
-//========================================================
-void addOrderVD(PileVD *pvd, float perct , char nFile){	
-	PileVD tmpPdv;
-	
-	if(((*pvd)->pct) < perct)
-			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
-			tmpPvd.pct = perct;
-			strcpy(tmpPdv.nameFile, nFile);
-			tmpPvd->NextVD= *pvd;
-			*pvd=tmpVD;
-	else {
-		if(((*pvd)->NextVD).pct <= perct){
-			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
-			tmpPvd.pct = perct;
-			strcpy(tmpPdv.nameFile, nFile);
-			tmpPvd->NextVD = (*pvd)->NextVD;
-			(*pvd)->NextVD=tmpPvd;
-		}
-		else addOrderVD( &((*pvd)->NextVD) , perct , nFile ); 
-	}		
-}
-//========================================================
-void printBestList(PileVD pvd , j){ //récursif
-	if(pvd==NULL) return;
-	printf("%3d. %30s --> %.2f" , j+1 , pvd.nameFile , pvd.pct*100 )
-	printBestList(pvd , j+1);
-}
-//========================================================
-char *getChoosenFile(PileVD PilevalDesc,int choice){
-	if(choice==0) return PilevalDasc.nameFile ;
-	else getChoosenFile( PilevalDesc, choice-1);
 }
 

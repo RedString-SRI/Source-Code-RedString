@@ -123,7 +123,8 @@ void cpsBYcps(){
 	
 	byColor(c);
 }
-void researchIMG(){
+//========================================================
+void researchIMG(FILE *imgbase){
 	char w[20];
 	int validPath;
 	int const maxSizePath = 100;
@@ -136,10 +137,8 @@ void researchIMG(){
 	PileVD *PilevalDesc , tmpVD;
 	Val_Desc VD;
 	IMGdesc imgDsc, tmpIdsc;
-	FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
 	FILE *fileOfDesc;
 	FILE *GivenPath;
-	BaseDesc BDimg ;
 	
 	do{
 				printf("1. By named color ? \n");	
@@ -152,18 +151,17 @@ void researchIMG(){
 			else if(choice==2) cpsBYcps();
 			else if(choice==3){
 				ID=getID(path);
-				imgDsc=getDesc(BDimg , ID , PICTURE); // ???? NEED CHECKING <==============
-				while(!feof(BDimg)){
+				imgDsc=getDesc(imgbase , ID , PICTURE);
+				while(!feof(imgbase)){
 				// NEED TO CLEAR PATH BEFORE ?????????????????
-					fscanf(BDimg , "%l" , &ID );
-					fscanf(BDimg, "%s" , pathOfList); // Search the iTh path of the ListBASE
-					fscanf(BDimg , "%d" , &date );
-					fileOfDesc=getDesc(BDimg , ID , SOUND); // open the link of the linked descript
+					fscanf(imgbase , "%l" , &ID );
+					fscanf(imgbase, "%s" , pathOfList); // Search the iTh path of the ListBASE
+					fscanf(imgbase , "%d" , &date );
+					fileOfDesc=getDesc(imgbase , ID , SOUND); // open the link of the linked descript
 					percent=compareIMGDesc(sdDesc , fileOfDesc );
 					addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
 					i++;
 				}
-				fclose(BDimg);
 				printf("+=========================+\n");
 				printBestList(PilevalDesc , 0)
 				printf("+=================0.RETURN+\n");
@@ -231,7 +229,7 @@ void byOccurenceWord(char word[] ){
   if(i<0 || i>size) printf("ERROR choice\n");
   if(i=0) ResearchMenu() ;
 }
-void researchTXT(){
+void researchTXT(FILE *txtbase){
 		char w[20];
 	int validPath;
 	int const maxSizePath = 100;
@@ -255,7 +253,7 @@ void researchTXT(){
 //===================================================================================================
 //==============================ASSOCIATED RESEARCH FOR SOUND========================================
 //===================================================================================================
-void ResearchSound(){
+void researchSound(FILE *soundbase){
 	int validPath;
 	int const maxSizePath = 100;
 	char *path[maxSizePath] , *pathOfList[maxSizePath];
@@ -266,10 +264,8 @@ void ResearchSound(){
 	
 	PileVD PilevalDesc;
 	SoundDesc sdDsc, tmpSdsc;
-	FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
 	FILE *fileOfDesc;
 	FILE *GivenPath;
-	BaseDesc BDsound;
 	
 	printf("Enter your path to compare : \n");
 		do {
@@ -280,7 +276,7 @@ void ResearchSound(){
 		else{
 			ID=getID(path);
 			sdDesc=getDesc(BDsound , ID , SOUND); // ???? NEED CHECKING <==============
-			while(!feof(BDsound)){
+			while(!feof(soundbase)){
 			// NEED TO CLEAR PATH BEFORE ?????????????????
 				fscanf(BDsound , "%l" , &ID );
 				fscanf(BDsound, "%s" , pathOfList); // Search the iTh path of the ListBASE

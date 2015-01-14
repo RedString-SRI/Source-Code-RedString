@@ -14,7 +14,6 @@
 #include "Type_Bool.h"
 #include "Type_FileType.h"
 #include "Type_BaseDesc.h"
-#include "Globals.c"
 
 #ifndef BASE_DESC
 #define BASE_DESC

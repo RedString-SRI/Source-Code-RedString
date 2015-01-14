@@ -48,40 +48,45 @@ Bool listIsEmpty(BaseDesc base){
 
 //===================================================================================================
 void addDescriptor(BaseDesc *base, void * structDesc, FileType type){
-	BaseDesc ptr_add = (BaseDesc) malloc(sizeof(struct desc));    
-	ptr_add->element = structDesc;
-	if(listIsEmpty(*base))
-        *base = ptr_add;
-    else{
-        BaseDesc ptr_p = *base;
-		// We will go to the last element of the chained list to add next to it the new element
-        do{
-            if(ptr_p->next == NULL)
-                break;
-            ptr_p = ptr_p->next;
-        }while(ptr_p != NULL);
-        ptr_p->next = ptr_add;
-    }
+	int size = sizeof(struct desc *);
 	FILE * fileAdd;
 	void * desc;
 	switch(type){
 		/*case TEXT: 
+				size += sizeof(TextDesc);
 				desc = (TextDesc*)structDesc;
 				fileAdd = fopen("TextBaseDesc.db", "a");
 				writeTextDesc(fileAdd, desc);
-        break;
-        case PICTURE: 
+		break;
+		case PICTURE: 
+				size += sizeof(PictureDesc);
 				desc = (PictureDesc*)structDesc;
 				fileAdd = fopen("PictureBaseDesc.db", "a");
 				writePictureDesc(fileAdd, desc);
-        break;*/
-        case SOUND: 
+		break;*/
+		case SOUND: 	
+				size += sizeof(SoundDesc);
 				desc = (SoundDesc*)structDesc;
 				fileAdd = fopen("SoundBaseDesc.db", "a");
 				writeSoundDesc(fileAdd, desc);
-        break; 
-	}
+		break;
+	}   
 	fclose(fileAdd);
+	BaseDesc ptr_add = (BaseDesc) malloc(size);
+	ptr_add->element = structDesc;
+	if(listIsEmpty(*base)){
+        *base = ptr_add;
+	}
+    else{
+        BaseDesc ptr_p = *base;
+		// We will go to the last element of the chained list to add next to it the new element
+        while(ptr_p != NULL){
+            if(ptr_p->next == NULL)
+                break;
+            ptr_p = ptr_p->next;
+        }
+        ptr_p->next = ptr_add;
+    }
 }
 
 //===================================================================================================
@@ -91,7 +96,6 @@ void * getDesc(BaseDesc base, long address, FileType type){
 	while(ptr_dep != NULL){
 		el_comp = ptr_dep->element;
 		switch(type){
-<<<<<<< HEAD
 			/*case TEXT:
 				if(((TextDesc*)(el_comp))->address == address)
 					return el_comp;
@@ -105,17 +109,6 @@ void * getDesc(BaseDesc base, long address, FileType type){
 					return el_comp;
 			break;
 		}
-=======
-			/*case TEXT: el_comp = (TextDesc*)el_comp;
-			break;
-			case PICTURE: el_comp = (PictureDesc*)el_comp;
-			break;*/
-			case SOUND: el_comp = (SoundDesc*)el_comp;
-			break;
-		}
-		if((*el_comp)->address == address)
-			return el_comp;
->>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
 		ptr_dep = ptr_dep->next;
 	}
 	return NULL; // If we're leaving the loop
@@ -249,29 +242,31 @@ ListBaseDesc initListBaseDesc(FileType fileType){
 //===================================================================================================
 void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength], long address, int date, FileType fileType){
 	ListBaseDesc ptr_add = (ListBaseDesc) malloc(sizeof(struct FileDesc));
+	ptr_add->path = (char *) malloc (globs_maxPathLength * sizeof(char));
 	strcpy(ptr_add->path, path);
 	ptr_add->address = address;
 	ptr_add->date = date;
 	ptr_add->next = NULL;
+	FILE * fileList;
+	switch(fileType){
+		/*case TEXT: fileList = fopen("TextListBaseDesc.db", "w+");
+	    break;
+	    case PICTURE: fileList = fopen("PictureListBaseDesc.db", "w+");
+	    break;*/
+	    case SOUND: fileList = fopen("SoundListBaseDesc.db", "w+");
+	    break;
+	}
 	// if the list is empty
-	if(*listBaseDesc == NULL)
+	if(*listBaseDesc == NULL){
 		*listBaseDesc = ptr_add;
+		fprintf(fileList, "%ld\t%s\t%d\n", ptr_add->address, ptr_add->path, ptr_add->date);
+	}
 	else{
 		// We create two traveler pointers, one which check the address with the one from the new element : ptr_pres, 
 		// and another to do again chaining : ptr_prev
 		ListBaseDesc ptr_prev = *listBaseDesc;
 		ListBaseDesc ptr_pres = *listBaseDesc;
-		Bool found = FALSE;
-		char * fileDesc;	
-		switch(fileType){
-			/*case TEXT: strcpy(fileDesc,"TextListBaseDesc.db");
-		    break;
-		    case PICTURE: strcpy(fileDesc, "PictureListBaseDesc.db");
-		    break;*/
-		    case SOUND: strcpy(fileDesc, "SoundListBaseDesc.db");
-		    break;
-		}
-		FILE * fileList = fopen(fileDesc, "w+");
+		Bool found = FALSE;	
 		while(ptr_pres != NULL){
 			fprintf(fileList, "%ld\t%s\t%d\n", ptr_pres->address, ptr_pres->path, ptr_pres->date);
 			if(ptr_pres->address > address && !found){
@@ -290,8 +285,8 @@ void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength]
 			ptr_prev->next = ptr_add;
 			fprintf(fileList, "%ld\t%s\t%d\n", ptr_add->address, ptr_add->path, ptr_add->date);
 		}
-		fclose(fileList);
 	}
+	fclose(fileList);
 }
 
 //===================================================================================================

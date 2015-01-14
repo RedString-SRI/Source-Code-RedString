@@ -2,9 +2,18 @@
 ../../../Descriptor/Sound/SoundDesc.c:136:2: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘int’ [-Wformat=]
   printf("\nId: %ld", desc->address);
   ^
-In file included from ../../../Descriptor/Picture/PictureDesc.h:10:0,
-                 from ../../../Descriptor/Picture/PictureDesc.c:1:
-../../../Descriptor/Picture/Type_PictureDesc.h:2:30: fatal error: Type_WritingMode.h: Aucun fichier ou dossier de ce type
- #include "Type_WritingMode.h"
-                              ^
-compilation terminated.
+test.c: In function ‘main’:
+test.c:18:2: warning: passing argument 1 of ‘listIsEmpty’ from incompatible pointer type [enabled by default]
+  if(listIsEmpty(lbd))
+  ^
+In file included from test.c:1:0:
+../../../Descriptor/BaseDesc.h:53:6: note: expected ‘BaseDesc’ but argument is of type ‘ListBaseDesc’
+ Bool listIsEmpty(BaseDesc base);
+      ^
+test.c:33:2: warning: passing argument 1 of ‘listIsEmpty’ from incompatible pointer type [enabled by default]
+  if(!listIsEmpty(lbd))
+  ^
+In file included from test.c:1:0:
+../../../Descriptor/BaseDesc.h:53:6: note: expected ‘BaseDesc’ but argument is of type ‘ListBaseDesc’
+ Bool listIsEmpty(BaseDesc base);
+      ^

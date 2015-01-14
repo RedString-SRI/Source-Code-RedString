@@ -4,7 +4,7 @@
  * \author Maxime Sanmartin \n
  */
 
-#include "BaseDescriptor.h"
+#include "BaseDesc.h"
 
 //===================================================================================================
 void initList(BaseDesc * base){
@@ -20,15 +20,22 @@ void initListBase(struct FileDesc * list){
 }
 
 //===================================================================================================
-void printList(BaseDesc base){
+void printList(BaseDesc base, FileType type){
     // If the list is empty
     if(listIsEmpty(base))
-        /** Error **/;
+        printf("Your list is empty, sir...\n");
     else{
         BaseDesc ptr_p = base;
         // We are using the pointer to travel few every element of the list until the last one
         while(ptr_p!=NULL){
-            printSoundDesc(ptr_p->element);
+			switch(type){
+				/*case TEXT: printTextDesc(ptr_p->element);
+				break;
+				case PICTURE: printIMGDesc(ptr_p->element);
+				break;*/
+				case SOUND: printSoundDesc(ptr_p->element);
+				break;
+			}
             ptr_p = ptr_p->next;
         }
     }
@@ -41,7 +48,7 @@ Bool listIsEmpty(BaseDesc base){
 
 //===================================================================================================
 void addDescriptor(BaseDesc *base, void * structDesc, FileType type){
-	BaseDesc ptr_add = (BaseDesc) malloc(sizeof(struct Desc));    
+	BaseDesc ptr_add = (BaseDesc) malloc(sizeof(struct desc));    
 	ptr_add->element = structDesc;
 	if(listIsEmpty(*base))
         *base = ptr_add;
@@ -78,9 +85,81 @@ void addDescriptor(BaseDesc *base, void * structDesc, FileType type){
 }
 
 //===================================================================================================
+void * getDesc(BaseDesc base, long address, FileType type){
+	BaseDesc ptr_dep = base;
+	void * el_comp;
+	while(ptr_dep != NULL){
+		el_comp = ptr_dep->element;
+		switch(type){
+			/*case TEXT:
+				if(((TextDesc*)(el_comp))->address == address)
+					return el_comp;
+			break;
+			case PICTURE: 
+				if(((PictureDesc*)(el_comp))->address == address)
+					return el_comp;
+			break;*/
+			case SOUND:
+				if(((SoundDesc*)(el_comp))->address == address)
+					return el_comp;
+			break;
+		}
+		ptr_dep = ptr_dep->next;
+	}
+	return NULL; // If we're leaving the loop
+}
+
+//===================================================================================================
+ListBaseDesc getFileDesc(ListBaseDesc list, long address){
+	ListBaseDesc ptr_dep = list;
+	while(ptr_dep != NULL && ptr_dep->address < address){
+		if(ptr_dep->address == address)
+			return ptr_dep;
+		ptr_dep = ptr_dep->next;
+	}
+	return NULL; // If we're leaving the loop
+}
+
+//===================================================================================================
+char * getFileName(ListBaseDesc list, long address){
+	ListBaseDesc listGet = getFileDesc(list, address);
+	char * fileName;
+	int pathSize = strlen(listGet->path);
+	int i = 0;
+	while(listGet->path[pathSize-i++] == '/');
+	fileName = (char *) malloc(i * sizeof(char));
+	int j;	
+	for(j=1; j<i; j++)
+		fileName[j] = listGet->path[pathSize-i+j];
+	return fileName;
+}
+
+//===================================================================================================
+long getAddress(ListBaseDesc list, char * path){
+	ListBaseDesc ptr_dep = list;
+	while(ptr_dep != NULL){
+		if(strcmp(ptr_dep->path, path) == 0)
+			return ptr_dep->address;
+		ptr_dep = ptr_dep->next;
+	}
+	return 0;
+}
+
+//===================================================================================================
+long descExists(ListBaseDesc list, char * path){
+	ListBaseDesc ptr_dep = list;
+	while(ptr_dep != NULL){
+		if(strcmp(ptr_dep->path, path) == 0)
+			return ptr_dep->address;
+		ptr_dep = ptr_dep->next;
+	}
+	return 0; // If we're leaving the loop
+}
+
+//===================================================================================================
 BaseDesc initBaseDesc(FileType fileType){
 	BaseDesc newBase;
-	int size = sizeof(struct Desc *);
+	int size = sizeof(struct desc *);
 	FILE * baseDesc;
 	void * structDesc;
 	BaseDesc ptr_p;
@@ -102,7 +181,7 @@ BaseDesc initBaseDesc(FileType fileType){
 				size += sizeof(SoundDesc);
         break; 
 	}
-	while(structDesc != NULL){ //I'm not sure this is NULL or EOF, ' have to check with descriptors fonction
+	while(structDesc != NULL){ // I'm not sure this is NULL or EOF, ' have to check with descriptors fonction
 		BaseDesc ptr_add = (BaseDesc) malloc(size);    
 		ptr_add->element = structDesc;
 		if(listIsEmpty(newBase)){

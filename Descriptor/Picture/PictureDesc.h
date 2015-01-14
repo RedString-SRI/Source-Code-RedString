@@ -7,7 +7,7 @@
  *
  */
 
-#include "Type_PictureDescritor.h"
+#include "Type_PictureDesc.h"
 
 #ifndef PICTURE_Desc
 #define PICTURE_Desc

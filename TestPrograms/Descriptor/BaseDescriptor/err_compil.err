@@ -1,0 +1,10 @@
+../../../Descriptor/Sound/SoundDesc.c: In function ‘printSoundDesc’:
+../../../Descriptor/Sound/SoundDesc.c:136:2: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘int’ [-Wformat=]
+  printf("\nId: %ld", desc->address);
+  ^
+In file included from ../../../Descriptor/Picture/PictureDesc.h:10:0,
+                 from ../../../Descriptor/Picture/PictureDesc.c:1:
+../../../Descriptor/Picture/Type_PictureDesc.h:2:30: fatal error: Type_WritingMode.h: Aucun fichier ou dossier de ce type
+ #include "Type_WritingMode.h"
+                              ^
+compilation terminated.

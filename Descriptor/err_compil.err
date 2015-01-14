@@ -1,0 +1,7 @@
+gcc: error: ../../../FileManager/FileManager.c: Aucun fichier ou dossier de ce type
+gcc: error: ../../../Descriptor/Sound/SoundDesc.c: Aucun fichier ou dossier de ce type
+gcc: error: ../../../Descriptor/BaseDesc.c: Aucun fichier ou dossier de ce type
+gcc: error: test.c: Aucun fichier ou dossier de ce type
+gcc: error: ../../../Globals.c: Aucun fichier ou dossier de ce type
+gcc: fatal error: no input files
+compilation terminated.

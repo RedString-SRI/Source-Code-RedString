@@ -1,7 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+/**
+* \file interface.c
+* \brief listing of research functions.
+* \author Gabriel DEL REY
+* \version 0.8
+* \date 12 December 2014
+*
+* Interface User/Machine IMH
+*
+*/
+#include "interface.h"
 
+<<<<<<< HEAD
 typedef struct vd{ // PILE DYnamic
 	float pct; // percentage or nbr Occurence about linked research
 	char nameFile[100]; // the name of the file to can open it.
@@ -12,6 +21,8 @@ void IndexationMenu();
 void ResearchMenu();
 void mainMenu();
 void clearBuffer();
+=======
+>>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
 
 //========================================================
 void clearBuffer() {
@@ -84,7 +95,7 @@ void IndexationMenu(){
 				validPath = getKeyboard_String(path,0, maxSizePath);
 				if(fileExists(path))
 					/*SAVE path IN A TABLE OF PATH TO INDEX FORWARD ???? */
-			} while ( validPath == 1 )
+			} while ( validPath > 0 ) //while !0=NULL or !-1=so littre or !=-2=ERROR
 			if(validPath==0)
 				indexation(*path , .... ); /*PROBLEM INDEXATION ! I DON'T HOW IT'S WORK THE MULTI PARAMS */
 			else
@@ -101,10 +112,13 @@ void IndexationMenu(){
 }
 //========================================================
 void ResearchMenu(){
+<<<<<<< HEAD
 	char w[20];
 	int validPath;
 	int const maxSizePath = 100;
 	char *path[maxSizePath] , *pathOfList[maxSizePath];
+=======
+>>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
 	int choice;
 	float *percent;
 	float *positionFile;
@@ -135,15 +149,9 @@ void ResearchMenu(){
 	clearBuffer();
 	switch(choice){
 		case(1):
-			printf("Enter your word : \n");
-			scanf("%s" , w); // enter a word ......
-			if(isAWord(w)){
-				byOcurrenceWord(w);
-				system("clear");
-			}
-			else printf("ERROR Word\n");
 			break;
 		case(2):
+<<<<<<< HEAD
 			do{
 				printf("1. By named color ? \n");	
 				printf("2. composants by composants ? \n");
@@ -153,11 +161,18 @@ void ResearchMenu(){
 			if(choice==1) byNamedColor();
 			else if(choice==2) cpsBYcps();
 			else if(choice==0) ResearchMenu();
+=======
+			researchIMG();
+			break;
+		case(3):
+			researchSound();
+>>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
 			break;
 		case(0): 
 			system("clear");
 			mainMenu(0); 
 			break;
+<<<<<<< HEAD
 		case(3):
 			printf("Enter your path to compare : \n");
 			validPath = getKeyboard_String(path,0, maxSizePath);
@@ -180,9 +195,43 @@ void ResearchMenu(){
 			else printf("ERROR Sound\n");
 			break;
 		default: 
+=======
+		default: // to secure
+>>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
 			exit(0); 
 			break;
 	}
-	fclose(listBASE);
+}
+//========================================================
+void addOrderVD(PileVD *pvd, float perct , char nFile){	
+	PileVD tmpPdv;
+	
+	if(((*pvd)->pct) < perct)
+			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
+			tmpPvd.pct = perct;
+			strcpy(tmpPdv.nameFile, nFile);
+			tmpPvd->NextVD= *pvd;
+			*pvd=tmpVD;
+	else {
+		if(((*pvd)->NextVD).pct <= perct){
+			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
+			tmpPvd.pct = perct;
+			strcpy(tmpPdv.nameFile, nFile);
+			tmpPvd->NextVD = (*pvd)->NextVD;
+			(*pvd)->NextVD=tmpPvd;
+		}
+		else addOrderVD( &((*pvd)->NextVD) , perct , nFile ); 
+	}		
+}
+//========================================================
+void printBestList(PileVD pvd , j){ //récursif
+	if(pvd==NULL) return;
+	printf("%3d. %30s --> %.2f" , j+1 , pvd.nameFile , pvd.pct*100 )
+	printBestList(pvd , j+1);
+}
+//========================================================
+char *getChoosenFile(PileVD PilevalDesc,int choice){
+	if(choice==0) return PilevalDasc.nameFile ;
+	else getChoosenFile( PilevalDesc, choice-1);
 }
 

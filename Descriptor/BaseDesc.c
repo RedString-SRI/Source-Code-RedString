@@ -91,6 +91,7 @@ void * getDesc(BaseDesc base, long address, FileType type){
 	while(ptr_dep != NULL){
 		el_comp = ptr_dep->element;
 		switch(type){
+<<<<<<< HEAD
 			/*case TEXT:
 				if(((TextDesc*)(el_comp))->address == address)
 					return el_comp;
@@ -104,6 +105,17 @@ void * getDesc(BaseDesc base, long address, FileType type){
 					return el_comp;
 			break;
 		}
+=======
+			/*case TEXT: el_comp = (TextDesc*)el_comp;
+			break;
+			case PICTURE: el_comp = (PictureDesc*)el_comp;
+			break;*/
+			case SOUND: el_comp = (SoundDesc*)el_comp;
+			break;
+		}
+		if((*el_comp)->address == address)
+			return el_comp;
+>>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
 		ptr_dep = ptr_dep->next;
 	}
 	return NULL; // If we're leaving the loop

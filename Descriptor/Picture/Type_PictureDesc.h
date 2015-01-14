@@ -11,10 +11,10 @@ typedef struct{
 
 typedef struct{
   int id;
-  Dimension size[2];
+  Dimension size;
   int nbcomp ; /*d is the picture's number of components*/
   int *histogram; // Will be an array of size : 2^(d*n)
 
-}PictureDesc;
+}IMGDesc;
 
 #endif

@@ -128,7 +128,9 @@ void ResearchMenu(){
 	IMGdesc imgDsc;
 	SoundDesc sdDsc;
 	TextDesx txtDsc;
-	FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
+	FILE *IMGbase;
+	FILE *TXTbase;
+	FILE *SOUNDbase;
 	FILE *fileOfDesc;
 	FILE *GivenPath;
 	
@@ -149,53 +151,29 @@ void ResearchMenu(){
 	clearBuffer();
 	switch(choice){
 		case(1):
+			/*TXTbase=fopen("TextBaseDesc.db" , 'r');
+			researchTXT
+			fclose(TXTbase);
+			system("clear");
+			*/
 			break;
 		case(2):
-<<<<<<< HEAD
-			do{
-				printf("1. By named color ? \n");	
-				printf("2. composants by composants ? \n");
-				printf("+=================0.RETURN+\n");
-				scanf("%d" , &choice);
-			}while(choice!=1 && choice!=2 && choice!=0)
-			if(choice==1) byNamedColor();
-			else if(choice==2) cpsBYcps();
-			else if(choice==0) ResearchMenu();
-=======
-			researchIMG();
+			IMGbase=fopen("PictureBaseDesc.db" , 'r');
+			researchIMG(IMGbase);
+			fclose(IMGbase);
+			system("clear");
 			break;
 		case(3):
-			researchSound();
+			SOUNDbase=fopen("SoundBaseDesc.db" , 'r');
+			researchSound(SOUNDbase);
+			fclose(SOUNDbase);
+			system("clear");
 >>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
 			break;
 		case(0): 
 			system("clear");
 			mainMenu(0); 
 			break;
-<<<<<<< HEAD
-		case(3):
-			printf("Enter your path to compare : \n");
-			validPath = getKeyboard_String(path,0, maxSizePath);
-			if(fileExists(path)){
-				sdDesc=getDesc(path); // ???? NEED CHECKING
-	// RECHERCHER LE DESC CORRESPONDANT AU PATH DONNER ???? !§§§§§ COMMENT FAIRE
-				while(!feof(listeBASE)){
-				// NEED TO CLEAR PATH BEFORE ?????????????????
-					fscanf(listeBASE , "%s" , pathOfList); // Search the iTh path of the ListBASE
-					fileOfDesc=getDesc(pathOfList); // open the link of the linked descript
-					tmpVD=(PileVD)malloc(sizeof(Val_Desc));
-					tmpVD.pct=compareSoundDesc(sdDesc , pathOfList );
-					//valDesc.nameFile
-					tmpVD->NextVD=valDesc;
-					valDesc=tmpVD;
-				}
-				fclose();
-				system("clear");
-			}
-			else printf("ERROR Sound\n");
-			break;
-		default: 
-=======
 		default: // to secure
 >>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
 			exit(0); 

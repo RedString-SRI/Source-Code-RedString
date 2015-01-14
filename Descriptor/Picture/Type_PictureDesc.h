@@ -15,6 +15,6 @@ typedef struct{
   int nbcomp ; /*d is the picture's number of components*/
   int *histogram; // Will be an array of size : 2^(d*n)
 
-}IMGDesc;
+}PictureDesc;
 
 #endif

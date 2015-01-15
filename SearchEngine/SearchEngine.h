@@ -5,7 +5,7 @@
 * \version 0.1
 * \date 7 December 2014
 *
-* All the way to do research in the listeBaseDesc
+* All the way to do research in the listeBaseDesc 
 *
 */
 

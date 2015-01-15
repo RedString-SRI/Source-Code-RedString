@@ -20,6 +20,9 @@
  * the corresponding ones in this structure.
  */
 typedef struct{
+	// ListBaseDesc
+	int listBaseDesc_maxPathLength; /*!< The maximum path length for an indexed file */
+	
 	// TextDesc
 	int textDesc_occurThreshold; /*!< The minimum occurrences (in the indexed file) to store a word in a desc  */
 	int textDesc_maxTerms; /*!< The number of word to keep in the desc */
@@ -29,6 +32,10 @@ typedef struct{
 	int soundDesc_nbInterval; /*!< The number of intervals in a window. */
 	double soundDesc_minFrequency; /*!< The minimum frequency of a sound file */
 	double soundDesc_maxFrequency; /*!< The maxmimum frequency of a sound file */
+	float soundDesc_minWindowMatch; /*!< The minimum matching percentage of the average quantification
+						value in the histogram */
+	float soundDesc_minQuantifMatch; /*!< The minimum matching percentage of a quantification value
+						in a window to be considered as similar */
 				
 	// PictureDesc
 	int pictureDesc_nbWeightyBits; /*!< The number of weighty bits to get on each pixel component */

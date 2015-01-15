@@ -99,6 +99,7 @@ Bool tests_initConfigurator(Bool details)
 	
 	printf("\nThose values have been imported:");
 	
+	printf("\nglobs_maxPathLength: %d", globs_maxPathLength);
 	printf("\nglobs_occurThreshold : %d", globs_occurThreshold);
 	printf("\nglobs_maxTerms : %d", globs_maxTerms);
 	printf("\nglobs_nbWeightyBits : %d", globs_nbWeightyBits);
@@ -107,6 +108,8 @@ Bool tests_initConfigurator(Bool details)
 	printf("\nglobs_nbInterval : %d", globs_nbInterval);
 	printf("\nglobs_minFrequency : %f", globs_minFrequency);
 	printf("\nglobs_maxFrequency : %f", globs_maxFrequency);
+	printf("\nglobs_minWindowMatch: %f", globs_minWindowMatch);
+	printf("\nglobs_minQuantifMatch: %f", globs_minQuantifMatch);
 	
 	
 	return testPassed;
@@ -137,6 +140,7 @@ Bool tests_enterGlobsVariables(Bool details)
 	
 	printf("\nThose values have been stored:");
 	
+	printf("\nglobs_maxPathLength: %d", globs_maxPathLength);
 	printf("\nglobs_occurThreshold : %d", globs_occurThreshold);
 	printf("\nglobs_maxTerms : %d", globs_maxTerms);
 	printf("\nglobs_nbWeightyBits : %d", globs_nbWeightyBits);
@@ -145,6 +149,8 @@ Bool tests_enterGlobsVariables(Bool details)
 	printf("\nglobs_nbInterval : %d", globs_nbInterval);
 	printf("\nglobs_minFrequency : %f", globs_minFrequency);
 	printf("\nglobs_maxFrequency : %f", globs_maxFrequency);
+	printf("\nglobs_minWindowMatch: %f", globs_minWindowMatch);
+	printf("\nglobs_minQuantifMatch: %f", globs_minQuantifMatch);
 	
 	return testPassed;
 }
@@ -170,14 +176,17 @@ Bool tests_writeReadGlobs(Bool details)
 	}
 	
 	// Changing the global variables before reading the file just saved.
+	globs_maxPathLength = 0;
 	globs_occurThreshold = 0;
 	globs_maxTerms = 0;
-	globs_windowSize = 0;
-	globs_nbInterval = 0;
-	globs_minFrequency = 0;
-	globs_maxFrequency = 0;
 	globs_nbWeightyBits = 0;
 	globs_compTolerance = 0;
+	globs_windowSize = 0;
+	globs_nbInterval = 0;
+	globs_minFrequency = 0.0;
+	globs_maxFrequency = 0.0;
+	globs_minWindowMatch = 0.0;
+	globs_minQuantifMatch = 0.0;
 	
 	rewind(file);
 	
@@ -188,6 +197,20 @@ Bool tests_writeReadGlobs(Bool details)
 	}
 	
 	// Let's test if the globals have been read correctly
+	if(details)
+		printf("\nglobs_maxPathLength: ");
+	if(globs_maxPathLength != globs.listBaseDesc_maxPathLength)
+	{
+		if(details)
+			printf("Fail");
+		testPassed = FALSE;
+	}
+	else
+	{
+		if(details)
+			printf("Pass");
+	}
+	
 	if(details)
 		printf("\nglobs_occurThreshold: ");
 	if(globs_occurThreshold != globs.textDesc_occurThreshold)
@@ -205,6 +228,34 @@ Bool tests_writeReadGlobs(Bool details)
 	if(details)
 		printf("\nglobs_maxTerms: ");
 	if(globs_maxTerms != globs.textDesc_maxTerms)
+	{
+		if(details)
+			printf("Fail");
+		testPassed = FALSE;
+	}
+	else
+	{
+		if(details)
+			printf("Pass");
+	}
+	
+	if(details)
+		printf("\nglobs_nbWeightyBits: ");
+	if(globs_nbWeightyBits != globs.pictureDesc_nbWeightyBits)
+	{
+		if(details)
+			printf("Fail");
+		testPassed = FALSE;
+	}
+	else
+	{
+		if(details)
+			printf("Pass");
+	}
+	
+	if(details)
+		printf("\nglobs_compTolerance: ");
+	if(globs_compTolerance != globs.pictureDesc_compTolerance)
 	{
 		if(details)
 			printf("Fail");
@@ -273,8 +324,8 @@ Bool tests_writeReadGlobs(Bool details)
 	}
 	
 	if(details)
-		printf("\nglobs_nbWeightyBits: ");
-	if(globs_nbWeightyBits != globs.pictureDesc_nbWeightyBits)
+		printf("\nglobs_minWindowMatch: ");
+	if(globs_minWindowMatch != globs.soundDesc_minWindowMatch)
 	{
 		if(details)
 			printf("Fail");
@@ -287,8 +338,8 @@ Bool tests_writeReadGlobs(Bool details)
 	}
 	
 	if(details)
-		printf("\nglobs_compTolerance: ");
-	if(globs_compTolerance != globs.pictureDesc_compTolerance)
+		printf("\nglobs_minQuantifMatch: ");
+	if(globs_maxFrequency != globs.soundDesc_maxFrequency)
 	{
 		if(details)
 			printf("Fail");
@@ -300,22 +351,41 @@ Bool tests_writeReadGlobs(Bool details)
 			printf("Pass");
 	}
 	
+	
+	
 	return testPassed;
 }
 //===================================================================================================
 Bool tests_setGlobsVariables(Bool details)
 {
 	Bool testPassed = TRUE;
-	WritableGlobs globs = { 10,
+	WritableGlobs globs = { 250,
+				10,
 				15,
 				20,
 				25,
 				0.35,
 				-5.3,
 				90,
-				2};
+				2,
+				2.3,
+				13.5};
 				
 	setGlobsVariables(&globs);
+	
+	if(details)
+		printf("\nInitialising globs_maxPathLength: ");
+	if(globs_maxPathLength != globs.listBaseDesc_maxPathLength)
+	{
+		if(details)
+			printf("Fail");
+		testPassed = FALSE;
+	}
+	else
+	{
+		if(details)
+			printf("Pass");
+	}
 	
 	if(details)
 		printf("\nInitialising globs_occurThreshold: ");
@@ -418,6 +488,34 @@ Bool tests_setGlobsVariables(Bool details)
 	if(details)
 		printf("\nInitialising globs_compTolerance: ");
 	if(globs_compTolerance != globs.pictureDesc_compTolerance)
+	{
+		if(details)
+			printf("Fail");
+		testPassed = FALSE;
+	}
+	else
+	{
+		if(details)
+			printf("Pass");
+	}
+	
+	if(details)
+		printf("\nInitialising globs_minWindowMatch: ");
+	if(globs_minWindowMatch != globs.soundDesc_minWindowMatch)
+	{
+		if(details)
+			printf("Fail");
+		testPassed = FALSE;
+	}
+	else
+	{
+		if(details)
+			printf("Pass");
+	}
+	
+	if(details)
+		printf("\nInitialising globs_minQuantifMatch: ");
+	if(globs_maxFrequency != globs.soundDesc_maxFrequency)
 	{
 		if(details)
 			printf("Fail");

@@ -7,50 +7,6 @@
 #include "Indexer.h"
 
 
-/** Following declarations are made for testing
-typedef struct {long address;}TextDesc;
-typedef struct {long address;}PictureDesc;
-
-TextDesc * createTextDesc(FILE* file)
-{
-	return NULL;
-}
-
-PictureDesc * createPictureDesc(FILE* file)
-{
-	return NULL;
-}
-/** Previous declarations are made for testing **/
-
-//===================================================================================================
-void foo(char *fmt, ...)
-{
-    va_list ap;
-    int d;
-    char c, *s;
-
-   va_start(ap, fmt);
-    while (*fmt)
-    {
-        switch (*fmt++) {
-        case 's':              /* string */
-            s = va_arg(ap, char *);
-            printf("string %s\n", s);
-            break;
-        case 'd':              /* int */
-            d = va_arg(ap, int);
-            printf("int %d\n", d);
-            break;
-        case 'c':              /* char */
-            /* need a cast here since va_arg only
-               takes fully promoted types */
-            c = (char) va_arg(ap, int);
-            printf("char %c\n", c);
-            break;
-        }
-    }
-    va_end(ap);
-}
 //===================================================================================================
 void indexation(char const * dirPath, ...)
 {
@@ -61,7 +17,7 @@ void indexation(char const * dirPath, ...)
 				// of ready-to-be-indexed files
 	
 	// Initialise pathStack
-	initStack(pathStack.soundPathStack.pathFile);
+	initStack(&pathStack.soundPathStack.pathFile);
 	pathStack.soundPathStack.fileType = SOUND;
 	/*initStack(pathStack.textPathStack.pathFile);
 	pathStack.textPathStack.fileType = TEXT;
@@ -127,10 +83,111 @@ void indexation(char const * dirPath, ...)
 	wait(NULL);*/
 }
 //===================================================================================================
+void updateIndexableFile(char * dirPath, PathStacks * pathStack)
+{
+	struct dirent **directories;
+	struct stat tmpFileStat;
+	globs_maxPathLength = 250;
+	char *pathRoot = malloc(globs_maxPathLength * sizeof(*pathRoot)),
+		*innerPathRoot = malloc(globs_maxPathLength * sizeof(*innerPathRoot)),
+		*tmpFilePath = malloc(globs_maxPathLength * sizeof(*tmpFilePath)),
+		*pathKeeper;	// Used to store the path
+	int nbFile = scandir(dirPath, &directories, NULL, alphasort);
+	int i = 0;
+	Bool isSound, isText, isPicture;
+	if(pathRoot == NULL)
+		perror("updateIndexableFile malloc");
+	if(innerPathRoot == NULL)
+		perror("updateIndexableFile malloc");
+	if(tmpFilePath == NULL)
+		perror("updateIndexableFile malloc");
+	
+	// Setting the new root for files with dirPath as parent directory
+	pathRoot[0] = '\0';
+	pathRoot = strcpy(pathRoot, dirPath);
+	pathRoot = strcat(pathRoot, "/");
+	//printf("\nPATHROOT : %s", pathRoot);
+	//printf("\n%d: %s", i, directories[i]->d_name);
+	
+	
+	for(; i < nbFile; i++)
+	{
+		if(strncmp(directories[i]->d_name, ".", 2) == 0 ||
+			strncmp(directories[i]->d_name, "..", 3) == 0)
+			continue;
+		tmpFilePath = strcpy(tmpFilePath, pathRoot);
+		tmpFilePath = strcat(tmpFilePath, directories[i]->d_name);
+		
+		errno = 0;
+		if(!stat(tmpFilePath, &tmpFileStat))
+		{
+			//printf("\nThere is : %s at %d", tmpFilePath, i);
+			//perror("updateIndexableFile stat");
+		}
+		
+		// If it is a directory, we jump into it
+		if(S_ISDIR(tmpFileStat.st_mode))
+		{
+			//printf("\nDir: tmpFilePath: %s", tmpFilePath);
+			innerPathRoot = strcpy(innerPathRoot, tmpFilePath);
+			//innerPathRoot = strcat(tmpFilePath, directories[i]->d_name);
+			//printf("\ninnerPathRoot : %s", innerPathRoot);
+			updateIndexableFile(innerPathRoot, pathStack);
+		}
+		else
+		{
+			//printf("\ntmpFilePath : %s", tmpFilePath);
+			
+			// If we find .bin in the filePath, we consider it as a sound file
+			if(strstr(tmpFilePath, "corpus_m6.bin") != NULL)
+				isSound = TRUE;
+			/*else if(strstr(tmpFilePath, ".xml") != NULL)
+				isText = TRUE;
+			else if(strstr(tmpFilePath, ".txt") != NULL)
+				isPicture = TRUE;*/
+			else
+				continue;
+				
+			
+			// Add the new file to index
+			// pathKeeper will not be free until someone unstack pathStack->soundPathStack.pathFile
+			pathKeeper = malloc(globs_maxPathLength * sizeof(*pathKeeper));
+			pathKeeper = strcpy(pathKeeper, tmpFilePath);
+			
+			if(isSound)
+			{
+				stack(&pathStack->soundPathStack.pathFile, pathKeeper);
+				isSound = FALSE;
+			}
+			/*else if(isText)
+			{
+				stack(&pathStack->textPathStack.pathFile, pathKeeper);
+				isText = FALSE;
+			}
+			else if(isPicture)
+			{
+				stack(&pathStack->picturePathStack.pathFile, pathKeeper);
+				isPicture = FALSE;
+			}*/
+			
+		}
+	}
+
+	//puts("Le dossier a ete ferme avec succes");
+	free(pathRoot);
+	free(innerPathRoot);
+	free(tmpFilePath);
+}
+//===================================================================================================
+int getDate()
+{
+	return 1;
+}
+//===================================================================================================
 void indexFiles(FilePathStack const * filePathStack)
 {
 	BaseDesc baseDesc = initBaseDesc(filePathStack->fileType);
-	ListeBaseDesc listBaseDesc = initListBaseDesc(filePathStack->fileType);
+	ListBaseDesc listBaseDesc = initListBaseDesc(filePathStack->fileType);
 	int date = getDate();
 	char * tmpPathFile;
 	void * tmpDesc;		// the desc being written at the moment (in the while)
@@ -143,7 +200,7 @@ void indexFiles(FilePathStack const * filePathStack)
 			createDesc = createSoundDesc;
 			address = ((SoundDesc*)tmpDesc)->address;
 			break;
-			
+		
 		/*case TEXT:
 			createDesc = createTextDesc;
 			address = ((TextDesc*)tmpDesc)->address;
@@ -157,16 +214,16 @@ void indexFiles(FilePathStack const * filePathStack)
 		
 	}
 	
-	/** depiler doesn't exist..... TO BE REPLACED BY THE GOOD ONE **/
-	while(tmpPathFile = depiler(&filePathStack->pathFile))
+	while(stackIsEmpty(filePathStack->pathFile))
 	{
+		tmpPathFile = unstack(&filePathStack->pathFile);
 		tmpDesc = createDesc(tmpPathFile);
 		
 		
 		/** MUTEX ? 0_0 =) **/
 		addDesc(&baseDesc, &tmpDesc, filePathStack->fileType);
-		/** Following tmpDesc->address won't compile... **/
-		addListBaseDesc(&listBaseDesc, tmpPathFile, address, date);
+
+		addListBaseDesc(&listBaseDesc, tmpPathFile, address, date, filePathStack->fileType);
 		/** MUTEX ? 0_0 =) **/
 	}
 }

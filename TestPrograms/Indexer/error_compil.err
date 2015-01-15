@@ -1,16 +1,4 @@
+../../Indexer/Indexer.c: In function ‘indexation’:
+../../Indexer/Indexer.c:78:3: warning: passing argument 1 of ‘updateIndexableFile’ discards ‘const’ qualifier from pointer target type [enabled by default]
 In file included from ../../Indexer/Indexer.c:7:0:
-../../Indexer/Indexer.h:18:27: fatal error: generic_stack.h: No such file or directory
-compilation terminated.
-../../Descriptor/BaseDesc.c: In function ‘getDesc’:
-../../Descriptor/BaseDesc.c:94:1: error: expected expression before ‘<<’ token
-../../Descriptor/BaseDesc.c:108:1: error: expected expression before ‘==’ token
-../../Descriptor/BaseDesc.c:116:7: warning: dereferencing ‘void *’ pointer [enabled by default]
-../../Descriptor/BaseDesc.c:116:3: error: void value not ignored as it ought to be
-../../Descriptor/BaseDesc.c:118:1: error: expected expression before ‘>>’ token
-../../Descriptor/BaseDesc.c:118:9: error: invalid suffix "acd67cda2f5a004129f22e34a66296428690c1c" on integer constant
-../../Descriptor/BaseDesc.c: At top level:
-../../Descriptor/BaseDesc.c:121:2: error: expected identifier or ‘(’ before ‘return’
-../../Descriptor/BaseDesc.c:122:1: error: expected identifier or ‘(’ before ‘}’ token
-In file included from Tester_Indexer.c:9:0:
-/home/rayope/SRI/FilRouge/Source-Code-RedString/Indexer/Indexer.h:18:27: fatal error: generic_stack.h: No such file or directory
-compilation terminated.
+../../Indexer/Indexer.h:44:6: note: expected ‘char *’ but argument is of type ‘const char *’

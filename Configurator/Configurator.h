@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <float.h>
+#include <dirent.h>	// MAXNAMLEN
 
 #include "Type_Bool.h"
 #include "Type_WritableGlobs.h"
@@ -20,6 +22,9 @@
 
 #define CONF_FILE_NAME "parameters.conf"
 
+// ListBaseDesc
+extern int globs_maxPathLength;
+
 // TextDesc
 extern int globs_occurThreshold;
 extern int globs_maxTerms;
@@ -29,6 +34,8 @@ extern int globs_windowSize;
 extern int globs_nbInterval;
 extern double globs_minFrequency;
 extern double globs_maxFrequency;
+extern float globs_minWindowMatch;
+extern float globs_minQuantifMatch;
 
 // PictureDesc
 extern int globs_nbWeightyBits;

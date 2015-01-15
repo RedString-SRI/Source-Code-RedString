@@ -53,28 +53,32 @@ Bool enterGlobsVariables(FILE* confFile)
 {
 	WritableGlobs globs;
 	
-	printf("\n\tText indexation :\n\t Enter the occurrence threshold for words : ");
+	printf("\n\tList Base Descriptor:\n\t Enter the maximum path length for an indexed file: ");
+	while(getKeyboard_Long(&globs.listBaseDesc_maxPathLength, 0, MAXNAMLEN) != 1)
+		printf("\t\tPlease enter a value between %d and %d: ", 0, MAXNAMLEN);
+	
+	printf("\n\tText indexation:\n\t Enter the occurrence threshold for words: ");
 	while(getKeyboard_Long(&globs.textDesc_occurThreshold, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
-	printf("\tEnter the maximum terms to keep for a file : ");
+	printf("\tEnter the maximum terms to keep for a file: ");
 	while(getKeyboard_Long(&globs.textDesc_maxTerms, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
-	printf("\n\tPicture indexation :\n\tEnter the number of "
-		"weighty bits to store for each pixel component : ");
+	printf("\n\tPicture indexation:\n\tEnter the number of "
+		"weighty bits to store for each pixel component: ");
 	while(getKeyboard_Long(&globs.pictureDesc_nbWeightyBits, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
-	printf("\tEnter the comparison tolerance between two pixels : ");
+	printf("\tEnter the comparison tolerance between two pixels: ");
 	while(getKeyboard_Long(&globs.pictureDesc_compTolerance, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
-	printf("\n\tSound indexation : \n\tEnter the window Size : ");
+	printf("\n\tSound indexation: \n\tEnter the window Size: ");
 	while(getKeyboard_Long(&globs.soundDesc_windowSize, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
-	printf("\tEnter the number of interval in a window : ");
+	printf("\tEnter the number of interval in a window: ");
 	while(getKeyboard_Long(&globs.soundDesc_nbInterval, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
@@ -86,21 +90,32 @@ Bool enterGlobsVariables(FILE* confFile)
 	while(getKeyboard_Double(&globs.soundDesc_maxFrequency, globs.soundDesc_minFrequency, DBL_MAX) != 1
 		|| globs.soundDesc_maxFrequency == globs.soundDesc_minFrequency)
 		printf("\t\tPlease enter a value between %f (excluded) and %f: ", globs.soundDesc_minFrequency, DBL_MAX);
-
+	
+	printf("\tSound Search: Enter the minimum percentage for a match between windows: ");
+	while(getKeyboard_Double(&globs.soundDesc_minWindowMatch, 0.0, 1.0) != 1)
+		printf("\t\tPlease enter a value between %f and %f: ", 0.0, 1.0);
+	
+	printf("\tEnter the minimum percentage for a match between quantification values: ");
+	while(getKeyboard_Double(&globs.soundDesc_minQuantifMatch, 0.0, 1.0) != 1)
+		printf("\t\tPlease enter a value between %f and %f: ", 0.0, 1.0);
+	
 	return writeGlobs(&globs, confFile);
 }
 //===================================================================================================
 void setGlobsVariables(WritableGlobs const * globs)
 {
 	// Needa to some tests there. For max or min values for example.
+	globs_maxPathLength = globs->listBaseDesc_maxPathLength;
 	globs_occurThreshold = globs->textDesc_occurThreshold;
 	globs_maxTerms = globs->textDesc_maxTerms;
+	globs_nbWeightyBits = globs->pictureDesc_nbWeightyBits;
+	globs_compTolerance = globs->pictureDesc_compTolerance;
 	globs_windowSize = globs->soundDesc_windowSize;
 	globs_nbInterval = globs->soundDesc_nbInterval;
 	globs_minFrequency = globs->soundDesc_minFrequency;
 	globs_maxFrequency = globs->soundDesc_maxFrequency;
-	globs_nbWeightyBits = globs->pictureDesc_nbWeightyBits;
-	globs_compTolerance = globs->pictureDesc_compTolerance;
+	globs_minWindowMatch = globs->soundDesc_minWindowMatch;
+	globs_minQuantifMatch = globs->soundDesc_minQuantifMatch;
 }
 //===================================================================================================
 Bool writeGlobs(WritableGlobs const * globs, FILE* confFile)

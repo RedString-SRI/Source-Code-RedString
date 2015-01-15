@@ -23,9 +23,9 @@ double globs_maxFrequency; // The maximum frequency of a sound file
 //===================================================================================================
 // SoundDesc Search
 float globs_minWindowMatch;	// The minimum matching percentage of the average quantification
-					// value in the histogram
+				// value in the histogram
 float globs_minQuantifMatch;	// The minimum matching percentage of a quantification value
-					// in a window to be considered as similar
+				// in a window to be considered as similar
 //===================================================================================================
 // PictureDesc
 int globs_nbWeightyBits; // The number of weighty bits to get on each pixel component

@@ -3,13 +3,13 @@
 //Author Estelle Randria
 //Date : 11/28/2014
 
-#include "BAseDesc.h"
+#include "BaseDesc.h"
 #include "TYPE_Term.h"
 #include "TextDesc.h"
 #include "Type_TextDesc.h"
 
 
-#define TMAX 100
+#define TMAX 3
 
 typedef struct term {
 char * word;
@@ -22,70 +22,44 @@ Term t1 ;
 struct cell *ptr_next ;
 } Cell, *Index ; 
 
-int textNbChar(const char * path) ; 
+//Verify if the word is located into beacons 
+Bool isInBeacons (char * word) ;
 
-//Meant for word recognition (a word is built with fonts or numbers. If a string counts one or more symbol then it is NOT a word. 
-
-Bool isAWord (char * word) ;
-
-//Supposing the word is memorize into a table, this function counts the number of fonts in a word to find where the end of the word is located. 
-int endOfWord (char * word) ;
-
-//For reading text 
-void readWordbyWord(const char * path) ;
-
-//We also have to make a difference between a word and a beacon : a beacon is of the form "<beacon opening> word </beacon closing>  . 
-Bool isInBeacons (char * word) ; 
-
-// A word is considered as relevant if it contains more than three fonts ; this function help us to define if a word is relevant. 
-
+//Verify if the word is bigger than only three characters. 
 Bool isWordRelevant (const char * word) ;
 
-//This function counts the number of appearances of a word in a text. 
-int wordAppearance (char * word) ;
+//Return the total number of characters of the text. 
+int textNbchar(const char * path) ;
 
-//This function counts the total of characters in the text. 
-int textNbChar(const char * path) ; 
-
-//This function checks if the term already exists in the index. 
-Bool doesTermExist (Index i , Term term) ;
-
-//Retunr the term
-void displayTerm (Term t) ;
-
-//Return the Index 
-void returnIndex (Index i) ; 
-
-//Initialisation of the index. 
+//Initialize the Index. 
 void initIndex (Index * i) ;
 
-//Check if the index is empty. 
-Bool indexEmpty (Index i) ; 
+//Check if the index is empty  
+Bool indexEmpty (Index i) ;
 
-//Initialisation of a term. 
-void initTerm (Term term) ;
+//Create a term where the word is NULL and the initial occurence is 1. 
+void initTerm (Term * t) ;
 
-//Create a new term. 
-void createTerm (Term term , char * w) ; 
-	
+//Create the term (insert the word)
+void createTerm (Term * t , char * w) ;
 
-//Add a term in the index. 
-void addTerm (Index * i , Term term) ;
+//Display the word's details 
+void termDetails (Term t) ;
 
-//Remove a term from the index. 
-Term removeFromIndex (Index * i , Term termtoremove) ;
+//Add a term into the index
+void addTerm (Index * i , Term t) ;
 
-//Remove a term from the index under the condition that the number of appearances is inferior to the minimum required. 
-void removeTerm (Index * i) ; 
+//Verify if the term is already included in the index 
+Bool doesTermExist (Index i , char * word) ;
 
-//Increase the appearances.
-void increaseOccur (Term * t) ;
+//Display the Index in parameters
+void returnIndex (Index i) ;
 
-//Decrease the appearances. 
-void decreaseOccur (Term * t) ;
+//Increase the number of occurence of the term in parameters.
+void increaseOccur (Term * t);
 
-//This function increments the appearances if the word already exist in the Index ; 
-void addOccurences (Index * i , Term t) ;
+//Read the text word by word to analyze it. 
+void readWordbyWord(const char * path , Index * i) ;
 
-//Show the terms details 
-void termDetails (Term term) ; 
+//Return the final Index. 
+Index finalIndex(Index * i) ;

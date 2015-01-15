@@ -2,7 +2,6 @@
  * \file FileManager.h
  * \brief A high-level file manager set of functions
  * \author Morgan Chabaud \n
- * tmpNote : http://stackoverflow.com/questions/11699596/how-to-set-errno-value
  */
 
 #include <unistd.h>

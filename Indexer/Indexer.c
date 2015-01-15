@@ -214,7 +214,7 @@ void indexFiles(FilePathStack const * filePathStack)
 		
 	}
 	
-	while(stackIsEmpty(filePathStack->pathFile))
+	while(!stackIsEmpty(filePathStack->pathFile))
 	{
 		tmpPathFile = unstack(&filePathStack->pathFile);
 		tmpDesc = createDesc(tmpPathFile);

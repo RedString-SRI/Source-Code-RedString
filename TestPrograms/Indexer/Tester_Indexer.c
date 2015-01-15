@@ -11,7 +11,6 @@
 
 
 
-Bool tests_foo(Bool details);
 Bool tests_updateIndexableFile(Bool details);
 Bool tests_indexFiles(Bool details);
 
@@ -35,11 +34,6 @@ int main()
 		printf("\n\t\tTests_indexFiles: Failure\n");
 	
 	printf("\tTester_End\n");
-}
-//===================================================================================================
-Bool tests_foo(Bool details)
-{
-	foo("dcdd", 3, 'd', 5, 4);
 }
 //===================================================================================================
 Bool tests_updateIndexableFile(Bool details)

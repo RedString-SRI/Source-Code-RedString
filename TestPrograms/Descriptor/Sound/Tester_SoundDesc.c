@@ -44,7 +44,7 @@ Bool tests_createDesc(Bool details)
 {
 	Bool testPassed = TRUE;
 	SoundDesc *soundDesc;
-	FILE* testFile = fopen("../../../../data/SON_CORPUS/corpus_m6.bin", "rb");
+	FILE* testFile = fopen("/home/sageto/Ubuntu-Windows/corpus_m6.bin", "rb");
 	if(testFile == NULL)
 	{
 		perror("Error tests_createDesc fopen");
@@ -80,7 +80,7 @@ Bool tests_printSoundDesc(Bool details)
 {
 	Bool testPassed = TRUE;
 	SoundDesc *soundDesc;
-	FILE* testFile = fopen("../../../../data/SON_CORPUS/corpus_m6.bin", "rb");
+	FILE* testFile = fopen("/home/sageto/Ubuntu-Windows/corpus_m6.bin", "rb");
 	if(testFile == NULL)
 	{
 		perror("tests_createDesc fopen");
@@ -112,7 +112,7 @@ Bool tests_writeSoundDesc(Bool details)
 	Bool testPassed = TRUE;
 	SoundDesc *soundDesc, *newSoundDesc;
 	FILE* testFile = fopen("testDesc.desc", "wb+"),
-		* corpus = fopen("../../../../data/SON_CORPUS/corpus_m6.bin", "rb");
+		* corpus = fopen("/home/sageto/Ubuntu-Windows/corpus_m6.bin", "rb");
 	if(testFile == NULL)
 	{
 		perror("tests_writeSoundDesc fopen");

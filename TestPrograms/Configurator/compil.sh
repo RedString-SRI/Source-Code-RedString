@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gcc ../../FileManager/FileManager.c ../../Configurator/Configurator.c ../../Globals.c ../../Input/Keyboard.c ../../Descriptor/Sound/SoundDesc.c Tester_Configurator.c -I /home/rayope/SRI/FilRouge/Source-Code-RedString/ -I /home/rayope/SRI/FilRouge/Source-Code-RedString/FileManager -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Configurator -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Input -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Descriptor/Sound -I /home/rayope/SRI/FilRouge/Source-Code-RedString/Indexer -o Test_Configurator_Program  2> error_compil.err
+gcc ../../FileManager/FileManager.c ../../Configurator/Configurator.c ../../Globals.c ../../Input/Keyboard.c ../../Descriptor/Sound/SoundDesc.c Tester_Configurator.c -I ../.. -I ../../FileManager -I ../../Configurator -I ../../Input -I ../../Descriptor -I ../../Descriptor/Sound -I ../../Indexer -o Test_Configurator_Program  2> error_compil.err
 if [ `echo $?`  == 0 ]
 then
 	echo "Compilation successed."

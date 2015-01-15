@@ -44,7 +44,7 @@ Bool initConfigurator()
 		
 		printf("\nIndexing parameters are now up-to-date");
 	}
-	
+
 	fclose(confFile);
 	return TRUE;
 }
@@ -69,7 +69,7 @@ Bool enterGlobsVariables(FILE* confFile)
 		"weighty bits to store for each pixel component: ");
 	while(getKeyboard_Long(&globs.pictureDesc_nbWeightyBits, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
-	
+
 	printf("\tEnter the comparison tolerance between two pixels: ");
 	while(getKeyboard_Long(&globs.pictureDesc_compTolerance, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);

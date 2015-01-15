@@ -43,8 +43,8 @@ Bool tests_compareSoundDesc(Bool details)
 {
 	Bool testPassed = TRUE;
 	SoundDesc *soundDescIndex, *soundDescSearch;
-	FILE *soundIndexed = fopen("../../../../data/SON_CORPUS/corpus_m6.bin", "rb"),
-		*soundSearched = fopen("../../../../data/SON_REQUETE/jingle_m6.bin", "rb");
+	FILE *soundIndexed = fopen("/home/sageto/Ubuntu-Windows/corpus_m6.bin", "rb"),
+		*soundSearched = fopen("/home/sageto/Ubuntu-Windows/jingle_m6.bin", "rb");
 	if(soundIndexed == NULL)
 	{
 		perror("Error tests_createDesc soundIndexed fopen");

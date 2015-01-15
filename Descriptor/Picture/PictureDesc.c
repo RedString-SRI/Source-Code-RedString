@@ -8,41 +8,39 @@
  */
 
 #include "PictureDesc.h"
+extern int globs_nbWeightyBits;
 
 
-Dimension getSizePicture(FILE *fileIMG) {
-   Dimension dim;
-
-   fscanf(fileIMG,"%d", &(dim.width));
-   fscanf(fileIMG,"%d", &(dim.height));
+Dimension * getSizePicture(FILE *fileIMG) {
+	Dimension * dim = (Dimension *)malloc(sizeof(Dimension));
+   fscanf(fileIMG,"%d", &dim->width);
+   fscanf(fileIMG,"%d", &dim->height);
    return dim;
 }
 //===================================================================================================
-PictureDesc createPictureDesc(FILE *file){
-   PictureDesc imgDsc;
+PictureDesc * createPictureDesc(FILE *file){
+   PictureDesc *imgDsc = (PictureDesc *)malloc(sizeof(PictureDesc));
    int quantif = globs_nbWeightyBits;
    int nbVal;
    int *matrix;
    int bit[256]={0} ;
-   int tmpBit;
+   int tmpBit , nbrPixel;
    int i , j , tmpval=1;
-   
-   imgDsc.size=getSizePicture(file);
-   fscanf(file, "%d" , imgDsc->nbcomp);
-   matrix=(int*)malloc((imgDsc.size.width*imgDsc.size.height*imgDsc.nbcomp)*sizeof(int)); //matrix 1 dimension ...
 
-   for(i=0 ; i<imgDsc.size.width*imgDsc.size.height ; i++){ // scan the whole matrix : 1rst Red , 2nd Green , 3th Blue : for nbrMAtrix=3
+   imgDsc->size=getSizePicture(file);
+   fscanf(file, "%d" , &((*imgDsc).nbcomp));
+   matrix=(int*)malloc((imgDsc->size->width) * (imgDsc->size->height) * (imgDsc->nbcomp) * sizeof(int)); //matrix 1 dimension ...
+   for(i=0 ; i<(imgDsc->size->width)*(imgDsc->size->height) ; i++){ // scan the whole matrix : 1rst Red , 2nd Green , 3th Blue : for nbrMAtrix=3
          tmpBit=0;
          fscanf(file , "%d" , matrix+i); // on RED matrix
-         fscanf(file , "%d" , matrix+1*imgDsc.size.height*imgDsc.size.height+i); // on GREEN matrix
-         fscanf(file , "%d" , matrix+2*imgDsc.size.height*imgDsc.size.height+i); // on BLUE matrix
-
+         fscanf(file , "%d" , matrix+1*(imgDsc->size->height)*(imgDsc->size->height)+i); // on GREEN matrix
+         fscanf(file , "%d" , matrix+2*(imgDsc->size->height)*(imgDsc->size->height)+i); // on BLUE matrix
          while(quantif > 0) {
-               for(j=0 ; j<imgDsc.nbcomp ; j++){
-                  matrix[j*imgDsc.size.height*imgDsc.size.width+i] %= ((int)(255/tmpval) + (tmpval!=1) ); //+ tmpval!=1 : differentiate 127 of 128, because (int)255/2=127, but bit2=1 if number is a modulo of 128, not 127
+               for(j=0 ; j<(imgDsc->nbcomp) ; j++){
+                  matrix[j*(imgDsc->size->height)*(imgDsc->size->width)+i] %= ((int)(255/tmpval) + (tmpval!=1)); //+ tmpval!=1 : differentiate 127 of 128, because (int)255/2=127, but bit2=1 if number is a modulo of 128, not 127
                   tmpBit+= pow(2,2*j+quantif-1);
                }
-               
+     
             quantif--;
             tmpval++;
          /*For example (255,128,16) and quantif=2 and nbrMatrix3(RED,GREEN,BLUE)
@@ -54,17 +52,20 @@ PictureDesc createPictureDesc(FILE *file){
           *                                 --> matBLUE[]%255=16 --> tmpBIT=36
           *--> bit[36-1]++
           */
+		bit[tmpBit]++;
          }
-         bit[tmpBit]++;
+         
          quantif=globs_nbWeightyBits;
          tmpBit=0;
          tmpval=1;
    }
-   nbVal=pow(2,globs_nbWeightyBits*imgDsc.nbcomp);
-   (*imgDsc)->histogram=(float*)malloc(nbVal*sizeof(float));
+   nbVal=pow(2,globs_nbWeightyBits*(imgDsc->nbcomp));
+   imgDsc->histogram=(float*)malloc(nbVal*sizeof(float));
+	nbrPixel=(imgDsc->size->height)*(imgDsc->size->width);
+
    for(i=0 ; i<nbVal ; i++)
-      imgDsc->histogram[i] = (float)bit[i] / ((float)(imgDsc.size.height*imgDsc.size.width)); // give a percentage about IntensityValuePixel on numberPixel.
-      
+      imgDsc->histogram[i] = (float)bit[i] / nbrPixel; // give a percentage about IntensityValuePixel on numberPixel.
+
    return imgDsc;
 }
 /**
@@ -100,36 +101,37 @@ void printHistogram(char path[]) {
    fclose(file);
 }*/
 //===================================================================================================
-void printIMGDesc(PictureDesc desc){
-   int dim = pow(2,globs_nbWeightyBits*imgDsc.nbcomp);
+void printPictureDesc(PictureDesc * desc){
+   int dim = pow(2,globs_nbWeightyBits*(*desc).nbcomp);
    int i;
-   printf("ID:%l \tsize:%dx%d \tNbComposants:%d\n", desc.ID , desc.size.height , desc.size.width , desc.nbcomp);
+   printf("ID:%ld \tsize:%dx%d \tNbComposants:%d\n", desc->ID , desc->size->height , desc->size->width , desc->nbcomp);
    for(i=0 ;i<dim ;i++)
       printf("%f" , desc->histogram[i]);
    printf("\n");
 }
 //===================================================================================================
-void writeIMGDesc(FILE* file, PictureDesc* desc){
-   int i, nbcp = desc->nbcomp;
-	
-	writeStruct(file, &desc->ID, sizeof(desc->ID));
-	writeStruct(file, &desc->(size.height), sizeof(desc->(size.height)));
-	writeStruct(file, &desc->(size.width), sizeof(desc->(size.width)));
-	writeStruct(file, &desc->nbcomp, sizeof(int));
-	for(i = 0; i < nbcomp; i++)
-		writeStruct(file, desc->histogram[i], sizeof(float));
+void writePictureDesc(FILE* file, PictureDesc* desc){
+   int i, max;
+	fprintf(file, "%ld\n" , (*desc).ID);
+	fprintf(file, "%d " , (*desc).size->height);
+	fprintf(file, "%d " , (*desc).size->width);
+	fprintf(file, "%d\n" , (*desc).nbcomp);	
+	max=pow(2,globs_nbWeightyBits*(desc->nbcomp));
+	for(i = 0; i <max; i++)
+		fprintf(file , "%.2f " , (*desc).histogram[i]);
+
 }
 //===================================================================================================
-PictureDesc readIMGDesc(FILE* file){
-   PictureDesc desc;
+PictureDesc* readPictureDesc(FILE* file){
+   PictureDesc *desc;
    int i , max;
-   fscanf(file,"%l" , desc->ID);
-   fscanf(file,"%d" , desc->(size.height));
-   fscanf(file,"%d" , desc->(size.width));
-   fscanf(file,"%d" , desc->nbcomp);
-   max=pow(2,globs_nbWeightyBits*desc.nbcomp);
+   fscanf(file,"%ld" , &((*desc).ID));
+   fscanf(file,"%d" , &((*desc).size->height));
+   fscanf(file,"%d" , &((*desc).size->width));
+   fscanf(file,"%d" , &((*desc).nbcomp));
+   max=pow(2,globs_nbWeightyBits*(*desc).nbcomp);
    for(i=0 ; i<max ; i++)
-      fscanf(file,"%f" , desc->histogram[i]);
+      fscanf(file,"%f" , (*desc).histogram[i]);
    
-   return desc
+   return desc;
 }

@@ -30,9 +30,9 @@ void printList(BaseDesc base, FileType type){
         while(ptr_p!=NULL){
 			switch(type){
 				/*case TEXT: printTextDesc(ptr_p->element);
-				break;
-				case PICTURE: printIMGDesc(ptr_p->element);
 				break;*/
+				case PICTURE: printPictureDesc(ptr_p->element);
+				break;
 				case SOUND: printSoundDesc(ptr_p->element);
 				break;
 			}
@@ -57,21 +57,22 @@ void addDesc(BaseDesc *base, void * structDesc, FileType type){
 				desc = (TextDesc*)structDesc;
 				fileAdd = fopen("TextBaseDesc.db", "a");
 				writeTextDesc(fileAdd, desc);
-		break;
+		break;*/
 		case PICTURE: 
-				size += sizeof(PictureDesc);
+				size += sizeof(PictureDesc*);
 				desc = (PictureDesc*)structDesc;
 				fileAdd = fopen("PictureBaseDesc.db", "a");
 				writePictureDesc(fileAdd, desc);
-		break;*/
+		break;
 		case SOUND: 	
-				size += sizeof(SoundDesc);
+				size += sizeof(SoundDesc*);
 				desc = (SoundDesc*)structDesc;
 				fileAdd = fopen("SoundBaseDesc.db", "a");
 				writeSoundDesc(fileAdd, desc);
 		break;
 	}
 	fprintf(fileAdd, "\n");
+	printf("n°: %d", ftell(fileAdd));
 	fclose(fileAdd);
 	BaseDesc ptr_add = (BaseDesc) malloc(size);
 	ptr_add->element = structDesc;
@@ -188,10 +189,10 @@ BaseDesc initBaseDesc(FileType fileType){
 				size += sizeof(SoundDesc);
         break; 
 	}
-	while(!feof(baseDesc)){
+	while(structDesc != NULL){
 		BaseDesc ptr_add = (BaseDesc) malloc(size);    
 		ptr_add->element = structDesc;
-		printf("%d\n", ftell(baseDesc));
+		printf("Yohoho\n");
 		if(listIsEmpty(newBase)){
 		    newBase = ptr_add;
 			ptr_p = newBase;
@@ -204,10 +205,10 @@ BaseDesc initBaseDesc(FileType fileType){
 		switch(fileType){
 			/*case TEXT:
 					structDesc = readTextDesc(baseDesc);
-		    break;
+		    break;*/
 		    case PICTURE:
 					structDesc = readPictureDesc(baseDesc);
-		    break;*/
+		    break;
 		    case SOUND:
 					structDesc = readSoundDesc(baseDesc);
 		    break; 

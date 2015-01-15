@@ -7,7 +7,6 @@
  *
  */
 #include <math.h>
-#include "BaseDesc.h"
 #include "FileManager.h"
 #include "Type_PictureDesc.h"
 
@@ -19,12 +18,12 @@
 /**
  *\brief Give the size of the picture 
  */
-Dimension getSizePicture(FILE *fileIMG);
+Dimension * getSizePicture(FILE *fileIMG);
 
 /**
  *\brief create the picture's desc
  */
-PictureDesc createPictureDesc(FILE *file);
+PictureDesc * createPictureDesc(FILE *file);
 
 /**
  * ------> ONLY FOR DEBUGGING , CHECKING <----------
@@ -37,7 +36,7 @@ void printHistogram(FILE *descriptIMG);
  * 
  * \param desc The desc to be displayed
  */
-void printIMGDesc(PictureDesc desc);
+void printPictureDesc(PictureDesc * desc);
 
 /**
  * \brief Write a IMG desc to a file
@@ -48,7 +47,7 @@ void printIMGDesc(PictureDesc desc);
  * \param desc The desc which is going to be
  * appended to the file
  */
-void writeIMGDesc(FILE* file, PictureDesc* desc);
+void writePictureDesc(FILE* file, PictureDesc* desc);
 
 /**
  * \brief Read a sound desc from a file
@@ -59,5 +58,5 @@ void writeIMGDesc(FILE* file, PictureDesc* desc);
  * \param file The file you want to be read
  * \return The desc which is going to store the read one
  */
-PictureDesc readIMGDesc(FILE* file);
+PictureDesc* readPictureDesc(FILE* file);
 #endif

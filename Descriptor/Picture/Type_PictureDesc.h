@@ -1,5 +1,5 @@
 
-#include "Type_WritingMode.h"
+//#include "Type_WritingMode.h"
 
 #ifndef TYPE_PICTURE_Desc
 #define TYPE_PICTURE_Desc
@@ -10,10 +10,10 @@ typedef struct{
 }Dimension;
 
 typedef struct{
-  int id;
-  Dimension size;
+  long ID;
+  Dimension *size;
   int nbcomp ; /*d is the picture's number of components*/
-  int *histogram; // Will be an array of size : 2^(d*n)
+  float *histogram; // Will be an array of size : 2^(d*n)
 
 }PictureDesc;
 

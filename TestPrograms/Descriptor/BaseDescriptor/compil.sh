@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gcc ../../../FileManager/FileManager.c ../../../Descriptor/Sound/SoundDesc.c ../../../Descriptor/BaseDesc.c test.c ../../../Globals.c -I ../../../ -I ../../../FileManager -I ../../../Descriptor/ -I ../../../Descriptor/Sound -I -pg -o test  >& err_compil.err
+gcc ../../../FileManager/FileManager.c ../../../Descriptor/Sound/SoundDesc.c ../../../Descriptor/Picture/PictureDesc.c ../../../Configurator/Configurator.c ../../../Input/Keyboard.c ../../../Descriptor/BaseDesc.c test.c ../../../Globals.c -I ../../../ -I ../../../FileManager -I ../../../Descriptor/ -I ../../../Descriptor/Sound -I ../../../Configurator -I ../../../Input -I ../../../Descriptor/Picture -pg -o test -lm  >& err_compil.err
 if [ `echo $?`  == 0 ]
 then
 	echo "Compilation successed."

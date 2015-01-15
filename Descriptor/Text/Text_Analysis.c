@@ -4,103 +4,52 @@
 //Date : 11/28/2014
 
 
-#include "text_analysis.h"
-
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "Text_Analyse.h"
 
 Bool isInBeacons (char * word) {
-	int j = 0 ; 
-	char k ;
+	int i = 0 ; 
 	
 		if (word[0] == '<')
-	 	{	k = word[0]  ; 
-			while(k!= (int) NULL)
-				{   k = word[j] ;
-					printf (" %c\t " , k) ;
-					j++ ;   
-					if (k == '>')  
+	 	{	 
+			while( word[i] != '\0' ) 
+				{   
+					if (word[i] == '>')
 						{
+						  
 						  return TRUE;
 						} 
+					else 
+						i++ ;
 				}
-			return FALSE ; 
 		}
-		else 
-			return FALSE ; 
+		return FALSE ; 
+		 
 } 
 
-//======================================================================
 
-void readWordbyWord(const char * path){
-	int i=0;
-	int j;
-	char c;
-	char word[50];
-	char *listWord;
-	char *listWordRepetition;
-	FILE *text=fopen(path , "r");
-	while(c != EOF) 
-	{ // while isn't the end of the file ...
-		c=fgetc(text);
-		if(isInBeacons(path,c)){ i=0 ; continue ;}
-		if(c=='\\'){i=0 ; continue;}
-		if(c=='/'){i=0 ; continue;}
-		if(c==' '){i=0 ; continue;}
-		i++;
-		while(i>3)
-		  {
-			listWord=(char*)malloc(sizeof(char)); // add a place to put a word
-			if(c == ' ') 
-			{ // A space
-				listWord=(char**)malloc((i+1)*sizeof(char*)); // create the place with +1 char to put the word into the list --> matrix 2dim
-				for(j=0 ; j<i ; j++) 
-				{
-				*(listWord+i)=word[i]; // save the word ...
-				listWordRepetition=(char*)malloc(sizeof(char));
-				listWordRepetition[i]++; // +1 for the existing word
-				i=0; // putting back at zero to start the save of a new word
-				}
-			}
-			else
-			{
-				word[i]=c;
-				i++;
-			}
+//===============================================================================
 
-		}
-	}
-	
-fclose(text);
-}
-
-//===================================================================================================
-/*Bool isAChar (char word) {
+/*Bool isAChar (int word) {
 int i = 0 ;
-if( (word[0])>=65 && word[0]<=90) || (word[0])>=97 && word[0]<=122) || (word[0])>=97 && word[0]<=122)
-return TRUE ;
+if( (word[i] >= 65 && word[i]<=90) || (word[i]>=97 && word[i]<=122) || (word[i]>=97 && word[i]<=122))
+return TRUE ; 
 else
 return FALSE ;
-} */
-
-//================================================================================
-
-int endOfWord (char * word) {
-int j = 0 ;
-while ( word[j] != (int) NULL) {
-j++ ;
 }
-return j ;
-}
-
+*/
 
 //================================================================================
 
 Bool isWordRelevant (const char * word) {
 	int wordLenght ;
 	wordLenght = strlen(word) ;
-	if (wordLenght < 3)
-		return FALSE ;
-	else
+	if (wordLenght > 3)
 		return TRUE ;
+	else
+		return FALSE ;
 } 
 
 //================================================================================
@@ -125,30 +74,22 @@ void initIndex (Index * i)
 
 Bool indexEmpty (Index i) {
 	if (i == NULL) 
-		return TRUE ;
-	else 
-		return FALSE ;
+		return TRUE ; 
+			return FALSE ;
 }
 
 //=================================================================================
 
 void initTerm (Term * t) {
-	t -> word = NULL ; 
-	printf ("current word : %s\n", t->word) ;
-	t -> occur = 0 ; 
-	printf ("current occur : %d\n" , t->occur) ;  
-	printf ("term initialized\n") ; 
+	t->word = NULL ; 
+	t->occur = 1 ; 
 }
 
 //=================================================================================
 
 void createTerm (Term * t , char * w) {
 	initTerm (t) ; 
-	t -> word = w ; 
-	printf ("current word : %s\n" , t-> word) ; 
-	t -> occur++ ;
-	printf ("current occur : %d\n" , t -> occur) ; 
-	printf ("Term created\n") ; 
+	t->word = strdup(w) ;
 }
 
 //==================================================================================
@@ -160,135 +101,152 @@ void termDetails (Term t) {
 
 //===================================================================================
  
-void addTerm (Index * i , Term t) { 
-	printf ("==== Add process started =====\n") ; 
-	printf ("=Term in parameters details=\n") ; 
-	termDetails (t) ; 
-	Cell * ptr_Cell = (Cell *) malloc(sizeof(Cell)) ; 
-	(*ptr_Cell).t1 = t ; 
-	(*ptr_Cell).ptr_next = *i ; 
-	printf ("=Term updated details=\n") ; 
-	termDetails ((*ptr_Cell).t1) ;
-	ptr_Cell->ptr_next = *i; 
-	*i = ptr_Cell ; 	
-	printf("==== Term added in the index ====\n") ; 	
-}
 
+void addTerm (Index * i , Term t) {
+		Cell * ptr_Cell = (Cell *) malloc(sizeof(Cell)) ;
+		(*ptr_Cell).t1 = t ;		
+		(*ptr_Cell).ptr_next = *i ;
+		*i = ptr_Cell ;
+}
 
 //=====================================================================================
 
-Bool doesTermExist (Index i , Term t) {
-	Index ptr_dep = i;
+
+Bool doesTermExist (Index i , char * word) {
+	Index ptr_dep = i;	
 	if (i == NULL) 
-		printf ("END\n") ;
+		{
+			printf ("END does term exist\n") ;
+			return FALSE ; 
+	
+		}
 	else 
 		while (ptr_dep != NULL)  
-		{ 
-			if (strcmp(ptr_dep->t1.word, t.word) == 0)
-				return TRUE; 
-			else 
-				ptr_dep=ptr_dep->ptr_next;
-		}
-	return FALSE;
+		{ 	
+			if (strcmp(ptr_dep->t1.word, word) == 0) 
+				return TRUE;
+					ptr_dep=ptr_dep->ptr_next ;		
+		}	
+	return FALSE;	
 }
-				
-//===================================================================================
-
-Term removeFromIndex (Index * i , Term ttoremove) {
-		Term taux ; 
-		Cell caux ; 
-		while (*i != NULL) 
-		{
-			if (*i == NULL) 		
-				{ printf ("END\n") ;}
-			else 
-			{ 	
-				if ((*i) -> t1.word == ttoremove.word) 
- 				{ 
-					Cell * ptr_stock = *i ; 
-					(*i) = (*i) ->ptr_next ;
-					taux = (ptr_stock) -> t1 ; 
-					free(ptr_stock) ; 
-					return taux ; 
-					break ; 
-				} 
-				 else 
-					{ *i = (*i) -> ptr_next ; }
-				
-			}
-			
-		}
-	}	
 
 
 //=====================================================================================
  
 void returnIndex (Index i) {
-	printf ("==== returnIndex process started =====\n") ; 
-	Cell tmpCell ; 
+	Index ptr_dep = i ; 
+	printf ("\n\n==== returnIndex process started =====\n\n") ; 
 	if (indexEmpty(i)) 
 		printf ("No more term\n") ; 
 	else 
 	{ 
-		while (i !=NULL) 
-		{ tmpCell = *i ; 
-		  termDetails(tmpCell.t1) ; 
+		while ((ptr_dep) -> ptr_next !=NULL) 
+		{
+		  termDetails(ptr_dep->t1) ; 
 		  printf ("--------------\n") ; 
-		  i = i -> ptr_next ; 
+		  ptr_dep = ptr_dep->ptr_next ; 
 		}
+		printf ("End reached\n") ;
 	}
-	printf ("==== Index returned ======\n") ; 
+	printf ("\n==== Index returned ======\n\n") ; 
 	
 }
 
-//====================================================================================
-
-void removeTerm (Index * i) {
-	while (*i != NULL) 
-		{ if ((*i) -> t1.occur < TMAX)
-			{ removeFromIndex (i , (*i) -> t1) ; 
-			}
-		}
-	}
 
 //===================================================================================
 
 void increaseOccur (Term * t) {
-	printf ("current word : %s\ncurrent occur : %d\n" , t -> word ,t -> occur) ;
 	(t ->occur)++ ;
-	printf ("new occur : %d\n", t -> occur) ; 
 }
 
 //===================================================================================
 
-void decreaseOccur (Term * t) {
-	printf ("current word : %s\ncurrent occur : %d\n" , t -> word ,t -> occur) ;
-	(t ->occur)-- ;
-	printf ("new occur : %d\n", t -> occur)  ;
-}
 
-//===================================================================================
-
-void addOccurences (Index * i , char * word) {
+void addOccurences (Index * i , Term t) {
 	Cell * ptr_Cell = (Cell *) malloc(sizeof(Cell)) ;
 	if (*i == NULL) 
-		printf ("END\n") ; 
+		printf ("END addoccurences\n") ; 
 	else 
-		{ if (doesTermExist (*i , word)) 
-			{	ptr_Cell = *i ; 
+		{ 		ptr_Cell = *i ; 
 				while (*i != NULL) 	
-				{ if	(strcmp((*i) -> t1.word, word) == 0)  
-					{ increaseOccur(&((*i) -> t1)) ; 
-					  printf("occur increased\n") ; 
+				{ if	(strcmp((*i)->t1.word, t.word) == 0)  
+					{ increaseOccur(&((*i)->t1)) ; 
+					  //printf("occur increased\n") ; 
 					  break ; 
 					}
-				  else *i = (*i) -> ptr_next ; 
+				   *i = (*i)->ptr_next ; 
 				}
 				*i = ptr_Cell ; 
-			}
-		  else printf ("This word hasn't been found\n") ; 
-			
 		}
 }
 
-//===================================================================================
+//===========================================================================================
+
+void readWordbyWord(const char * path , Index * i) {
+	FILE * text = fopen(path,"r") ;
+	char * word ; 
+	word = malloc(sizeof(char)*100) ;  
+	if (text != NULL) 
+	
+	{	
+		while(fscanf(text,"%s",word) != EOF)
+		{
+	
+				if ((!isInBeacons(word)) && (isWordRelevant(word)))
+				{	
+	
+					 if (doesTermExist(*i ,word) == FALSE) 	
+					 
+					{	
+										
+						Term * t = (Term*) malloc(sizeof(Term)) ;
+						createTerm(t , word) ;	
+						addTerm(i , *t) ;
+					}
+
+				  	else
+					{	
+						Cell * cTmp = *i ; 
+						while ( strcmp(cTmp->t1.word , word) != 0) 
+						{ cTmp = (cTmp)->ptr_next ; }		
+						(cTmp)->t1.occur ++ ;   
+					} 
+				
+				}
+			
+		}  
+		fclose(text) ; 
+	}
+	free(word) ;    
+}
+
+//=======================================================================
+
+Index finalIndex(Index * i) {
+	Index finalI ;
+	initIndex(&finalI) ; 
+		while ((*i) -> ptr_next != NULL) 
+		{		
+			if ((*i) -> t1.occur < TMAX) 
+			{	Cell * ptr_stock = *i ; 
+			 	*i = (*i)->ptr_next ;
+			 	free(ptr_stock) ; 
+			}
+		
+	 		else 
+			{ 	Cell * ptr_stock = *i ;
+				addTerm(&finalI, (*i)->t1) ; 
+				(*i) = (*i) -> ptr_next ; 
+				free(ptr_stock) ; 
+			}
+		}
+	printf("End of final Indexation\n") ; 
+	return finalI ;
+} 
+
+
+
+//=======================================================================
+
+
+	

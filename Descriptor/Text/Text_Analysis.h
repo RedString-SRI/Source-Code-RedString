@@ -5,6 +5,7 @@
 
 #include "BaseDesc.h"
 #include "TYPE_Term.h"
+#include "Type_Bool.h"
 #include "TextDesc.h"
 #include "Type_TextDesc.h"
 

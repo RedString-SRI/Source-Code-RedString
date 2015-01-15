@@ -118,10 +118,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:ac288e3880e93430286bd86703ef94bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy a file.  <a href="#ac288e3880e93430286bd86703ef94bfb"></a><br/></td></tr>
 <tr class="memitem:a4758f8eeb094546a6f2f74bdf89d35e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#a4758f8eeb094546a6f2f74bdf89d35e1">writeFile</a> (char const *path, char const *data)</td></tr>
 <tr class="memdesc:a4758f8eeb094546a6f2f74bdf89d35e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write data in path.  <a href="#a4758f8eeb094546a6f2f74bdf89d35e1"></a><br/></td></tr>
-<tr class="memitem:ad6dfeabf590d0419141b73f78d75d398"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#ad6dfeabf590d0419141b73f78d75d398">readStruct</a> (FILE *file, void **wStruct, size_t structSize)</td></tr>
-<tr class="memdesc:ad6dfeabf590d0419141b73f78d75d398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a structure from a file.  <a href="#ad6dfeabf590d0419141b73f78d75d398"></a><br/></td></tr>
-<tr class="memitem:a3ed627777f06d11a709cddda990856f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ed627777f06d11a709cddda990856f8"></a>
-<a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>writeStruct</b> (FILE *file, void **rStruct, size_t structSize)</td></tr>
+<tr class="memitem:a76c10a27cc4e9906b8c6895e2107ef1f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#a76c10a27cc4e9906b8c6895e2107ef1f">readStruct</a> (FILE *file, void *wStruct, size_t structSize)</td></tr>
+<tr class="memdesc:a76c10a27cc4e9906b8c6895e2107ef1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a structure from a file.  <a href="#a76c10a27cc4e9906b8c6895e2107ef1f"></a><br/></td></tr>
+<tr class="memitem:a30fbded32d1d4d0e2726ebb248d1353a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FileManager_8h.html#a30fbded32d1d4d0e2726ebb248d1353a">writeStruct</a> (FILE *file, void *rStruct, size_t structSize)</td></tr>
+<tr class="memdesc:a30fbded32d1d4d0e2726ebb248d1353a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a structure into a file.  <a href="#a30fbded32d1d4d0e2726ebb248d1353a"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A high-level file manager set of functions. </p>
@@ -215,7 +215,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad6dfeabf590d0419141b73f78d75d398"></a>
+<a class="anchor" id="a76c10a27cc4e9906b8c6895e2107ef1f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -228,7 +228,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">void **&#160;</td>
+          <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>wStruct</em>, </td>
         </tr>
         <tr>
@@ -246,12 +246,12 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Read a structure from a file. </p>
-<p>It reads the structure from file into writedStruct. The file needs to be at the good position. If the following structSize bytes don't fit writeStruct, an error is thrown </p>
+<p>It reads the structure from file into wStruct. The file needs to be at the good position. If the following structSize bytes don't fit wStruct, an error is thrown </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">file</td><td>The FILE pointer to the file to read at the right position (begining of the structure) </td></tr>
-    <tr><td class="paramname">writedStruct</td><td>readStruct will store data read from the file into writedStruct </td></tr>
-    <tr><td class="paramname">structSize</td><td>is the size of your writedStruct </td></tr>
+    <tr><td class="paramname">wStruct</td><td>readStruct will store data read from the file into wStruct </td></tr>
+    <tr><td class="paramname">structSize</td><td>is the size of your wStruct </td></tr>
   </table>
   </dd>
 </dl>
@@ -291,10 +291,55 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a30fbded32d1d4d0e2726ebb248d1353a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309">Bool</a> writeStruct </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>rStruct</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>structSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write a structure into a file. </p>
+<p>It writes rStruct into file. The file needs to be at the good position and opened in writing mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>The FILE pointer to the file to write at the right position </td></tr>
+    <tr><td class="paramname">rStruct</td><td>writeStruct will write data from rStruct into the file </td></tr>
+    <tr><td class="paramname">structSize</td><td>is the size of your rStruct </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE : Reading is successful <br/>
+ FALSE : An error has occurred. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 2 2014 16:08:52 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 15 2015 01:41:20 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

@@ -87,10 +87,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">SearchEngine.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"></div><!-- fragment --></div><!-- contents -->
+<a href="SearchEngine_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include&quot;<a class="code" href="BaseDesc_8h.html" title="A list of Descriptors.">BaseDesc.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> COLOR COLOR;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">enum</span> COLOR(BLACK=000000, </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            LIGHTGRAY=101010, </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            DARKGRAY=010101, </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            WHITE=111111, </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            RED=110000,</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            PINK=111010, </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            YELLOW=001111, </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            PURPLE=??????, </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            BROWN=??????, </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            GREEN=001100, </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            LIGHTGREEN=001000, </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            BLUE=000011,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            LIGHTBLUE=000010);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">void</span> <a class="code" href="SearchEngine_8h.html#af0b0cc62c2ebd7b84e2997135317f80f" title="byColor. Search specifiquely in an image&#39;s desc a color: BLACK: 00 00 00 -&gt; 0 LIGHTGRAY:10 10 10 -&gt; 4...">byColor</a>(COLOR c);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">float</span> <a class="code" href="SearchEngine_8h.html#ae2777c6c958c4b581efe7f51b0e55212" title="compareFileIMG Make a percent of difference bewteen 2 IMGDdesc.">compareFileIMG</a>(<a class="code" href="structPictureDesc.html">PictureDesc</a> imgD1, <a class="code" href="structPictureDesc.html">PictureDesc</a> imgD2);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">void</span> <a class="code" href="SearchEngine_8h.html#a9adeaf920ca22bd9b973a738cc91dea7" title="byNamedColor Search IMG base the most appropriate pictures of the research.">byNamedColor</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;*</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<a class="code" href="Type__Bool_8h.html#a39db6982619d623273fad8a383489309" title="The boolean type.">Bool</a> <a class="code" href="SearchEngine_8h.html#a7e3a46270077a57433d7a8617c467bf7" title="isAColor Say if the color in parameter is in the listing of possible colors.">isAColor</a>(<span class="keywordtype">char</span> c[]);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">void</span> <a class="code" href="SearchEngine_8h.html#a9263870ffbf50ab1e6523ca426a19663" title="cpsBYcps. composants by composants. The user put the value of RED, next GREEN and BLUE and the appli ...">cpsBYcps</a>();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">void</span> <a class="code" href="SearchEngine_8h.html#a142bd085dc97178cc0e1c492ab2c3738" title="researchIMG Search on the image&#39;s Base.">researchIMG</a>(FILE *imgbase);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> <a class="code" href="SearchEngine_8h.html#a4bbd7c7e51cfee0d737854ae0634844f" title="byOccurenceWord. Search specifiquely in texte desc the files which get the most of researched words...">byOccurenceWord</a>(<span class="keywordtype">char</span> word);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">void</span> <a class="code" href="SearchEngine_8h.html#aa10a806cc68a7af65ab82c709f67464c" title="researchTXT Search on the text&#39;s Base.">researchTXT</a>(FILE *txtbase);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keywordtype">void</span> <a class="code" href="SearchEngine_8h.html#a31950749ed40d87b5883108f1e622a16" title="researchSound Search on the sound&#39;s Base.">researchSound</a>(FILE *soundbase);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keywordtype">void</span> <a class="code" href="SearchEngine_8h.html#a5bc2052d385bf6bfd1caf3e9a255c917" title="addOrderVD Do a list of decreasing pertinence of files">addOrderVD</a>(<a class="code" href="structvd.html">PileVD</a> *pvd, <span class="keywordtype">float</span> perct , <span class="keywordtype">char</span> nFile);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keywordtype">void</span> <a class="code" href="SearchEngine_8h.html#a98300e59c92501bdda8726193dc5031d" title="printfBestList Recursive, print the pertinence listing of the user&#39;s choice.">printBestList</a>(<a class="code" href="structvd.html">PileVD</a> pvd , j);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keywordtype">char</span> *<a class="code" href="SearchEngine_8h.html#a8fe9d0b1ca1c3e29c9feb0d522be6c5b" title="getChoosenFile Give the name of the coosen file by the user.">getChoosenFile</a>(<a class="code" href="structvd.html">PileVD</a> PilevalDesc,<span class="keywordtype">int</span> choice);</div>
+</div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 2 2014 16:08:52 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 15 2015 01:41:20 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

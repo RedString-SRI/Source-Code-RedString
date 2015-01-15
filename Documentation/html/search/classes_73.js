@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sounddescriptor',['SoundDescriptor',['../structSoundDescriptor.html',1,'']]]
+  ['sounddesc',['SoundDesc',['../structSoundDesc.html',1,'']]]
 ];

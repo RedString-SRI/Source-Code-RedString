@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['picturedescriptor',['PictureDescriptor',['../structPictureDescriptor.html',1,'']]]
+  ['pathstacks',['PathStacks',['../structPathStacks.html',1,'']]],
+  ['picturedesc',['PictureDesc',['../structPictureDesc.html',1,'']]]
 ];

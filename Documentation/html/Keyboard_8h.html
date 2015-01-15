@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>RedString: Keyboard.h File Reference</title>
+<title>RedString: Input/Keyboard.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -77,9 +77,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_e540aa96518235b344e655c4cbbe7889.html">Input</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Keyboard.h File Reference</div>  </div>
@@ -88,10 +93,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Secured functions to interact with user.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br/>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br/>
+<code>#include &lt;string.h&gt;</code><br/>
+<code>#include &lt;stdlib.h&gt;</code><br/>
+<code>#include &lt;unistd.h&gt;</code><br/>
+<code>#include &lt;sys/time.h&gt;</code><br/>
+<code>#include &lt;errno.h&gt;</code><br/>
+<code>#include &lt;limits.h&gt;</code><br/>
+<code>#include &lt;float.h&gt;</code><br/>
 </div>
 <p><a href="Keyboard_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a870e17d2a367b321990369cc08ff3bff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a870e17d2a367b321990369cc08ff3bff"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>KEYBOARD</b></td></tr>
+<tr class="memitem:a2f4602e62320ca673bb8e8ef63ec07b0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f4602e62320ca673bb8e8ef63ec07b0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>DBL_MAX_STRLEN</b>&#160;&#160;&#160;40</td></tr>
+<tr class="memitem:ab7e22585a55b8093224364f530ef2aea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7e22585a55b8093224364f530ef2aea"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LONG_MAX_STRLEN</b>&#160;&#160;&#160;11</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:abd422ed49f60fcba45712bd98076522e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Keyboard_8h.html#abd422ed49f60fcba45712bd98076522e">getKeyboard_Long</a> (long *typedLong, long min, long max)</td></tr>
@@ -100,12 +121,32 @@ Functions</h2></td></tr>
 <tr class="memdesc:a3524968b5a9b04125b2bc008990f8159"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allow the user to type a double.  <a href="#a3524968b5a9b04125b2bc008990f8159"></a><br/></td></tr>
 <tr class="memitem:a68c18bcb2752ca816f8bf06db88ebde4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Keyboard_8h.html#a68c18bcb2752ca816f8bf06db88ebde4">getKeyboard_String</a> (char *typedString, int minChar, int maxChar)</td></tr>
 <tr class="memdesc:a68c18bcb2752ca816f8bf06db88ebde4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allow the user to type a string.  <a href="#a68c18bcb2752ca816f8bf06db88ebde4"></a><br/></td></tr>
+<tr class="memitem:acc8967db842f93c8f09da6a1734f5684"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Keyboard_8h.html#acc8967db842f93c8f09da6a1734f5684">emptyStdin</a> ()</td></tr>
+<tr class="memdesc:acc8967db842f93c8f09da6a1734f5684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty stdin.  <a href="#acc8967db842f93c8f09da6a1734f5684"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Secured functions to interact with user. </p>
 <dl class="section author"><dt>Author</dt><dd>Morgan Chabaud <br/>
  </dd></dl>
 </div><h2>Function Documentation</h2>
+<a class="anchor" id="acc8967db842f93c8f09da6a1734f5684"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void emptyStdin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Empty stdin. </p>
+<p>Empty the stdin buffer with getchar method. WATCH OUT : If stdin is already empty, the function will pause the program waiting for a character from the user </p>
+
+</div>
+</div>
 <a class="anchor" id="a3524968b5a9b04125b2bc008990f8159"></a>
 <div class="memitem">
 <div class="memproto">
@@ -150,17 +191,17 @@ Functions</h2></td></tr>
 <li>The typed double is outside min or max</li>
 <li>An unknown error has occurred <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">typedDouble</td><td>Variable for the typed double </td></tr>
-    <tr><td class="paramname">min</td><td>The minimum you want for typedDouble (not lesser than HUGE_VALL) </td></tr>
-    <tr><td class="paramname">max</td><td>The maximum you want for typedDouble (not higher than HUGE_VALF) </td></tr>
+    <tr><td class="paramname">typedDouble</td><td>Variable for the typed double. 0 is returned if an error has occurred. </td></tr>
+    <tr><td class="paramname">min</td><td>The minimum you want for typedDouble (not inferior to HUGE_VALL) </td></tr>
+    <tr><td class="paramname">max</td><td>The maximum you want for typedDouble (not superior to HUGE_VALF) </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 : Success <br/>
- 0 : An unknown error has occurred <br/>
- -1 : The typed double is outside min or max <br/>
- -2 : The user does not type a digit but press 'Enter' <br/>
- -3 : The user types too much digits <br/>
+ 0 : An unknown error has occurred (or an error from getKeyboard_String) <br/>
+ -1 : The user types a double superior to max <br/>
+ -2 : The user types a double inferior to min <br/>
+ -3 : The user does not type a digit but press 'Enter' <br/>
  -4 : A non-digit (except the space) is typed <br/>
  </dd></dl>
 </li>
@@ -212,14 +253,14 @@ Functions</h2></td></tr>
 <li>The typed long is outside min or max</li>
 <li>An unknown error has occurred <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">typedLong</td><td>Variable for the typed long </td></tr>
-    <tr><td class="paramname">min</td><td>The minimum you want for typedLong (not lesser than LONG_MIN) </td></tr>
-    <tr><td class="paramname">max</td><td>The maximum you want for typedLong (not higher than LONG_MAX) </td></tr>
+    <tr><td class="paramname">typedLong</td><td>Variable for the typed long. 0 is returned if an error has occurred. </td></tr>
+    <tr><td class="paramname">min</td><td>The minimum you want for typedLong (not inferior to LONG_MIN) </td></tr>
+    <tr><td class="paramname">max</td><td>The maximum you want for typedLong (not superior to LONG_MAX) </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 : Success <br/>
- 0 : An unknown error has occurred <br/>
+ 0 : An unknown error has occurred (or an error from getKeyboard_String) <br/>
  -1 : The typed long is outside min or max <br/>
  -2 : The user does not type a digit but press 'Enter' <br/>
  -3 : The user types too much digits <br/>
@@ -261,8 +302,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Allow the user to type a string. </p>
-<p>It allows the user to type typedString. This function is secured, the string must contains within minChar and maxChar characters. <br/>
- Otherwise the function returns an error. <br/>
+<p>It allows the user to type typedString. This function is secured, the string must contains within minChar and maxChar characters (this size must be inferior to (strlen(typedString)). <br/>
+ When allocating typedString, you must take in consideration an ending character '<br/>
+' needed by fgets but the typedString won't be returned with it. Otherwise the function returns an error. <br/>
  The function returns errors in those following cases :<br/>
 </p>
 <ul>
@@ -270,13 +312,11 @@ Functions</h2></td></tr>
 </li>
 <li>The user types not enough characters <br/>
 </li>
-<li>The user does not type a character but press 'Enter' <br/>
-</li>
 <li>An unknown error has occurred <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">typedString</td><td>Variable for the typed double </td></tr>
-    <tr><td class="paramname">minChar</td><td>The minimum you want for typedString (not lesser than 0) </td></tr>
-    <tr><td class="paramname">maxChar</td><td>The maximum you want for typedString (not lesser or equal than minimum) </td></tr>
+    <tr><td class="paramname">minChar</td><td>The minimum you want for typedString (not inferior to 0 and not superior to maxChar) </td></tr>
+    <tr><td class="paramname">maxChar</td><td>The maximum you want for typedString (not inferior or equal to minChar) </td></tr>
   </table>
   </dd>
 </dl>
@@ -284,7 +324,6 @@ Functions</h2></td></tr>
  0 : An unknown error has occurred <br/>
  -1 : The user types too much characters <br/>
  -2 : The user types not enough characters <br/>
- -3 : The user does not type a digit but press 'Enter' <br/>
  </dd></dl>
 </li>
 </ul>
@@ -294,7 +333,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 2 2014 16:08:52 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 15 2015 01:41:20 for RedString by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['textdescriptor_2eh',['TextDescriptor.h',['../TextDescriptor_8h.html',1,'']]],
+  ['textdesc_2eh',['TextDesc.h',['../TextDesc_8h.html',1,'']]],
+  ['type_5fbasedesc_2eh',['Type_BaseDesc.h',['../Type__BaseDesc_8h.html',1,'']]],
   ['type_5fbool_2eh',['Type_Bool.h',['../Type__Bool_8h.html',1,'']]],
-  ['type_5fsounddescriptor_2eh',['Type_SoundDescriptor.h',['../Type__SoundDescriptor_8h.html',1,'']]],
+  ['type_5fsounddesc_2eh',['Type_SoundDesc.h',['../Type__SoundDesc_8h.html',1,'']]],
   ['type_5fterm_2eh',['Type_Term.h',['../Type__Term_8h.html',1,'']]],
-  ['type_5ftextdescriptor_2eh',['Type_TextDescriptor.h',['../Type__TextDescriptor_8h.html',1,'']]],
-  ['type_5fwritingmode_2eh',['Type_WritingMode.h',['../Type__WritingMode_8h.html',1,'']]]
+  ['type_5ftextdesc_2eh',['Type_TextDesc.h',['../Type__TextDesc_8h.html',1,'']]],
+  ['type_5fwritableglobs_2eh',['Type_WritableGlobs.h',['../Type__WritableGlobs_8h.html',1,'']]]
 ];

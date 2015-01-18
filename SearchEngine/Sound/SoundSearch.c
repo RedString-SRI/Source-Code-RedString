@@ -31,7 +31,7 @@ float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc)
 	{
 		scalePercent = 1.0 / nbWinSearch;
 
-		// 0 --> nbWinSearch
+		// Search between 0 --> nbWinSearch
 		for(iIndex = 0; iIndex < nbWinSearch; iIndex++, iSearchMax--)
 		{
 			// A new set of searchedDesc is about to start
@@ -70,7 +70,7 @@ float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc)
 			}
 		}
 		
-		// nbWinSearch --> (nbWinIndex - nbWinSearch)
+		// Search between nbWinSearch --> (nbWinIndex - nbWinSearch)
 		// Note: nbFullWinCompare = (nbWinIndex - nbWinSearch)
 		for(iIndex = nbWinSearch; iIndex < nbFullWinCompare; iIndex++)
 		{
@@ -112,7 +112,7 @@ float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc)
 			}
 		}
 		
-		// 0 --> nbWinSearch
+		// Search between  (nbWinIndex - nbWinSearch) --> nbWinIndex
 		iSearchMax = nbWinSearch - 1;
 		for(; iIndex < nbWinIndex; iIndex++, iSearchMax--)
 		{

@@ -1,0 +1,214 @@
+Le script a débuté sur jeu. 15 janv. 2015 18:05:38 CET
+]0;sageto@sageto-VirtualBox: ~/Source-Code-RedString/TestPrograms/Descriptor/BaseDescriptorsageto@sageto-VirtualBox:~/Source-Code-RedString/TestPrograms/Descriptor/BaseDescriptor$ ./compil.sh
+Compilation successed.
+Executing test program:
+
+-----------------Starting program------------------
+
+Initializing Config file 
+
+Configuration variables loaded successfully.Initializing the BaseDescriptor
+Checking if the BaseDescriptor is empty : OK
+Initializing the ListBaseDescriptor
+Checking if the ListBaseDescriptor is empty : OK
+Add a new descriptor
+hdsgfdgsufgsn°: 1316Checking if the BaseDescriptor is empty : NOK
+Initialize the SoundBase from the file
+Add a new file-descriptor
+./compil.sh : ligne 16 :  8784 Erreur de segmentation  (core dumped) ./test 2> err_exec.err
+
+
+	Errors shown while executing:
+
+]0;sageto@sageto-VirtualBox: ~/Source-Code-RedString/TestPrograms/Descriptor/BaseDescriptorsageto@sageto-VirtualBox:~/Source-Code-RedString/TestPrograms/Descriptor/BaseDescriptor$ cd ../../[K[K./SearchEnggine/Sound/
+]0;sageto@sageto-VirtualBox: ~/Source-Code-RedString/TestPrograms/SearchEngine/Soundsageto@sageto-VirtualBox:~/Source-Code-RedString/TestPrograms/SearchEngine/Sound$ .comil[K[Kpil.sh/compil.sh
+Compilation successed.
+Executing test program:
+
+
+
+
+
+	Tester_SoundSearch:
+
+		Tests_compareWindows: Success
+
+		Tests_compareSoundDesc: Success
+	Tester_End
+
+
+	Errors shown while executing:
+
+readStruct fread: Success
+readStruct fread: Success
+]0;sageto@sageto-VirtualBox: ~/Source-Code-RedString/TestPrograms/SearchEngine/Soundsageto@sageto-VirtualBox:~/Source-Code-RedString/TestPrograms/SearchEngine/Sound$ ls -al
+total 64
+drwxrwxr-x 2 sageto sageto  4096 janv. 15 18:25 [0m[01;34m.[0m
+drwxrwxr-x 3 sageto sageto  4096 janv. 11 10:53 [01;34m..[0m
+-rwxrwxr-x 1 sageto sageto   730 janv. 15 16:12 [01;32mcompil.sh[0m
+-rwxrwxr-x 1 sageto sageto  1003 janv. 11 10:53 [01;32mcompil.sh~[0m
+-rw-rw-r-- 1 sageto sageto    52 janv. 15 18:25 err_exec.err
+-rw-rw-r-- 1 sageto sageto  5508 janv. 15 18:25 error_compil.err
+-rw-rw-r-- 1 sageto sageto  3627 janv. 15 16:19 Tester_SoundSearch.c
+-rw-rw-r-- 1 sageto sageto  3627 janv. 15 16:19 Tester_SoundSearch.c~
+-rwxrwxr-x 1 sageto sageto 28374 janv. 15 18:25 [01;32mTest_SoundSearch_Program[0m
+]0;sageto@sageto-VirtualBox: ~/Source-Code-RedString/TestPrograms/SearchEngine/Soundsageto@sageto-VirtualBox:~/Source-Code-RedString/TestPrograms/SearchEngine/Sound$ cd <<<<<<<<<<<<<<<<<<<<< <<[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K../../Descriptor/Soundd/
+]0;sageto@sageto-VirtualBox: ~/Source-Code-RedString/TestPrograms/Descriptor/Soundsageto@sageto-VirtualBox:~/Source-Code-RedString/TestPrograms/Descriptor/Sound$ ls
+[0m[01;32mcompil.sh[0m     error_compil.err  testDescriptor.desc  [01;32mTest_SoundDesc_Program[0m
+[01;32mcompil.sh~[0m    gmon.out          Tester_SoundDesc.c   [01;32mTest_SoundDescriptor_Program[0m
+err_exec.err  testDesc.desc     Tester_SoundDesc.c~
+]0;sageto@sageto-VirtualBox: ~/Source-Code-RedString/TestPrograms/Descriptor/Soundsageto@sageto-VirtualBox:~/Source-Code-RedString/TestPrograms/Descriptor/Sound$ rm testDesc*
+]0;sageto@sageto-VirtualBox: ~/Source-Code-RedString/TestPrograms/Descriptor/Soundsageto@sageto-VirtualBox:~/Source-Code-RedString/TestPrograms/Descriptor/Sound$ ls -al
+total 72
+drwxrwxr-x 2 sageto sageto  4096 janv. 15 18:26 [0m[01;34m.[0m
+drwxrwxr-x 6 sageto sageto  4096 janv. 11 10:53 [01;34m..[0m
+-rwxrwxr-x 1 sageto sageto   543 janv. 15 16:14 [01;32mcompil.sh[0m
+-rwxrwxr-x 1 sageto sageto   699 janv. 14 21:51 [01;32mcompil.sh~[0m
+-rw-rw-r-- 1 sageto sageto    78 janv. 15 16:19 err_exec.err
+-rw-rw-r-- 1 sageto sageto   273 janv. 15 16:19 error_compil.err
+-rw-r--r-- 1 root   root    2879 janv. 15 16:19 gmon.out
+-rw-rw-r-- 1 sageto sageto  3354 janv. 15 16:17 Tester_SoundDesc.c
+-rw-rw-r-- 1 sageto sageto  3321 janv. 15 16:15 Tester_SoundDesc.c~
+-rwxr-xr-x 1 root   root   19241 janv. 15 16:19 [01;32mTest_SoundDesc_Program[0m
+-rwxrwxr-x 1 sageto sageto 13630 janv.  7 14:13 [01;32mTest_SoundDescriptor_Program[0m
+]0;sageto@sageto-VirtualBox: ~/Source-Code-RedString/TestPrograms/Descriptor/Soundsageto@sageto-VirtualBox:~/Source-Code-RedString/TestPrograms/Descriptor/Sound$ ./compil.sh
+Compilation successed.
+Executing test program:
+
+
+
+
+
+	Tester_SoundDesc:
+
+		Tests_createDesc: Success
+
+		Tests_printSoundDesc: Success
+
+		Tests_createDesc: Success
+	Tester_End
+
+
+	Errors shown while executing:
+
+readStruct fread: Success
+readStruct fread: Success
+readStruct fread: Success
+_mcleanup: gmon.out: Permission denied
+]0;sageto@sageto-VirtualBox: ~/Source-Code-RedString/TestPrograms/Descriptor/Soundsageto@sageto-VirtualBox:~/Source-Code-RedString/TestPrograms/Descriptor/Sound$ ls -al
+total 460
+drwxrwxr-x 2 sageto sageto   4096 janv. 15 18:26 [0m[01;34m.[0m
+drwxrwxr-x 6 sageto sageto   4096 janv. 11 10:53 [01;34m..[0m
+-rwxrwxr-x 1 sageto sageto    543 janv. 15 16:14 [01;32mcompil.sh[0m
+-rwxrwxr-x 1 sageto sageto    699 janv. 14 21:51 [01;32mcompil.sh~[0m
+-rw-rw-r-- 1 sageto sageto    117 janv. 15 18:26 err_exec.err
+-rw-rw-r-- 1 sageto sageto    273 janv. 15 18:26 error_compil.err
+-rw-r--r-- 1 root   root     2879 janv. 15 16:19 gmon.out
+-rw-rw-r-- 1 sageto sageto 395024 janv. 15 18:26 testDesc.desc
+-rw-rw-r-- 1 sageto sageto   3354 janv. 15 16:17 Tester_SoundDesc.c
+-rw-rw-r-- 1 sageto sageto   3321 janv. 15 16:15 Tester_SoundDesc.c~
+-rwxrwxr-x 1 sageto sageto  19241 janv. 15 18:26 [01;32mTest_SoundDesc_Program[0m
+-rwxrwxr-x 1 sageto sageto  13630 janv.  7 14:13 [01;32mTest_SoundDescriptor_Program[0m
+]0;sageto@sageto-VirtualBox: ~/Source-Code-RedString/TestPrograms/Descriptor/Soundsageto@sageto-VirtualBox:~/Source-Code-RedString/TestPrograms/Descriptor/Sound$ mored[K testDesc.desc
+�
+
+
+
+
+[7m--Plus--(0%)[27m[K
+[7m--Plus--(0%)[27m
+[7m--Plus--(0%)[27m[K
+[7m--Plus--(0%)[27m
+[7m--Plus--(0%)[27m
+[7m--Plus--(1%)[27m[K
+[7m--Plus--(1%)[27m[K
+[7m--Plus--(1%)[27m[K
+[7m--Plus--(1%)[27m[K
+[7m--Plus--(1%)[27m
+[7m--Plus--(1%)[27m
+[7m--Plus--(1%)[27m
+[7m--Plus--(1%)[27m
+[7m--Plus--(1%)[27m
+[7m--Plus--(1%)[27m[K
+[7m--Plus--(1%)[27m[K
+[7m--Plus--(1%)[27m
+[7m--Plus--(2%)[27m
+[7m--Plus--(2%)[27m
+[7m--Plus--(2%)[27mz[K
+[7m--Plus--(2%)[27m[K
+[7m--Plus--(2%)[27m
+[7m--Plus--(2%)[27m[K
+[7m--Plus--(2%)[27m
+[7m--Plus--(2%)[27m[K
+[7m--Plus--(2%)[27m
+[7m--Plus--(2%)[27m
+[7m--Plus--(2%)[27m
+[7m--Plus--(3%)[27m[K
+[7m--Plus--(3%)[27m
+[7m--Plus--(3%)[27m
+[7m--Plus--(3%)[27m[K
+[7m--Plus--(3%)[27m[K
+[7m--Plus--(3%)[27m[K
+[7m--Plus--(3%)[27m[K
+[7m--Plus--(3%)[27m[K
+[7m--Plus--(3%)[27m[K
+[7m--Plus--(4%)[27m[K
+[7m--Plus--(4%)[27m[K
+[7m--Plus--(4%)[27m
+[7m--Plus--(4%)[27m[K
+[7m--Plus--(4%)[27m
+[7m--Plus--(4%)[27m
+[7m--Plus--(4%)[27m[K
+[7m--Plus--(4%)[27m
+[7m--Plus--(4%)[27m
+[7m--Plus--(4%)[27m[K
+[7m--Plus--(5%)[27m[K
+[7m--Plus--(5%)[27m
+[7m--Plus--(5%)[27m
+[7m--Plus--(5%)[27m[K
+[7m--Plus--(5%)[27m[K
+[7m--Plus--(5%)[27m[K
+[7m--Plus--(5%)[27m
+[7m--Plus--(5%)[27m[K
+[7m--Plus--(5%)[27m
+[7m--Plus--(5%)[27m
+[7m--Plus--(5%)[27m
+[7m--Plus--(5%)[27m[K
+[7m--Plus--(6%)[27m
+[7m--Plus--(6%)[27m
+[7m--Plus--(6%)[27m
+[7m--Plus--(6%)[27m[K
+[7m--Plus--(6%)[27m[K
+[7m--Plus--(6%)[27m
+[7m--Plus--(6%)[27m
+[7m--Plus--(6%)[27m
+[7m--Plus--(6%)[27m
+[7m--Plus--(7%)[27m[K
+[7m--Plus--(7%)[27m
+[7m--Plus--(7%)[27m
+[7m--Plus--(7%)[27m
+[7m--Plus--(7%)[27m[K
+[7m--Plus--(7%)[27m
+[7m--Plus--(7%)[27m
+[7m--Plus--(7%)[27m
+[7m--Plus--(7%)[27m
+[7m--Plus--(7%)[27m
+[7m--Plus--(8%)[27m
+[7m--Plus--(8%)[27m[K
+[7m--Plus--(8%)[27m[K
+[7m--Plus--(8%)[27m
+[7m--Plus--(8%)[27m[K
+[7m--Plus--(8%)[27mk
+[7m--Plus--(8%)[27m
+[7m--Plus--(8%)[27m
+[7m--Plus--(8%)[27m[K
+[7m--Plus--(9%)[27m
+[7m--Plus--(9%)[27m
+[7m--Plus--(9%)[27m
+[7m--Plus--(9%)[27m[K
+[7m--Plus--(9%)[27m[K
+[7m--Plus--(9%)[27m[K]0;sageto@sageto-VirtualBox: ~/Source-Code-RedString/TestPrograms/Descriptor/Soundsageto@sageto-VirtualBox:~/Source-Code-RedString/TestPrograms/Descriptor/Sound$ exit
+exit
+
+Script terminé sur jeu. 15 janv. 2015 18:37:31 CET

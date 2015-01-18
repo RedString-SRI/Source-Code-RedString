@@ -11,9 +11,6 @@
 #include "interface.h"
 
 
-=======
->>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
-
 //========================================================
 void clearBuffer() {
     int c = 0;
@@ -107,8 +104,6 @@ void ResearchMenu(){
 	int validPath;
 	int const maxSizePath = 100;
 	char *path[maxSizePath] , *pathOfList[maxSizePath];
-=======
->>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
 	int choice;
 	float *percent;
 	float *positionFile;
@@ -158,14 +153,12 @@ void ResearchMenu(){
 			researchSound(SOUNDbase);
 			fclose(SOUNDbase);
 			system("clear");
->>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
 			break;
 		case(0): 
 			system("clear");
 			mainMenu(0); 
 			break;
 		default: // to secure
->>>>>>> 1acd67cda2f5a004129f22e34a66296428690c1c
 			exit(0); 
 			break;
 	}

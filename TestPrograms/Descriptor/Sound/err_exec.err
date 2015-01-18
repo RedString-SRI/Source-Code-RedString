@@ -1,3 +1,4 @@
 readStruct fread: Success
 readStruct fread: Success
 readStruct fread: Success
+_mcleanup: gmon.out: Permission denied

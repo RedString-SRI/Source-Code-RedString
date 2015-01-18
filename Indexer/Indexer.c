@@ -19,10 +19,10 @@ void indexation(char const * dirPath, ...)
 	// Initialise pathStack
 	initStack(&pathStack.soundPathStack.pathFile);
 	pathStack.soundPathStack.fileType = SOUND;
-	/*initStack(pathStack.textPathStack.pathFile);
+	initStack(pathStack.textPathStack.pathFile);
 	pathStack.textPathStack.fileType = TEXT;
 	initStack(pathStack.picturePathStack.pathFile);
-	pathStack.picturePathStack.fileType = PICTURE;*/
+	pathStack.picturePathStack.fileType = PICTURE;
 	
 	
 	// Fill pathStack with files of the directory
@@ -55,7 +55,7 @@ void indexation(char const * dirPath, ...)
 	}
 	
 	// TEXT
-	/*textThread = fork();
+	textThread = fork();
 	if(textThread == -1)
 		/// Thread doesn't work, jump into slow mode.	TO BE IMPLEMENTED
 	
@@ -63,10 +63,10 @@ void indexation(char const * dirPath, ...)
 	{
 		indexFiles(&pathStack.textPathStack);
 		exit(0);
-	}*/
+	}
 	
 	// PICTURE
-	/*pictureThread = fork();
+	pictureThread = fork();
 	if(pictureThread == -1)
 		/// Thread doesn't work, jump into slow mode.	TO BE IMPLEMENTED
 	
@@ -74,13 +74,13 @@ void indexation(char const * dirPath, ...)
 	{
 		indexFiles(&pathStack.picturePathStack);
 		exit(0);
-	}*/
+	}
 	
 	// The godfather is still waiting for his kids to be killed
 	/** TEST ON EXITS NEEDS TO BE WRITTEN **/
 	wait(NULL);
-	/*wait(NULL);
-	wait(NULL);*/
+	wait(NULL);
+	wait(NULL);
 }
 //===================================================================================================
 void updateIndexableFile(char * dirPath, PathStacks * pathStack)
@@ -141,10 +141,10 @@ void updateIndexableFile(char * dirPath, PathStacks * pathStack)
 			// If we find .bin in the filePath, we consider it as a sound file
 			if(strstr(tmpFilePath, "corpus_m6.bin") != NULL)
 				isSound = TRUE;
-			/*else if(strstr(tmpFilePath, ".xml") != NULL)
+			else if(strstr(tmpFilePath, ".xml") != NULL)
 				isText = TRUE;
 			else if(strstr(tmpFilePath, ".txt") != NULL)
-				isPicture = TRUE;*/
+				isPicture = TRUE;
 			else
 				continue;
 				
@@ -159,7 +159,7 @@ void updateIndexableFile(char * dirPath, PathStacks * pathStack)
 				stack(&pathStack->soundPathStack.pathFile, pathKeeper);
 				isSound = FALSE;
 			}
-			/*else if(isText)
+			else if(isText)
 			{
 				stack(&pathStack->textPathStack.pathFile, pathKeeper);
 				isText = FALSE;
@@ -168,7 +168,7 @@ void updateIndexableFile(char * dirPath, PathStacks * pathStack)
 			{
 				stack(&pathStack->picturePathStack.pathFile, pathKeeper);
 				isPicture = FALSE;
-			}*/
+			}
 			
 		}
 	}
@@ -201,7 +201,7 @@ void indexFiles(FilePathStack const * filePathStack)
 			address = ((SoundDesc*)tmpDesc)->address;
 			break;
 		
-		/*case TEXT:
+		case TEXT:
 			createDesc = createTextDesc;
 			address = ((TextDesc*)tmpDesc)->address;
 			break;
@@ -209,7 +209,7 @@ void indexFiles(FilePathStack const * filePathStack)
 		case PICTURE:
 			createDesc = createPictureDesc;
 			address = ((PictureDesc*)tmpDesc)->address;
-			break;*/
+			break;
 			
 		
 	}

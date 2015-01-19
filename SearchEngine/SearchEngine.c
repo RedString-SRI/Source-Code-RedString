@@ -113,8 +113,9 @@ Bool isAColor(char c[]){
         else if(strcomp(c,"LIGHTBLUE")) 	byColor(LIGHTBLUE);
         else return FALSE;
         return TRUE;
-*/
+
 }
+*/
 //========================================================
 void researchIMG(FILE *imgbase){
 	int validPath;

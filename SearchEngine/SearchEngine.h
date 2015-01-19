@@ -31,7 +31,7 @@ enum COLOR{BLACK=000000,
 * Search specifiquely in an image's desc a color.
 *
 */
-void byColor(COLOR c);
+void byColor(COLOR c, FILE *imgbase);
 
 /**
 * \brief compareFileIMG
@@ -43,7 +43,7 @@ float compareFileIMG(PictureDesc *imgD1, PictureDesc *imgD2);
 * \brief byNamedColor
 * Search IMG base the most appropriate pictures of the research.
 */
-void byNamedColor();
+void byNamedColor(FILE *imgbase);
 
 /**
 * \brief isAColor

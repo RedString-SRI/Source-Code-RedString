@@ -72,10 +72,9 @@ void addDesc(BaseDesc *base, void * structDesc, FileType type){
 		break;
 	}
 	fprintf(fileAdd, "\n");
-	printf("n°: %d", ftell(fileAdd));
 	fclose(fileAdd);
 	BaseDesc ptr_add = (BaseDesc) malloc(size);
-	ptr_add->element = structDesc;
+	ptr_add->element = desc;	
 	if(listIsEmpty(*base)){
         *base = ptr_add;
 	}

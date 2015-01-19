@@ -70,7 +70,8 @@ void IndexationMenu(){
 	FileType filetype;
 	FILE *fileTOindex;
 	BaseDesc basedesc;
-	BaseDesc *desc;
+	initList(&basedesc);
+	void *desc;
 	
 	do{
 		printf("+=========================+\n");
@@ -95,7 +96,6 @@ void IndexationMenu(){
 		if(fileExists(path)){
 			fileTOindex=fopen(path,"r");
 			if(fileTOindex==NULL){ printf("FAIL !\n"); fflush(stdout) ; exit(0);}
-			
 			switch(choice){
 				case(1):			
 					desc=createSoundDesc(fileTOindex); 

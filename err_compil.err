@@ -188,7 +188,7 @@ Configurator/Configurator.h:63:6: note: expected ‘struct FILE *’ but argumen
  Bool enterGlobsVariables(FILE* confFile);
       ^
 Interface/interface.c: In function ‘IndexationMenu’:
-Interface/interface.c:94:3: warning: passing argument 1 of ‘getKeyboard_String’ from incompatible pointer type [enabled by default]
+Interface/interface.c:95:3: warning: passing argument 1 of ‘getKeyboard_String’ from incompatible pointer type [enabled by default]
    validPath = getKeyboard_String(path,0, maxSizePath);
    ^
 In file included from Configurator/Configurator.h:18:0,
@@ -196,7 +196,7 @@ In file included from Configurator/Configurator.h:18:0,
 Input/Keyboard.h:92:5: note: expected ‘char *’ but argument is of type ‘char **’
  int getKeyboard_String(char * typedString, int minChar, int maxChar);
      ^
-Interface/interface.c:95:3: warning: passing argument 1 of ‘fileExists’ from incompatible pointer type [enabled by default]
+Interface/interface.c:96:3: warning: passing argument 1 of ‘fileExists’ from incompatible pointer type [enabled by default]
    if(fileExists(path)){
    ^
 In file included from Descriptor/Picture/PictureDesc.h:10:0,
@@ -206,7 +206,7 @@ In file included from Descriptor/Picture/PictureDesc.h:10:0,
 FileManager/FileManager.h:31:6: note: expected ‘const char *’ but argument is of type ‘char **’
  Bool fileExists(char const * path);
       ^
-Interface/interface.c:96:4: warning: passing argument 1 of ‘fopen’ from incompatible pointer type [enabled by default]
+Interface/interface.c:97:4: warning: passing argument 1 of ‘fopen’ from incompatible pointer type [enabled by default]
     fileTOindex=fopen(path,"r");
     ^
 In file included from Descriptor/BaseDesc.h:7:0,
@@ -215,10 +215,7 @@ In file included from Descriptor/BaseDesc.h:7:0,
 /usr/include/stdio.h:272:14: note: expected ‘const char * __restrict__’ but argument is of type ‘char **’
  extern FILE *fopen (const char *__restrict __filename,
               ^
-Interface/interface.c:100:10: warning: assignment from incompatible pointer type [enabled by default]
-      desc=createSoundDesc(fileTOindex); 
-          ^
-Interface/interface.c:101:6: warning: passing argument 1 of ‘addDesc’ from incompatible pointer type [enabled by default]
+Interface/interface.c:102:6: warning: passing argument 1 of ‘addDesc’ from incompatible pointer type [enabled by default]
       addDesc(basedesc,desc,SOUND);
       ^
 In file included from Interface/interface.h:11:0,
@@ -226,10 +223,7 @@ In file included from Interface/interface.h:11:0,
 Descriptor/BaseDesc.h:64:6: note: expected ‘struct desc **’ but argument is of type ‘BaseDesc’
  void addDesc(BaseDesc *base, void * structDesc, FileType type);
       ^
-Interface/interface.c:104:10: warning: assignment from incompatible pointer type [enabled by default]
-      desc=createPictureDesc(fileTOindex); 
-          ^
-Interface/interface.c:105:6: warning: passing argument 1 of ‘addDesc’ from incompatible pointer type [enabled by default]
+Interface/interface.c:106:6: warning: passing argument 1 of ‘addDesc’ from incompatible pointer type [enabled by default]
       addDesc(basedesc,desc,PICTURE);
       ^
 In file included from Interface/interface.h:11:0,
@@ -237,7 +231,7 @@ In file included from Interface/interface.h:11:0,
 Descriptor/BaseDesc.h:64:6: note: expected ‘struct desc **’ but argument is of type ‘BaseDesc’
  void addDesc(BaseDesc *base, void * structDesc, FileType type);
       ^
-Interface/interface.c:121:4: warning: passing argument 1 of ‘strcpy’ from incompatible pointer type [enabled by default]
+Interface/interface.c:122:4: warning: passing argument 1 of ‘strcpy’ from incompatible pointer type [enabled by default]
     strcpy(path,""); // Permite to  secure the next path to enter by the user
     ^
 In file included from Descriptor/BaseDesc.h:9:0,
@@ -247,7 +241,7 @@ In file included from Descriptor/BaseDesc.h:9:0,
  extern char *strcpy (char *__restrict __dest, const char *__restrict __src)
               ^
 Interface/interface.c: In function ‘ResearchMenu’:
-Interface/interface.c:180:5: warning: passing argument 2 of ‘fopen’ makes pointer from integer without a cast [enabled by default]
+Interface/interface.c:181:5: warning: passing argument 2 of ‘fopen’ makes pointer from integer without a cast [enabled by default]
      IMGbase=fopen("PictureBaseDesc.db" , 'r');
      ^
 In file included from Descriptor/BaseDesc.h:7:0,
@@ -256,7 +250,7 @@ In file included from Descriptor/BaseDesc.h:7:0,
 /usr/include/stdio.h:272:14: note: expected ‘const char * __restrict__’ but argument is of type ‘int’
  extern FILE *fopen (const char *__restrict __filename,
               ^
-Interface/interface.c:190:5: warning: passing argument 2 of ‘fopen’ makes pointer from integer without a cast [enabled by default]
+Interface/interface.c:191:5: warning: passing argument 2 of ‘fopen’ makes pointer from integer without a cast [enabled by default]
      SOUNDbase=fopen("SoundBaseDesc.db" , 'r');
      ^
 In file included from Descriptor/BaseDesc.h:7:0,
@@ -346,12 +340,8 @@ In file included from Configurator/Configurator.h:18:0,
 Input/Keyboard.h:69:5: note: expected ‘double *’ but argument is of type ‘float *’
  int getKeyboard_Double(double * typedDouble, double min, double max);
      ^
-Descriptor/BaseDesc.c: In function ‘addDesc’:
-Descriptor/BaseDesc.c:75:2: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘long int’ [-Wformat=]
-  printf("n°: %d", ftell(fileAdd));
-  ^
 Descriptor/BaseDesc.c: In function ‘initBaseDesc’:
-Descriptor/BaseDesc.c:187:5: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘long int’ [-Wformat=]
+Descriptor/BaseDesc.c:188:5: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘long int’ [-Wformat=]
      printf("%d\n", ftell(baseDesc));
      ^
 main.c: In function ‘main’:

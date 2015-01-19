@@ -1,4 +1,4 @@
-//file testTEXT.c
+//file Test_TextDesc.c
 // brief : Test of the functions to analyse texts
 //Author Estelle Randria
 //Date : 01/02/2015

@@ -2,12 +2,12 @@
 // brief  All the functions necessary to analyse a text and then proceed to its indexation
 //Author Estelle Randria
 //Date : 11/28/2014
-
+//Latest Update : 01/18/2015
 
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "Text_Analyse.h"
+#include "TextDesc.h"
 
 Bool isInBeacons (char * word) {
 	int i = 0 ; 

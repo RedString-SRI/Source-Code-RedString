@@ -94,6 +94,7 @@ void IndexationMenu(){
 		validPath = getKeyboard_String(path,0, maxSizePath);
 		if(fileExists(path)){
 			fileTOindex=fopen(path,"r");
+			if(fileTOindex==NULL){ printf("FAIL !\n"); fflush(stdout) ; exit(0);}
 			
 			switch(choice){
 				case(1):			

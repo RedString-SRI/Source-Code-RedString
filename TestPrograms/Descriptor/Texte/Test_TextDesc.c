@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "Text_Analyse.h"
+#include "TextDesc.h"
 
 //===================================================================================== 
 	

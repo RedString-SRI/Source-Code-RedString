@@ -19,15 +19,15 @@ extern int globs_nbWeightyBits;
 //==============================ASSOCIATED RESEARCH FOR IMAGE========================================
 //===================================================================================================
 
-void byColor(COLOR c){
-/*  
+void byColor(COLOR c, FILE *imgbase){
+/*
   float *OrderPercentage;
   float percent , tmpFloat;
   int iThPath = 0;
   int size=0, i , tmpInt;
   char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
   
-  while(/*PAS FIN LISTE BASE desc/) {
+  while(!feof(imgbase)) {
   	iThPath++; // can read the Ith file of the desc base
   	percent = findColor(path , colorDecimal) // NEED TO CREAT THIS FUNCTION !!!!;
     if(percent) { 
@@ -56,7 +56,7 @@ void byColor(COLOR c){
   if(i<0 || i>size) printf("ERROR choice\n");
   else // OPEN THE FILE §§§§§!! !!!!!!
   if(i==0) ResearchMenu() ;
-  */
+ */
 }
 
 //===================================================================================================
@@ -78,7 +78,7 @@ float compareFileIMG(PictureDesc *imgD1 , PictureDesc *imgD2){
   return percentCompare/max ;
 }
 //========================================================
-void byNamedColor(){
+void byNamedColor(FILE *imgbase){
 /*
 	int choice , i;
 	char w[20];
@@ -87,12 +87,13 @@ void byNamedColor(){
 			scanf("%d" , w); // enter a word ......
 			while(w[i]){ toupper(w[i]) ; i++;}
 			if(isAColor(w))
-				byColor(w);
+				byColor(w,imgbase);
 			else {
 				printf("ERROR Color\n");
 				printf("Color possible : BLACK , DARKGRAY , LIGHTGRAY , WHITE , RED , PINK , YELLOW , PURPLE , BROWN , GREEN , LIGHTGREEN , BLUE , LIGHTBLUE\n");
 			}
 	}while(!isAColor(w));
+*/
 }
 //========================================================
 Bool isAColor(char c[]){
@@ -111,7 +112,7 @@ Bool isAColor(char c[]){
         else if(strcomp(c,"LIGHTBLUE")) 	byColor(LIGHTBLUE);
         else return FALSE;
         return TRUE;
-*/
+
 }
 //========================================================
 void researchIMG(FILE *imgbase){
@@ -137,7 +138,7 @@ void researchIMG(FILE *imgbase){
 				scanf("%d" , &choice);
 			}while(choice!=1 && choice!=2 && choice!=0);
 			
-			if(choice==1) byNamedColor();
+			if(choice==1) byNamedColor(imgbase);
 			else if(choice==2){
 				ID=getAddress(imgbase,path);
 				imgDsc=getDesc(imgbase , ID , PICTURE);

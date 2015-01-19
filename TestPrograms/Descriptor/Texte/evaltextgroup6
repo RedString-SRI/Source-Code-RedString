@@ -1,0 +1,216 @@
+Le script a débuté sur jeu. 15 janv. 2015 17:37:24 CET
+]0;mahenina@mahenina-HP-Mini-210-4000: ~/FIL_ROUGEmahenina@mahenina-HP-Mini-210-4000:~/FIL_ROUGE$ ./test[K[K[K[K[K[Kmakke [K[K[Ke test
+make: 'test' is up to date.
+]0;mahenina@mahenina-HP-Mini-210-4000: ~/FIL_ROUGEmahenina@mahenina-HP-Mini-210-4000:~/FIL_ROUGE$ clear
+[3;J[H[2J]0;mahenina@mahenina-HP-Mini-210-4000: ~/FIL_ROUGEmahenina@mahenina-HP-Mini-210-4000:~/FIL_ROUGE$ make [K[K[K[K[K.:[K[Krm * [K.o
+]0;mahenina@mahenina-HP-Mini-210-4000: ~/FIL_ROUGEmahenina@mahenina-HP-Mini-210-4000:~/FIL_ROUGE$ make t[Ktest
+gcc -c -o test.o test.c
+gcc -c -o Text_Analyse.o Text_Analyse.c
+gcc -o test test.o Text_Analyse.o
+]0;mahenina@mahenina-HP-Mini-210-4000: ~/FIL_ROUGEmahenina@mahenina-HP-Mini-210-4000:~/FIL_ROUGE$ ./test
+Index iniatialized
+
+
+TESTS ONE BY ONE
+
+number of characters of the text : 157
+Index iniatialized
+
+
+==========================================================
+
+Index is currently empty
+
+
+==========================================================
+
+The word is : (null)
+The number of appearances is : 1
+term1 creation :
+After the update : 
+
+
+==========================================================
+
+The word is : sachet
+The number of appearances is : 1
+
+
+==========================================================
+
+The word is : sachet
+The number of appearances is : 16
+term1's occur : 16
+
+
+==== returnIndex process started =====
+
+The word is : sachet
+The number of appearances is : 16
+--------------
+End reached
+
+==== Index returned ======
+
+
+
+==========================================================
+
+The word is : calamar
+The number of appearances is : 1
+
+
+==== returnIndex process started =====
+
+The word is : Salamandre
+The number of appearances is : 1
+--------------
+The word is : calamar
+The number of appearances is : 1
+--------------
+The word is : sachet
+The number of appearances is : 16
+--------------
+End reached
+
+==== Index returned ======
+
+
+
+==========================================================
+
+sachet exists
+w2 exists
+w3 exists
+
+
+==========================================================
+
+The word w4 is in beacons
+The word w5 isn't in beacons
+
+
+==========================================================
+
+term exists
+
+
+==== returnIndex process started =====
+
+The word is : <antilope>
+The number of appearances is : 1
+--------------
+The word is : rose
+The number of appearances is : 1
+--------------
+The word is : Salamandre
+The number of appearances is : 1
+--------------
+The word is : calamar
+The number of appearances is : 1
+--------------
+The word is : sachet
+The number of appearances is : 16
+--------------
+End reached
+
+==== Index returned ======
+
+
+
+==== returnIndex process started =====
+
+The word is : <antilope>
+The number of appearances is : 2
+--------------
+The word is : rose
+The number of appearances is : 2
+--------------
+The word is : Salamandre
+The number of appearances is : 1
+--------------
+The word is : calamar
+The number of appearances is : 1
+--------------
+The word is : sachet
+The number of appearances is : 16
+--------------
+End reached
+
+==== Index returned ======
+
+
+
+==========================================================
+
+number of characters of the text : 157
+
+
+==========================================================
+
+
+
+==========================================================
+
+Index iniatialized
+End of final Indexation
+
+
+==== returnIndex process started =====
+
+The word is : banane
+The number of appearances is : 5
+--------------
+The word is : chacal
+The number of appearances is : 3
+--------------
+End reached
+
+==== Index returned ======
+
+
+
+==========================================================
+
+]0;mahenina@mahenina-HP-Mini-210-4000: ~/FIL_ROUGEmahenina@mahenina-HP-Mini-210-4000:~/FIL_ROUGE$ 
+[K]0;mahenina@mahenina-HP-Mini-210-4000: ~/FIL_ROUGEmahenina@mahenina-HP-Mini-210-4000:~/FIL_ROUGE$ x[Kx[Kmake Desct[Kro[K[K[KcTextCreation[Kn
+gcc -c -o DescTextCreation.o DescTextCreation.c 
+gcc -o  DescTextCreation DescTextCreation.o Text_Analyse.o
+]0;mahenina@mahenina-HP-Mini-210-4000: ~/FIL_ROUGEmahenina@mahenina-HP-Mini-210-4000:~/FIL_ROUGE$ ./DescTextCreation 
+Index iniatialized
+The number of characters is : 3272
+Index iniatialized
+End of final Indexation
+
+The Descriptor :
+
+
+==== returnIndex process started =====
+
+The word is : mots
+The number of appearances is : 3
+--------------
+The word is : question
+The number of appearances is : 3
+--------------
+The word is : pour
+The number of appearances is : 6
+--------------
+The word is : expressions
+The number of appearances is : 3
+--------------
+The word is : cette
+The number of appearances is : 4
+--------------
+The word is : %).</phrase>
+The number of appearances is : 4
+--------------
+End reached
+
+==== Index returned ======
+
+]0;mahenina@mahenina-HP-Mini-210-4000: ~/FIL_ROUGEmahenina@mahenina-HP-Mini-210-4000:~/FIL_ROUGE$ 
+]0;mahenina@mahenina-HP-Mini-210-4000: ~/FIL_ROUGEmahenina@mahenina-HP-Mini-210-4000:~/FIL_ROUGE$ exit
+exit
+
+Script terminé sur jeu. 15 janv. 2015 18:02:15 CET

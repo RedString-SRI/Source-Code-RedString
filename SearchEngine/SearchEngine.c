@@ -9,20 +9,25 @@
 *
 */
 
+#include<ctype.h>
 #include "SearchEngine.h"
+#include "SoundSearch.h"
+
+extern int globs_nbWeightyBits;
 
 //===================================================================================================
 //==============================ASSOCIATED RESEARCH FOR IMAGE========================================
 //===================================================================================================
+
 void byColor(COLOR c){
-  
+/*  
   float *OrderPercentage;
   float percent , tmpFloat;
   int iThPath = 0;
   int size=0, i , tmpInt;
   char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
   
-  while(/*PAS FIN LISTE BASE desc*/) {
+  while(/*PAS FIN LISTE BASE desc/) {
   	iThPath++; // can read the Ith file of the desc base
   	percent = findColor(path , colorDecimal) // NEED TO CREAT THIS FUNCTION !!!!;
     if(percent) { 
@@ -46,25 +51,27 @@ void byColor(COLOR c){
   for(i=1 ; i<=size ; i++)
     printf("%2i : %20s --> %.2f\n" , i , path , orderPercentage[i] );
   printf("+===================0.EXIT+\n");
-  printf("DoYou want to open it one ? Which one ? \n");
+  printf("Do you want to open it one ? Which one ? \n");
   scanf("%d" , &i); // now, "i" is a choice
   if(i<0 || i>size) printf("ERROR choice\n");
   else // OPEN THE FILE §§§§§!! !!!!!!
-  if(i=0) ResearchMenu() ;
+  if(i==0) ResearchMenu() ;
+  */
 }
+
 //===================================================================================================
-float compareFileIMG(PictureDesc imgD1 , PictureDesc imgD2){
+float compareFileIMG(PictureDesc *imgD1 , PictureDesc *imgD2){
   float percentCompare;
   int max , i;
   float compare[max];
   
   // To don't have memories overflowing 
-  if(imgD1.nbcomp<imgD2.nbcomp)
-  	max=pow(2,img1.nbcomp*globs_nbWeightyBits);
+  if(imgD1->nbcomp<imgD2->nbcomp)
+  	max=pow(2,(imgD1->nbcomp)*globs_nbWeightyBits);
   else
-  	max=pow(2,img2.nbcomp*globs_nbWeightyBits);
+  	max=pow(2,(imgD2->nbcomp)*globs_nbWeightyBits);
   for(i=0; i<max ; i++){
-    if (imgD1->histogram[i]>imgD2.histogram[i]) compare[i] = 1-imgD1->histogram[i]/imgD2->histogram[i] ;
+    if ((imgD1->histogram[i])>(imgD2->histogram[i])) compare[i] = 1-imgD1->histogram[i]/imgD2->histogram[i] ;
     else compare[i] = 1-imgD1->histogram[i]/imgD2->histogram[i] ;
     percentCompare+=compare[i]; // add every compare+i to be divide by the number of cells (max)
   }
@@ -72,12 +79,13 @@ float compareFileIMG(PictureDesc imgD1 , PictureDesc imgD2){
 }
 //========================================================
 void byNamedColor(){
-	COLOR c;
-	int choice;
-	
+/*
+	int choice , i;
+	char w[20];
 	do{
 		printf("Enter your COLOR : \n");
-			scanf("%s" , c); // enter a word ......
+			scanf("%d" , w); // enter a word ......
+			while(w[i]){ toupper(w[i]) ; i++;}
 			if(isAColor(w))
 				byColor(w);
 			else {
@@ -88,69 +96,50 @@ void byNamedColor(){
 }
 //========================================================
 Bool isAColor(char c[]){
-	if(strcomp(c,BLACK)) byColor(BLACK); 
-        else if(strcomp(c,"LIGHTGRAY")) 	byColor(LIGHTGREY); 
-        else if(strcomp(c,"DARKGRAY")) 		byColor(DARKGREY);
-        else if(strcomp(c,"WHITE")		byColor(WHITE); 
-        else if(strcomp(c,"RED")) 		byColor(RED);
-        else if(strcomp(c,"PINK")) 		byColor(PINK);
+		if(strcomp(c,"BLACK")) 				byColor(BLACK); 
+        else if(strcomp(c,"LIGHTGRAY")) 	byColor(LIGHTGRAY); 
+        else if(strcomp(c,"DARKGRAY")) 		byColor(DARKGRAY);
+        else if(strcomp(c,"WHITE"))			byColor(WHITE); 
+        else if(strcomp(c,"RED")) 			byColor(RED);
+        else if(strcomp(c,"PINK")) 			byColor(PINK);
         else if(strcomp(c,"YELLOW")) 		byColor(YELLOW);
         else if(strcomp(c,"PURPLE")) 		byColor(PURPLE); 
         else if(strcomp(c,"BROWN")) 		byColor(BROWN); 
         else if(strcomp(c,"GREEN")) 		byColor(GREEN); 
         else if(strcomp(c,"LIGHTGREEN")) 	byColor(LIGHTGREEN);
-        else if(strcomp(c,"BLUE")) 		byColor(BLUE);
+        else if(strcomp(c,"BLUE")) 			byColor(BLUE);
         else if(strcomp(c,"LIGHTBLUE")) 	byColor(LIGHTBLUE);
         else return FALSE;
         return TRUE;
-}
-//========================================================
-void cpsBYcps(){
-	COLOR c;
-	printf("Value possible : 11 , 10 , 01 , 00 \n");
-	printf("Enter RED composants :\n");
-	scan("%d" , &c);
-	if(c!=11||c!=10||c!=01) c=0;
-	c = c<<(glob_nbWeightyBits);
-	printf("Enter GREEN composants :\n");
-	scan("%d" , &c);
-	if(c!=11||c!=10||c!=01) c=0;
-	c = c<<(glob_nbWeightyBits);
-	printf("Enter BLUE composants :\n");
-	scan("%d" , &c);
-	if(c!=11||c!=10||c!=01) c=0;
-	c = c<<(glob_nbWeightyBits);
-	
-	byColor(c);
+*/
 }
 //========================================================
 void researchIMG(FILE *imgbase){
-	char w[20];
 	int validPath;
 	int const maxSizePath = 100;
 	char *path[maxSizePath] , *pathOfList[maxSizePath];
 	int choice;
-	long ID; int date, i=0;
+	long ID; 
+	int date, i=0;
 	float percent;
 	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
 	
 	PileVD *PilevalDesc , tmpVD;
 	Val_Desc VD;
-	Picturedesc imgDsc, tmpIdsc;
+	PictureDesc *imgDsc, tmpIdsc;
 	FILE *fileOfDesc;
 	FILE *GivenPath;
 	
-	do{
+			do{
 				printf("1. By named color ? \n");	
-				printf("2. composants by composants ? \n");
-				printf("3. by compare file ? \n");
+				printf("2. by compare file ? \n");
 				printf("+=================0.RETURN+\n");
 				scanf("%d" , &choice);
-			}while(choice!=1 && choice!=2 && choice!=0)
+			}while(choice!=1 && choice!=2 && choice!=0);
+			
 			if(choice==1) byNamedColor();
-			else if(choice==2) cpsBYcps();
-			else if(choice==3){
-				ID=getID(path);
+			else if(choice==2){
+				ID=getAddress(imgbase,path);
 				imgDsc=getDesc(imgbase , ID , PICTURE);
 				while(!feof(imgbase)){
 				// NEED TO CLEAR PATH BEFORE ?????????????????
@@ -158,12 +147,12 @@ void researchIMG(FILE *imgbase){
 					fscanf(imgbase, "%s" , pathOfList); // Search the iTh path of the ListBASE
 					fscanf(imgbase , "%d" , &date );
 					fileOfDesc=getDesc(imgbase , ID , SOUND); // open the link of the linked descript
-					percent=compareIMGDesc(sdDesc , fileOfDesc );
+					percent=compareFileIMG(imgDsc , fileOfDesc );
 					addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
 					i++;
 				}
 				printf("+=========================+\n");
-				printBestList(PilevalDesc , 0)
+				printBestList(PilevalDesc , 0);
 				printf("+=================0.RETURN+\n");
 				printf("DoYou want to open it one ? Which one ? \n");
   				scanf("%d" , &choice); // now, "i" is a choice
@@ -178,6 +167,7 @@ void researchIMG(FILE *imgbase){
 //===================================================================================================
 //==============================ASSOCIATED RESEARCH FOR TEXT ========================================
 //===================================================================================================
+/* BETA TEST <---------
 void byOccurenceWord(char word[] ){
   
  int *OrderOcurr;
@@ -185,7 +175,7 @@ void byOccurenceWord(char word[] ){
   int wordOcurr ; 
   int iThPath = 0;
   int size=0, i , tmpInt;
-  while(/*PAS FIN LISTE BASE desc*/) {
+  while(/*PAS FIN LISTE BASE desc/) {
   	iThPath++; // can read the Ith file of the desc base
   	wordOcurr = findWord(path , colorDecimal) // NEED TO CREAT THIS FUNCTION !!!!;
     if(wordOcurr) { 
@@ -212,28 +202,27 @@ void byOccurenceWord(char word[] ){
   scanf("%d" , &i); // now, "i" is a choice
   if(i<0 || i>size) printf("ERROR choice\n");
   if(i=0) ResearchMenu() ;
+  
 }
 void researchTXT(FILE *txtbase){
-		char w[20];
+	char w[20];
 	int validPath;
 	int const maxSizePath = 100;
-	char *path[maxSizePath] , *pathOfList[maxSizePath];
+	char path[maxSizePath] , pathOfList[maxSizePath];
 	int choice;
-	long ID; int date i=0;
+	long ID; int date;
 	float percent;
 	float *positionFile;
 	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
 	
 	PileVD *PilevalDesc , tmpVD;
 	Val_Desc VD;
-	IMGdesc imgDsc, tmpIdsc;
-	SoundDesc sdDsc, tmpSdsc;
-	TextDesx txtDsc , tmpTdsc;
+	TextDesc txtDsc , tmpTdsc;
 	FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
 	FILE *fileOfDesc;
 	FILE *GivenPath;
 	BaseDesc BDimg , BDsound , BDtxt;
-}
+}*/
 //===================================================================================================
 //==============================ASSOCIATED RESEARCH FOR SOUND========================================
 //===================================================================================================
@@ -246,8 +235,8 @@ void researchSound(FILE *soundbase){
 	float percent;
 	char openPath[50]="xdg-open"; // Permite to default open file ex: xdg-open img.png
 	
-	PileVD PilevalDesc;
-	SoundDesc sdDsc, tmpSdsc;
+	PileVD *PilevalDesc;
+	SoundDesc *sdDesc, tmpSdsc;
 	FILE *fileOfDesc;
 	FILE *GivenPath;
 	
@@ -255,24 +244,24 @@ void researchSound(FILE *soundbase){
 		do {
 			validPath = getKeyboard_String(path,0, maxSizePath);
 			if(!fileExists(path)) printf("This file don\'t exist\n");
-		} while (!fileExists(path) && validPath!=0)
+		} while (!fileExists(path) && validPath!=0);
 		if(!validPath) ResearchMenu();
 		else{
-			ID=getID(path);
-			sdDesc=getDesc(BDsound , ID , SOUND); // ???? NEED CHECKING <==============
+			ID=getAddress(soundbase,path);
+			sdDesc=getDesc(soundbase , ID , SOUND);
 			while(!feof(soundbase)){
 			// NEED TO CLEAR PATH BEFORE ?????????????????
-				fscanf(BDsound , "%l" , &ID );
-				fscanf(BDsound, "%s" , pathOfList); // Search the iTh path of the ListBASE
-				fscanf(BDsound , "%d" , &date );
-				fileOfDesc=getDesc(BDsound , ID , SOUND); // open the link of the linked descript
+				fscanf(soundbase , "%l" , &ID );
+				fscanf(soundbase, "%s" , pathOfList); // Search the iTh path of the ListBASE
+				fscanf(soundbase , "%d" , &date );
+				fileOfDesc=getDesc(soundbase , ID , SOUND); // open the link of the linked descript
 				percent=compareSoundDesc(sdDesc , fileOfDesc );
-				addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
+				addOrderVD(PilevalDesc , percent , pathOfList); // add in decrease Order
 				i++;
 			}
-			fclose(BDimg);
+			fclose(soundbase);
 			printf("+=========================+\n");
-			printBestList(PilevalDesc , 0)
+			printBestList(PilevalDesc , 0);
 			printf("+=================0.RETURN+\n");
 			printf("DoYou want to open it one ? Which one ? \n");
   			scanf("%d" , &choice); // now, "i" is a choice
@@ -285,19 +274,20 @@ void researchSound(FILE *soundbase){
 }
 //========================================================
 void addOrderVD(PileVD *pvd, float perct , char nFile){	
-	PileVD tmpPdv;
+	PileVD tmpPvd;
 	
-	if(((*pvd)->pct) < perct)
+	if(((*pvd)->pct) < perct){
 			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
-			tmpPvd.pct = perct;
-			strcpy(tmpPdv.nameFile, nFile);
-			tmpPvd->NextVD= *pvd;
-			*pvd=tmpVD;
+			tmpPvd->pct = perct;
+			strcpy(tmpPvd->nameFile, nFile);
+			tmpPvd->NextVD = *pvd;
+			*pvd=tmpPvd;
+	}
 	else {
-		if(((*pvd)->NextVD).pct <= perct){
+		if(((*pvd)->NextVD)->pct <= perct){
 			tmpPvd = (PileVD)malloc(sizeof(Val_Desc));
-			tmpPvd.pct = perct;
-			strcpy(tmpPdv.nameFile, nFile);
+			tmpPvd->pct = perct;
+			strcpy(tmpPvd->nameFile, nFile);
 			tmpPvd->NextVD = (*pvd)->NextVD;
 			(*pvd)->NextVD=tmpPvd;
 		}
@@ -305,13 +295,13 @@ void addOrderVD(PileVD *pvd, float perct , char nFile){
 	}		
 }
 //========================================================
-void printBestList(PileVD pvd , j){ //récursif
+void printBestList(PileVD pvd ,int j){ //récursif
 	if(pvd==NULL) return;
-	printf("%3d. %30s --> %.2f" , j+1 , pvd.nameFile , pvd.pct*100 )
+	printf("%3d. %30s --> %.2f" , j+1 , pvd->nameFile , (pvd->pct)*100 );
 	printBestList(pvd , j+1);
 }
 //========================================================
 char *getChoosenFile(PileVD PilevalDesc,int choice){ // return the nTh name of the Pile of file, to can open it easier.
-	if(choice==0) return PilevalDasc.nameFile ;
+	if(choice==0) return PilevalDesc->nameFile ;
 	else getChoosenFile( PilevalDesc, choice-1);
 }

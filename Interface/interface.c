@@ -9,6 +9,7 @@
 *
 */
 #include "interface.h"
+#include "Configurator.h"
 
 
 //========================================================
@@ -21,6 +22,8 @@ void clearBuffer() {
 void mainMenu(){
 	int choice;
 	
+	
+	system("clear");
 	do{
 		printf("+=========================+\n");
 		printf("|                         |\n");
@@ -28,13 +31,14 @@ void mainMenu(){
 		printf("|                         |\n");
 		printf("|2. RESEARCH              |\n");
 		printf("|                         |\n");
+		printf("|3. parameters            |\n");
 		printf("+===================0.EXIT+\n");
 
 		scanf("%d" , &choice);
-		if(choice!=1 && choice !=2 && choice!=0){
+		if(choice!=1 && choice !=2 && choice!=0 && choice!=3){
 			system("clear");
 		}
-	}while(choice!=1 && choice!=2 && choice!=0);
+	}while(choice!=1 && choice!=2 && choice!=0 && choice!=3);
 	clearBuffer();
 	switch(choice){
 		case(1): 
@@ -44,6 +48,11 @@ void mainMenu(){
 		case(2): 
 			system("clear");
 			ResearchMenu(); 
+			break;
+		case(3): 
+			system("clear");
+			if(enterGlobsVariables(CONF_FILE_NAME)) printf("Succesfull saved parameters.\n");
+			else printf("FAIL saved parameters...\n");
 			break;
 		case(0): 
 			exit(0); 
@@ -58,48 +67,71 @@ void IndexationMenu(){
 	int choice , validPath;
 	int const maxSizePath = 100;
 	char *path[maxSizePath];
+	FileType filetype;
+	FILE *fileTOindex;
+	BaseDesc basedesc;
+	BaseDesc *desc;
 	
 	do{
 		printf("+=========================+\n");
 		printf("|                         |\n");
-		printf("|                         |\n");
-		printf("|1. Enter your(s) path(s) |\n");
-		printf("|                         |\n");
+		printf("|1. Index a SOUND         |\n");
+		printf("|2. Index an IMAGE        |\n");
+		printf("|3. Index a TEXT          |\n");
 		printf("|                         |\n");
 		printf("+=================0.RETURN+\n");
 
 		scanf("%d" , &choice);
-		if(choice!=1 && choice!=0){
+		if(choice!=1 && choice!=0 && choice!=2 && choice!=3){
 			system("clear");
 		}
 	}while(choice!=1 && choice!=2 && choice!=0);
 	clearBuffer();
-	switch(choice){
-		case(1):
-			printf("Add an empty path with \"Enter\" to start Indexation.\n");
-			printf("Enter your(s) path(s) : \n");
-			do {
-				validPath = getKeyboard_String(path,0, maxSizePath);
-				if(fileExists(path))
-					/*SAVE path IN A TABLE OF PATH TO INDEX FORWARD ???? */
-			} while ( validPath > 0 ) //while !0=NULL or !-1=so littre or !=-2=ERROR
-			if(validPath==0)
-				indexation(*path , .... ); /*PROBLEM INDEXATION ! I DON'T HOW IT'S WORK THE MULTI PARAMS */
-			else
-				fprintf(stderr,"Error name path\n");
-			break;
-		case(0): 
+	
+	do{
+		printf("Add an empty path with \"Enter\" to start Indexation.\n");
+		printf("Enter your(s) path(s) : \n");
+		validPath = getKeyboard_String(path,0, maxSizePath);
+		if(fileExists(path)){
+			fileTOindex=fopen(path,"r");
+			
+			switch(choice){
+				case(1):			
+					desc=createSoundDesc(fileTOindex); 
+					addDesc(basedesc,desc,SOUND);
+				break;
+				case(2):			
+					desc=createPictureDesc(fileTOindex); 
+					addDesc(basedesc,desc,PICTURE);
+				break;
+				case(3):			
+					/*desc=createTextDesc(fileTOindex); 
+					basedesc=;
+					addDesc(basedesc,desc,TEXT);*/
+				break;
+				case(0): 
+					system("clear");
+					mainMenu(); 
+				break;
+				default: 
+					exit(0); 
+				break;
+			}
+			fclose(fileTOindex);
+			strcpy(path,""); // Permite to  secure the next path to enter by the user
+			printf("Succesfull indexation.\n");
+		}
+		else{
 			system("clear");
-			mainMenu(0); 
-			break;
-		default: 
-			exit(0); 
-			break;
-	}
+			printf("Error, file don\'t exists\n");
+			mainMenu();
+		}				
+	} while ( validPath > 0 ); //while !0=NULL or !-1=so littre or !=-2=ERROR
+	mainMenu();
 }
 //========================================================
 void ResearchMenu(){
-<<<<<<< HEAD
+
 	char w[20];
 	int validPath;
 	int const maxSizePath = 100;
@@ -112,7 +144,7 @@ void ResearchMenu(){
 	PileVD *valDesc , tmpVD;
 	PictureDesc imgDsc;
 	SoundDesc sdDsc;
-	TextDesx txtDsc;
+	//TextDesc txtDsc;
 	FILE *IMGbase;
 	FILE *TXTbase;
 	FILE *SOUNDbase;
@@ -143,24 +175,33 @@ void ResearchMenu(){
 			*/
 			break;
 		case(2):
-			IMGbase=fopen("PictureBaseDesc.db" , 'r');
-			researchIMG(IMGbase);
-			fclose(IMGbase);
+			if(!fileExists("PictureBaseDesc.db"))printf("PictureBaseDesc.db don\'t exists\n");
+			else{
+				IMGbase=fopen("PictureBaseDesc.db" , 'r');
+				researchIMG(IMGbase);
+				fclose(IMGbase);
+			}
 			system("clear");
+			ResearchMenu();
 			break;
 		case(3):
-			SOUNDbase=fopen("SoundBaseDesc.db" , 'r');
-			researchSound(SOUNDbase);
-			fclose(SOUNDbase);
+			if(!fileExists("PictureBaseDesc.db"))printf("PictureBaseDesc.db don\'t exists\n");
+			else{
+				SOUNDbase=fopen("SoundBaseDesc.db" , 'r');
+				researchSound(SOUNDbase);
+				fclose(SOUNDbase);
+			}
 			system("clear");
+			ResearchMenu();
 			break;
 		case(0): 
 			system("clear");
-			mainMenu(0); 
+			mainMenu(); 
 			break;
 		default: // to secure
 			exit(0); 
 			break;
 	}
+	mainMenu();
 }
 

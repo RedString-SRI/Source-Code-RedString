@@ -11,7 +11,7 @@ typedef struct{
 
 typedef struct{
   long ID;
-  Dimension *size;
+  Dimension size;
   int nbcomp ; /*d is the picture's number of components*/
   float *histogram; // Will be an array of size : 2^(d*n)
 

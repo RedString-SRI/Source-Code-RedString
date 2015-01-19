@@ -3,9 +3,17 @@
  * At the end of the project, the compilation should be OK :)
 */
 #include "interface.h"
+#include "Configurator.h"
 
 void main() {
-  mainMenu(); // quite simply
+	if(!initConfigurator()){
+		system("clear");
+		printf("BIKERFUL ! configurator doesn\'t exists\n");
+		if(enterGlobsVariables(CONF_FILE_NAME)) printf("Succesfull saved parameters.\n");
+			else printf("FAIL saved parameters...\n");
+	}
+	else
+  		mainMenu(); // quite simply
 }
 
 /**

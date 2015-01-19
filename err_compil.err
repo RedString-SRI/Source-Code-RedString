@@ -1,297 +1,204 @@
-In file included from SearchEngine/SearchEngine.c:12:0:
-SearchEngine/SearchEngine.h:15:17: error: expected ‘)’ before ‘=’ token
- enum COLOR(BLACK=000000, 
-                 ^
-SearchEngine/SearchEngine.h:63:1: error: expected identifier or ‘(’ before ‘Bool’
- Bool isAColor(char c[]);
- ^
-SearchEngine/SearchEngine.h:99:17: error: unknown type name ‘PileVD’
- void addOrderVD(PileVD *pvd, float perct , char nFile);
-                 ^
-SearchEngine/SearchEngine.h:105:20: error: unknown type name ‘PileVD’
- void printBestList(PileVD pvd , j);
-                    ^
-SearchEngine/SearchEngine.h:105:33: error: unknown type name ‘j’
- void printBestList(PileVD pvd , j);
-                                 ^
-SearchEngine/SearchEngine.h:111:22: error: unknown type name ‘PileVD’
- char *getChoosenFile(PileVD PilevalDesc,int choice);
-                      ^
-SearchEngine/SearchEngine.c:17:20: error: parameter 1 (‘c’) has incomplete type
- void byColor(COLOR c){
-                    ^
-SearchEngine/SearchEngine.c: In function ‘byColor’:
-SearchEngine/SearchEngine.c:25:36: error: expected expression before ‘)’ token
-   while(/*PAS FIN LISTE BASE desc*/) {
-                                    ^
-SearchEngine/SearchEngine.c:27:24: error: ‘path’ undeclared (first use in this function)
-    percent = findColor(path , colorDecimal) // NEED TO CREAT THIS FUNCTION !!!!;
-                        ^
-SearchEngine/SearchEngine.c:27:24: note: each undeclared identifier is reported only once for each function it appears in
-SearchEngine/SearchEngine.c:27:31: error: ‘colorDecimal’ undeclared (first use in this function)
-    percent = findColor(path , colorDecimal) // NEED TO CREAT THIS FUNCTION !!!!;
-                               ^
-SearchEngine/SearchEngine.c:28:5: error: expected ‘;’ before ‘if’
-     if(percent) { 
-     ^
-SearchEngine/SearchEngine.c:47:49: error: ‘orderPercentage’ undeclared (first use in this function)
-     printf("%2i : %20s --> %.2f\n" , i , path , orderPercentage[i] );
-                                                 ^
-SearchEngine/SearchEngine.c: In function ‘compareFileIMG’:
-SearchEngine/SearchEngine.c:63:14: error: ‘img1’ undeclared (first use in this function)
-    max=pow(2,img1.nbcomp*globs_nbWeightyBits);
-              ^
-SearchEngine/SearchEngine.c:63:26: error: ‘globs_nbWeightyBits’ undeclared (first use in this function)
-    max=pow(2,img1.nbcomp*globs_nbWeightyBits);
-                          ^
-SearchEngine/SearchEngine.c:65:14: error: ‘img2’ undeclared (first use in this function)
-    max=pow(2,img2.nbcomp*globs_nbWeightyBits);
-              ^
-SearchEngine/SearchEngine.c:67:14: error: invalid type argument of ‘->’ (have ‘PictureDesc’)
-     if (imgD1->histogram[i]>imgD2.histogram[i]) compare[i] = 1-imgD1->histogram[i]/imgD2->histogram[i] ;
-              ^
-SearchEngine/SearchEngine.c:67:69: error: invalid type argument of ‘->’ (have ‘PictureDesc’)
-     if (imgD1->histogram[i]>imgD2.histogram[i]) compare[i] = 1-imgD1->histogram[i]/imgD2->histogram[i] ;
-                                                                     ^
-SearchEngine/SearchEngine.c:67:89: error: invalid type argument of ‘->’ (have ‘PictureDesc’)
-     if (imgD1->histogram[i]>imgD2.histogram[i]) compare[i] = 1-imgD1->histogram[i]/imgD2->histogram[i] ;
-                                                                                         ^
-SearchEngine/SearchEngine.c:68:30: error: invalid type argument of ‘->’ (have ‘PictureDesc’)
-     else compare[i] = 1-imgD1->histogram[i]/imgD2->histogram[i] ;
-                              ^
-SearchEngine/SearchEngine.c:68:50: error: invalid type argument of ‘->’ (have ‘PictureDesc’)
-     else compare[i] = 1-imgD1->histogram[i]/imgD2->histogram[i] ;
-                                                  ^
-SearchEngine/SearchEngine.c: In function ‘byNamedColor’:
-SearchEngine/SearchEngine.c:75:8: error: storage size of ‘c’ isn’t known
-  COLOR c;
-        ^
-SearchEngine/SearchEngine.c:81:16: error: ‘w’ undeclared (first use in this function)
-    if(isAColor(w))
-                ^
-SearchEngine/SearchEngine.c:82:5: error: type of formal parameter 1 is incomplete
-     byColor(w);
-     ^
-SearchEngine/SearchEngine.c: At top level:
-SearchEngine/SearchEngine.c:90:6: error: conflicting types for ‘isAColor’
- Bool isAColor(char c[]){
-      ^
-SearchEngine/SearchEngine.c:81:7: note: previous implicit declaration of ‘isAColor’ was here
-    if(isAColor(w))
-       ^
-SearchEngine/SearchEngine.c: In function ‘isAColor’:
-SearchEngine/SearchEngine.c:91:15: error: ‘BLACK’ undeclared (first use in this function)
-  if(strcomp(c,BLACK)) byColor(BLACK); 
-               ^
-SearchEngine/SearchEngine.c:91:2: error: type of formal parameter 1 is incomplete
-  if(strcomp(c,BLACK)) byColor(BLACK); 
-  ^
-SearchEngine/SearchEngine.c:92:50: error: ‘LIGHTGREY’ undeclared (first use in this function)
-         else if(strcomp(c,"LIGHTGRAY"))  byColor(LIGHTGREY); 
-                                                  ^
-SearchEngine/SearchEngine.c:92:9: error: type of formal parameter 1 is incomplete
-         else if(strcomp(c,"LIGHTGRAY"))  byColor(LIGHTGREY); 
-         ^
-SearchEngine/SearchEngine.c:93:50: error: ‘DARKGREY’ undeclared (first use in this function)
-         else if(strcomp(c,"DARKGRAY"))   byColor(DARKGREY);
-                                                  ^
-SearchEngine/SearchEngine.c:93:9: error: type of formal parameter 1 is incomplete
-         else if(strcomp(c,"DARKGRAY"))   byColor(DARKGREY);
-         ^
-SearchEngine/SearchEngine.c:94:37: error: expected ‘)’ before ‘byColor’
-         else if(strcomp(c,"WHITE")  byColor(WHITE); 
-                                     ^
-SearchEngine/SearchEngine.c:106:1: error: expected expression before ‘}’ token
- }
- ^
-SearchEngine/SearchEngine.c: In function ‘cpsBYcps’:
-SearchEngine/SearchEngine.c:109:8: error: storage size of ‘c’ isn’t known
-  COLOR c;
-        ^
-SearchEngine/SearchEngine.c:114:10: error: ‘glob_nbWeightyBits’ undeclared (first use in this function)
-  c = c<<(glob_nbWeightyBits);
-          ^
-SearchEngine/SearchEngine.c:124:2: error: type of formal parameter 1 is incomplete
-  byColor(c);
-  ^
 SearchEngine/SearchEngine.c: In function ‘researchIMG’:
-SearchEngine/SearchEngine.c:137:2: error: unknown type name ‘PileVD’
-  PileVD *PilevalDesc , tmpVD;
-  ^
-SearchEngine/SearchEngine.c:138:2: error: unknown type name ‘Val_Desc’
-  Val_Desc VD;
-  ^
-SearchEngine/SearchEngine.c:139:2: error: unknown type name ‘Picturedesc’
-  Picturedesc imgDsc, tmpIdsc;
-  ^
-SearchEngine/SearchEngine.c:150:4: error: expected ‘;’ before ‘if’
-    if(choice==1) byNamedColor();
-    ^
-SearchEngine/SearchEngine.c:151:4: error: ‘else’ without a previous ‘if’
-    else if(choice==2) cpsBYcps();
-    ^
-SearchEngine/SearchEngine.c:154:5: warning: passing argument 1 of ‘getDesc’ from incompatible pointer type [enabled by default]
+SearchEngine/SearchEngine.c:142:5: warning: passing argument 1 of ‘getAddress’ from incompatible pointer type [enabled by default]
+     ID=getAddress(imgbase,path);
+     ^
+In file included from SearchEngine/SearchEngine.h:12:0,
+                 from SearchEngine/SearchEngine.c:13:
+Descriptor/BaseDesc.h:105:6: note: expected ‘ListBaseDesc’ but argument is of type ‘struct FILE *’
+ long getAddress(ListBaseDesc list, char * path);
+      ^
+SearchEngine/SearchEngine.c:142:5: warning: passing argument 2 of ‘getAddress’ from incompatible pointer type [enabled by default]
+     ID=getAddress(imgbase,path);
+     ^
+In file included from SearchEngine/SearchEngine.h:12:0,
+                 from SearchEngine/SearchEngine.c:13:
+Descriptor/BaseDesc.h:105:6: note: expected ‘char *’ but argument is of type ‘char **’
+ long getAddress(ListBaseDesc list, char * path);
+      ^
+SearchEngine/SearchEngine.c:143:5: warning: passing argument 1 of ‘getDesc’ from incompatible pointer type [enabled by default]
      imgDsc=getDesc(imgbase , ID , PICTURE);
      ^
 In file included from SearchEngine/SearchEngine.h:12:0,
-                 from SearchEngine/SearchEngine.c:12:
+                 from SearchEngine/SearchEngine.c:13:
 Descriptor/BaseDesc.h:75:8: note: expected ‘BaseDesc’ but argument is of type ‘struct FILE *’
  void * getDesc(BaseDesc base, long address, FileType type);
         ^
-SearchEngine/SearchEngine.c:154:11: warning: assignment makes integer from pointer without a cast [enabled by default]
-     imgDsc=getDesc(imgbase , ID , PICTURE);
-           ^
-SearchEngine/SearchEngine.c:157:6: warning: conversion lacks type at end of format [-Wformat=]
+SearchEngine/SearchEngine.c:146:6: warning: conversion lacks type at end of format [-Wformat=]
       fscanf(imgbase , "%l" , &ID );
       ^
-SearchEngine/SearchEngine.c:157:6: warning: too many arguments for format [-Wformat-extra-args]
-SearchEngine/SearchEngine.c:158:6: warning: format ‘%s’ expects argument of type ‘char *’, but argument 3 has type ‘char **’ [-Wformat=]
+SearchEngine/SearchEngine.c:146:6: warning: too many arguments for format [-Wformat-extra-args]
+SearchEngine/SearchEngine.c:147:6: warning: format ‘%s’ expects argument of type ‘char *’, but argument 3 has type ‘char **’ [-Wformat=]
       fscanf(imgbase, "%s" , pathOfList); // Search the iTh path of the ListBASE
       ^
-SearchEngine/SearchEngine.c:160:6: warning: passing argument 1 of ‘getDesc’ from incompatible pointer type [enabled by default]
+SearchEngine/SearchEngine.c:149:6: warning: passing argument 1 of ‘getDesc’ from incompatible pointer type [enabled by default]
       fileOfDesc=getDesc(imgbase , ID , SOUND); // open the link of the linked descript
       ^
 In file included from SearchEngine/SearchEngine.h:12:0,
-                 from SearchEngine/SearchEngine.c:12:
+                 from SearchEngine/SearchEngine.c:13:
 Descriptor/BaseDesc.h:75:8: note: expected ‘BaseDesc’ but argument is of type ‘struct FILE *’
  void * getDesc(BaseDesc base, long address, FileType type);
         ^
-SearchEngine/SearchEngine.c:161:29: error: ‘sdDesc’ undeclared (first use in this function)
-      percent=compareIMGDesc(sdDesc , fileOfDesc );
-                             ^
-SearchEngine/SearchEngine.c:167:5: error: expected ‘;’ before ‘printf’
-     printf("+=================0.RETURN+\n");
+SearchEngine/SearchEngine.c:150:6: warning: passing argument 2 of ‘compareFileIMG’ from incompatible pointer type [enabled by default]
+      percent=compareFileIMG(imgDsc , fileOfDesc );
+      ^
+SearchEngine/SearchEngine.c:63:7: note: expected ‘struct PictureDesc *’ but argument is of type ‘struct FILE *’
+ float compareFileIMG(PictureDesc *imgD1 , PictureDesc *imgD2){
+       ^
+SearchEngine/SearchEngine.c:151:6: warning: passing argument 1 of ‘addOrderVD’ from incompatible pointer type [enabled by default]
+      addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
+      ^
+In file included from SearchEngine/SearchEngine.c:13:0:
+SearchEngine/SearchEngine.h:88:6: note: expected ‘struct vd **’ but argument is of type ‘PileVD’
+ void addOrderVD(PileVD *pvd, float perct , char nFile);
+      ^
+SearchEngine/SearchEngine.c:151:6: warning: passing argument 3 of ‘addOrderVD’ makes integer from pointer without a cast [enabled by default]
+      addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
+      ^
+In file included from SearchEngine/SearchEngine.c:13:0:
+SearchEngine/SearchEngine.h:88:6: note: expected ‘char’ but argument is of type ‘char **’
+ void addOrderVD(PileVD *pvd, float perct , char nFile);
+      ^
+SearchEngine/SearchEngine.c:155:5: warning: passing argument 1 of ‘printBestList’ from incompatible pointer type [enabled by default]
+     printBestList(PilevalDesc , 0);
      ^
-SearchEngine/SearchEngine.c:172:8: warning: passing argument 2 of ‘strcat’ makes pointer from integer without a cast [enabled by default]
+In file included from SearchEngine/SearchEngine.c:13:0:
+SearchEngine/SearchEngine.h:94:6: note: expected ‘PileVD’ but argument is of type ‘struct vd **’
+ void printBestList(PileVD pvd , int j);
+      ^
+SearchEngine/SearchEngine.c:161:8: warning: passing argument 1 of ‘getChoosenFile’ from incompatible pointer type [enabled by default]
         strcat(openPath , getChoosenFile(PilevalDesc,choice));
         ^
-In file included from Descriptor/BaseDesc.h:9:0,
-                 from SearchEngine/SearchEngine.h:12,
-                 from SearchEngine/SearchEngine.c:12:
-/usr/include/string.h:137:14: note: expected ‘const char * __restrict__’ but argument is of type ‘int’
- extern char *strcat (char *__restrict __dest, const char *__restrict __src)
-              ^
-SearchEngine/SearchEngine.c: At top level:
-SearchEngine/SearchEngine.c:181:6: error: conflicting types for ‘byOccurenceWord’
- void byOccurenceWord(char word[] ){
-      ^
-In file included from SearchEngine/SearchEngine.c:12:0:
-SearchEngine/SearchEngine.h:81:6: note: previous declaration of ‘byOccurenceWord’ was here
- void byOccurenceWord(char word);
-      ^
-SearchEngine/SearchEngine.c: In function ‘byOccurenceWord’:
-SearchEngine/SearchEngine.c:184:27: error: ‘color’ undeclared (first use in this function)
-   int colorDecimal = (int)color; // NEED TO BE CHECK !!!!!!
-                           ^
-SearchEngine/SearchEngine.c:188:36: error: expected expression before ‘)’ token
-   while(/*PAS FIN LISTE BASE desc*/) {
-                                    ^
-SearchEngine/SearchEngine.c:190:25: error: ‘path’ undeclared (first use in this function)
-    wordOcurr = findWord(path , colorDecimal) // NEED TO CREAT THIS FUNCTION !!!!;
-                         ^
-SearchEngine/SearchEngine.c:191:5: error: expected ‘;’ before ‘if’
-     if(wordOcurr) { 
-     ^
-SearchEngine/SearchEngine.c:209:49: error: ‘orderOccur’ undeclared (first use in this function)
-     printf("%2i : %20s --> %.2d\n" , i , path , orderOccur[i] );
-                                                 ^
-SearchEngine/SearchEngine.c: In function ‘researchTXT’:
-SearchEngine/SearchEngine.c:222:20: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘i’
-  long ID; int date i=0;
-                    ^
-SearchEngine/SearchEngine.c:222:20: error: ‘i’ undeclared (first use in this function)
-SearchEngine/SearchEngine.c:227:2: error: unknown type name ‘PileVD’
-  PileVD *PilevalDesc , tmpVD;
-  ^
-SearchEngine/SearchEngine.c:228:2: error: unknown type name ‘Val_Desc’
-  Val_Desc VD;
-  ^
-SearchEngine/SearchEngine.c:229:2: error: unknown type name ‘IMGdesc’
-  IMGdesc imgDsc, tmpIdsc;
-  ^
-SearchEngine/SearchEngine.c:231:2: error: unknown type name ‘TextDesx’
-  TextDesx txtDsc , tmpTdsc;
-  ^
-SearchEngine/SearchEngine.c:232:2: warning: passing argument 2 of ‘fopen’ makes pointer from integer without a cast [enabled by default]
-  FILE *listBASE=fopen("listBAseDescriptor.txt" , 'r'); // NEED TO CHECK THE PATH HERE
-  ^
-In file included from Descriptor/BaseDesc.h:7:0,
-                 from SearchEngine/SearchEngine.h:12,
-                 from SearchEngine/SearchEngine.c:12:
-/usr/include/stdio.h:272:14: note: expected ‘const char * __restrict__’ but argument is of type ‘int’
- extern FILE *fopen (const char *__restrict __filename,
-              ^
+In file included from SearchEngine/SearchEngine.c:13:0:
+SearchEngine/SearchEngine.h:100:7: note: expected ‘PileVD’ but argument is of type ‘struct vd **’
+ char *getChoosenFile(PileVD PilevalDesc,int choice);
+       ^
 SearchEngine/SearchEngine.c: In function ‘researchSound’:
-SearchEngine/SearchEngine.c:249:2: error: unknown type name ‘PileVD’
-  PileVD PilevalDesc;
-  ^
-SearchEngine/SearchEngine.c:257:4: warning: passing argument 1 of ‘fileExists’ from incompatible pointer type [enabled by default]
+SearchEngine/SearchEngine.c:246:4: warning: passing argument 1 of ‘fileExists’ from incompatible pointer type [enabled by default]
     if(!fileExists(path)) printf("This file don\'t exist\n");
     ^
 In file included from Descriptor/Picture/PictureDesc.h:10:0,
                  from Descriptor/BaseDesc.h:12,
                  from SearchEngine/SearchEngine.h:12,
-                 from SearchEngine/SearchEngine.c:12:
+                 from SearchEngine/SearchEngine.c:13:
 FileManager/FileManager.h:31:6: note: expected ‘const char *’ but argument is of type ‘char **’
  Bool fileExists(char const * path);
       ^
-SearchEngine/SearchEngine.c:258:3: warning: passing argument 1 of ‘fileExists’ from incompatible pointer type [enabled by default]
-   } while (!fileExists(path) && validPath!=0)
+SearchEngine/SearchEngine.c:247:3: warning: passing argument 1 of ‘fileExists’ from incompatible pointer type [enabled by default]
+   } while (!fileExists(path) && validPath!=0);
    ^
 In file included from Descriptor/Picture/PictureDesc.h:10:0,
                  from Descriptor/BaseDesc.h:12,
                  from SearchEngine/SearchEngine.h:12,
-                 from SearchEngine/SearchEngine.c:12:
+                 from SearchEngine/SearchEngine.c:13:
 FileManager/FileManager.h:31:6: note: expected ‘const char *’ but argument is of type ‘char **’
  Bool fileExists(char const * path);
       ^
-SearchEngine/SearchEngine.c:259:3: error: expected ‘;’ before ‘if’
-   if(!validPath) ResearchMenu();
-   ^
-SearchEngine/SearchEngine.c:260:3: error: ‘else’ without a previous ‘if’
-   else{
-   ^
-SearchEngine/SearchEngine.c:262:4: error: ‘sdDesc’ undeclared (first use in this function)
-    sdDesc=getDesc(BDsound , ID , SOUND); // ???? NEED CHECKING <==============
+SearchEngine/SearchEngine.c:250:4: warning: passing argument 1 of ‘getAddress’ from incompatible pointer type [enabled by default]
+    ID=getAddress(soundbase,path);
     ^
-SearchEngine/SearchEngine.c:262:19: error: ‘BDsound’ undeclared (first use in this function)
-    sdDesc=getDesc(BDsound , ID , SOUND); // ???? NEED CHECKING <==============
-                   ^
-SearchEngine/SearchEngine.c:270:16: error: invalid type argument of unary ‘*’ (have ‘int’)
-     addOrderVD(*PilevalDesc , percent , pathOfList); // add in decrease Order
-                ^
-SearchEngine/SearchEngine.c:273:11: error: ‘BDimg’ undeclared (first use in this function)
-    fclose(BDimg);
-           ^
-SearchEngine/SearchEngine.c:276:4: error: expected ‘;’ before ‘printf’
-    printf("+=================0.RETURN+\n");
+In file included from SearchEngine/SearchEngine.h:12:0,
+                 from SearchEngine/SearchEngine.c:13:
+Descriptor/BaseDesc.h:105:6: note: expected ‘ListBaseDesc’ but argument is of type ‘struct FILE *’
+ long getAddress(ListBaseDesc list, char * path);
+      ^
+SearchEngine/SearchEngine.c:250:4: warning: passing argument 2 of ‘getAddress’ from incompatible pointer type [enabled by default]
+    ID=getAddress(soundbase,path);
     ^
-SearchEngine/SearchEngine.c:281:7: warning: passing argument 2 of ‘strcat’ makes pointer from integer without a cast [enabled by default]
+In file included from SearchEngine/SearchEngine.h:12:0,
+                 from SearchEngine/SearchEngine.c:13:
+Descriptor/BaseDesc.h:105:6: note: expected ‘char *’ but argument is of type ‘char **’
+ long getAddress(ListBaseDesc list, char * path);
+      ^
+SearchEngine/SearchEngine.c:251:4: warning: passing argument 1 of ‘getDesc’ from incompatible pointer type [enabled by default]
+    sdDesc=getDesc(soundbase , ID , SOUND);
+    ^
+In file included from SearchEngine/SearchEngine.h:12:0,
+                 from SearchEngine/SearchEngine.c:13:
+Descriptor/BaseDesc.h:75:8: note: expected ‘BaseDesc’ but argument is of type ‘struct FILE *’
+ void * getDesc(BaseDesc base, long address, FileType type);
+        ^
+SearchEngine/SearchEngine.c:254:5: warning: conversion lacks type at end of format [-Wformat=]
+     fscanf(soundbase , "%l" , &ID );
+     ^
+SearchEngine/SearchEngine.c:254:5: warning: too many arguments for format [-Wformat-extra-args]
+SearchEngine/SearchEngine.c:255:5: warning: format ‘%s’ expects argument of type ‘char *’, but argument 3 has type ‘char **’ [-Wformat=]
+     fscanf(soundbase, "%s" , pathOfList); // Search the iTh path of the ListBASE
+     ^
+SearchEngine/SearchEngine.c:257:5: warning: passing argument 1 of ‘getDesc’ from incompatible pointer type [enabled by default]
+     fileOfDesc=getDesc(soundbase , ID , SOUND); // open the link of the linked descript
+     ^
+In file included from SearchEngine/SearchEngine.h:12:0,
+                 from SearchEngine/SearchEngine.c:13:
+Descriptor/BaseDesc.h:75:8: note: expected ‘BaseDesc’ but argument is of type ‘struct FILE *’
+ void * getDesc(BaseDesc base, long address, FileType type);
+        ^
+SearchEngine/SearchEngine.c:258:5: warning: passing argument 2 of ‘compareSoundDesc’ from incompatible pointer type [enabled by default]
+     percent=compareSoundDesc(sdDesc , fileOfDesc );
+     ^
+In file included from SearchEngine/SearchEngine.c:14:0:
+SearchEngine/Sound/SoundSearch.h:35:7: note: expected ‘struct SoundDesc *’ but argument is of type ‘struct FILE *’
+ float compareSoundDesc(SoundDesc *searchedDesc ,SoundDesc *indexedDesc);
+       ^
+SearchEngine/SearchEngine.c:259:5: warning: passing argument 3 of ‘addOrderVD’ makes integer from pointer without a cast [enabled by default]
+     addOrderVD(PilevalDesc , percent , pathOfList); // add in decrease Order
+     ^
+In file included from SearchEngine/SearchEngine.c:13:0:
+SearchEngine/SearchEngine.h:88:6: note: expected ‘char’ but argument is of type ‘char **’
+ void addOrderVD(PileVD *pvd, float perct , char nFile);
+      ^
+SearchEngine/SearchEngine.c:264:4: warning: passing argument 1 of ‘printBestList’ from incompatible pointer type [enabled by default]
+    printBestList(PilevalDesc , 0);
+    ^
+In file included from SearchEngine/SearchEngine.c:13:0:
+SearchEngine/SearchEngine.h:94:6: note: expected ‘PileVD’ but argument is of type ‘struct vd **’
+ void printBestList(PileVD pvd , int j);
+      ^
+SearchEngine/SearchEngine.c:270:7: warning: passing argument 1 of ‘getChoosenFile’ from incompatible pointer type [enabled by default]
        strcat(openPath , getChoosenFile(PilevalDesc,choice));
        ^
+In file included from SearchEngine/SearchEngine.c:13:0:
+SearchEngine/SearchEngine.h:100:7: note: expected ‘PileVD’ but argument is of type ‘struct vd **’
+ char *getChoosenFile(PileVD PilevalDesc,int choice);
+       ^
+SearchEngine/SearchEngine.c: In function ‘addOrderVD’:
+SearchEngine/SearchEngine.c:282:4: warning: passing argument 2 of ‘strcpy’ makes pointer from integer without a cast [enabled by default]
+    strcpy(tmpPvd->nameFile, nFile);
+    ^
 In file included from Descriptor/BaseDesc.h:9:0,
                  from SearchEngine/SearchEngine.h:12,
-                 from SearchEngine/SearchEngine.c:12:
-/usr/include/string.h:137:14: note: expected ‘const char * __restrict__’ but argument is of type ‘int’
- extern char *strcat (char *__restrict __dest, const char *__restrict __src)
+                 from SearchEngine/SearchEngine.c:13:
+/usr/include/string.h:129:14: note: expected ‘const char * __restrict__’ but argument is of type ‘char’
+ extern char *strcpy (char *__restrict __dest, const char *__restrict __src)
               ^
-SearchEngine/SearchEngine.c: At top level:
-SearchEngine/SearchEngine.c:287:17: error: unknown type name ‘PileVD’
- void addOrderVD(PileVD *pvd, float perct , char nFile){ 
-                 ^
-SearchEngine/SearchEngine.c:308:20: error: unknown type name ‘PileVD’
- void printBestList(PileVD pvd , j){ //récursif
-                    ^
-SearchEngine/SearchEngine.c:308:33: error: unknown type name ‘j’
- void printBestList(PileVD pvd , j){ //récursif
-                                 ^
-SearchEngine/SearchEngine.c:314:22: error: unknown type name ‘PileVD’
- char *getChoosenFile(PileVD PilevalDesc,int choice){ // return the nTh name of the Pile of file, to can open it easier.
-                      ^
+SearchEngine/SearchEngine.c:290:4: warning: passing argument 2 of ‘strcpy’ makes pointer from integer without a cast [enabled by default]
+    strcpy(tmpPvd->nameFile, nFile);
+    ^
+In file included from Descriptor/BaseDesc.h:9:0,
+                 from SearchEngine/SearchEngine.h:12,
+                 from SearchEngine/SearchEngine.c:13:
+/usr/include/string.h:129:14: note: expected ‘const char * __restrict__’ but argument is of type ‘char’
+ extern char *strcpy (char *__restrict __dest, const char *__restrict __src)
+              ^
+Interface/interface.c: In function ‘mainMenu’:
+Interface/interface.c:54:4: warning: passing argument 1 of ‘enterGlobsVariables’ from incompatible pointer type [enabled by default]
+    if(enterGlobsVariables(CONF_FILE_NAME)) printf("Succesfull saved parameters.\n");
+    ^
+In file included from Interface/interface.c:12:0:
+Configurator/Configurator.h:63:6: note: expected ‘struct FILE *’ but argument is of type ‘char *’
+ Bool enterGlobsVariables(FILE* confFile);
+      ^
 Interface/interface.c: In function ‘IndexationMenu’:
-Interface/interface.c:83:5: warning: passing argument 1 of ‘fileExists’ from incompatible pointer type [enabled by default]
-     if(fileExists(path))
+Interface/interface.c:94:3: warning: passing argument 1 of ‘getKeyboard_String’ from incompatible pointer type [enabled by default]
+   validPath = getKeyboard_String(path,0, maxSizePath);
+   ^
+In file included from Configurator/Configurator.h:18:0,
+                 from Interface/interface.c:12:
+Input/Keyboard.h:92:5: note: expected ‘char *’ but argument is of type ‘char **’
+ int getKeyboard_String(char * typedString, int minChar, int maxChar);
      ^
+Interface/interface.c:95:3: warning: passing argument 1 of ‘fileExists’ from incompatible pointer type [enabled by default]
+   if(fileExists(path)){
+   ^
 In file included from Descriptor/Picture/PictureDesc.h:10:0,
                  from Descriptor/BaseDesc.h:12,
                  from Interface/interface.h:11,
@@ -299,34 +206,59 @@ In file included from Descriptor/Picture/PictureDesc.h:10:0,
 FileManager/FileManager.h:31:6: note: expected ‘const char *’ but argument is of type ‘char **’
  Bool fileExists(char const * path);
       ^
-Interface/interface.c:85:4: error: expected expression before ‘}’ token
-    } while ( validPath > 0 ) //while !0=NULL or !-1=so littre or !=-2=ERROR
+Interface/interface.c:96:4: warning: passing argument 1 of ‘fopen’ from incompatible pointer type [enabled by default]
+    fileTOindex=fopen(path,"r");
     ^
-Interface/interface.c:86:4: error: expected ‘;’ before ‘if’
-    if(validPath==0)
+In file included from Descriptor/BaseDesc.h:7:0,
+                 from Interface/interface.h:11,
+                 from Interface/interface.c:11:
+/usr/include/stdio.h:272:14: note: expected ‘const char * __restrict__’ but argument is of type ‘char **’
+ extern FILE *fopen (const char *__restrict __filename,
+              ^
+Interface/interface.c:100:10: warning: assignment from incompatible pointer type [enabled by default]
+      desc=createSoundDesc(fileTOindex); 
+          ^
+Interface/interface.c:101:6: warning: passing argument 1 of ‘addDesc’ from incompatible pointer type [enabled by default]
+      addDesc(basedesc,desc,SOUND);
+      ^
+In file included from Interface/interface.h:11:0,
+                 from Interface/interface.c:11:
+Descriptor/BaseDesc.h:64:6: note: expected ‘struct desc **’ but argument is of type ‘BaseDesc’
+ void addDesc(BaseDesc *base, void * structDesc, FileType type);
+      ^
+Interface/interface.c:104:10: warning: assignment from incompatible pointer type [enabled by default]
+      desc=createPictureDesc(fileTOindex); 
+          ^
+Interface/interface.c:105:6: warning: passing argument 1 of ‘addDesc’ from incompatible pointer type [enabled by default]
+      addDesc(basedesc,desc,PICTURE);
+      ^
+In file included from Interface/interface.h:11:0,
+                 from Interface/interface.c:11:
+Descriptor/BaseDesc.h:64:6: note: expected ‘struct desc **’ but argument is of type ‘BaseDesc’
+ void addDesc(BaseDesc *base, void * structDesc, FileType type);
+      ^
+Interface/interface.c:121:4: warning: passing argument 1 of ‘strcpy’ from incompatible pointer type [enabled by default]
+    strcpy(path,""); // Permite to  secure the next path to enter by the user
     ^
-Interface/interface.c:88:4: error: ‘else’ without a previous ‘if’
-    else
-    ^
+In file included from Descriptor/BaseDesc.h:9:0,
+                 from Interface/interface.h:11,
+                 from Interface/interface.c:11:
+/usr/include/string.h:129:14: note: expected ‘char * __restrict__’ but argument is of type ‘char **’
+ extern char *strcpy (char *__restrict __dest, const char *__restrict __src)
+              ^
 Interface/interface.c: In function ‘ResearchMenu’:
-Interface/interface.c:102:1: error: expected expression before ‘<<’ token
- <<<<<<< HEAD
- ^
-Interface/interface.c:115:2: error: unknown type name ‘TextDesx’
-  TextDesx txtDsc;
-  ^
-Interface/interface.c:146:4: warning: passing argument 2 of ‘fopen’ makes pointer from integer without a cast [enabled by default]
-    IMGbase=fopen("PictureBaseDesc.db" , 'r');
-    ^
+Interface/interface.c:180:5: warning: passing argument 2 of ‘fopen’ makes pointer from integer without a cast [enabled by default]
+     IMGbase=fopen("PictureBaseDesc.db" , 'r');
+     ^
 In file included from Descriptor/BaseDesc.h:7:0,
                  from Interface/interface.h:11,
                  from Interface/interface.c:11:
 /usr/include/stdio.h:272:14: note: expected ‘const char * __restrict__’ but argument is of type ‘int’
  extern FILE *fopen (const char *__restrict __filename,
               ^
-Interface/interface.c:152:4: warning: passing argument 2 of ‘fopen’ makes pointer from integer without a cast [enabled by default]
-    SOUNDbase=fopen("SoundBaseDesc.db" , 'r');
-    ^
+Interface/interface.c:190:5: warning: passing argument 2 of ‘fopen’ makes pointer from integer without a cast [enabled by default]
+     SOUNDbase=fopen("SoundBaseDesc.db" , 'r');
+     ^
 In file included from Descriptor/BaseDesc.h:7:0,
                  from Interface/interface.h:11,
                  from Interface/interface.c:11:
@@ -338,7 +270,7 @@ Descriptor/Sound/SoundDesc.c:136:2: warning: format ‘%ld’ expects argument o
   printf("\nId: %ld", desc->address);
   ^
 Descriptor/Picture/PictureDesc.c: In function ‘readPictureDesc’:
-Descriptor/Picture/PictureDesc.c:134:7: warning: format ‘%f’ expects argument of type ‘float *’, but argument 3 has type ‘double’ [-Wformat=]
+Descriptor/Picture/PictureDesc.c:120:7: warning: format ‘%f’ expects argument of type ‘float *’, but argument 3 has type ‘double’ [-Wformat=]
        fscanf(file,"%f" , (*desc).histogram[i]);
        ^
 Configurator/Configurator.c: In function ‘enterGlobsVariables’:
@@ -422,3 +354,11 @@ Descriptor/BaseDesc.c: In function ‘initBaseDesc’:
 Descriptor/BaseDesc.c:187:5: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘long int’ [-Wformat=]
      printf("%d\n", ftell(baseDesc));
      ^
+main.c: In function ‘main’:
+main.c:12:3: warning: passing argument 1 of ‘enterGlobsVariables’ from incompatible pointer type [enabled by default]
+   if(enterGlobsVariables(CONF_FILE_NAME)) printf("Succesfull saved parameters.\n");
+   ^
+In file included from main.c:6:0:
+Configurator/Configurator.h:63:6: note: expected ‘struct FILE *’ but argument is of type ‘char *’
+ Bool enterGlobsVariables(FILE* confFile);
+      ^

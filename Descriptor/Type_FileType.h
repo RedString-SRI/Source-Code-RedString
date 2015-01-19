@@ -3,6 +3,6 @@
 #define TYPE_FILE_TYPE
 
 // comments to write
-typedef enum {TEXT, PICTURE, SOUND, DESC} FileType;
+typedef enum {TEXT, PICTURE, SOUND} FileType;
 
 #endif

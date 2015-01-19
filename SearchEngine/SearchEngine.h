@@ -10,36 +10,25 @@
 */
 
 #include"BaseDesc.h"
+#include"interface.h"
 
 typedef enum COLOR COLOR;
-enum COLOR(BLACK=000000, 
+enum COLOR{BLACK=000000, 
             LIGHTGRAY=101010, 
             DARKGRAY=010101, 
             WHITE=111111, 
             RED=110000,
             PINK=111010, 
             YELLOW=001111, 
-            PURPLE=??????, 
-            BROWN=??????, 
+            PURPLE=100010, 
+            BROWN=100101, 
             GREEN=001100, 
             LIGHTGREEN=001000, 
             BLUE=000011,
-            LIGHTBLUE=000010);
+            LIGHTBLUE=000010};
 /**
 * \brief byColor.
-* Search specifiquely in an image's desc a color:
-* BLACK:    00 00 00 -> 0
-* LIGHTGRAY:10 10 10 -> 42
-* DARKGRAY: 01 01 01 -> 21
-* WHITE:    11 11 11 -> 63
-* RED:      11 00 00 -> 48
-* PINK:     11 10 10 -> 58
-* YELLOW:   00 11 11 -> 15
-* PURPLE:
-* BROWN:
-* GREEN:    00 11 00 -> 12
-* BLUE:     00 00 11 -> 3
-* 
+* Search specifiquely in an image's desc a color.
 *
 */
 void byColor(COLOR c);
@@ -48,7 +37,7 @@ void byColor(COLOR c);
 * \brief compareFileIMG
 * Make a percent of difference bewteen 2 IMGDdesc.
 */
-float compareFileIMG(PictureDesc imgD1, PictureDesc imgD2);
+float compareFileIMG(PictureDesc *imgD1, PictureDesc *imgD2);
 
 /**
 * \brief byNamedColor
@@ -56,7 +45,7 @@ float compareFileIMG(PictureDesc imgD1, PictureDesc imgD2);
 */
 void byNamedColor();
 
-*/**
+/**
 * \brief isAColor
 * Say if the color in parameter is in the listing of possible colors.
 */
@@ -102,7 +91,7 @@ void addOrderVD(PileVD *pvd, float perct , char nFile);
 * \brief printfBestList
 * Recursive, print the pertinence listing of the user's choice.
 */
-void printBestList(PileVD pvd , j);
+void printBestList(PileVD pvd , int j);
 
 /**
 * \brief getChoosenFile

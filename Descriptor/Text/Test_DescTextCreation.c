@@ -1,7 +1,13 @@
+//file Test_TextDesc.c
+// brief : Test of the functions to analyse texts
+//Author Estelle Randria
+//Date : 01/15/2015
+
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "Text_Analyse.h"
+#include "TextDesc.h"
 
 int main () {
 

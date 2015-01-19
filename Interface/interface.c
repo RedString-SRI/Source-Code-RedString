@@ -70,7 +70,7 @@ void IndexationMenu(){
 	FileType filetype;
 	FILE *fileTOindex;
 	BaseDesc basedesc;
-	initBaseDesc(&basedesc);
+	initBaseDesc(basedesc);
 	
 	do{
 		printf("+=========================+\n");

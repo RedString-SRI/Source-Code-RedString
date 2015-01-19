@@ -16,11 +16,6 @@
 
 
 /**
- *\brief Give the size of the picture 
- */
-Dimension * getSizePicture(FILE *fileIMG);
-
-/**
  *\brief create the picture's desc
  */
 PictureDesc * createPictureDesc(FILE *file);

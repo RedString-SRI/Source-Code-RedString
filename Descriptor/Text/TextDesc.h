@@ -4,19 +4,13 @@
 //Date : 11/28/2014
 
 #include "BaseDesc.h"
-#include "TYPE_Term.h"
+#include "Type_Term.h"
 #include "Type_Bool.h"
-#include "TextDesc.h"
 #include "Type_TextDesc.h"
 
 
 #define TMAX 3
 
-typedef struct term {
-char * word;
-int occur;
-//struct term *ptr_next ;
-} Term ; //*Index ;
 
 typedef struct cell {
 Term t1 ; 

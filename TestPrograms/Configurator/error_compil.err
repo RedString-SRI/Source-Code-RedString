@@ -1,77 +1,29 @@
 ../../Configurator/Configurator.c: In function ‘enterGlobsVariables’:
-../../Configurator/Configurator.c:57:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
-  while(getKeyboard_Long(&globs.listBaseDesc_maxPathLength, 0, MAXNAMLEN) != 1)
-  ^
+../../Configurator/Configurator.c:59:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
- int getKeyboard_Long(long * typedLong, long min, long max);
-     ^
-../../Configurator/Configurator.c:61:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
-  while(getKeyboard_Long(&globs.textDesc_occurThreshold, 0, INT_MAX) != 1)
-  ^
+../../Configurator/Configurator.c:63:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
- int getKeyboard_Long(long * typedLong, long min, long max);
-     ^
-../../Configurator/Configurator.c:65:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
-  while(getKeyboard_Long(&globs.textDesc_maxTerms, 0, INT_MAX) != 1)
-  ^
+../../Configurator/Configurator.c:67:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
- int getKeyboard_Long(long * typedLong, long min, long max);
-     ^
-../../Configurator/Configurator.c:70:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
-  while(getKeyboard_Long(&globs.pictureDesc_nbWeightyBits, 0, INT_MAX) != 1)
-  ^
+../../Configurator/Configurator.c:72:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
- int getKeyboard_Long(long * typedLong, long min, long max);
-     ^
-../../Configurator/Configurator.c:74:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
-  while(getKeyboard_Long(&globs.pictureDesc_compTolerance, 0, INT_MAX) != 1)
-  ^
+../../Configurator/Configurator.c:76:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
- int getKeyboard_Long(long * typedLong, long min, long max);
-     ^
-../../Configurator/Configurator.c:78:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
-  while(getKeyboard_Long(&globs.soundDesc_windowSize, 0, INT_MAX) != 1)
-  ^
+../../Configurator/Configurator.c:80:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
- int getKeyboard_Long(long * typedLong, long min, long max);
-     ^
-../../Configurator/Configurator.c:82:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
-  while(getKeyboard_Long(&globs.soundDesc_nbInterval, 0, INT_MAX) != 1)
-  ^
+../../Configurator/Configurator.c:84:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
- int getKeyboard_Long(long * typedLong, long min, long max);
-     ^
-../../Configurator/Configurator.c:95:2: warning: passing argument 1 of ‘getKeyboard_Double’ from incompatible pointer type [enabled by default]
-  while(getKeyboard_Double(&globs.soundDesc_minWindowMatch, 0.0, 1.0) != 1)
-  ^
-In file included from ../../Configurator/Configurator.h:18:0,
-                 from ../../Configurator/Configurator.c:7:
-../../Input/Keyboard.h:69:5: note: expected ‘double *’ but argument is of type ‘float *’
- int getKeyboard_Double(double * typedDouble, double min, double max);
-     ^
-../../Configurator/Configurator.c:99:2: warning: passing argument 1 of ‘getKeyboard_Double’ from incompatible pointer type [enabled by default]
-  while(getKeyboard_Double(&globs.soundDesc_minQuantifMatch, 0.0, 1.0) != 1)
-  ^
-In file included from ../../Configurator/Configurator.h:18:0,
-                 from ../../Configurator/Configurator.c:7:
-../../Input/Keyboard.h:69:5: note: expected ‘double *’ but argument is of type ‘float *’
- int getKeyboard_Double(double * typedDouble, double min, double max);
-     ^
-../../Descriptor/Sound/SoundDesc.c: In function ‘printSoundDesc’:
-../../Descriptor/Sound/SoundDesc.c:136:2: warning: format ‘%ld’ expects argument of type ‘long int’, but argument 2 has type ‘int’ [-Wformat=]
-  printf("\nId: %ld", desc->address);
-  ^

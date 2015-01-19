@@ -34,19 +34,19 @@ int main()
 
 	printf("\n\n\n\n\tTester_Configurator:\n");
 	
-	hasPassed = tests_setGlobsVariables(FALSE);
+	hasPassed = tests_setGlobsVariables(TRUE);
 	if(hasPassed)
 		printf("\n\t\tTests_setGlobsVariables: Success\n");
 	else
 		printf("\n\t\tTests_setGlobsVariables: Failure\n");
 	
-	hasPassed = tests_writeReadGlobs(FALSE);
+	hasPassed = tests_writeReadGlobs(TRUE);
 	if(hasPassed)
 		printf("\n\t\tTests_writeReadGlobs: Success\n");
 	else
 		printf("\n\t\tTests_writeReadGlobs: Failure\n");
 	
-	//hasPassed = tests_enterGlobsVariables(TRUE);
+	hasPassed = tests_enterGlobsVariables(TRUE);
 	if(hasPassed)
 		printf("\n\t\tTests_enterGlobsVariables: Success\n");
 	else

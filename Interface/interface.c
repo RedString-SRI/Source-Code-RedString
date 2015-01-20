@@ -24,7 +24,7 @@ void mainMenu(){
 	int codeAccess;
 	
 	
-	system("clear");
+	
 	do{
 		printf("+=========================+\n");
 		printf("|                         |\n");

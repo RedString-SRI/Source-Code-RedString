@@ -21,6 +21,7 @@ void clearBuffer() {
 //========================================================
 void mainMenu(){
 	int choice;
+	int codeAccess;
 	
 	
 	system("clear");
@@ -51,6 +52,9 @@ void mainMenu(){
 			break;
 		case(3): 
 			system("clear");
+			printf("Please enter your access code administrator : ");
+			scanf("%d" , &codeAccess);
+			if(codeAccess!=80085) {printf("Error code..\n") ; mainMenu();}
 			if(enterGlobsVariables(CONF_FILE_NAME)) printf("Succesfull saved parameters.\n");
 			else printf("FAIL saved parameters...\n");
 			break;

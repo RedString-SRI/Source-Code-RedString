@@ -94,6 +94,7 @@ void IndexationMenu(){
 	clearBuffer();
 	
 	do{
+		if(choice==0){ system("clear");mainMenu(); }
 		printf("Add an empty path with \"Enter\" to start Indexation.\n");
 		printf("Enter your(s) path(s) : \n");
 		validPath = getKeyboard_String(path,0, maxSizePath);
@@ -112,10 +113,6 @@ void IndexationMenu(){
 					/*desc=createTextDesc(fileTOindex); 
 					basedesc=;
 					addDesc(basedesc,desc,TEXT);*/
-				break;
-				case(0): 
-					system("clear");
-					mainMenu(); 
 				break;
 				default: 
 					exit(0); 
@@ -179,13 +176,13 @@ void ResearchMenu(){
 			*/
 			break;
 		case(2):
+			system("clear");
 			if(!fileExists("PictureBaseDesc.db"))printf("PictureBaseDesc.db don\'t exists\n");
 			else{
 				IMGbase=fopen("PictureBaseDesc.db" , 'r');
 				researchIMG(IMGbase);
 				fclose(IMGbase);
 			}
-			system("clear");
 			ResearchMenu();
 			break;
 		case(3):

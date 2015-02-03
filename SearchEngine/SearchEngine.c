@@ -19,8 +19,8 @@ extern int globs_nbWeightyBits;
 //==============================ASSOCIATED RESEARCH FOR IMAGE========================================
 //===================================================================================================
 
-void byColor(COLOR c, FILE *imgbase){
-/*
+/*void byColor(COLOR c, FILE *imgbase){
+
   float *OrderPercentage;
   float percent , tmpFloat;
   int iThPath = 0;
@@ -56,8 +56,8 @@ void byColor(COLOR c, FILE *imgbase){
   if(i<0 || i>size) printf("ERROR choice\n");
   else // OPEN THE FILE §§§§§!! !!!!!!
   if(i==0) ResearchMenu() ;
- */
-}
+ 
+}*/
 
 //===================================================================================================
 float compareFileIMG(PictureDesc *imgD1 , PictureDesc *imgD2){
@@ -97,7 +97,7 @@ void byNamedColor(FILE *imgbase){
 }
 //========================================================
 Bool isAColor(char c[]){
-		if(strcomp(c,"BLACK")) 				byColor(BLACK); 
+	/*	if(strcomp(c,"BLACK")) 				byColor(BLACK); 
         else if(strcomp(c,"LIGHTGRAY")) 	byColor(LIGHTGRAY); 
         else if(strcomp(c,"DARKGRAY")) 		byColor(DARKGRAY);
         else if(strcomp(c,"WHITE"))			byColor(WHITE); 
@@ -110,7 +110,7 @@ Bool isAColor(char c[]){
         else if(strcomp(c,"LIGHTGREEN")) 	byColor(LIGHTGREEN);
         else if(strcomp(c,"BLUE")) 			byColor(BLUE);
         else if(strcomp(c,"LIGHTBLUE")) 	byColor(LIGHTBLUE);
-        else return FALSE;
+        else return FALSE;*/
         return TRUE;
 
 }

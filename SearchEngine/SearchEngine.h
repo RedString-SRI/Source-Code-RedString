@@ -31,7 +31,7 @@ enum COLOR{BLACK=000000,
 * Search specifiquely in an image's desc a color.
 *
 */
-void byColor(COLOR c);
+//void byColor(COLOR c);
 
 /**
 * \brief compareFileIMG

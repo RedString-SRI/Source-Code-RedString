@@ -71,8 +71,7 @@ void IndexationMenu(){
 	FILE *fileTOindex;
 	BaseDesc basedesc;
 	initList(&basedesc);
-	void *desc;
-	initBaseDesc(basedesc);
+	void *desc = NULL;
 	
 	do{
 		printf("+=========================+\n");

@@ -21,9 +21,10 @@ void clearBuffer() {
 //========================================================
 void mainMenu(){
 	int choice;
+	int codeAccess;
 	
 	
-	system("clear");
+	
 	do{
 		printf("+=========================+\n");
 		printf("|                         |\n");
@@ -51,6 +52,10 @@ void mainMenu(){
 			break;
 		case(3): 
 			system("clear");
+			printf("Please enter your access code administrator : ");
+			scanf("%d" , &codeAccess);
+			if(codeAccess!=80085) { clearBuffer(); printf("Error code..\n") ; mainMenu();}
+			clearBuffer();
 			if(enterGlobsVariables(CONF_FILE_NAME)) printf("Succesfull saved parameters.\n");
 			else printf("FAIL saved parameters...\n");
 			break;
@@ -90,6 +95,7 @@ void IndexationMenu(){
 	clearBuffer();
 	
 	do{
+		if(choice==0){ system("clear");mainMenu(); }
 		printf("Add an empty path with \"Enter\" to start Indexation.\n");
 		printf("Enter your(s) path(s) : \n");
 		validPath = getKeyboard_String(path,0, maxSizePath);
@@ -107,10 +113,6 @@ void IndexationMenu(){
 					/*desc=createTextDesc(fileTOindex); 
 					basedesc=;
 					addDesc(basedesc,desc,TEXT);*/
-				break;
-				case(0): 
-					system("clear");
-					mainMenu(); 
 				break;
 				default: 
 					exit(0); 
@@ -174,13 +176,13 @@ void ResearchMenu(){
 			*/
 			break;
 		case(2):
+			system("clear");
 			if(!fileExists("PictureBaseDesc.db"))printf("PictureBaseDesc.db don\'t exists\n");
 			else{
 				IMGbase=fopen("PictureBaseDesc.db" , 'r');
 				researchIMG(IMGbase);
 				fclose(IMGbase);
 			}
-			system("clear");
 			ResearchMenu();
 			break;
 		case(3):

@@ -96,6 +96,7 @@ void byNamedColor(FILE *imgbase){
 */
 }
 //========================================================
+/*
 Bool isAColor(char c[]){
 	/*	if(strcomp(c,"BLACK")) 				byColor(BLACK); 
         else if(strcomp(c,"LIGHTGRAY")) 	byColor(LIGHTGRAY); 
@@ -114,6 +115,7 @@ Bool isAColor(char c[]){
         return TRUE;
 
 }
+*/
 //========================================================
 void researchIMG(FILE *imgbase){
 	int validPath;

@@ -12,8 +12,10 @@ void main() {
 		if(enterGlobsVariables(CONF_FILE_NAME)) printf("Succesfull saved parameters.\n");
 			else printf("FAIL saved parameters...\n");
 	}
-	else
+	else{
+		system("clear");
   		mainMenu(); // quite simply
+	}
 }
 
 /**

@@ -20,10 +20,10 @@ Bool initConfigurator()
 	if(fileSize(confFile) == sizeof(WritableGlobs))
 	{
 		if(readGlobs(confFile))
-			printf("\nConfiguration variables loaded successfully.");
+			printf("\nConfiguration variables loaded successfully.\n");
 		else
 		{
-			printf("\nAn error has occurred when loading the configuration file");
+			printf("\nAn error has occurred when loading the configuration file\n");
 			return FALSE;
 		}
 	}

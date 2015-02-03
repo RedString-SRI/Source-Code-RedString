@@ -42,7 +42,7 @@ void printList(BaseDesc base, FileType type){
 }
 
 //===================================================================================================
-Bool listIsEmpty(BaseDesc base){
+Bool listIsEmpty(BaseDesc base){	
     return(base==NULL);
 }
 
@@ -310,14 +310,14 @@ void addListBaseDesc(ListBaseDesc * listBaseDesc, char path[globs_maxPathLength]
 //===================================================================================================
 void removeDesc(BaseDesc * base, FileType type){
     if(listIsEmpty(*base))
-        /** error **/;
+        printf("Sorry bitch, nothing to put out of there\n");
     else{
 		FILE * baseDesc;
 		switch(type){
 			/*case TEXT: fopen("TextBaseDesc.db", "w+");
-		    break;
-		    case PICTURE: fopen("PictureBaseDesc.db", "w+");
 		    break;*/
+		    case PICTURE: fopen("PictureBaseDesc.db", "w+");
+		    break;
 		    case SOUND: fopen("SoundBaseDesc.db", "w+");
 		    break;
 		}
@@ -328,10 +328,10 @@ void removeDesc(BaseDesc * base, FileType type){
 			switch(type){
 				/*case TEXT:
 						writeTextDesc(baseDesc, ptr_p->element);
-				break;
+				break;*/
 				case PICTURE:
 						writePictureDesc(baseDesc, ptr_p->element);
-				break;*/
+				break;
 				case SOUND:
 						writeSoundDesc(baseDesc, ptr_p->element);
 				break; 

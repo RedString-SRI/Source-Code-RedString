@@ -95,6 +95,9 @@ void IndexationMenu(){
 	clearBuffer();
 	
 	do{
+			
+					printf("Sgronieunieux\n");
+					fflush(stdout);	
 		if(choice==0){ system("clear");mainMenu(); }
 		printf("Add an empty path with \"Enter\" to start Indexation.\n");
 		printf("Enter your(s) path(s) : \n");
@@ -104,15 +107,15 @@ void IndexationMenu(){
 			if(fileTOindex==NULL){ printf("FAIL !\n"); fflush(stdout) ; exit(0);}
 			switch(choice){
 				case(1):			 
-					addDesc(basedesc,createSoundDesc(fileTOindex),SOUND);
+					addDesc(&basedesc,createSoundDesc(fileTOindex),SOUND);
 				break;
-				case(2):			
-					addDesc(basedesc,createPictureDesc(fileTOindex),PICTURE);
+				case(2):	
+					addDesc(&basedesc,createPictureDesc(fileTOindex),PICTURE);
 				break;
 				case(3):			
 					/*desc=createTextDesc(fileTOindex); 
 					basedesc=;
-					addDesc(basedesc,desc,TEXT);*/
+					addDesc(&basedesc,desc,TEXT);*/
 				break;
 				default: 
 					exit(0); 

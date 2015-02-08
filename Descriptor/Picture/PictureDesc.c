@@ -24,7 +24,7 @@ PictureDesc * createPictureDesc(FILE *file){
    fscanf(file , "%d" , &((*imgdesc).size.height) );
    fscanf(file , "%d" , &((*imgdesc).size.width) );
    fscanf(file , "%d" , &((*imgdesc).nbcomp) );
-   sizeH=(*imgdesc).size.height; // only to have a best code, more understandable
+   sizeH=(*imgdesc).size.height; // only to have a better code, more understandable
    sizeW=(*imgdesc).size.width;
    nbComp=(*imgdesc).nbcomp;
    nbc=nbComp;
@@ -33,9 +33,9 @@ PictureDesc * createPictureDesc(FILE *file){
    matrix=(int*)malloc((sizeW*sizeH*nbComp)*sizeof(int)); //matrix 1 dimension ...
 
 	while(!feof(file)){
-             fscanf(file , "%d" , matrix+i);
+             	fscanf(file , "%d" , matrix+i);
 		if(matrix[i]>255 || matrix[i]<0){fprintf(stderr,"ERROR, false IMG\n"); exit(0);} // security
-	     i++;
+	     	i++;
 	}
 	j=0;
 	for(j; j<sizeH*sizeW ;j++){

@@ -12,7 +12,7 @@ extern int globs_nbWeightyBits;
 
 
 PictureDesc * createPictureDesc(FILE *file){
-   int nbc ;
+   int tmpval=1 ;
    int *matrix ;
    int sizeH , sizeW , nbComp; 
    int bit[256]={0} ;
@@ -20,39 +20,55 @@ PictureDesc * createPictureDesc(FILE *file){
    int nbrPixel;
    int i , j , k , pos=0 , tmpval=1;
    PictureDesc *imgdesc;
-
-   fscanf(file , "%d" , &((*imgdesc).size.height) );
+   int quantif=globs_nbWeightyBit;;
+   
    fscanf(file , "%d" , &((*imgdesc).size.width) );
+   fscanf(file , "%d" , &((*imgdesc).size.height) );
    fscanf(file , "%d" , &((*imgdesc).nbcomp) );
    sizeH=(*imgdesc).size.height; // only to have a better code, more understandable
    sizeW=(*imgdesc).size.width;
    nbComp=(*imgdesc).nbcomp;
    nbc=nbComp;
    nbrPixel=pow(2,globs_nbWeightyBits*nbComp);
+   
+   
+   matrix=(int*)malloc((size.width*size.height*3)*sizeof(int)); //matrix 1 dimension ...
 
-   matrix=(int*)malloc((sizeW*sizeH*nbComp)*sizeof(int)); //matrix 1 dimension ...
+   for(i=0 ; i<sizeW*sizeH ; i++){ // scan the whole matrix : 1rst Red , 2nd Green , 3th Blue
+         tmpBit=0;
+         fscanf(file , "%d" , matrix+i); // on RED matrix
+         fscanf(file , "%d" , matrix+1*sizeW*sizeH+i); // on GREEN matrix
+         fscanf(file , "%d" , matrix+2*sizeW*sizeH+i); // on BLUE matrix
 
-	while(!feof(file)){
-             	fscanf(file , "%d" , matrix+i);
-		if(matrix[i]>255 || matrix[i]<0){fprintf(stderr,"ERROR, false IMG\n"); exit(0);} // security
-	     	i++;
-	}
-	j=0;
-	for(j; j<sizeH*sizeW ;j++){
-		while(nbc>0) {
-			for(k=1 ; k<=globs_nbWeightyBits; k++){
-				if(matrix[j] >= ((int)255/k +(k!=1)) ){ // can differentiate 255, 128 , 64 ...
-					matrix[j] -= ((int)255/k +(k!=1));
-					pos+=pow(2,(nbc*globs_nbWeightyBits - k+1));
-				}
-			
-			}
-			nbc--;
-		}
-		nbc=nbComp;	
-		bit[pos]++;
-		pos=0;
-	}
+         while(quantif > 0) {
+               matrix[i] %= (255/tmpval);
+               matrix[1*sizeH*sizeW+i] %= ((int)(255/tmpval) + (tmpval!=1) ); //+ tmpval!=1 : differentiate 127 of 128, because (int)255/2=127, but bit2=1 if number is a modulo of 128, not 127
+               matrix[2*sizeH*sizeW+i] %= ((int)(255/tmpval) + (tmpval!=1) );
+
+            if( matrix[i] == 0 )
+                tmpBit+= pow(2,3+quantif); // on RED matrix, for example quantif=2 : modulo 128, 255
+            if( matrix[1*sizeH*sizeW+i] == 0 )
+                tmpBit+= pow(2,1+quantif); // on  GREEN matrix
+            if( matrix[2*sizeH*sizeH+i] == 0 )
+                tmpBit+=1*pow(2,quantif-1); // on BLUE matrix
+
+            quantif--;
+            tmpval++;
+         /*For example (255,128,16) and quantif=2
+          * 1rst round:quantif=2 & tmpval=1 --> matRED[]%255=0 --> tmpBit=32
+          *                                 --> matGREEN[]%255=128 --> tmpBIT=32
+          *                                 --> matBLUE[]%255=16 --> tmpBIT=32
+          * 2nd round:quantif=1 & tmpval=2 --> matRED[]%128=0 --> tmpBit=32
+          *                                 --> matGREEN[]%128=0 --> tmpBIT=36
+          *                                 --> matBLUE[]%255=16 --> tmpBIT=36
+          *--> bit[36-1]++
+          */
+         }
+         bit[tmpBit]++;
+         quantif=globs_nbWeightyBits;
+         tmpBit=0;
+         tmpval=1;
+    }
 
   for(i=0 ; i<sizeH*sizeW ; i++)
     imgdesc->histogram[i] = (float)bit[i] / ((float)(sizeH*sizeW)); // give a percentage about IntensityValuePixel on numberPixel.

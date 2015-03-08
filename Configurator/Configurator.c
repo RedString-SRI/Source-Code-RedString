@@ -124,7 +124,7 @@ void setGlobsVariables(WritableGlobs const * globs)
 	globs_minQuantifMatch = globs->soundDesc_minQuantifMatch;
 }
 //===================================================================================================
-Bool writeGlobs(WritableGlobs * globs, FILE* confFile)
+Bool writeGlobs(WritableGlobs const * globs, FILE* confFile)
 {
 	if(!writeStruct(confFile, globs, sizeof(*globs)))
 	{

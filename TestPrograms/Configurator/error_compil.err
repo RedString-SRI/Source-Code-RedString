@@ -1,29 +1,41 @@
 ../../Configurator/Configurator.c: In function ‘enterGlobsVariables’:
-../../Configurator/Configurator.c:59:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+../../Configurator/Configurator.c:60:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
-../../Configurator/Configurator.c:63:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+../../Configurator/Configurator.c:64:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
-../../Configurator/Configurator.c:67:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+../../Configurator/Configurator.c:68:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
-../../Configurator/Configurator.c:72:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+../../Configurator/Configurator.c:73:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
-../../Configurator/Configurator.c:76:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+../../Configurator/Configurator.c:77:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
-../../Configurator/Configurator.c:80:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+../../Configurator/Configurator.c:81:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
-../../Configurator/Configurator.c:84:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
+../../Configurator/Configurator.c:85:2: warning: passing argument 1 of ‘getKeyboard_Long’ from incompatible pointer type [enabled by default]
 In file included from ../../Configurator/Configurator.h:18:0,
                  from ../../Configurator/Configurator.c:7:
 ../../Input/Keyboard.h:45:5: note: expected ‘long int *’ but argument is of type ‘int *’
+../../Configurator/Configurator.c:98:2: warning: passing argument 1 of ‘getKeyboard_Double’ from incompatible pointer type [enabled by default]
+In file included from ../../Configurator/Configurator.h:18:0,
+                 from ../../Configurator/Configurator.c:7:
+../../Input/Keyboard.h:69:5: note: expected ‘double *’ but argument is of type ‘float *’
+../../Configurator/Configurator.c:102:2: warning: passing argument 1 of ‘getKeyboard_Double’ from incompatible pointer type [enabled by default]
+In file included from ../../Configurator/Configurator.h:18:0,
+                 from ../../Configurator/Configurator.c:7:
+../../Input/Keyboard.h:69:5: note: expected ‘double *’ but argument is of type ‘float *’
+Tester_Configurator.c: In function ‘tests_writeReadGlobs’:
+Tester_Configurator.c:300:5: warning: incompatible implicit declaration of built-in function ‘fabs’ [enabled by default]
+Tester_Configurator.c: In function ‘tests_setGlobsVariables’:
+Tester_Configurator.c:448:5: warning: incompatible implicit declaration of built-in function ‘fabs’ [enabled by default]

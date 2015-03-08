@@ -297,7 +297,7 @@ Bool tests_writeReadGlobs(Bool details)
 	
 	if(details)
 		printf("\nglobs_minFrequency: ");
-	if(globs_minFrequency != globs.soundDesc_minFrequency)
+	if(fabs(globs_minFrequency - globs.soundDesc_minFrequency) > 0.00001)
 	{
 		if(details)
 			printf("Fail");
@@ -311,7 +311,7 @@ Bool tests_writeReadGlobs(Bool details)
 	
 	if(details)
 		printf("\nglobs_maxFrequency: ");
-	if(globs_maxFrequency != globs.soundDesc_maxFrequency)
+	if(fabs(globs_maxFrequency - globs.soundDesc_maxFrequency) > 0.00001)
 	{
 		if(details)
 			printf("Fail");
@@ -325,7 +325,7 @@ Bool tests_writeReadGlobs(Bool details)
 	
 	if(details)
 		printf("\nglobs_minWindowMatch: ");
-	if(globs_minWindowMatch != globs.soundDesc_minWindowMatch)
+	if(fabs(globs_minWindowMatch - globs.soundDesc_minWindowMatch) > 0.00001)
 	{
 		if(details)
 			printf("Fail");
@@ -339,7 +339,7 @@ Bool tests_writeReadGlobs(Bool details)
 	
 	if(details)
 		printf("\nglobs_minQuantifMatch: ");
-	if(globs_maxFrequency != globs.soundDesc_maxFrequency)
+	if(fabs(globs_minQuantifMatch - globs.soundDesc_minQuantifMatch) > 0.00001)
 	{
 		if(details)
 			printf("Fail");
@@ -445,7 +445,7 @@ Bool tests_setGlobsVariables(Bool details)
 	
 	if(details)
 		printf("\nInitialising globs_minFrequency: ");
-	if(globs_minFrequency != globs.soundDesc_minFrequency)
+	if(fabs(globs_minFrequency - globs.soundDesc_minFrequency) > 0.00001)
 	{
 		if(details)
 			printf("Fail");
@@ -459,7 +459,7 @@ Bool tests_setGlobsVariables(Bool details)
 	
 	if(details)
 		printf("\nInitialising globs_maxFrequency: ");
-	if(globs_maxFrequency != globs.soundDesc_maxFrequency)
+	if(fabs(globs_maxFrequency - globs.soundDesc_maxFrequency) > 0.00001)
 	{
 		if(details)
 			printf("Fail");
@@ -501,7 +501,7 @@ Bool tests_setGlobsVariables(Bool details)
 	
 	if(details)
 		printf("\nInitialising globs_minWindowMatch: ");
-	if(globs_minWindowMatch != globs.soundDesc_minWindowMatch)
+	if(fabs(globs_minWindowMatch - globs.soundDesc_minWindowMatch) > 0.00001)
 	{
 		if(details)
 			printf("Fail");
@@ -515,7 +515,7 @@ Bool tests_setGlobsVariables(Bool details)
 	
 	if(details)
 		printf("\nInitialising globs_minQuantifMatch: ");
-	if(globs_maxFrequency != globs.soundDesc_maxFrequency)
+	if(fabs(globs_minQuantifMatch - globs.soundDesc_minQuantifMatch) > 0.00001)
 	{
 		if(details)
 			printf("Fail");

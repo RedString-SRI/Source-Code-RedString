@@ -15,8 +15,8 @@ Bool initConfigurator()
 		perror("initConfigurator fopen confFile");
 		return FALSE;
 	}
-	
-	// If it fits the size of an WritableGlobs, we'll consider it well written
+
+	// If it fits the size of an WritableGlobs, we can considerate it as well written.
 	if(fileSize(confFile) == sizeof(WritableGlobs))
 	{
 		if(readGlobs(confFile))
@@ -26,6 +26,7 @@ Bool initConfigurator()
 			printf("\nAn error has occurred when loading the configuration file\n");
 			return FALSE;
 		}
+
 	}
 	else
 	{
@@ -34,6 +35,7 @@ Bool initConfigurator()
 		confFile = fopen(CONF_FILE_NAME, "wb+");
 		if(confFile == NULL)
 		{
+
 			perror("initConfigurator fopen confFile");
 			return FALSE;
 		}
@@ -41,8 +43,8 @@ Bool initConfigurator()
 		printf("\nFirst you need to configure indexing parameters...");
 		if(!enterGlobsVariables(confFile))
 			printf("\nAn error has occurred while saving the configuration file");
-		
-		printf("\nIndexing parameters are now up-to-date");
+
+		printf("\nIndexing parameters are now up-to-date\n");
 	}
 
 	fclose(confFile);
@@ -98,7 +100,7 @@ Bool enterGlobsVariables(FILE* confFile)
 	printf("\tEnter the minimum percentage for a match between quantification values: ");
 	while(getKeyboard_Double(&globs.soundDesc_minQuantifMatch, 0.0, 1.0) != 1)
 		printf("\t\tPlease enter a value between %f and %f: ", 0.0, 1.0);
-	
+
 	return writeGlobs(&globs, confFile);
 }
 //===================================================================================================
@@ -120,12 +122,13 @@ void setGlobsVariables(WritableGlobs const * globs)
 //===================================================================================================
 Bool writeGlobs(WritableGlobs const * globs, FILE* confFile)
 {
+
 	if(!writeStruct(confFile, globs, sizeof(*globs)))
 	{
 /** Error Management **/
 		return FALSE;
 	}
-	
+
 	// Updating variables into global variables
 	setGlobsVariables(globs);
 	return TRUE;
@@ -140,7 +143,7 @@ Bool readGlobs(FILE* confFile)
 /** Error Management **/
 		return FALSE;
 	}
-	
+
 	// Updating variables into global variables
 	setGlobsVariables(globs);
 	

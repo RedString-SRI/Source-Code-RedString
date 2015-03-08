@@ -15,27 +15,27 @@ Bool initConfigurator()
 		perror("initConfigurator fopen confFile");
 		return FALSE;
 	}
-
-	// If it fits the size of an WritableGlobs, we can considerate it as well written.
-	if(fileSize(confFile) == sizeof(WritableGlobs))
+	
+	// If it fits the size of an WritableGlobs, we'll consider it well written
+	if(confFile != NULL && fileSize(confFile) == sizeof(WritableGlobs))
 	{
 		if(readGlobs(confFile))
-			printf("\nConfiguration variables loaded successfully.\n");
+			printf("\nConfiguration variables loaded successfully.");
 		else
 		{
-			printf("\nAn error has occurred when loading the configuration file\n");
+			printf("\nAn error has occurred when loading the configuration file");
 			return FALSE;
 		}
-
 	}
 	else
 	{
-		fclose (confFile);
+		if(confFile != NULL)
+			fclose (confFile);
+		
 		// Open the configurator file in writing mode
 		confFile = fopen(CONF_FILE_NAME, "wb+");
 		if(confFile == NULL)
 		{
-
 			perror("initConfigurator fopen confFile");
 			return FALSE;
 		}
@@ -43,8 +43,8 @@ Bool initConfigurator()
 		printf("\nFirst you need to configure indexing parameters...");
 		if(!enterGlobsVariables(confFile))
 			printf("\nAn error has occurred while saving the configuration file");
-
-		printf("\nIndexing parameters are now up-to-date\n");
+		
+		printf("\nIndexing parameters are now up-to-date");
 	}
 
 	fclose(confFile);
@@ -53,55 +53,59 @@ Bool initConfigurator()
 //===================================================================================================
 Bool enterGlobsVariables(FILE* confFile)
 {
-	WritableGlobs globs;
+	Bool retWriteGlobs;
+	WritableGlobs * globs = malloc(sizeof(WritableGlobs));
 	
 	printf("\n\tList Base Descriptor:\n\t Enter the maximum path length for an indexed file: ");
-	while(getKeyboard_Long(&globs.listBaseDesc_maxPathLength, 0, MAXNAMLEN) != 1)
+	while(getKeyboard_Long(&globs->listBaseDesc_maxPathLength, 0, MAXNAMLEN) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, MAXNAMLEN);
 	
 	printf("\n\tText indexation:\n\t Enter the occurrence threshold for words: ");
-	while(getKeyboard_Long(&globs.textDesc_occurThreshold, 0, INT_MAX) != 1)
+	while(getKeyboard_Long(&globs->textDesc_occurThreshold, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
 	printf("\tEnter the maximum terms to keep for a file: ");
-	while(getKeyboard_Long(&globs.textDesc_maxTerms, 0, INT_MAX) != 1)
+	while(getKeyboard_Long(&globs->textDesc_maxTerms, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
 	printf("\n\tPicture indexation:\n\tEnter the number of "
 		"weighty bits to store for each pixel component: ");
-	while(getKeyboard_Long(&globs.pictureDesc_nbWeightyBits, 0, INT_MAX) != 1)
+	while(getKeyboard_Long(&globs->pictureDesc_nbWeightyBits, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 
 	printf("\tEnter the comparison tolerance between two pixels: ");
-	while(getKeyboard_Long(&globs.pictureDesc_compTolerance, 0, INT_MAX) != 1)
+	while(getKeyboard_Long(&globs->pictureDesc_compTolerance, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
 	printf("\n\tSound indexation: \n\tEnter the window Size: ");
-	while(getKeyboard_Long(&globs.soundDesc_windowSize, 0, INT_MAX) != 1)
+	while(getKeyboard_Long(&globs->soundDesc_windowSize, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
 	printf("\tEnter the number of interval in a window: ");
-	while(getKeyboard_Long(&globs.soundDesc_nbInterval, 0, INT_MAX) != 1)
+	while(getKeyboard_Long(&globs->soundDesc_nbInterval, 0, INT_MAX) != 1)
 		printf("\t\tPlease enter a value between %d and %d: ", 0, INT_MAX);
 	
 	printf("\tEnter the minimum frequency: ");
-	while(getKeyboard_Double(&globs.soundDesc_minFrequency, -DBL_MAX, DBL_MAX) != 1)
+	while(getKeyboard_Double(&globs->soundDesc_minFrequency, -DBL_MAX, DBL_MAX) != 1)
 		printf("\t\tPlease enter a value between %f and %f: ", -DBL_MAX, DBL_MAX);
 			
 	printf("\tEnter the maximum frequency: ");
-	while(getKeyboard_Double(&globs.soundDesc_maxFrequency, globs.soundDesc_minFrequency, DBL_MAX) != 1
-		|| globs.soundDesc_maxFrequency == globs.soundDesc_minFrequency)
-		printf("\t\tPlease enter a value between %f (excluded) and %f: ", globs.soundDesc_minFrequency, DBL_MAX);
+	while(getKeyboard_Double(&globs->soundDesc_maxFrequency, globs->soundDesc_minFrequency, DBL_MAX) != 1
+		|| globs->soundDesc_maxFrequency == globs->soundDesc_minFrequency)
+		printf("\t\tPlease enter a value between %f (excluded) and %f: ", globs->soundDesc_minFrequency, DBL_MAX);
 	
 	printf("\tSound Search: Enter the minimum percentage for a match between windows: ");
-	while(getKeyboard_Double(&globs.soundDesc_minWindowMatch, 0.0, 1.0) != 1)
+	while(getKeyboard_Double(&globs->soundDesc_minWindowMatch, 0.0, 1.0) != 1)
 		printf("\t\tPlease enter a value between %f and %f: ", 0.0, 1.0);
 	
 	printf("\tEnter the minimum percentage for a match between quantification values: ");
-	while(getKeyboard_Double(&globs.soundDesc_minQuantifMatch, 0.0, 1.0) != 1)
+	while(getKeyboard_Double(&globs->soundDesc_minQuantifMatch, 0.0, 1.0) != 1)
 		printf("\t\tPlease enter a value between %f and %f: ", 0.0, 1.0);
-
-	return writeGlobs(&globs, confFile);
+	
+	retWriteGlobs = writeGlobs(globs, confFile);
+	// Release the temporary WritableGlobs
+	free(globs);
+	return retWriteGlobs;
 }
 //===================================================================================================
 void setGlobsVariables(WritableGlobs const * globs)
@@ -120,15 +124,14 @@ void setGlobsVariables(WritableGlobs const * globs)
 	globs_minQuantifMatch = globs->soundDesc_minQuantifMatch;
 }
 //===================================================================================================
-Bool writeGlobs(WritableGlobs const * globs, FILE* confFile)
+Bool writeGlobs(WritableGlobs * globs, FILE* confFile)
 {
-
 	if(!writeStruct(confFile, globs, sizeof(*globs)))
 	{
 /** Error Management **/
 		return FALSE;
 	}
-
+	
 	// Updating variables into global variables
 	setGlobsVariables(globs);
 	return TRUE;
@@ -143,7 +146,7 @@ Bool readGlobs(FILE* confFile)
 /** Error Management **/
 		return FALSE;
 	}
-
+	
 	// Updating variables into global variables
 	setGlobsVariables(globs);
 	

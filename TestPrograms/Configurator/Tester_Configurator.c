@@ -17,6 +17,8 @@ extern int globs_windowSize;
 extern int globs_nbInterval;
 extern double globs_minFrequency;
 extern double globs_maxFrequency;
+extern double globs_minWindowMatch;
+extern double globs_minQuantifMatch;
 
 // PictureDesc
 extern int globs_nbWeightyBits;
